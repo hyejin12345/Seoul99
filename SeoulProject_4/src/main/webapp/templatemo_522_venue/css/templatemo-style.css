@@ -49,7 +49,106 @@ section {
   color: #232323;
   letter-spacing: 0.5px;
 }
+/* 파란버튼 (기본) */
+.blue_btn{
+        /* 버튼 디폴트값 없애기 */
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance:none;
+        
+        /* 버튼 영역 */
+padding : 10px 20px;
+border-radius : 4px;
 
+        /* 블루버튼(기본) */
+background : #004fff;
+border : 0;
+color: white;
+
+        /* 애니메이션 */
+transition : 0.2s ease-in-out;
+
+}
+
+.blue_btn:hover{
+background : #0041d1;
+}
+
+
+/* 흰색버튼 */
+.whitegray_btn{
+        /* 버튼 디폴트값 없애기 */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance:none;
+        
+        /* 버튼 영역 */
+        padding : 10px 20px;
+        border-radius : 4px;
+
+        /* 흰색+회색선 */
+        background : white;
+        border : 2px solid lightgray;        
+        color : black;
+
+        /* 애니메이션 */
+        transition : 0.2s ease-in-out;
+}
+.whitegray_btn:hover{
+        border : 2px solid #004fff;        
+        color : #004fff;
+}
+
+/* 글자버튼 (더보기 등에 사용) */
+.text_btn{
+        /* 버튼 디폴트값 없애기 */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance:none;
+
+        /* 버튼 영역 */
+        padding : 10px 10px;
+        
+        /* 버튼 색상 */
+        background : transparent;
+        border : 0;
+        color : black;
+}
+
+.text_btn:hover{
+       color : #004fff;
+}
+
+/* 찜버튼 */
+/* 찜버튼 아이콘 : <i class="fa-sharp fa-solid fa-heart"></i>*/
+.jjim_btn{
+        /* 버튼 디폴트값 없애기 */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance:none;
+
+        /* 버튼 위치, 크기 */ 
+        position:absolute;
+        top : 20px;
+        right : 20px;
+        z-index:9;
+
+        width : 35px;
+        height : 35px;
+        
+        /* 버튼 색상 */
+        background : white;
+        border : 0;
+        border-radius : 50%;
+}
+i.fa-heart{
+   font-size : 15px;
+   color : gray;
+   text-align : center;
+}
+i.fa-heart:hover{
+   color : #ff6555;
+}
 
 .blue-button a {
   display: inline-block;
