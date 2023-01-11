@@ -17,18 +17,23 @@
 input {
   width: 130%;
   border: 1px solid #bbb;
-  border-radius: 8px;
-  margin:25px;
-  padding: 15px 12px;
+  border-radius: 4px;
+  margin:30px;
+  padding: 10px 45px 10px 15px;
   font-size: 14px;
   float:left;
+  color:gray;
+}
+
+input:focus{
+  color: black;
 }
 
 div.search img {
   position : absolute;
   width: 18px;
   top: 15px;
-  left: 230px;
+  left: 225px;
   margin: 28px;
   cursor:pointer;
 }

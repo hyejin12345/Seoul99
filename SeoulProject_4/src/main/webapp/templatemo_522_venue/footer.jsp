@@ -84,10 +84,10 @@ h5{
         transform: translate(-50%, -50%);
         background-color: #ffffff;
         box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-
+		border-radius: 10px;
         /* 임시 지정 */
         width: 450px;
-        height: 400px;
+        height: 420px;
 
         /* 초기에 약간 아래에 배치 */
         transform: translate(-50%, -40%);
@@ -196,7 +196,7 @@ h5{
             <a href="https://kr.freepik.com/free-photo/beautiful-architecture-building-of-gyeongbokgung-palace_3798285.htm#query=%EA%B4%91%ED%99%94%EB%AC%B8&position=45&from_view=search&track=sph">작가 lifeforstock</a> 출처 Freepik
             <p>
             seoul-06&nbsp;&nbsp;반포대교 ⓒ
-            <a href="https://pixabay.com/ko/photos/대한민국-서울-한강-야경-2836848/">작가 dldusdn</a> 출처 픽사베이         
+            <a href="https://pixabay.com/ko/photos/대한민국-서울-한강-야경-2836848/">작가 dldusdn</a> 출처 Pixabay         
             </div>
             <button id="close_btn">닫기</button>      
         </div>
