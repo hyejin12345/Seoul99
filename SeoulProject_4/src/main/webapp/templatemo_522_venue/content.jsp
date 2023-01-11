@@ -25,41 +25,6 @@
                             <a class="scrollTo" data-scrollTo="popular" href="#">찾아보기</a>
                         </div>
                     </div>
-                    <div class="submit-form">
-                        <form id="form-submit" action="" method="get">
-                            <div class="row">
-                                <div class="col-md-3 first-item">
-                                    <fieldset>
-                                        <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-3 second-item">
-                                    <fieldset>
-                                        <input name="location" type="text" class="form-control" id="location" placeholder="Type location..." required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-3 third-item">
-                                    <fieldset>
-                                        <select required name='category' onchange='this.form.()'>
-                                            <option value="">Select category...</option>
-                                            <option value="Shops">Shops</option>
-                                            <option value="Hotels">Hotels</option>
-                                            <option value="Restaurants">Restaurants</option>
-                                            <option value="Events">Events</option>
-                                            <option value="Meetings">Meetings</option>
-                                            <option value="Fitness">Fitness</option>
-                                            <option value="Cafes">Cafes</option>
-                                        </select>
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-3">
-                                    <fieldset>
-                                        <button type="submit" id="form-submit" class="btn">Search Now</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
@@ -387,89 +352,9 @@
             </div>
         </div>
     </section>
-
-
-
-    <section class="our-services" id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading">
-                        <span>서울 99여행의 서비스</span>
-                        <h2>서울 구석구석 여행 추천!</h2>
-                    </div>
-                </div> 
-            </div> 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="service-item">
-                        <div class="icon">
-                            <img src="img/service_icon_1.png" alt="">
-                        </div>
-                        <h4>서울 갈만한 여행지 제공</h4>
-                        <p>Etiam viverra nibh at lorem hendrerit porta non nec ligula. Donec hendrerit porttitor pretium. Suspendisse fermentum nec risus.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-item">
-                        <div class="icon">
-                            <img src="img/service_icon_2.png" alt="">
-                        </div>
-                        <h4>서울 추천 맛집 제공</h4>
-                        <p>Vivamus nec vehicula felis, sit amet convallis ex. Aenean dolor risus, rutrum at tincidunt eget, placerat ac mauris.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="service-item">
-                        <div class="icon">
-                            <img src="img/service_icon_3.png" alt="">
-                        </div>
-                        <h4>홈페이지 이용</h4>
-                        <p>Praesent nec dui sed urna pharetra dapibus at ac elit. Aenean hendrerit metus leo, quis viverra purus condimentum nec.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="down-services">
-                        <div class="row">
-                            <div class="col-md-5 col-md-offset-1">
-                                <div class="left-content">
-                                    <h4>In hac habitasse platea dictumst</h4>
-                                    <p>Aenean hendrerit metus leo, quis viverra purus condimentum nec. Pellentesque a sem semper, lobortis mauris non, varius urna. Quisque sodales purus eu tellus fringilla.<br><br>Mauris sit amet quam congue, pulvinar urna et, congue diam. Suspendisse eu lorem massa. Integer sit amet posuere tellus, id efficitur leo. In hac habitasse platea dictumst.</p>
-                                    <div class="blue-button">
-                                        <a href="#">Discover More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="accordions">
-                                    <ul class="accordion">
-                                        <li>
-                                            <a>Ut in dapibus ipsum</a>
-                                            <p>Nulla eget aliquet dui, vitae tincidunt nulla. Sed sagittis odio vitae auctor volutpat. In semper ex neque, ut hendrerit mauris rutrum eget. Integer consectetur neque eu enim dictum porta. Sed et risus ac sapien congue mattis.</p>
-                                        </li>
-                                        <li>
-                                            <a>Vivamus ligula metus</a>
-                                            <p>Integer vel augue arcu. Fusce ac turpis cursus, malesuada nulla quis, lobortis dui. Etiam blandit, erat efficitur rhoncus pellentesque, ligula turpis tempor dolor.</p>
-                                        </li>
-                                        <li>
-                                            <a>Suspendisse dapibus</a>
-                                            <p>Nullam nibh lacus, rhoncus sit amet feugiat vel, porttitor sit amet nibh. Pellentesque feugiat justo nec enim pretium, sed faucibus lacus aliquam. Sed ac interdum mauris.</p>
-                                        </li>
-                                    </ul> <!-- / accordion -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     
 
-    <section id="video-container">
+<!--     <section id="video-container">
         <div class="video-overlay"></div>
         <div class="video-content">
             <div class="inner">
@@ -481,10 +366,9 @@
         <video autoplay="" loop="" muted>
         	<source src="highway-loop.mp4" type="video/mp4" />
         </video>
-    </section>
+    </section> -->
 
-
-
+<!--
     <section class="pricing-tables">
         <div class="container">
             <div class="row">
@@ -556,7 +440,7 @@
             </div>
         </div>
     </section>
-
+  -->
 
 
     <section class="contact" id="contact">

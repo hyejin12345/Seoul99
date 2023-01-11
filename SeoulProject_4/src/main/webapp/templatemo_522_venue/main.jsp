@@ -53,7 +53,7 @@ font-family:'Noto Sans KR', sans-serif;
 <jsp:include page="header.jsp"></jsp:include>
 
 <!-- home -->
-<jsp:include page="home.jsp"></jsp:include>
+<jsp:include page="content.jsp"></jsp:include>
 
 
 <!-- footer -->

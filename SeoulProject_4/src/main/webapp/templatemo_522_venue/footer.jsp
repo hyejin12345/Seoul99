@@ -128,7 +128,7 @@ h5{
                 <div class="col-md-4">
                     <div class="about-veno">
                         <div class="logo">
-                            <img src="img/logo3.png">
+                            <img src="img/footer_logo.png">
                         </div>
                         <p></p>
                     </div>

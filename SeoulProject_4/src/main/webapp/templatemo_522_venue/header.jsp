@@ -44,7 +44,7 @@ div.search img {
                <div>
                   <button id="primary-nav-button" type="button">Menu</button>
                   <a href="index.html" style="float:left;"><div class="logo">
-                        <img src="img/logo1.PNG">
+                        <img src="img/header_logo.png">
                      </div></a>
 
 						<div class="search">
