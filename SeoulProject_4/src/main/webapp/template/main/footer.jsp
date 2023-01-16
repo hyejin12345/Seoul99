@@ -128,7 +128,7 @@ h5{
                 <div class="col-md-4">
                     <div class="about-veno">
                         <div class="logo">
-                            <img src="img/footer_logo.png">
+                            <img src="../img/footer_logo.png">
                         </div>
                         <p></p>
                     </div>
@@ -174,34 +174,35 @@ h5{
                         <br><br><br><br><br>
                             <button id="show_btn">메인배너이미지 출처</button>
                         </p>
-    <div class="background">
-      <div class="window">
-        <div class="photoby_popup">
-          <h4 style="color:black;">메인배너이미지 출처</h4>
-            <div id="photoby_content">
-            <p>
-            seoul-01&nbsp;&nbsp;경복궁 경회루 ⓒ
-            <a href="https://kr.freepik.com/free-photo/gyeongbokgung-palace-with-cherry-blossom-in-spring-south-korea_11306598.htm#page=4&query=%EA%B2%BD%EB%B3%B5%EA%B6%81&position=45&from_view=search&track=sph">작가 tawatchai07</a> 출처 Freepik
-            <p>
-            seoul-02&nbsp;&nbsp;N서울타워 ⓒ
-            <a href="https://kr.freepik.com/free-photo/seoul-tower-and-pink-cherry-blossom-sakura-season-in-spring-seoul-in-south-korea_11599557.htm#query=%EB%82%A8%EC%82%B0&position=45&from_view=search&track=sph">작가 tawatchai07</a> 출처 Freepik
-            <p>
-            seoul-03&nbsp;&nbsp;DDP ⓒ
-            <a href="https://kr.freepik.com/free-photo/dongdaemun-design-plaza_11599536.htm#query=%EB%8F%99%EB%8C%80%EB%AC%B8&from_query=ddp&position=1&from_view=search&track=sph">작가 tawatchai07</a> 출처 Freepik
-            <p>
-            seoul-04&nbsp;&nbsp;북한산 ⓒ
-            <a href="https://kr.freepik.com/free-photo/sunrise-at-baegundae-peak-and-bukhansan-mountains-in-autumn-seoul-in-south-korea_11600365.htm#page=3&query=%EA%B4%91%ED%99%94%EB%AC%B8&position=43&from_view=search&track=sph">작가 tawatchai07</a> 출처 Freepik
-            <p>
-            seoul-05&nbsp;&nbsp;광화문 ⓒ
-            <a href="https://kr.freepik.com/free-photo/beautiful-architecture-building-of-gyeongbokgung-palace_3798285.htm#query=%EA%B4%91%ED%99%94%EB%AC%B8&position=45&from_view=search&track=sph">작가 lifeforstock</a> 출처 Freepik
-            <p>
-            seoul-06&nbsp;&nbsp;반포대교 ⓒ
-            <a href="https://pixabay.com/ko/photos/대한민국-서울-한강-야경-2836848/">작가 dldusdn</a> 출처 Pixabay         
-            </div>
-            <button id="close_btn">닫기</button>      
-        </div>
-      </div>
-    </div>
+                        
+			    <div class="background">
+			      <div class="window">
+			        <div class="photoby_popup">
+			          <h4 style="color:black;">메인배너이미지 출처</h4>
+			            <div id="photoby_content">
+			            <p>
+			            seoul-01&nbsp;&nbsp;경복궁 경회루 ⓒ
+			            <a href="https://kr.freepik.com/free-photo/gyeongbokgung-palace-with-cherry-blossom-in-spring-south-korea_11306598.htm#page=4&query=%EA%B2%BD%EB%B3%B5%EA%B6%81&position=45&from_view=search&track=sph">작가 tawatchai07</a> 출처 Freepik
+			            <p>
+			            seoul-02&nbsp;&nbsp;N서울타워 ⓒ
+			            <a href="https://kr.freepik.com/free-photo/seoul-tower-and-pink-cherry-blossom-sakura-season-in-spring-seoul-in-south-korea_11599557.htm#query=%EB%82%A8%EC%82%B0&position=45&from_view=search&track=sph">작가 tawatchai07</a> 출처 Freepik
+			            <p>
+			            seoul-03&nbsp;&nbsp;DDP ⓒ
+			            <a href="https://kr.freepik.com/free-photo/dongdaemun-design-plaza_11599536.htm#query=%EB%8F%99%EB%8C%80%EB%AC%B8&from_query=ddp&position=1&from_view=search&track=sph">작가 tawatchai07</a> 출처 Freepik
+			            <p>
+			            seoul-04&nbsp;&nbsp;북한산 ⓒ
+			            <a href="https://kr.freepik.com/free-photo/sunrise-at-baegundae-peak-and-bukhansan-mountains-in-autumn-seoul-in-south-korea_11600365.htm#page=3&query=%EA%B4%91%ED%99%94%EB%AC%B8&position=43&from_view=search&track=sph">작가 tawatchai07</a> 출처 Freepik
+			            <p>
+			            seoul-05&nbsp;&nbsp;광화문 ⓒ
+			            <a href="https://kr.freepik.com/free-photo/beautiful-architecture-building-of-gyeongbokgung-palace_3798285.htm#query=%EA%B4%91%ED%99%94%EB%AC%B8&position=45&from_view=search&track=sph">작가 lifeforstock</a> 출처 Freepik
+			            <p>
+			            seoul-06&nbsp;&nbsp;반포대교 ⓒ
+			            <a href="https://pixabay.com/ko/photos/대한민국-서울-한강-야경-2836848/">작가 dldusdn</a> 출처 Pixabay         
+			            </div>
+			            <button id="close_btn">닫기</button>      
+			        </div>
+			      </div>
+			    </div>
 
                     </div>
                 </div>

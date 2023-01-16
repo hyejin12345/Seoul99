@@ -4,8 +4,14 @@ http://www.templatemo.com/tm-522-venue
 */
 
 body {
-  font-family: 'Raleway', 'sans-serif';
-  background-color: #fff;
+  /*font-family: 'Raleway', 'sans-serif';
+  background-color: #fff;*/
+  
+  /**/
+  padding-top:100px;
+}
+.container{
+	width:1200px;
 }
 div.join a{
 	color : black;
@@ -49,6 +55,7 @@ section {
   color: #232323;
   letter-spacing: 0.5px;
 }
+
 /* 파란버튼 (기본) */
 .blue_btn{
         /* 버튼 디폴트값 없애기 */
@@ -187,8 +194,15 @@ i.fa-heart:hover{
 
 #header {
   overflow: visible;
-  position: relative;
+  /*position: relative;*/
   background-color: #fff;
+  
+  /**/
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:999;
+
 }
 
 
@@ -237,6 +251,12 @@ i.fa-heart:hover{
 
 #header .logo {
   float: left;
+  
+  /**/
+  position : relative;
+  width:200px;
+  height:36px;
+  margin:32px;
 }
 
 #header .logo img {
@@ -250,13 +270,14 @@ i.fa-heart:hover{
 
 .menu li {
   float: left;
-  margin-left: 30px;
+  /*margin-left: 30px;*/
   position: relative;
   line-height: 100px;
 }
 
 .menu li:last-child {
   margin-right: 0;
+  padding : 0 12px 0 0;
 }
 
 .menu .sub-menu li {
@@ -269,12 +290,13 @@ i.fa-heart:hover{
   text-decoration: none;
 }
 
+
 #primary-nav li a {
-  color: #121212;
+  color: black;
   font-weight: bold;
   line-height: 100px;
-  padding: 0px 15px;
-  font-size: 15px;
+  padding: 0px 20px;
+  /*padding: 0px 20px;*/
   font-weight: 400;
   transition: all 0.5s;
 }
@@ -416,7 +438,6 @@ i.fa-heart:hover{
 #primary-nav-button.mobile {
   display: inline-block;
 }
-
 
 
 
@@ -747,7 +768,7 @@ section.featured-places {
 
 
 
-
+/* 안 쓰는 부분
 section.our-services .service-item {
   text-align: center;
   border: 1px solid #ddd;
@@ -774,6 +795,7 @@ section.our-services .service-item h4 {
   margin-top: 0px;
   margin-bottom:  25px;
 }
+
 
 .our-services .left-content .blue-button {
   margin-top: 25px;
@@ -834,8 +856,6 @@ a.active:after {
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-
-
 
 section#video-container {
   margin-top: 80px;
@@ -970,7 +990,7 @@ section.pricing-tables .table-item ul li a:hover {
 section.contact .section-heading {
   margin-top: 60px;
   margin-bottom: 30px;
-}
+}*/
 
 .wrapper {
   text-align: center;

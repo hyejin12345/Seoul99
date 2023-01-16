@@ -8,7 +8,7 @@ import java.sql.*;
 public class TripDAO {
 	private Connection conn;
 	private PreparedStatement ps;
-	private final String URL="jdbc:oracle:thin:@localhost:1521:XE"; //주소 바꾸기
+	private final String URL="jdbc:oracle:thin:@211.63.89.131:1521:XE"; //주소 바꾸기
 		
 	//드라이버 등록
 	public TripDAO()
