@@ -19,7 +19,7 @@ GOOD             NUMBER
 SOSO             NUMBER         
 BAD              NUMBER         
  */
-public class foodDetailVO {
+public class FoodVO {
 	private int fno,fcno,jjim,flike,hit,good,soso,bad;
 	private double score;
 	private String poster,name,addr,tel,type,price,time,menu,parking;
