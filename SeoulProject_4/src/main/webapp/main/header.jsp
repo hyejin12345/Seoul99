@@ -68,12 +68,12 @@
                   <nav id="primary-nav" class="dropdown cf" style="float:right">
                      <ul class="dropdown menu" >
                         <li class='active'><a href="../main/main.do">홈</a></li>
-                        <li><a href="#">여행지</a>
+                        <li><a href="../trip/trip_list.do">여행지</a>
                            <ul class="sub-menu">
-                              <li><a href="">명소</a></li>
-                              <li><a href="#">자연</a></li>
-                              <li><a href="#">즐길거리</a></li>
-                              <li><a href="#">쇼핑</a></li>
+                              <li><a href="../trip/trip_list.do?no=1">명소</a></li>
+                              <li><a href="../trip/trip_list.do?no=2">자연</a></li>
+                              <li><a href="../trip/trip_list.do?no=3">즐길거리</a></li>
+                              <li><a href="../trip/trip_list.do?no=4">쇼핑</a></li>
                            </ul></li>
                         <li><a href="#">맛집</a>
                            <ul class="sub-menu">

@@ -22,92 +22,10 @@
 
 <style>
 
-/* 메인배너 (나중에 css파일로 옮기기) */
-
-.mainbanner{
-	position:relative;
-	width:1200px;
-	height:400px;
-	margin:0 auto;
-}
-.mainbanner .main_input{
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-            
-  width:600px;
-  height:50px;
-  z-index:3;
-  margin:0;
-  padding: 0 30px;
-  
-  position:absolute;
-  top:290px;
-  left:70px;
-  
-  border:0;
-  border-radius:4px;
-  font-size : 18px;
-  color:gray;
-}
-.mainbanner .main_input:focus{
-	outline:none;
-	color:black;
-}
-.mainbanner .main_input:hover{
-	outline:none;
-	box-shadow:0 0 10px 5px rgb(0,0,0,0.2);
-}
-
-.mainbanner .slide{position:relative;margin:0 auto;}
-.mainbanner .slide .slideCnt{position:relative;overflow:hidden;width:1200px;height:400px}
-.mainbanner .slide .slideCnt li{position:absolute;top:0;left:0;width:100%;height:100%;list-style:none; /*font-size:50px;line-height:500px;*/ text-align:center;color:#fff}
-
-.mainbanner .slide .btn a{
-position:absolute;
-top:48%;
-margin-top:-15px; 
-font-size:20px;
-text-align:center;
-text-decoration:none;
-line-height:30px;}
-.mainbanner .slide .btn a.prev{left:30px;}
-.mainbanner .slide .btn a.next{right:30px;}
-.mainbanner .slide .btn a i.fa-solid{color:white;}
-.mainbanner .slide .autoBtn{
-	position:absolute;
-	top:20px;
-	right:20px;
-	border-radius:3px;
-	width:30px;
-	height:30px;
-	text-align:center;
-	text-decoration:none;
-	line-height:30px;
-	/*background-color:transparent;*/
-	color:white;
-	font-weight:bold;
-}
-.mainbanner .slide .autoBtn:hover{
-  color:white;
-}
-
-.mainbanner .slide .slogan{
-position : absolute;
-top : 245px;
-left : 100px;
-font-size : 30px;
-font-weight:400;
-color:white;
-}
 
 
 /* 이미지리스트 슬라이드 */
 
-.imglistSection{
-	width:100%;
-	/*background:pink;*/
-}
 .topText{
 	width:100%;
 	height:30px;
@@ -122,6 +40,12 @@ color:white;
 	float:right;
 	color:black;
 	text-decoration:none;
+}
+
+
+.imglistSection{
+	width:100%;
+	/*background:pink;*/
 }
 
 .imglistGroup{
@@ -140,7 +64,7 @@ color:white;
 
 }
 
-.cell{
+.flickity-viewport .cell{
 	/*width:33%;*/
 	/*height:285px;*/
 	width:270px;
@@ -152,7 +76,7 @@ color:white;
 	box-shadow : 0 5px 10px 0 rgb(0,0,0,0.2);
 	position:relative;
 }
-.cell img{
+.flickity-viewport .cell img{
 	width:100%;
 	height:180px;
 	object-fit:fit;
@@ -211,7 +135,7 @@ div.cellInfo{
 	margin:15px;
 	
 }	
-#foodcate_img{
+#foodcate_cellimg{
 	width:100%;
 	height:100%;
 	object-fit:fit;
@@ -233,20 +157,22 @@ div.cellInfo{
 	color:white;
 }
 
-
-.fs_slide{
-	
-	
+#festival_cell{
+	width:580px;
+	height:350px;
+	margin:20px;
 }
-.festivalBanner{
-
-}
-.festivalBanner img{
-	width:600px;
-	height:420px;
+#festival_cellimg{
+	width:100%;
+	height:100%;
 	object-fit:fit;
-	float:left;
 }
+.festival_imgbtn{
+	width:100%;
+	background-color:transparent;
+	border:0;
+}
+
 </style>
 
 
@@ -286,17 +212,17 @@ div.cellInfo{
 	    	  <a href="../main/home.do?tcno=${tcno }"><h4 class="tripcate_h4">${tcno3}</h4></a>
 	    	  <a href="../main/home.do?tcno=${tcno }"><h4 class="tripcate_h4">${tcno4}</h4></a>  	  
     	    </div> --%>
-    	<h4><a href="#" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4>
+    	<h4><a href="../trip/trip_list.do" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4>
     </div>
     <div class="imglistSection">
       	<div class="imglistGroup">
-			<div class="main-carousel main-carousel_fs">
+			<div class="main-carousel">
 			  <c:forEach var="tvo" items="${tlist }" >
 			    
 			     <div class="cell">
 			         <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
-			         <a href="#"><img src="${tvo.image }"></a>
-			         <a href="#"><h4 class="cellName">${tvo.name }</h4></a>
+			         <a href="../trip/trip.detail.do?no=${tvo.tno }"><img src="${tvo.image }"></a>
+			         <a href="../trip/trip.detail.do?no=${tvo.tno }"><h4 class="cellName">${tvo.name }</h4></a>
 			         <div class="cellInfo">
 			            <span class="score"><i class="fa-solid fa-star"></i>4.6</span><span class="hit">(652건)&nbsp;&nbsp;&nbsp;&nbsp;조회수 362</span>
 			         </div>
@@ -321,7 +247,7 @@ div.cellInfo{
 			    
 			     <div class="cell" id="foodcate_cell">
 			         <div class="foodcate_back"></div>
-    			     <a href="#"><img src="${fvo.image }" id="foodcate_img"></a>
+    			     <a href="#"><img src="${fvo.image }" id="foodcate_cellimg"></a>
     			     <div class="foodcate_titles">
 			           <a href="#"><h3 class="cellName foodcate_h3">${fvo.title }</h3></a>
 			           <a href="#"><h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5></a>
@@ -335,25 +261,25 @@ div.cellInfo{
     
     
     <!-- 축제 리스트 -->
+    
 	<div class="topText">
     	<h3>현재 진행중인 행사</h3>
-    	<h4><a href="#">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4>
     </div>
-    <div class="festivalBanner fs_slide">
-	   <div class="slide fs_slide">
-		    <ul class="slideCnt fs_slide">
-		    	<c:forEach var="vo" items="${fslist }">
-		           <li><img src="${vo.image }" title="${vo.name }"></li>
-		        </c:forEach>
-		    </ul>
-		    <div class="btn">
-		        <a href="#" class="prev"><i class="fa-solid fa-angle-left"></i></a>
-		        <a href="#" class="next"><i class="fa-solid fa-angle-right"></i></a>
-		    </div>
-		</div>
-    </div>
+    <div class="imglistSection">
+      	<div class="imglistGroup">
+			<div class="main-carousel">
+			
+			  <c:forEach var="fsvo" items="${fslist }" >
+			     <div class="cell" id="festival_cell">
+    			   <img src="${fsvo.image }" id="festival_cellimg">
+			     </div>
+			  </c:forEach>
+			</div>
+      	</div>
+    </div>	
     
-    
+
+
 
 </div>
 
@@ -483,7 +409,7 @@ prevNum = nextNum;
 };*/
 
 
-/*--------*/
+/* 이미지리스트 슬라이드 */
 
 $('.main-carousel').flickity({
 	  // options
@@ -492,7 +418,18 @@ $('.main-carousel').flickity({
 	  freeScroll: true
 	});
 
+/* 행사 이미지버튼(상세정보 팝업) */
 
+     function show() {
+        document.querySelector(".background").className = "background show";
+      }
+
+      function close() {
+        document.querySelector(".background").className = "background";
+      }
+
+      document.querySelector(".festival_imgbtn").addEventListener("click", show);
+      document.querySelector("#close_btn").addEventListener("click", close);
 
 </script>
 </body>

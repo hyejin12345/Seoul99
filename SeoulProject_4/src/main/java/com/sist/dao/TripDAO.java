@@ -20,6 +20,7 @@ public class TripDAO {
 					   +"WHERE tcno=? " //1 명소, 2 자연, 3 즐길거리, 4 쇼핑
 					   +"AND rownum<=12";
 			ps=conn.prepareStatement(sql);
+			ps.setInt(1, tcno);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{

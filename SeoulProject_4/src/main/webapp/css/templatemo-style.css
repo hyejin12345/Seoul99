@@ -3,11 +3,105 @@ Venue Template
 http://www.templatemo.com/tm-522-venue
 */
 
+
+
+
+
+
+/* 메인배너 (나중에 css파일로 옮기기) */
+
+.mainbanner{
+	position:relative;
+	width:1200px;
+	height:400px;
+	margin:0 auto;
+}
+.mainbanner .main_input{
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+            
+  width:600px;
+  height:50px;
+  z-index:3;
+  margin:0;
+  padding: 0 30px;
+  
+  position:absolute;
+  top:290px;
+  left:70px;
+  
+  border:0;
+  border-radius:4px;
+  font-size : 18px;
+  color:gray;
+}
+.mainbanner .main_input:focus{
+	outline:none;
+	color:black;
+}
+.mainbanner .main_input:hover{
+	outline:none;
+	box-shadow:0 0 10px 5px rgb(0,0,0,0.2);
+}
+
+.mainbanner .slide{position:relative;margin:0 auto;}
+.mainbanner .slide .slideCnt{position:relative;overflow:hidden;width:1200px;height:400px}
+.mainbanner .slide .slideCnt li{position:absolute;top:0;left:0;width:100%;height:100%;list-style:none; /*font-size:50px;line-height:500px;*/ text-align:center;color:#fff}
+
+.mainbanner .slide .btn a{
+position:absolute;
+top:48%;
+margin-top:-15px; 
+font-size:20px;
+text-align:center;
+text-decoration:none;
+line-height:30px;}
+.mainbanner .slide .btn a.prev{left:30px;}
+.mainbanner .slide .btn a.next{right:30px;}
+.mainbanner .slide .btn a i.fa-solid{color:white;}
+.mainbanner .slide .autoBtn{
+	position:absolute;
+	top:20px;
+	right:20px;
+	border-radius:3px;
+	width:30px;
+	height:30px;
+	text-align:center;
+	text-decoration:none;
+	line-height:30px;
+	/*background-color:transparent;*/
+	color:white;
+	font-weight:bold;
+}
+.mainbanner .slide .autoBtn:hover{
+  color:white;
+}
+
+.mainbanner .slide .slogan{
+position : absolute;
+top : 245px;
+left : 100px;
+font-size : 30px;
+font-weight:400;
+color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 body {
   /*font-family: 'Raleway', 'sans-serif';
   background-color: #fff;*/
   
-  /**/
   padding-top:100px;
 }
 .container{
@@ -192,7 +286,7 @@ i.fa-heart:hover{
   *zoom: 1;
 }
 
-#header {
+#header{
   overflow: visible;
   /*position: relative;*/
   background-color: #fff;
@@ -201,8 +295,7 @@ i.fa-heart:hover{
   position:fixed;
   top:0;
   width:100%;
-  z-index:999;
-
+  z-index:500;
 }
 
 
@@ -1199,8 +1292,8 @@ section.contact .section-heading {
 
 footer {
   margin-top: 80px;
+
   padding: 80px 0px 70px 0px;
-  border-top: 1px solid #ddd;
   font-size:14px;
 }
 
@@ -1214,7 +1307,7 @@ footer .footer-heading h4 {
 
 
 footer .about-veno .logo {
-  margin-bottom: 40px;
+  margin-left: 50px;
 }
 
 footer .about-veno ul li a {
@@ -1235,9 +1328,10 @@ footer .about-veno p {
   margin-bottom: 25px;
 }
 
-/*footer .about-veno ul li a:hover {
+footer .about-veno ul li a:hover {
   background-color: #004fff;
-}*/
+}
+
 
 footer .useful-links ul li {
   margin-bottom: 14px;
@@ -1275,7 +1369,13 @@ footer .useful-links ul li i {
   margin-right: 8px;
 }
 
-/*
+footer .container div.col-md-3{
+	
+	width:280px;
+	
+}
+
+
 footer .contact-info p {
   margin-bottom: 25px;
 }
@@ -1299,7 +1399,7 @@ footer .contact-info ul li a {
   letter-spacing: 0.5px;
   text-decoration: none;
 }
-*/
+
 .sub-footer p {
   text-align: center;
   display: inline-block;
@@ -1315,6 +1415,8 @@ footer .contact-info ul li a {
   text-decoration: none;
   color: white;
 }
+
+
 
 
 @media (max-width:992px) {
@@ -1372,11 +1474,13 @@ footer .contact-info ul li a {
   }
 
   footer .useful-links {
-    margin-top: 60px;
+    /*margin-top: 60px;*/
+    margin:50px;
+    padding:0;
+
   }
 
   footer .contact-info {
     margin-top: 60px;
   }
-  
 }
