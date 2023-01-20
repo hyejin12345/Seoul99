@@ -333,7 +333,7 @@ i.fa-heart:hover{
 }
 
 .downarrow:before {
-  content: '\25be';
+  /*content: '\25be';*/
   color: inherit;
   display: block;
   font-size: 1em;
@@ -438,6 +438,10 @@ i.fa-heart:hover{
 #primary-nav-button.mobile {
   display: inline-block;
 }
+
+/* 메인배너 (mainBanner) - 나중에 옮기기 */
+
+
 
 
 
@@ -1231,9 +1235,9 @@ footer .about-veno p {
   margin-bottom: 25px;
 }
 
-footer .about-veno ul li a:hover {
+/*footer .about-veno ul li a:hover {
   background-color: #004fff;
-}
+}*/
 
 footer .useful-links ul li {
   margin-bottom: 14px;
@@ -1246,9 +1250,9 @@ footer .useful-links ul li a {
   transition: all 0.5s;
 }
 
-footer .useful-links ul li a:hover {
+/*footer .useful-links ul li a:hover {
   color: blue;
-}
+}*/
 footer .useful-links a {
   font-size: 14px;
   color: white;
@@ -1256,9 +1260,9 @@ footer .useful-links a {
   text-decoration: none;
   transition: all 0.5s;
 }
-footer .useful-links a:hover {
+/*footer .useful-links a:hover {
   color: blue;
-}
+}*/
 footer .useful-links p {
 		color:white;
 		font-size:13px;

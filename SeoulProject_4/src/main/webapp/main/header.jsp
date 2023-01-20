@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>서울99여행</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style type="text/css">
 
@@ -67,7 +67,7 @@
                   </div>
                   <nav id="primary-nav" class="dropdown cf" style="float:right">
                      <ul class="dropdown menu" >
-                        <li class='active'><a href="">홈</a></li>
+                        <li class='active'><a href="../main/main.do">홈</a></li>
                         <li><a href="#">여행지</a>
                            <ul class="sub-menu">
                               <li><a href="">명소</a></li>
