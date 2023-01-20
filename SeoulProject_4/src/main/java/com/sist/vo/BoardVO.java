@@ -17,9 +17,9 @@ import java.util.*;
 	ID                VARCHAR2(20)  
  */
 public class BoardVO {
-	private int bno, type, hit, count;
+	private int bno, type, hit, count, filesize;
 	private String name, title, content, pwd, hashtag;
-	private String filename, filesize, id, dbday;
+	private String filename, id, dbday;
 	private Date regdate, moddate;
 	public int getBno() {
 		return bno;
@@ -81,12 +81,6 @@ public class BoardVO {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
-	public String getFilesize() {
-		return filesize;
-	}
-	public void setFilesize(String filesize) {
-		this.filesize = filesize;
-	}
 	public String getId() {
 		return id;
 	}
@@ -110,6 +104,12 @@ public class BoardVO {
 	}
 	public void setDbday(String dbday) {
 		this.dbday = dbday;
+	}
+	public int getFilesize() {
+		return filesize;
+	}
+	public void setFilesize(int filesize) {
+		this.filesize = filesize;
 	}
 	
 }
