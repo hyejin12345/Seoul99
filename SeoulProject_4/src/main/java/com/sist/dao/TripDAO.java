@@ -15,7 +15,7 @@ public class TripDAO {
 		try
 		{
 			conn=CreateConnection.getConnection();
-			String sql="SELECT tcno,name,image,hit, rownum FROM trip_4 "  //실제 작업 시 테이블명 수정하기
+			String sql="SELECT tcno,name,image,hit, rownum FROM gg_trip_4 "  //실제 작업 시 테이블명 수정하기
 					   +"WHERE tcno=? " //1 명소, 2 자연, 3 즐길거리, 4 쇼핑
 					   +"AND rownum<=12";
 			ps=conn.prepareStatement(sql);
@@ -49,7 +49,7 @@ public class TripDAO {
 		try
 		{
 			conn=CreateConnection.getConnection();
-			String sql="SELECT name, image, rownum FROM festival_4 "
+			String sql="SELECT name, image, rownum FROM gg_festival_4 "
 						+"WHERE rownum <=12";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
