@@ -321,7 +321,7 @@ div.cellInfo{
 			    
 			     <div class="cell" id="foodcate_cell">
 			         <div class="foodcate_back"></div>
-    			     <a href="#"><img src="${fvo.poster }" id="foodcate_img"></a>
+    			     <a href="#"><img src="${fvo.image }" id="foodcate_img"></a>
     			     <div class="foodcate_titles">
 			           <a href="#"><h3 class="cellName foodcate_h3">${fvo.title }</h3></a>
 			           <a href="#"><h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5></a>

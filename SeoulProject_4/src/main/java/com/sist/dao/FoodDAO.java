@@ -19,9 +19,9 @@ public class FoodDAO {
 		{
 			
 			conn=CreateConnection.getConnection();
-			String sql="SELECT /*+ INDEX_ASC(project_category pc_cno_pk)*/ "
-					   +"cno,title,subject,poster "
-					   +"FROM project_category ";
+			String sql="SELECT /*+ INDEX_ASC(gg_foodcategory_4 fc_fcno_pk_4)*/ "
+					   +"fcno,title,subtitle,image "
+					   +"FROM gg_foodcategory_4 ";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
@@ -30,7 +30,7 @@ public class FoodDAO {
 				vo.setFcno(rs.getInt(1));
 				vo.setTitle(rs.getString(2));
 				vo.setSubtitle(rs.getString(3));
-				vo.setPoster(rs.getString(4));
+				vo.setImage(rs.getString(4));
 				list.add(vo);
 			}
 			rs.close();

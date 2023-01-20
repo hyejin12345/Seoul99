@@ -8,7 +8,7 @@ LINK     NOT NULL VARCHAR2(100)
  */
 public class FoodCategoryVO {
 	private int fcno;
-	private String title,subtitle,poster,link;
+	private String title,subtitle,image,link;
 	public int getFcno() {
 		return fcno;
 	}
@@ -27,11 +27,12 @@ public class FoodCategoryVO {
 	public void setSubtitle(String subtitle) {
 		this.subtitle = subtitle;
 	}
-	public String getPoster() {
-		return poster;
+	
+	public String getImage() {
+		return image;
 	}
-	public void setPoster(String poster) {
-		this.poster = poster;
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public String getLink() {
 		return link;

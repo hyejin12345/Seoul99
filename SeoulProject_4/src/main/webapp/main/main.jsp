@@ -23,23 +23,23 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 *{
-font-family:'Noto Sans KR', sans-serif;
-margin:0;
-padding:0;
-color:black;
+	font-family:'Noto Sans KR', sans-serif;
+	margin:0;
+	padding:0;
+	color:black;
 }
 .goup_btn {
 
-        top: 90%;
-        left: 95%;
-        width: 50px;
-        height: 50px;
-        border-radius: 80%;
-        background-color: #ffffff;
-        border: 1px solid lightgray;
-        position: fixed;
-        z-index: 2;
-      }
+    top: 90%;
+    left: 95%;
+    width: 50px;
+    height: 50px;
+    border-radius: 80%;
+    background-color: #ffffff;
+    border: 1px solid lightgray;
+    position: fixed;
+    z-index: 2;
+}
 
 </style>
 </head>
