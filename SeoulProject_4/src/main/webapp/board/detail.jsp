@@ -28,7 +28,7 @@
     		<td width=30% class="text-center">${vo.hit }</td>
     	</tr>
     	<tr>
-    		<th width=20% class="text-left">제목</th>
+    		<th width=20% class="text-center">제목</th>
     		<td colspan="3">${vo.title }</td>
     	</tr>
     	<tr>
