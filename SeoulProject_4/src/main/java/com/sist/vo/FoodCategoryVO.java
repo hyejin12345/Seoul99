@@ -6,7 +6,7 @@ SUBTITLE NOT NULL VARCHAR2(1000)
 IMAGE    NOT NULL VARCHAR2(260)  
 LINK     NOT NULL VARCHAR2(100)  
  */
-public class CategoryVO {
+public class FoodCategoryVO {
 	private int fcno;
 	private String title,subtitle,poster,link;
 	public int getFcno() {
