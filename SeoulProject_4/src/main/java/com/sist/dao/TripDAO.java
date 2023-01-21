@@ -9,26 +9,25 @@ public class TripDAO {
 	private PreparedStatement ps;
 	
 	//메인 여행지리스트
-	public ArrayList<TripVO> tripListData(int tcno)
+	public ArrayList<TripVO> tripListData()
 	{
 		ArrayList<TripVO> list=new ArrayList<TripVO>();
 		try
 		{
 			conn=CreateConnection.getConnection();
 			String sql="SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ "
-					   +"tcno,name,image,hit, rownum FROM gg_trip_4 " 
-					   +"WHERE tcno=? " //1 명소, 2 자연, 3 즐길거리, 4 쇼핑
-					   +"AND rownum<=12";
+					   +"tcno,tno,name,image,hit, rownum FROM gg_trip_4 " 
+					   +"WHERE rownum<=12";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, tcno);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
 			{
 				TripVO vo=new TripVO();
 				vo.setTcno(rs.getInt(1));
-				vo.setName(rs.getString(2));
-				vo.setImage(rs.getString(3));
-				vo.setHit(rs.getInt(4));
+				vo.setTno(rs.getInt(2));
+				vo.setName(rs.getString(3));
+				vo.setImage(rs.getString(4));
+				vo.setHit(rs.getInt(5));
 				list.add(vo);
 			}
 			rs.close();

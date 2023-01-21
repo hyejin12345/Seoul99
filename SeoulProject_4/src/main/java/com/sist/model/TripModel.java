@@ -13,5 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class TripModel {
-
+	@RequestMapping("trip/trip_all.do")
+	public String trip_all(HttpServletRequest request,HttpServletResponse response)
+	{
+		
+		request.setAttribute("main_jsp","../trip/trip_all.jsp");
+		return "../main/main.jsp";
+	}
 }

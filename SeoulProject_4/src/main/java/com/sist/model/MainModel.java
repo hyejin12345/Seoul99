@@ -15,18 +15,18 @@ public class MainModel {
    public String main_page(HttpServletRequest request,HttpServletResponse response)
    {
 	   //메인 여행지리스트
-	   String tcno=request.getParameter("tcno");
-	   if(tcno==null)
-		   tcno="1";
-
-	   String[] category={"","명소","자연","즐길거리","쇼핑"};
-	   request.setAttribute("tcno1", category[1]);
-	   request.setAttribute("tcno2", category[2]);
-	   request.setAttribute("tcno3", category[3]);
-	   request.setAttribute("tcno4", category[4]);
+//	   String tcno=request.getParameter("tcno");
+//	   if(tcno==null)
+//		   tcno="1";
+//	   
+//	   String[] category={"","명소","자연","즐길거리","쇼핑"};
+//	   request.setAttribute("tcno1", category[1]);
+//	   request.setAttribute("tcno2", category[2]);
+//	   request.setAttribute("tcno3", category[3]);
+//	   request.setAttribute("tcno4", category[4]);
 	   
 	   TripDAO tdao=new TripDAO();
-	   ArrayList<TripVO> tlist=tdao.tripListData(Integer.parseInt(tcno));
+	   ArrayList<TripVO> tlist=tdao.tripListData();
 	   request.setAttribute("tlist", tlist);
 	   
 
