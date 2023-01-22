@@ -26,7 +26,7 @@ public class MainModel {
 //	   request.setAttribute("tcno4", category[4]);
 	   
 	   TripDAO tdao=new TripDAO();
-	   ArrayList<TripVO> tlist=tdao.tripListData();
+	   List<TripVO> tlist=tdao.tripMainListData();
 	   request.setAttribute("tlist", tlist);
 	   
 
@@ -36,7 +36,7 @@ public class MainModel {
 	   request.setAttribute("flist", flist);
 	   
 	   //메인 축제리스트
-	   ArrayList<FestivalVO> fslist=tdao.festivalListData();
+	   List<FestivalVO> fslist=tdao.festivalListData();
 	   request.setAttribute("fslist", fslist);
 	   
 	   //include할 jsp
@@ -44,5 +44,10 @@ public class MainModel {
 	   return "../main/main.jsp";
 	   
    }
- 
+   @RequestMapping("main/search.do")
+   public String main_search(HttpServletRequest request,HttpServletResponse response)
+   {
+	   request.setAttribute("main_jsp", "../main/search.jsp");
+	   return "../main/main.jsp";
+   }
 }

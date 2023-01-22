@@ -110,10 +110,10 @@ div.cellInfo{
 	color : black;
 	z-index:5;
 }
-.jjim{
+/*.jjim{
 	position:absolute;
 	margin:20px;
-}
+}*/
 .cell a{
 	color : black;
 	text-decoration:none;

@@ -7,8 +7,8 @@ http://www.templatemo.com/tm-522-venue
 
 
 
-
 /* 메인배너 (나중에 css파일로 옮기기) */
+
 
 .mainbanner{
 	position:relative;
@@ -286,17 +286,7 @@ i.fa-heart:hover{
   *zoom: 1;
 }
 
-#header{
-  overflow: visible;
-  /*position: relative;*/
-  background-color: #fff;
-  
-  /**/
-  position:fixed;
-  top:0;
-  width:100%;
-  z-index:500;
-}
+
 
 
 #primary-nav-button {
@@ -342,6 +332,8 @@ i.fa-heart:hover{
   border: none;
 }
 
+
+
 #header .logo {
   float: left;
   
@@ -367,6 +359,10 @@ i.fa-heart:hover{
   position: relative;
   line-height: 100px;
 }
+/**/
+ul.dropdown ul{
+	margin-bottom:0;
+}
 
 .menu li:last-child {
   margin-right: 0;
@@ -391,7 +387,7 @@ i.fa-heart:hover{
   padding: 0px 20px;
   /*padding: 0px 20px;*/
   font-weight: 400;
-  transition: all 0.5s;
+  /*transition: all 0.5s;*/
 }
 
 #primary-nav li > a:hover,
@@ -412,7 +408,7 @@ i.fa-heart:hover{
 .downarrow {
     background: none;
     display: inline-block;
-  padding: 0;
+  	padding: 0;
     text-align: center;
     min-width: 3px;
 }

@@ -1,10 +1,11 @@
+<%-- 검색결과 페이지 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>서울99여행</title>
+<title>Insert title here</title>
 </head>
 <body>
 

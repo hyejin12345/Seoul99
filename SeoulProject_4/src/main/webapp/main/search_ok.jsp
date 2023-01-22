@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>서울99여행</title>
+<title>Insert title here</title>
 </head>
 <body>
 

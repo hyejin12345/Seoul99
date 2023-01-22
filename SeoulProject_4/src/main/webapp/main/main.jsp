@@ -26,6 +26,7 @@
 	font-family:'Noto Sans KR', sans-serif;
 	margin:0;
 	padding:0;
+	font-size:16px;
 	color:black;
 }
 .goup_btn {
