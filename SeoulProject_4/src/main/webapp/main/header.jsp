@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>서울99여행</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style type="text/css">
 
@@ -21,6 +22,7 @@
   z-index:500;
 }
 #header .container{
+	width:1200px;
 	height:100%;
 }
 
@@ -65,6 +67,10 @@
   top: 9px;
   left: 225px;
 }
+/* #test{
+	display:flex;
+	align-items:center;
+} */
 
 </style>
 </head>
@@ -111,8 +117,8 @@
                               <li><a href="#">문의게시판</a></li>
                            </ul>
                         </li>
-                        <li class='active'><a href="#">로그인</a></li>
                         <li class='active'><a href="#" id="join">회원가입</a></li>
+                        <li class='active'><a href="#" >로그인</a></li>
                      </ul>
                   </nav>
                   <!-- / #primary-nav -->

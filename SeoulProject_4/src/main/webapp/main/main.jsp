@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../css/owl-carousel.css">
     <link rel="stylesheet" href="../css/datepicker.css">
     <link rel="stylesheet" href="../css/templatemo-style.css">
-<!--<link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet"> -->
     <script src="../js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     
 <style>
@@ -64,7 +63,7 @@
 	
 	
 	    <div class="sub-footer">
-	        <p>Copyright &copy; 2018 Company Name 
+	        <p>Copyright &copy; 2023 서울99여행 
 	    
 	    	- Design: <a rel="nofollow" href="http://www.templatemo.com" style="color:blue;">Template Mo</a></p>
 	    </div>
