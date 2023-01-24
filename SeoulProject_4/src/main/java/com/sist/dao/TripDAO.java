@@ -74,18 +74,18 @@ public class TripDAO {
 	}
 	
 	//전체여행지페이지 - 여행지리스트
-	public List<TripVO> tripAllListData(int page,int tcno)
+	public List<TripVO> tripAllListData(int tcno,int page)
 	{
 		List<TripVO> list=new ArrayList<TripVO>();
 		try
 		{
 			conn=CreateConnection.getConnection();
 			int[] tripCategory={1,2,3,4}; //1번 명소, 2번 자연, 3번 즐길거리, 4번 쇼핑
-			String sql="SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ "
-					  +"tcno,tno,name,image,hit,rownum "
+			String sql="SELECT tcno,tno,name,image,hit,num "
+					  +"FROM (SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ tcno,tno,name,image,hit,rownum as num "
 					  +"FROM gg_trip_4 "
-					  +"WHERE tcno=? "
-					  +"AND rownum BETWEEN ? AND ?";
+					  +"WHERE tcno=?) "
+					  +"WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			int rowSize=9;
 			int start=(rowSize*page)-(rowSize-1);

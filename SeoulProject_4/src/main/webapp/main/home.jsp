@@ -16,6 +16,84 @@
 
 <style>
 
+/* 메인배너, 검색창 */
+.mainbanner{
+	position:relative;
+	width:1200px;
+	height:400px;
+	margin:0 auto;
+}
+.mainbanner .main_input{
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+            
+  width:600px;
+  height:50px;
+  z-index:3;
+  margin:0;
+  padding: 0 30px;
+  
+  position:absolute;
+  top:290px;
+  left:70px;
+  
+  border:0;
+  border-radius:4px;
+  font-size : 18px;
+  color:gray;
+}
+.mainbanner .main_input:focus{
+	outline:none;
+	color:black;
+}
+.mainbanner .main_input:hover{
+	outline:none;
+	box-shadow:0 0 10px 5px rgb(0,0,0,0.2);
+}
+
+.mainbanner .slide{position:relative;margin:0 auto;}
+.mainbanner .slide .slideCnt{position:relative;overflow:hidden;width:1200px;height:400px}
+.mainbanner .slide .slideCnt li{position:absolute;top:0;left:0;width:100%;height:100%;list-style:none; /*font-size:50px;line-height:500px;*/ text-align:center;color:#fff}
+
+.mainbanner .slide .btn a{
+position:absolute;
+top:48%;
+margin-top:-15px; 
+font-size:20px;
+text-align:center;
+text-decoration:none;
+line-height:30px;}
+.mainbanner .slide .btn a.prev{left:30px;}
+.mainbanner .slide .btn a.next{right:30px;}
+.mainbanner .slide .btn a i.fa-solid{color:white;}
+.mainbanner .slide .autoBtn{
+	position:absolute;
+	top:20px;
+	right:20px;
+	border-radius:3px;
+	width:30px;
+	height:30px;
+	text-align:center;
+	text-decoration:none;
+	line-height:30px;
+	/*background-color:transparent;*/
+	color:white;
+	font-weight:bold;
+}
+.mainbanner .slide .autoBtn:hover{
+  color:white;
+}
+
+.mainbanner .slide .slogan{
+position : absolute;
+top : 245px;
+left : 100px;
+font-size : 30px;
+font-weight:400;
+color:white;
+}
+ 
 /* 이미지리스트 슬라이드 */
 
 .topText{
@@ -33,27 +111,18 @@
 	color:black;
 	text-decoration:none;
 }
-
-
 .imglistSection{
 	width:100%;
 }
-
-.imglistGroup{
-	
-}
-
 .main-carousel{
 	width:100%;
 	margin-top:10px;
 
 }
-
 .flickity-viewport{
 	width:100%;
 
 }
-
 .cell{
 	width:270px;
 	height:270px;
@@ -68,16 +137,13 @@
 	height:180px;
 	object-fit:fit;
 }
-
 .flickity-page-dots{
 	display:none;
 }
-
 path.arrow{
 	width:20%;
 	height:20%
 }
-
 .flickity-prev-next-button{
 	width:30px;
 	height:30px;
@@ -96,8 +162,17 @@ h4.cellName{
 div.cellInfo{
 	margin:0 20px 20px 20px;
 }
-
-
+.cell a{
+	color : black;
+	text-decoration:none;
+}
+.cell .cellInfo .score,i.fa-star{
+	color : #004fff;
+	font-weight : bold;
+}
+.cell .cellInfo .hit{
+	color : gray;
+}
 #foodcate_title, #foodcate_title{
 	color : black;
 	z-index:5;
@@ -106,18 +181,6 @@ div.cellInfo{
 	position:absolute;
 	margin:20px;
 }*/
-.cell a{
-	color : black;
-	text-decoration:none;
-}
-
-.cell .cellInfo .score,i.fa-star{
-	color : #004fff;
-	font-weight : bold;
-}
-.cell .cellInfo .hit{
-	color : gray;
-}
 #foodcate_cell{
 	width:380px;
 	height:230px;
@@ -187,7 +250,9 @@ div.cellInfo{
 		    </div>
 		    <a href="#" class="autoBtn"></a>
 		    <p class="slogan">서울 구석구석을 여행하다</p>
-		    <input type=text class="main_input" placeholder="서울 어디로 떠나볼까요?">
+		    <form method =post action="../main/search.do">
+		    	<input type=text class="main_input" placeholder="서울 어디로 떠나볼까요?" name="searchWord">
+		    </form>
 		</div>
     </div>
     
@@ -207,10 +272,8 @@ div.cellInfo{
       	<div class="imglistGroup">
 			<div class="main-carousel">
 			  <c:forEach var="tvo" items="${tlist }" >
-			    
-			     
+  
 			     <div class="cell">
-			           
 			         <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
 			     	 <a href="../trip/trip_detail.do?no=${tvo.tno }">    
 			         <img src="${tvo.image }">
@@ -220,9 +283,7 @@ div.cellInfo{
 			         </div>
 			     	 </a>	     
 			     </div>
-			     
 			      
-			     
 			  </c:forEach>
 			</div>
       	</div>

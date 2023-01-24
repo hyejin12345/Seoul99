@@ -21,16 +21,16 @@
 .container{
 	width:1200px;
 }
+.container a{
+	color:black;
+	text-decoration:none;
+}
 .route{
 	/* 페이지 경로 */
 	width:100%;
 	margin-top:40px;
-	
-	/*background:lightblue;*/
 }
-.route a{
-	color:black;
-}
+
 .trip_toptitle{
 	width:100%;
 	margin:60px 0;
@@ -52,12 +52,21 @@
 	
 	/*background:pink;*/
 }
-.trip_category{
+.tripCategory_section{
 	position:absolute;
 }
-.trip_score{
+.trip_side h4{
+	margin: 0 0 20px 0;
+}
+.trip_side li{
+	margin: 0 0 10px 0;
+}
+.trip_side a:hover{
+	color: #004fff;
+}
+.tripScore_section{
 	position:absolute;
-	top:30%;
+	top:35%;
 }
 .trip_content{
 	width:80%;
@@ -78,10 +87,10 @@
  clear:both;
 }
 .content_item>div{
- width:270px;
- height:270px;
+ width:280px;
+ height:280px;
  float:left;
- margin: 15px 30px 15px 0;
+ margin: 0 30px 30px 0;
  box-shadow : 0 5px 10px 0 rgb(0,0,0,0.2);
  
  position:relative;
@@ -91,7 +100,7 @@
 */
 }
 .content_item div:nth-child(3n){
-/*margin: 15px 0;*/
+/* margin: 0 0 30px 0; */
 }
 
 .content_item div img{
@@ -107,7 +116,7 @@
 .item_name{
 	margin: 20px 20px 10px 20px;
 }
-div.item_info{
+.content_item .item_info{
 	margin: 0 0 0 20px;
 }
 
@@ -126,6 +135,35 @@ div.item_info{
 	color:black;
 	text-decoration:none;
 }
+/* 페이지 넘버링 */
+.pagination{
+
+	margin: 20px auto;
+	display:block;
+	text-align: center;
+	
+	/* background: lightgray; */
+}
+.pagination ul{
+	display:inline-block;
+	margin: 0;
+	
+	text-align:center;
+}
+.pagination ul li{
+	width:16px;
+	height:16px;
+	margin: 16px;
+	float:left;
+	
+	display:inline-block;
+}
+.pagination ul li a{
+	width:10px;
+	height:10px;
+	margin:16px;
+	display:block;
+}
 </style>
 </head>
 <body>
@@ -138,34 +176,35 @@ div.item_info{
 		</div>
 		
 		
-		<h1 class="trip_toptitle">서울의 모든 여행지</h1>
+		<h1 class="trip_toptitle">${content_title }</h1>
 		<div class="filterbar">
 		지역필터
 		</div>
 		<div class="trip_side">
 
-		  <div class="trip_category">
-		  여행지 카테고리
+		  <div class="tripCategory_section">
+		  	<h4>여행지 카테고리</h4>
 		    <ul>
-		      <li>명소</li>
-		      <li>자연</li>
-		      <li>즐길거리</li>
-		      <li>쇼핑</li>
+		    	<li><a href="#">전체보기</a></li>
+				<li><a href="../trip/trip_all.do?tcno=1">명소</a></li>
+				<li><a href="../trip/trip_all.do?tcno=2">자연</a></li>
+				<li><a href="../trip/trip_all.do?tcno=3">즐길거리</a></li>
+				<li><a href="../trip/trip_all.do?tcno=4">쇼핑</a></li>
 		    </ul>
 		  </div>
-		  <div class="trip_score">
-		  여행지 평가
+		  <div class="tripScore_section">
+		  	<h4>여행지 평가</h4>
 		  	<ul>
-		      <li>좋아요</li>
-		      <li>보통이에요</li>
-		      <li>아쉬워요</li>
+			    <li>전체보기</li>
+			    <li>좋아요</li>
+			    <li>보통이에요</li>
+			    <li>아쉬워요</li>
 		    </ul>
 		  </div>
 		</div>
 		<div class="trip_content">
-			<h3 class="content_title">${content_title }</h3>
-			<!-- 3*3 정렬 -->
 		
+			<!-- 3*3 정렬 -->
 			<div class="content_item">
 			   <c:forEach var="vo" items="${list }">
 			 	 
@@ -185,20 +224,25 @@ div.item_info{
 			   </c:forEach>
 			</div>
 			
- 		      <div class="pagination">
+  		      <div class="pagination">
 		        <ul>
-		         <c:if test="${startPage>1 }">
-		          <li><a href="../trip/trip_all.do?page=${startPage-1 }&tcno=${tcno}">&laquo; Previous</a></li>
-		         </c:if>
-		          <c:forEach var="i" begin="${startPage }" end="${endPage }">
-		            <li ${i==curpage?"class=current":"" }><a href="../trip/trip_all.do?page=${i }&tcno=${tcno}">${i }</a></li>
-		          </c:forEach>
-		         <c:if test="${endPage<totalpage }">
-		          <li><a href="../trip/trip_all.do?page=${endPage+1 }&tcno=${tcno}">Next &raquo;</a></li>
-		         </c:if>
+		        	<c:choose>
+			          	<c:when test="${startpage<=1 }">
+			          		<li><a href="../trip/trip_all.do?tcno=${tcno }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
+			          	</c:when>
+			          	<c:when test="${startpage>1 }">
+			          		<li><a href="../trip/trip_all.do?tcno=${tcno }&page=${startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
+			          	</c:when>
+		        	</c:choose>
+		        	<c:forEach var="i" begin="${startpage }" end="${endpage }">
+		            	<li ${i==curpage?"class=current":"" }><a href="../trip/trip_all.do?tcno=${tcno }&page=${i }">${i }</a></li>
+		        	</c:forEach>
+		        	<c:if test="${endpage<totalpage }">
+		        		<li><a href="../trip/trip_all.do?tcno=${tcno }&page=${endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
+		        	</c:if>
 		        </ul>
 		      </div>
-	
+
 		</div>
 		
 		

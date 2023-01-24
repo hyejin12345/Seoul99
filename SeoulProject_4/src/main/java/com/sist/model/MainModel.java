@@ -47,7 +47,19 @@ public class MainModel {
    @RequestMapping("main/search.do")
    public String main_search(HttpServletRequest request,HttpServletResponse response)
    {
+	   try
+	   {
+		   request.setCharacterEncoding("UTF-8");
+	   }
+	   catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   String searchWord=request.getParameter("searchWord");
+	   
+	   request.setAttribute("searchWord", searchWord);
 	   request.setAttribute("main_jsp", "../main/search.jsp");
 	   return "../main/main.jsp";
    }
+  
 }

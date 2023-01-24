@@ -90,8 +90,10 @@
 	                  </a>
 	
 					  <div class="search">
-						<input type="text" placeholder="검색어를 입력하세요.">
-						<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+					    <form method =post action="../main/search.do">
+							<input type="text" placeholder="검색어를 입력하세요." name="searchWord">
+							<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+						</form>
 					  </div>
                   </div>
                   <nav id="primary-nav" class="dropdown cf" style="float:right">

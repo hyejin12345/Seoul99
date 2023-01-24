@@ -6,10 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>서울99여행</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
+
+*{
+	margin:0;
+	padding:0;
+	list-style: none;
+	border-collapse: collapse;
+	text-decoration: none;
+	font-size:16px;
+	color: black;
+}
 .container{
 	width:1200px;
-	padding : 0 15px;
+}
+.container a{
+	color:black;
+	text-decoration:none;
 }
 .route{
 	/* 페이지 경로 */
@@ -45,7 +59,7 @@
 	        
 	/* 버튼 색상 */
 	background : white;
-	border : 2px solid lightgray;
+	border : 1px solid lightgray;
 	border-radius : 50%;
 	
 
@@ -55,7 +69,7 @@
 	
 	width : 40px;
 	height : 40px;
-	border : 2px solid lightgray;
+	border : 1px solid lightgray;
 
 }
 .item_info{
@@ -91,18 +105,45 @@
 	background:pink;
 	float:right;
 }
-.intro_review{
+.recent_review{
 	width:100%;
 	height:200px;
 	background:yellow;
 	clear:both;
+}
+.goodpoint_section{
+	width:100%;
+	height:300px;
+	background:lightblue;
+}
+.tripmap_section{
+	width:100%;
+	height:450px;
+	background:gray;
+}
+.trip_review{
+	width:100%;
+	height:600px;
+	background:yellow;
+}
+.trip_map{
+	width:60%;
+	height:100%;
+	background:lightgray;
+	float:left;
+}
+.trip_nearby{
+	width:40%;
+	height:100%;
+	background:pink;
+	float:right;
 }
 </style>
 </head>
 <body>
 <div class="container">
 
-<%-- 	<c:forEach var="vo" items="${list }"> --%>
+
 	
 		<!-- 여행지명 / 평점 / 조회수 / 공유 / 찜버튼 -->
 
@@ -127,16 +168,28 @@
 			<img src="">
 			<div class="trip_about"></div>
 		</div>
-		<div class="intro_review">
-		리뷰
+		<div class="recent_review">
+		최근 리뷰
+			<div>
+				<!-- forEach 돌려서 최근 리뷰 3개 가져오기 -->
+				<h3></h3>
+				<span>유저명</span>
+				<span>★4/5</span>
+				<span>본문내용 중략...</span>
+			</div>
 		</div>
-		<div class="goodpoint_section"></div>
+		<div class="goodpoint_section">이런 점이 좋았어요</div>
+		<div class="trip_location">위치</div>
 		<div class="tripmap_section">
-			<div class="trip_map"></div>
-			<div class="trip_nearby_spot"></div>
+			<div class="trip_map">지도</div>
+			<div class="trip_nearby">근처 추천</div>
 		</div>
 		
-<%-- 	</c:forEach> --%>
+		<!-- 여행지 리뷰 -->
+		<!-- .jsp가 맞는지 ${tripReview_jsp}가 맞는지 확인하기 -->
+		
+		
+
 	
 </div>
 </body>

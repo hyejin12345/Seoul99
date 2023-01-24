@@ -30,21 +30,30 @@ public class TripModel {
 			page="1";
 		int curpage=Integer.parseInt(page);
 		String tcno=request.getParameter("tcno");
+		request.setAttribute("tcno",tcno);
 		
-		String[] content_title={"","서울 구석구석 인기명소","서울 도심 속 자연을 느낄 수 있는 곳",
-				"서울의 다양한 즐길거리","서울 쇼핑의 시작과 끝"};
+		String[] tripCategory_name={"","명소","자연","즐길거리","쇼핑"};
+		request.setAttribute("tripCategory_name", tripCategory_name[Integer.parseInt(tcno)]);
+		
+		String[] content_title={"서울 구석구석 모든 여행지","서울 인기명소부터 숨은 명소까지",
+								"서울 도심 속 자연을 느낄 수 있는 곳","서울의 다양한 즐길거리","서울 쇼핑의 시작과 끝"};
 		request.setAttribute("content_title", content_title[Integer.parseInt(tcno)]);
 		
 		TripDAO dao=new TripDAO();
-		List<TripVO> list=dao.tripAllListData(Integer.parseInt(page),Integer.parseInt(tcno));
-		request.setAttribute("list", list);
+		List<TripVO> list=dao.tripAllListData(Integer.parseInt(tcno),curpage);
 		int totalpage=dao.tripTotalPage(Integer.parseInt(tcno));
 		
 		final int BLOCK=7;
 		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endpage>totalpage)
+			endpage=totalpage;
 		
-		
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
 		request.setAttribute("main_jsp","../trip/trip_all.jsp");
 		return "../main/main.jsp";
 	}

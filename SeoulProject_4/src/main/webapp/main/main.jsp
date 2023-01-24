@@ -65,7 +65,7 @@
 	    <div class="sub-footer">
 	        <p>Copyright &copy; 2023 서울99여행 
 	    
-	    	- Design: <a rel="nofollow" href="http://www.templatemo.com" style="color:blue;">Template Mo</a></p>
+	    	<%--- Design: <a rel="nofollow" href="http://www.templatemo.com" style="color:blue;">Template Mo</a></p> --%>
 	    </div>
 	
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
