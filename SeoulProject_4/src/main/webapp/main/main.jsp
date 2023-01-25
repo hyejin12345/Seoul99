@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../css/owl-carousel.css">
     <link rel="stylesheet" href="../css/datepicker.css">
     <link rel="stylesheet" href="../css/templatemo-style.css">
-<!--<link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet"> -->
     <script src="../js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     
 <style>
@@ -26,7 +25,9 @@
 	font-family:'Noto Sans KR', sans-serif;
 	margin:0;
 	padding:0;
+	font-size:16px;
 	color:black;
+	text-decoration:none;
 }
 .goup_btn {
 
@@ -52,10 +53,8 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	
 	
-	<!-- home -->
-	<div class="container">
-		<jsp:include page="${main_jsp }"></jsp:include>
-	</div>
+	<!-- home(본문) -->
+	<jsp:include page="${main_jsp }"></jsp:include>
 	
 
 	<!-- footer -->
@@ -63,9 +62,9 @@
 	
 	
 	    <div class="sub-footer">
-	        <p>Copyright &copy; 2018 Company Name 
+	        <p>Copyright &copy; 2023 서울99여행 
 	    
-	    	- Design: <a rel="nofollow" href="http://www.templatemo.com" style="color:blue;">Template Mo</a></p>
+	    	<%--- Design: <a rel="nofollow" href="http://www.templatemo.com" style="color:blue;">Template Mo</a></p> --%>
 	    </div>
 	
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>

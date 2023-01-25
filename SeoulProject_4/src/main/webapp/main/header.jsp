@@ -5,11 +5,36 @@
 <head>
 <meta charset="UTF-8">
 <title>서울99여행</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style type="text/css">
 
+#header{
+  overflow: visible;
+  /*position: relative;*/
+  background-color: #fff;
+  
+  /**/
+  position:fixed;
+  top:0;
+  width:100%;
+  height:100px;
+  z-index:500;
+}
+#header .container{
+	width:1200px;
+	height:100%;
+}
+
+#header .row{
+	box-shadow : 0px 10px 10px -10px rgba(0,0,0,0.2);
+	height:100%;
+}
 #logoNsearch{
 	position:relative;
+}
+#logoNsearch a{
+	margin:0; padding:0;
 }
 .search {
   position: relative;
@@ -42,6 +67,10 @@
   top: 9px;
   left: 225px;
 }
+/* #test{
+	display:flex;
+	align-items:center;
+} */
 
 </style>
 </head>
@@ -61,19 +90,21 @@
 	                  </a>
 	
 					  <div class="search">
-						<input type="text" placeholder="검색어를 입력하세요.">
-						<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+					    <form method =post action="../main/search.do">
+							<input type="text" placeholder="검색어를 입력하세요." name="searchWord" autocomplete="off">
+							<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+						</form>
 					  </div>
                   </div>
                   <nav id="primary-nav" class="dropdown cf" style="float:right">
                      <ul class="dropdown menu" >
                         <li class='active'><a href="../main/main.do">홈</a></li>
-                        <li><a href="../trip/trip_list.do">여행지</a>
+                        <li><a href="../trip/trip_main.do">여행지</a>
                            <ul class="sub-menu">
-                              <li><a href="../trip/trip_list.do?no=1">명소</a></li>
-                              <li><a href="../trip/trip_list.do?no=2">자연</a></li>
-                              <li><a href="../trip/trip_list.do?no=3">즐길거리</a></li>
-                              <li><a href="../trip/trip_list.do?no=4">쇼핑</a></li>
+                              <li><a href="../trip/trip_all.do?tcno=1">명소</a></li>
+                              <li><a href="../trip/trip_all.do?tcno=2">자연</a></li>
+                              <li><a href="../trip/trip_all.do?tcno=3">즐길거리</a></li>
+                              <li><a href="../trip/trip_all.do?tcno=4">쇼핑</a></li>
                            </ul></li>
                         <li><a href="#">맛집</a>
                            <ul class="sub-menu">
@@ -88,8 +119,8 @@
                               <li><a href="#">문의게시판</a></li>
                            </ul>
                         </li>
-                        <li class='active'><a href="#">로그인</a></li>
                         <li class='active'><a href="#" id="join">회원가입</a></li>
+                        <li class='active'><a href="#" >로그인</a></li>
                      </ul>
                   </nav>
                   <!-- / #primary-nav -->
