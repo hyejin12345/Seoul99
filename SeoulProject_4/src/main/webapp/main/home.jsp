@@ -251,7 +251,7 @@ div.cellInfo{
 		    <a href="#" class="autoBtn"></a>
 		    <p class="slogan">서울 구석구석을 여행하다</p>
 		    <form method =post action="../main/search.do">
-		    	<input type=text class="main_input" placeholder="서울 어디로 떠나볼까요?" name="searchWord">
+		    	<input type=text class="main_input" placeholder="서울 어디로 떠나볼까요?" name="searchWord" autocomplete="off">
 		    </form>
 		</div>
     </div>

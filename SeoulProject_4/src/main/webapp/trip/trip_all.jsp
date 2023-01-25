@@ -18,9 +18,7 @@
 	font-size:16px;
 	color: black;
 }
-.container{
-	width:1200px;
-}
+
 .container a{
 	color:black;
 	text-decoration:none;
@@ -44,7 +42,7 @@
 	
 	/*background:lightblue;*/
 }
-.container .trip_side{
+.trip_side{
 	position:relative;
 	width:20%;
 	height:800px;
@@ -81,33 +79,29 @@
 /* 이미지리스트 */
 
 
-.content_item{
+.content_allItem{
  width:100%;
  height:100%;
  clear:both;
 }
-.content_item>div{
- width:280px;
- height:280px;
+.content_allItem>.content_item{
+ width:270px;
+ height:270px;
  float:left;
  margin: 0 30px 30px 0;
  box-shadow : 0 5px 10px 0 rgb(0,0,0,0.2);
  
  position:relative;
-/*
- line-height:270px;
- text-align:center;
-*/
 }
-.content_item div:nth-child(3n){
-/* margin: 0 0 30px 0; */
+.content_allItem .content_item:nth-child(3n){
+	margin: 0 0 30px 0; 
 }
 
-.content_item div img{
+.content_allItem .content_item img{
  display:inline-block;
  vertical-align:middle;
  width:100%;
- height:180px;
+ height:170px;
  object-fit:fit;
  
 }
@@ -116,7 +110,7 @@
 .item_name{
 	margin: 20px 20px 10px 20px;
 }
-.content_item .item_info{
+.content_allItem .item_info{
 	margin: 0 0 0 20px;
 }
 
@@ -130,15 +124,10 @@
 	color : gray;
 	font-size:14px;
 }
-.content_item a{
-	margin:0; padding:0;
-	color:black;
-	text-decoration:none;
-}
 /* 페이지 넘버링 */
 .pagination{
 
-	margin: 20px auto;
+	margin: 0 35px 0 0;
 	display:block;
 	text-align: center;
 	
@@ -146,23 +135,28 @@
 }
 .pagination ul{
 	display:inline-block;
-	margin: 0;
+	margin: 20px auto;
 	
 	text-align:center;
 }
 .pagination ul li{
-	width:16px;
-	height:16px;
-	margin: 16px;
 	float:left;
 	
 	display:inline-block;
 }
 .pagination ul li a{
-	width:10px;
-	height:10px;
-	margin:16px;
-	display:block;
+ 	padding: 10px 17px;
+    border-radius: 50px;
+    display: block;
+    
+/*  background: yellow;
+    border: 1px solid black; */
+}
+.pagination ul li a:hover{
+	background:lightgray;
+}
+.curpage a{
+	color: #004fff;
 }
 </style>
 </head>
@@ -205,10 +199,10 @@
 		<div class="trip_content">
 		
 			<!-- 3*3 정렬 -->
-			<div class="content_item">
+			<div class="content_allItem">
 			   <c:forEach var="vo" items="${list }">
 			 	 
-				 <div>
+				 <div class="content_item">
 				    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
 				    
 				    <a href="../trip/trip_detail.do?tno=${vo.tno }">
@@ -222,10 +216,12 @@
 				 </div>
 				 
 			   </c:forEach>
-			</div>
+			   
 			
-  		      <div class="pagination">
+			</div>
+			<div class="pagination">
 		        <ul>
+		        	<li><a href="../trip/trip_all.do?tcno=${tcno }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
 		        	<c:choose>
 			          	<c:when test="${startpage<=1 }">
 			          		<li><a href="../trip/trip_all.do?tcno=${tcno }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
@@ -235,16 +231,22 @@
 			          	</c:when>
 		        	</c:choose>
 		        	<c:forEach var="i" begin="${startpage }" end="${endpage }">
-		            	<li ${i==curpage?"class=current":"" }><a href="../trip/trip_all.do?tcno=${tcno }&page=${i }">${i }</a></li>
+		            	<li ${i==curpage?"class=curpage":"" }><a href="../trip/trip_all.do?tcno=${tcno }&page=${i }">${i }</a></li>
 		        	</c:forEach>
-		        	<c:if test="${endpage<totalpage }">
-		        		<li><a href="../trip/trip_all.do?tcno=${tcno }&page=${endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
-		        	</c:if>
+		        	<c:choose>
+		        		<c:when test="${endpage<totalpage }">
+		        			<li><a href="../trip/trip_all.do?tcno=${tcno }&page=${endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
+		        		</c:when>
+		        		<c:when test="${endpage==totalpage }">
+		        			<li><a href="../trip/trip_all.do?tcno=${tcno }&page=${endpage }"><i class="fa-solid fa-angle-right"></i></a></li>
+		        		</c:when>
+		        	</c:choose>
+		        	<li><a href="../trip/trip_all.do?tcno=${tcno }&page=${totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>
 		        </ul>
 		      </div>
 
-		</div>
-		
+			</div>
+			
 		
 </div>
 <script type="text/javascript">

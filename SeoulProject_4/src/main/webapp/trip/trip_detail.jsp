@@ -18,9 +18,9 @@
 	font-size:16px;
 	color: black;
 }
-.container{
+/*  .container{
 	width:1200px;
-}
+}  */
 .container a{
 	color:black;
 	text-decoration:none;

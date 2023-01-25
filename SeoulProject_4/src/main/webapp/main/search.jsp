@@ -13,13 +13,13 @@
 	padding:0;
 	list-style: none;
 	border-collapse: collapse;
-	text-decoration: none;
 	font-size:16px;
 	color: black;
 }
-.container{
+/* .container{
 	width:1200px;
-}
+	padding: 0 15px;
+} */
 .container a{
 	color:black;
 	text-decoration:none;
@@ -177,12 +177,12 @@
 		<a href="">검색</a>
 	</div>
 	
-	
+	<%-- 검색어 입력 => 이름, 주소에서 포함여부 확인 --%>
 	<h1 class="search_toptitle">
-		<span class="word">"검색어"</span>에 대한 검색결과 <span class="word_count">OO건</span>
+		<span class="word">"검색어"</span> 관련 검색결과 <span class="word_count">OO건</span>
 	</h1>
-	<form method =post action="#">
-		<input type=text class="main_input" placeholder="${searchWord }">
+	<form method =post action="../main/search.do">
+		<input type=text class="main_input" placeholder="${searchWord }" name="searchWord" autocomplete="off">
 	</form>
 	<div class="view_buttons">
 		<button class="whitegray_btn">전체보기</button>

@@ -91,7 +91,7 @@
 	
 					  <div class="search">
 					    <form method =post action="../main/search.do">
-							<input type="text" placeholder="검색어를 입력하세요." name="searchWord">
+							<input type="text" placeholder="검색어를 입력하세요." name="searchWord" autocomplete="off">
 							<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
 						</form>
 					  </div>
