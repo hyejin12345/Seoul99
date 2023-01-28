@@ -8,16 +8,18 @@ public class TripDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	
-	//메인페이지 - 여행지리스트
-	public List<TripVO> tripMainListData()
+	//메인페이지 - 여행지 명소리스트
+	public List<TripVO> tripLandmarkList()
 	{
 		List<TripVO> list=new ArrayList<TripVO>();
 		try
 		{
+			//주소 추가하기(OO구)
 			conn=CreateConnection.getConnection();
 			String sql="SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ "
-					   +"tcno,tno,name,image,hit,rownum FROM gg_trip_4 " 
-					   +"WHERE rownum<=12";
+					   +"tcno,tno,name,image,addr,hit,rownum FROM gg_trip_4 "
+					   +"WHERE tcno=1 "
+					   +"AND rownum<=12";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
@@ -27,7 +29,48 @@ public class TripDAO {
 				vo.setTno(rs.getInt(2));
 				vo.setName(rs.getString(3));
 				vo.setImage(rs.getString(4));
-				vo.setHit(rs.getInt(5));
+				String addr=rs.getString(5);
+				String gu=addr.substring(addr.indexOf(" "),addr.indexOf("구")+1);
+				vo.setAddr(gu);
+				vo.setHit(rs.getInt(6));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return list;
+	}
+	//메인페이지 - 여행지 자연/즐길거리/쇼핑 리스트
+	public List<TripVO> tripOhterList(int tcno)
+	{
+		List<TripVO> list=new ArrayList<TripVO>();
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ "
+					   +"tcno,tno,name,image,addr,hit,rownum FROM gg_trip_4 "
+					   +"WHERE tcno=? "
+					   +"AND rownum<=12";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, tcno);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				TripVO vo=new TripVO();
+				vo.setTcno(rs.getInt(1));
+				vo.setTno(rs.getInt(2));
+				vo.setName(rs.getString(3));
+				vo.setImage(rs.getString(4));
+				String addr=rs.getString(5);
+				String gu=addr.substring(addr.indexOf(" "),addr.indexOf("구")+1);
+				vo.setAddr(gu);
+				vo.setHit(rs.getInt(6));
 				list.add(vo);
 			}
 			rs.close();
@@ -81,8 +124,9 @@ public class TripDAO {
 		{
 			conn=CreateConnection.getConnection();
 			int[] tripCategory={1,2,3,4}; //1번 명소, 2번 자연, 3번 즐길거리, 4번 쇼핑
-			String sql="SELECT tcno,tno,name,image,hit,num "
-					  +"FROM (SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ tcno,tno,name,image,hit,rownum as num "
+			String sql="SELECT tcno,tno,name,image,addr,hit,num "
+					  +"FROM (SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ "
+					  +"tcno,tno,name,image,addr,hit,rownum as num "
 					  +"FROM gg_trip_4 "
 					  +"WHERE tcno=?) "
 					  +"WHERE num BETWEEN ? AND ?";
@@ -101,7 +145,10 @@ public class TripDAO {
 				vo.setTno(rs.getInt(2));
 				vo.setName(rs.getString(3));
 				vo.setImage(rs.getString(4));
-				vo.setHit(rs.getInt(5));
+				String addr=rs.getString(5);
+				String gu=addr.substring(addr.indexOf(" "),addr.indexOf("구")+1);
+				vo.setAddr(gu);
+				vo.setHit(rs.getInt(6));
 				list.add(vo);
 			}
 			rs.close();
@@ -139,6 +186,67 @@ public class TripDAO {
 			CreateConnection.disConnection(conn, ps);
 		}
 		return totalpage;
+	}
+	
+	public TripVO tripDetail(int tno)
+	{
+		TripVO vo=new TripVO();
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="UPDATE gg_trip_4 SET "
+					  +"hit=hit+1 "
+					  +"WHERE tno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, tno);
+			ps.executeUpdate();
+			
+			sql="SELECT tcno,tno,name,image,content,addr,hit,jjim,tlike "
+			    +"FROM gg_trip_4 "
+			    +"WHERE tno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, tno);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setTcno(rs.getInt(1));
+			vo.setTno(rs.getInt(2));
+			vo.setName(rs.getString(3));
+			vo.setImage(rs.getString(4));
+			vo.setContent(rs.getString(5));
+			vo.setAddr(rs.getString(6));
+			vo.setHit(rs.getInt(7));
+			vo.setJjim(rs.getInt(8));
+			vo.setTlike(rs.getInt(9));
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return vo;
+	}
+	
+	public List<TripVO> tripNearby(int tno)
+	{
+		List<TripVO> list=new ArrayList<TripVO>();
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="";
+			String address="";
+			ps=conn.prepareStatement(sql);
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return list; 
 	}
 }
 
