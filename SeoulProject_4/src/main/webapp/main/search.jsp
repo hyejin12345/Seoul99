@@ -1,6 +1,7 @@
 <%-- 검색결과 페이지 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +14,10 @@
 	padding:0;
 	list-style: none;
 	border-collapse: collapse;
-	text-decoration: none;
 	font-size:16px;
 	color: black;
 }
-.container{
-	width:1200px;
-}
+
 .container a{
 	color:black;
 	text-decoration:none;
@@ -87,42 +85,62 @@
 
 /* ---------- */
 
+
 /* 이미지리스트 */
-.content_item{
-	width:280px;
-	height:280px;
-	clear:both;
-	background:yellow;
+.topText{
+
+
 }
-.content_item>div{
-	width:100%;
-	height:100%;
+h3.view_title{
+	margin: 60px 0 30px 0;
+	width: 85%;
 	float:left;
-	margin: 0 30px 30px 0;
-	box-shadow : 0 5px 10px 0 rgb(0,0,0,0.2);
-	 
-	position:relative;
-	background:lightblue;
+	line-height: 24px;
 }
-.content_item div:nth-child(3n){
-/* margin: 0 0 30px 0; */
+.moreClick{
+	margin: 60px 0 30px 0;
+	width: 15%;
+	float:right;
+	line-height: 24px;
+	text-align:right;
+}
+.content_allItem{
+ width:100%;
+ height:100%;
+ clear:both;
+}
+.content_allItem>.content_item{
+ /*width:266px;
+ height:245px;*/
+ width:204px;
+ height:180px;
+ float:left;
+ margin: 0 30px 30px 0;
+ box-shadow : 0 5px 10px 0 rgb(0,0,0,0.2);
+ 
+ position:relative;
+}
+.content_allItem .content_item:nth-child(5n){
+	margin: 0; 
 }
 
-.content_item div img{
+.content_allItem .content_item img{
  display:inline-block;
  vertical-align:middle;
  width:100%;
- height:200px;
+ height:120px;
  object-fit:fit;
  
 }
 .item_name{
-	margin: 20px 20px 10px 20px;
+	margin: 12px;
+	font-size:16px;
+	
+	text-align:center;
 }
-.content_item .item_info{
+.content_allItem .item_info{
 	margin: 0 0 0 20px;
 }
-
 
 .item_info .score,i.fa-star{
 	color : #004fff;
@@ -133,40 +151,60 @@
 	color : gray;
 	font-size:14px;
 }
-.content_item a{
-	margin:0; padding:0;
-}
 /* 페이지 넘버링 */
 .pagination{
-
-	margin: 20px auto;
-	display:block;
+	width:100%;
 	text-align: center;
 	
 	/* background: lightgray; */
 }
 .pagination ul{
+	/*display:inline-block;*/
 	display:inline-block;
-	margin: 0;
-	
+	margin: 20px auto;
 	text-align:center;
 }
 .pagination ul li{
-	width:16px;
-	height:16px;
-	margin: 16px;
 	float:left;
 	
 	display:inline-block;
 }
 .pagination ul li a{
-	width:10px;
-	height:10px;
-	margin:16px;
-	display:block;
+ 	padding: 10px 17px;
+    border-radius: 50px;
+    display: block;
+    
+/*  background: yellow;
+    border: 1px solid black; */
+}
+.pagination ul li a:hover{
+	background:lightgray;
+}
+.curpage a{
+	color: #004fff;
 }
 
 </style>
+<script type="text/javascript" src="http://code.jquery.con/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	let searchWord=$('.main_input').attr("placeholder");
+	$.ajax({
+		type:'post',
+		url:'listChange.jsp',
+		data:{"searchWord":searchWord,"page":1},
+		success:function(result)
+		{
+			$('#trip_content').html(result);
+		},
+		error:function(ex)
+		{
+			alert("와이라노...")
+		}
+	})	
+})
+</script>
 </head>
 <body>
 <div class="container">
@@ -177,12 +215,13 @@
 		<a href="">검색</a>
 	</div>
 	
+	<%-- 검색어 입력 => 이름, 주소에서 포함여부 확인 --%>
 	
 	<h1 class="search_toptitle">
-		<span class="word">"검색어"</span>에 대한 검색결과 <span class="word_count">OO건</span>
+		<span class="word">"${searchWord }"</span> 관련 검색결과 <span class="word_count">${allCount }건</span>
 	</h1>
-	<form method =post action="#">
-		<input type=text class="main_input" placeholder="${searchWord }">
+	<form method =post action="../main/search.do">
+		<input type=text class="main_input" placeholder="${searchWord }" name="searchWord" autocomplete="off">
 	</form>
 	<div class="view_buttons">
 		<button class="whitegray_btn">전체보기</button>
@@ -193,51 +232,138 @@
 	
 	
 	<%-- 리스트 --%>
-		<div class="trip_content">
+	<%-- content_allItem 세로값을 한줄만 보여주는 높이로 하고, 더보기 클릭시 세로값 3줄+페이지 넘버링부분까지 늘리기 --%>
+		<%-- 여행지 리스트 --%>
+		
+		<div class="topText">
+	 	<h3 class="view_title">여행지(${tripCount>0?tripCount:0 }건)</h3>
+		<c:if test="${tripCount>5 }">
+			<%-- <h4><a href="../main/search.do?searchWord=${searchWord }" class="moreClick">전체보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4> --%>
+		</c:if>
+		</div>
+		
+		
+		<div id="trip_content">
 	
-		<!-- 3*3 정렬 -->
-		<div class="content_item">
-		   <c:forEach var="vo" items="${list }">
-		 	 
-			 <div>
-			    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
-			    
-			    <a href="../trip/trip_detail.do?tno=${vo.tno }">
-			    <img src="${vo.image }">
-			    <h4 class="item_name">${vo.name }</h4>
-		        <div class="item_info">
-		            <span class="score"><i class="fa-solid fa-star"></i>4.6</span><span class="hit">(652건)&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${vo.hit}</span> 
-		        </div>
-		        </a>
-		        
-			 </div>
-			 
-		   </c:forEach>
-		</div>
+			<!-- 3*3 정렬 -->
+			<div class="content_allItem">
 			
-  	      <%-- <div class="pagination">
-	        <ul>
-	        	<c:choose>
-		          	<c:when test="${startpage<=1 }">
-		          		<li><a href="../trip/trip_all.do?tcno=${tcno }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
-		          	</c:when>
-		          	<c:when test="${startpage>1 }">
-		          		<li><a href="../trip/trip_all.do?tcno=${tcno }&page=${startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
-		          	</c:when>
-		        	</c:choose>
-	        	<c:forEach var="i" begin="${startpage }" end="${endpage }">
-	            	<li ${i==curpage?"class=current":"" }><a href="../trip/trip_all.do?tcno=${tcno }&page=${i }">${i }</a></li>
-	        	</c:forEach>
-	        	<c:if test="${endpage<totalpage }">
-	        		<li><a href="../trip/trip_all.do?tcno=${tcno }&page=${endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
-	        	</c:if>
-	        </ul>
-	      </div> --%>
+			   <c:forEach var="tvo" items="${tlist }" varStatus="s">
+				 <div class="content_item">
+				    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
+				    
+				    <a href="../trip/trip_detail.do?tno=${tvo.tno }">
+				    <img src="${tvo.image }">
+				    <h4 class="item_name">${tvo.name }</h4>
+			        
+			        </a>
+			        
+				 </div>
+			   </c:forEach>
+			   
+			</div>
+			
+ 	   	    <div class="pagination">
+	   	    	<c:if test="${tripCount>5 }">
+		        <ul>
+		        	<li><a href="../main/search.do?searchWord=${searchWord }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
+		        	<c:choose>
+			          	<c:when test="${t_startpage<=1 }">
+			          		<li><a href="../main/search.do?searchWord=${searchWord }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
+			          	</c:when>
+			          	<c:when test="${t_startpage>1 }">
+			          		<li><a href="../main/search.do?searchWord=${searchWord }&page=${t_startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
+			          	</c:when>
+			        	</c:choose>
+		        	<c:forEach var="i" begin="${t_startpage }" end="${t_endpage }">
+		            	<li ${i==t_curpage?"class=current":"" }><a href="../main/search.do?searchWord=${searchWord }&page=${i }">${i }</a></li>
+		        	</c:forEach>
+		        	<c:choose>
+			        	<c:when test="${t_endpage<t_totalpage }">
+			        		<li><a href="../main/search.do?searchWord=${searchWord }&page=${t_endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
+			        	</c:when>
+			        	<c:when test="${t_endpage==t_totalpage }">
+			        		<li><a href="../main/search.do?searchWord=${searchWord }&page=${t_endpage }"><i class="fa-solid fa-angle-right"></i></a></li>
+			        	</c:when>
+			       	</c:choose>
+					<li><a href="../main/search.do?searchWord=${searchWord }&page=${t_totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>		       	
+		        </ul>
+		        </c:if>
+		    </div>
 	      
 	      
 		</div>
 		
+		<%-- 맛집 리스트 --%>
+		<div class="topText">
+		<h3 class="view_title">맛집(${foodCount>0?foodCount:0}건)</h3>
+		<c:if test="${foodCount>5 }">
+			<%-- <h4><a href="../main/search.do?searchWord=${searchWord }" class="moreClick">전체보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4> --%>
+		</c:if>
+		</div>
+		<div class="food_content">
+	
+			<!-- 3*3 정렬 -->
+			<div class="content_allItem">
+			
+			   <c:forEach var="fvo" items="${flist }" varStatus="s">
+				 <div class="content_item">
+				    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
+				    
+				    <a href="../food/food_detail.do?fno=${fvo.fno }">
+				    <img src="${fvo.poster }">
+				    <h4 class="item_name">${fvo.name }</h4>
+			        
+			        </a>
+			        
+				 </div>
+			   </c:forEach>
+			   
+			</div>
+			
+  	   	    <div class="pagination">
+	   	    	<c:if test="${foodCount>5 }">
+		        <ul>
+		        	<li><a href="../main/search.do?searchWord=${searchWord }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
+		        	<c:choose>
+			          	<c:when test="${f_startpage<=1 }">
+			          		<li><a href="../main/search.do?searchWord=${searchWord }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
+			          	</c:when>
+			          	<c:when test="${f_startpage>1 }">
+			          		<li><a href="../main/search.do?searchWord=${searchWord }&page=${f_startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
+			          	</c:when>
+			        	</c:choose>
+		        	<c:forEach var="i" begin="${f_startpage }" end="${f_endpage }">
+		            	<li ${i==f_curpage?"class=current":"" }><a href="../main/search.do?searchWord=${searchWord }&page=${i }">${i }</a></li>
+		        	</c:forEach>
+		        	<c:choose>
+			        	<c:when test="${f_endpage<f_totalpage }">
+			        		<li><a href="../main/search.do?searchWord=${searchWord }&page=${f_endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
+			        	</c:when>
+			        	<c:when test="${f_endpage==f_totalpage }">
+			        		<li><a href="../main/search.do?searchWord=${searchWord }&page=${f_endpage }"><i class="fa-solid fa-angle-right"></i></a></li>
+			        	</c:when>
+			       	</c:choose>
+					<li><a href="../main/search.do?searchWord=${searchWord }&page=${f_totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>		       	
+		        </ul>
+		        </c:if>
+		    </div>
+		    
+		    
+		    
+		</div>
+	
+		<%-- 커뮤니티 리스트 --%>
+		<div class="topText">
+		<h3 class="view_title">커뮤니티(${comunityCount>0?comunityCount:0}건)</h3>
+		</div>
+		<c:if test="${comunityCount>0 }">
+			<h4><a href="../main/search.do?searchWord=${searchWord }" class="moreClick">전체보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4>
+		</c:if>
 		
-</div>	
+		
+		
+
+</div>
 </body>
 </html>

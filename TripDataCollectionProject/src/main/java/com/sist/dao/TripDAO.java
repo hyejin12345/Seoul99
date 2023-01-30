@@ -45,8 +45,8 @@ public class TripDAO {
 		{
 			getConnection();
 			
-			String sql="INSERT INTO gg_trip_4(tno,tcno,name,image,content,addr) VALUES(gt_tno_seq_4.nextval,1,?,?,?,?)";
-			
+			//String sql="INSERT INTO gg_trip_4(tno,tcno,name,image,content,addr) VALUES(gt_tno_seq_4.nextval,1,?,?,?,?)";
+			String sql="INSERT INTO gg_trip_test(tno,tcno,name,image,content,addr) VALUES(t_tno_seq_test.nextval,1,?,?,?,?)";
 			ps=conn.prepareStatement(sql);
 			//?에 값 채우기
 			ps.setString(1, vo.getName());

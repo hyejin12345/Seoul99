@@ -77,14 +77,9 @@ border : 0;
 color: white;
 
         /* 애니메이션 */
-transition : 0.2s ease-in-out;
+/* transition : 0.2s ease-in-out; */
 
 }
-
-.blue_btn:hover{
-background : #0041d1;
-}
-
 
 /* 흰색버튼 */
 .whitegray_btn{
@@ -103,7 +98,7 @@ background : #0041d1;
         color : black;
 
         /* 애니메이션 */
-        transition : 0.2s ease-in-out;
+/*      transition : 0.2s ease-in-out; */
 }
 .whitegray_btn:hover{
         border : 1px solid #004fff;        

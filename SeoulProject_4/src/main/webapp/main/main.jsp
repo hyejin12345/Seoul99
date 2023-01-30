@@ -27,6 +27,7 @@
 	padding:0;
 	font-size:16px;
 	color:black;
+	text-decoration:none;
 }
 .goup_btn {
 
@@ -52,10 +53,8 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	
 	
-	<!-- home -->
-	<div class="container">
-		<jsp:include page="${main_jsp }"></jsp:include>
-	</div>
+	<!-- home(본문) -->
+	<jsp:include page="${main_jsp }"></jsp:include>
 	
 
 	<!-- footer -->

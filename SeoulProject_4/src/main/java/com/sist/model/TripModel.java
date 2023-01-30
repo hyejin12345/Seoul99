@@ -14,6 +14,7 @@ import javax.swing.event.TableColumnModelListener;
 
 @Controller
 public class TripModel {
+	
 	@RequestMapping("trip/trip_main.do") //여행지 메인페이지
 	public String trip_main(HttpServletRequest request,HttpServletResponse response)
 	{
@@ -60,6 +61,17 @@ public class TripModel {
 	@RequestMapping("trip/trip_detail.do") //여행지 상세페이지
 	public String trip_detail(HttpServletRequest request,HttpServletResponse response)
 	{
+		String tno=request.getParameter("tno");
+		request.setAttribute("tno", tno);
+		
+		TripDAO dao=new TripDAO();
+		TripVO vo=dao.tripDetail(Integer.parseInt(tno));
+		
+		String addr=vo.getAddr();
+		String gu=addr.substring(addr.indexOf(" "),addr.indexOf("구")+1);
+				
+		request.setAttribute("vo", vo);
+		request.setAttribute("gu", gu);
 		request.setAttribute("main_jsp", "../trip/trip_detail.jsp");
 		return "../main/main.jsp";
 	}
