@@ -153,7 +153,7 @@ ul li .fa-solid{
                         <li><a href="#">커뮤니티</a>
                            <ul class="sub-menu">
                               <li><a href="../board/list.do">자유게시판</a></li>
-                              <li><a href="#">공지사항</a></li>
+                              <li><a href="../notice/list.do">공지사항</a></li>
                               <li><a href="#">문의게시판</a></li>
                            </ul>
                         </li>
