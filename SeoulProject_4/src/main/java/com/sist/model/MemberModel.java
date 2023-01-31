@@ -58,6 +58,7 @@ public class MemberModel {
 	  request.setAttribute("count", count);
 	  return "../member/tel_check.jsp";
   }
+  
   @RequestMapping("member/join_ok.do")
   public String member_insert(HttpServletRequest request,HttpServletResponse response)
   {
@@ -94,7 +95,7 @@ public class MemberModel {
 	  return "redirect:../main/main.do";
   }
   @RequestMapping("member/login.do")
-  public String member_login(HttpServletRequest request,HttpServletResponse response)
+  public String member_login_ok(HttpServletRequest request,HttpServletResponse response)
   {
 	  //data:{"id":id,"pwd":pwd}
 	  String id=request.getParameter("id");
@@ -113,7 +114,7 @@ public class MemberModel {
 		  session.setAttribute("admin", vo.getAdmin());
 	  }
 	  request.setAttribute("result", vo.getMsg()); 
-	  return "../member/login_ok.jsp";
+	  return "../member/login.jsp";
   }
   @RequestMapping("member/logout.do")
   public String member_logout(HttpServletRequest request,HttpServletResponse response)

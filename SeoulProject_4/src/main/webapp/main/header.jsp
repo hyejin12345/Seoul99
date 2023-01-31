@@ -158,12 +158,12 @@ ul li .fa-solid{
                            </ul>
                         </li>
                          <li class='active'>
-                        	<a href="#" id="join" style="color:#004fff">회원가입
+                        	<a href="../member/join.do" id="join" style="color:#004fff">회원가입
                         		<div class='active' id="join_bg"></div>
                         	</a>
                         </li>
                         <li class='active'>
-                        	<a href="#" id="login_btn" style="color:white;">로그인
+                        	<a href="../member/login.do" id="login_btn" style="color:white;">로그인
                         		<div class='active' id="login_bg"></div>
                         	</a>
                         </li>

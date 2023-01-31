@@ -135,7 +135,7 @@ public class MemberDAO {
 	   try
 	   {
 		   conn=CreateConnection.getConnection();
-		   String sql="SELECT COUNT(*) gg_member_4 "
+		   String sql="SELECT COUNT(*) from gg_member_4 "
 				     +"WHERE id=?";
 		   ps=conn.prepareStatement(sql);
 		   ps.setString(1, id);
