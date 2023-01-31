@@ -102,6 +102,22 @@ color:white;
 	line-height:30px;
 	margin:70px 0 10px 0;
 	z-index:2;
+
+}
+.topText div{
+	display:inline-block;
+	margin: 0 0 0 50px;
+}
+.text_btn{
+	margin: 0 10px;
+	padding: 0 15px;
+	border-radius:4px;
+	background: #e0e0e0;
+	
+}
+.text_btn:hover{
+	color:white;
+	background: #004fff;
 }
 .topText h3{
 	float:left;
@@ -166,12 +182,12 @@ div.cellInfo{
 	color : black;
 	text-decoration:none;
 }
-.cell .cellInfo .score,i.fa-star{
+.cell .cellInfo .gu,i.fa-star{
 	color : #004fff;
-	font-weight : bold;
 }
 .cell .cellInfo .hit{
 	color : gray;
+	float: right;
 }
 #foodcate_title, #foodcate_title{
 	color : black;
@@ -226,8 +242,23 @@ div.cellInfo{
 }
 
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	let tcno=$('#tcno2').attr("data-no");
+	$.ajax({
+		type:'post',
+		url:'listChange.jsp',
+		data:{"tcno":tcno},
+		success:function(result)
+		{
+			$('#changePrint').html(result);
+		}
+	})
 
+})
 
+</script>
 </head>
 <body>
      
@@ -266,20 +297,20 @@ div.cellInfo{
 	    	  <a href="../main/home.do?tcno=${tcno }"><h4 class="tripcate_h4">${tcno3}</h4></a>
 	    	  <a href="../main/home.do?tcno=${tcno }"><h4 class="tripcate_h4">${tcno4}</h4></a>  	  
     	    </div> --%>
-    	<h4><a href="../trip/trip_list.do" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4>
+    	<a href="../trip/trip_all.do?tcno=1" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a>
     </div>
     <div class="imglistSection">
       	<div class="imglistGroup">
 			<div class="main-carousel">
-			  <c:forEach var="tvo" items="${tlist }" >
+			  <c:forEach var="tvo" items="${tlist1 }" >
   
 			     <div class="cell">
 			         <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
-			     	 <a href="../trip/trip_detail.do?no=${tvo.tno }">    
-			         <img src="${tvo.image }">
+			     	 <a href="../trip/trip_detail.do?tno=${tvo.tno }">    
+			         <img class="cellImg" src="${tvo.image }">
 			         <h4 class="cellName">${tvo.name }</h4>
 			         <div class="cellInfo">
-			            <span class="score"><i class="fa-solid fa-star"></i>4.6</span><span class="hit">(652건)&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${tvo.hit}</span> 
+			            <span class="gu">서울 ${tvo.addr}</span><span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${tvo.hit}</span> 
 			         </div>
 			     	 </a>	     
 			     </div>
@@ -289,34 +320,122 @@ div.cellInfo{
       	</div>
     </div>
     
+    <div class="topText">
+    	<h3>테마별로 즐기는 서울</h3>
+		<!-- ajax로 화면이동 없이 바뀌게 하기 -->
+	    <div>
+			<input type=button value="자연" class="tc_btn text_btn" id="tcno2" data-no="2">
+			<input type=button value="즐길거리" class="tc_btn text_btn" id="tcno3" data-no="3">
+			<input type=button value="쇼핑" class="tc_btn text_btn" id="tcno4" data-no="4">
+    	</div>
+    	<a href="../trip/trip_all.do?tcno=2" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    </div>
+    <div class="imglistSection">
+      	<div class="imglistGroup">
+			<div class="main-carousel" id="changePrint">
+			
+			<jsp:include page="${main_listChange }"></jsp:include>
+<%--     		  <c:forEach var="tvo" items="${tlist2 }" >
+  
+			     <div class="cell">
+			         <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
+			     	 <a href="../trip/trip_detail.do?tno=${tvo.tno }">    
+			         <img class="cellImg" src="${tvo.image }">
+			         <h4 class="cellName">${tvo.name }</h4>
+			         <div class="cellInfo">
+			            <span class="gu">서울 ${tvo.addr}</span><span class="hit">&nbsp;&nbsp;조회수 ${tvo.hit}</span> 
+			         </div>
+			     	 </a>	     
+			     </div>
+			      
+			  </c:forEach> --%>
+			  
+			  
+			</div>
+      	</div>
+    </div>
+    
     
     <!-- 맛집 카테고리 리스트 -->
     
 	<div class="topText">
     	<h3>서울 최고의 맛집리스트</h3>
-    	<h4><a href="#">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4>
     </div>
     <div class="imglistSection">
       	<div class="imglistGroup">
 			<div class="main-carousel">
-			  <c:forEach var="fvo" items="${flist }" >
-			    
-			     <div class="cell" id="foodcate_cell">
-			         <a href="../food/food_list.do?no=${fvo.fcno }">
-			         <div class="foodcate_back"></div>
-    			     <img src="${fvo.image }" id="foodcate_cellimg">
-    			     <div class="foodcate_titles">
-			           <h3 class="cellName foodcate_h3">${fvo.title }</h3>
-			           <h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5>
-			         </div>
-			         </a>
-			     </div>
-			   
+			
+			  <c:forEach var="fvo" items="${flist }" varStatus="s">
+			     <c:if test="${s.index>=0 && s.index<12 }">
+				     <div class="cell" id="foodcate_cell">
+				         <a href="../food/food_list.do?fcno=${fvo.fcno }">
+				         <div class="foodcate_back"></div>
+	    			     <img src="${fvo.image }" id="foodcate_cellimg">
+	    			     <div class="foodcate_titles">
+				           <h3 class="cellName foodcate_h3">${fvo.title }</h3>
+				           <h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5>
+				         </div>
+				         </a>
+				     </div>
+			  	</c:if>
 			  </c:forEach>
+			  
 			</div>
       	</div>
     </div>
     
+    <div class="topText">
+    	<h3>서울 지역별 인기 맛집</h3>
+    </div>
+    <div class="imglistSection">
+      	<div class="imglistGroup">
+			<div class="main-carousel">
+			
+			  <c:forEach var="fvo" items="${flist }" varStatus="s">
+			     <c:if test="${s.index>=12 && s.index<18 }">
+				     <div class="cell" id="foodcate_cell">
+				         <a href="../food/food_list.do?fcno=${fvo.fcno }">
+				         <div class="foodcate_back"></div>
+	    			     <img src="${fvo.image }" id="foodcate_cellimg">
+	    			     <div class="foodcate_titles">
+				           <h3 class="cellName foodcate_h3">${fvo.title }</h3>
+				           <h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5>
+				         </div>
+				         </a>
+				     </div>
+			  	</c:if>
+			  </c:forEach>
+			  
+			</div>
+      	</div>
+    </div>
+    
+    
+    <div class="topText">
+    	<h3>메뉴별 인기 맛집</h3>
+    </div>
+    <div class="imglistSection">
+      	<div class="imglistGroup">
+			<div class="main-carousel">
+			
+			  <c:forEach var="fvo" items="${flist }" varStatus="s">
+			     <c:if test="${s.index>=18 && s.index<30 }">
+				     <div class="cell" id="foodcate_cell">
+				         <a href="../food/food_list.do?fcno=${fvo.fcno }">
+				         <div class="foodcate_back"></div>
+	    			     <img src="${fvo.image }" id="foodcate_cellimg">
+	    			     <div class="foodcate_titles">
+				           <h3 class="cellName foodcate_h3">${fvo.title }</h3>
+				           <h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5>
+				         </div>
+				         </a>
+				     </div>
+			  	</c:if>
+			  </c:forEach>
+			  
+			</div>
+      	</div>
+    </div>
     
     <!-- 축제 리스트 -->
     

@@ -156,7 +156,7 @@ h5{
                         </div>
                         <div class="row">
                                 <ul>
-                                    <li><a href="#"><i class="fa fa-stop"></i>공지사항</a></li>
+                                    <li><a href="../notice/list.do"><i class="fa fa-stop"></i>공지사항</a></li>
                                     <li><a href="#"><i class="fa fa-stop"></i>문의게시판</a></li>
                                     <li><a href="#"><i class="fa fa-stop"></i>일반 관광 문의</a></li>
                                 </ul>

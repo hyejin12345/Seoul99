@@ -7,6 +7,7 @@
 <title>서울99여행</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 
 #header{
@@ -72,6 +73,43 @@
 	align-items:center;
 } */
 
+#join_bg{
+	width:80px;
+	height:40px;
+	border: 1px solid #004fff;
+	border-radius:50px;
+	
+	display:inline;
+	position:absolute;
+	top:30px;
+	right:8px;
+	z-index:-1;
+}
+#login_bg{
+width:80px;
+height:40px;
+background:#004fff;
+border-radius:50px;
+
+display:inline;
+position:absolute;
+top:30px;
+right:15px;
+z-index:-1;
+}
+
+.sub-menu li span{
+	font-size: 13px;
+    line-height: 50px;
+    padding: 0 20px;
+    cursor:pointer;
+}
+.sub-menu li span:hover{
+	color:#004fff;
+}
+ul li .fa-solid{
+	font-size:20px;
+}
 </style>
 </head>
 <body>
@@ -99,7 +137,7 @@
                   <nav id="primary-nav" class="dropdown cf" style="float:right">
                      <ul class="dropdown menu" >
                         <li class='active'><a href="../main/main.do">홈</a></li>
-                        <li><a href="../trip/trip_main.do">여행지</a>
+                        <li><a href="../trip/trip_all.do?tcno=1">여행지</a>
                            <ul class="sub-menu">
                               <li><a href="../trip/trip_all.do?tcno=1">명소</a></li>
                               <li><a href="../trip/trip_all.do?tcno=2">자연</a></li>
@@ -108,19 +146,37 @@
                            </ul></li>
                         <li><a href="#">맛집</a>
                            <ul class="sub-menu">
-                              <li><a href="#">맛집리스트</a></li>
+                              <li><a href="#">서울 맛집 검색</a></li>
                               <li><a href="#">맛집예약</a></li>
 
                            </ul></li>
                         <li><a href="#">커뮤니티</a>
                            <ul class="sub-menu">
                               <li><a href="../board/list.do">자유게시판</a></li>
-                              <li><a href="#">공지사항</a></li>
+                              <li><a href="../notice/list.do">공지사항</a></li>
                               <li><a href="#">문의게시판</a></li>
                            </ul>
                         </li>
-                        <li class='active'><a href="#" id="join">회원가입</a></li>
-                        <li class='active'><a href="#" >로그인</a></li>
+                         <li class='active'>
+                        	<a href="#" id="join" style="color:#004fff">회원가입
+                        		<div class='active' id="join_bg"></div>
+                        	</a>
+                        </li>
+                        <li class='active'>
+                        	<a href="#" id="login_btn" style="color:white;">로그인
+                        		<div class='active' id="login_bg"></div>
+                        	</a>
+                        </li>
+                        
+                        <!-- 마이페이지 -->
+<!--                    <li><a href="#"><i class="fa-solid fa-user"></a></i>
+                        	<ul class="sub-menu">
+                        		<li><span>마이페이지</span></li>
+                        		<li><span>로그아웃</span></li>
+                        	</ul>
+                        </li>   -->
+                        
+                        
                      </ul>
                   </nav>
                   <!-- / #primary-nav -->

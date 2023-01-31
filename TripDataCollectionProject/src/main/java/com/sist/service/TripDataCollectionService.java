@@ -32,7 +32,7 @@ public class TripDataCollectionService {
 	public static void main(String[] args) {
 		TripDataCollectionService tcs=new TripDataCollectionService();
 		
-		//tcs.landmarkDetailData();  //01.12 실행완료
+		tcs.landmarkDetailData();  //01.12 실행완료
 		//tcs.natureDetailData();	 //01.12 실행완료
 		//tcs.entertainmentDetailData(); // 01.12 실행완료
 		//tcs.shoppingDetailData(); // 01.12 실행완료

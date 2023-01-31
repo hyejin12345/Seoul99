@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,9 +94,7 @@
  
  position:relative;
 }
-.content_allItem .content_item:nth-child(3n){
-	margin: 0 0 30px 0; 
-}
+
 
 .content_allItem .content_item img{
  display:inline-block;
@@ -111,24 +110,23 @@
 	margin: 20px 20px 10px 20px;
 }
 .content_allItem .item_info{
-	margin: 0 0 0 20px;
+	margin: 0 20px 20px 20px;
 }
 
-
-.item_info .score,i.fa-star{
+.item_info .gu{
 	color : #004fff;
-	font-weight : bold;
 	font-size:14px;
 }
 .item_info .hit{
 	color : gray;
 	font-size:14px;
+	float:right;
 }
 /* 페이지 넘버링 */
 .pagination{
 
-	margin: 0 35px 0 0;
-	display:block;
+	margin: 0 0 0 -20px;
+	width:100%;
 	text-align: center;
 	
 	/* background: lightgray; */
@@ -143,6 +141,9 @@
 	float:left;
 	
 	display:inline-block;
+}
+.pagination ul li i{
+	font-size: 16px;
 }
 .pagination ul li a{
  	padding: 10px 17px;
@@ -159,6 +160,11 @@
 	color: #004fff;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.con/jquery.js"></script>
+<script type="text/javascript">
+
+
+</script>
 </head>
 <body>
 <div class="container">
@@ -179,11 +185,10 @@
 		  <div class="tripCategory_section">
 		  	<h4>여행지 카테고리</h4>
 		    <ul>
-		    	<li><a href="#">전체보기</a></li>
-				<li><a href="../trip/trip_all.do?tcno=1">명소</a></li>
-				<li><a href="../trip/trip_all.do?tcno=2">자연</a></li>
-				<li><a href="../trip/trip_all.do?tcno=3">즐길거리</a></li>
-				<li><a href="../trip/trip_all.do?tcno=4">쇼핑</a></li>
+				<li><a class="tripCate" href="../trip/trip_all.do?tcno=1">명소</a></li>
+				<li><a class="tripCate" href="../trip/trip_all.do?tcno=2">자연</a></li>
+				<li><a class="tripCate" href="../trip/trip_all.do?tcno=3">즐길거리</a></li>
+				<li><a class="tripCate" href="../trip/trip_all.do?tcno=4">쇼핑</a></li>
 		    </ul>
 		  </div>
 		  <div class="tripScore_section">
@@ -209,7 +214,7 @@
 				    <img src="${vo.image }">
 				    <h4 class="item_name">${vo.name }</h4>
 			        <div class="item_info">
-			            <span class="score"><i class="fa-solid fa-star"></i>4.6</span><span class="hit">(652건)&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${vo.hit}</span> 
+			            <span class="gu">서울 ${vo.addr }</span><span class="hit">&nbsp;&nbsp;조회수 ${vo.hit}</span> 
 			        </div>
 			        </a>
 			        
@@ -217,7 +222,8 @@
 				 
 			   </c:forEach>
 			   
-			
+			   
+			<%-- 페이지네이션 --%>
 			</div>
 			<div class="pagination">
 		        <ul>
@@ -248,9 +254,10 @@
 			</div>
 			
 		
+		
 </div>
-<script type="text/javascript">
-</script>
+
+
 
 </body>
 </html>
