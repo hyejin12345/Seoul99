@@ -10,7 +10,7 @@ import com.sist.vo.*;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.event.TableColumnModelListener;
+
 
 @Controller
 public class TripModel {
@@ -69,10 +69,65 @@ public class TripModel {
 		
 		String addr=vo.getAddr();
 		String gu=addr.substring(addr.indexOf(" "),addr.indexOf("구")+1);
-				
+		
 		request.setAttribute("vo", vo);
 		request.setAttribute("gu", gu);
+		
+		//리뷰 페이지
+		String page=request.getParameter("page");
+		if(page==null)
+			page="1";
+		//리뷰 현재페이지
+		int curpage=Integer.parseInt(page);
+		//리뷰 DB 연동
+		TripReviewDAO trdao=new TripReviewDAO();
+		List<TripReviewVO> list=trdao.tripReviewList(curpage,Integer.parseInt(tno));
+		
+		int totalpage=trdao.tripReviewTotalPage(Integer.parseInt(tno));
+		
+		final int BLOCK=7;
+		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
+		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+		if(endpage>totalpage)
+			endpage=totalpage;
+		
+		request.setAttribute("list", list);
+		request.setAttribute("curpage", curpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("startpage", startpage);
+		request.setAttribute("endpage", endpage);
+		
 		request.setAttribute("main_jsp", "../trip/trip_detail.jsp");
 		return "../main/main.jsp";
+	}
+	@RequestMapping("trip/trip_reviewInsert.do")
+	public String trip_reviewInsert(HttpServletRequest request,HttpServletResponse response)
+	{
+		return "../trip/trip_reviewInsert.jsp";
+	}
+	@RequestMapping("trip/trip_reviewInsert_ok.do")
+	public String trip_reviewInsert_ok(HttpServletRequest request,HttpServletResponse response)
+	{
+		//한글 변환 처리
+		try
+		{
+			request.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		//사용자 입력값 받기
+		String tno=request.getParameter("tno");
+		String id="hong";
+		String score=request.getParameter("score");
+		String content=request.getParameter("content");
+		//VO에 담아서 DB에 전송
+		TripReviewVO vo=new TripReviewVO();
+		vo.setTno(Integer.parseInt(tno));
+		vo.setId(id);
+		vo.setScore(Integer.parseInt(score));
+		vo.setContent(content);
+		
+		TripReviewDAO dao=new TripReviewDAO();
+		dao.tripReviewInsert(vo, Integer.parseInt(tno));
+		
+		return "redirect:../trip/trip_detail.do";
 	}
 }

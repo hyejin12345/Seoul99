@@ -58,7 +58,7 @@
 
 .mainbanner .slide .btn a{
 position:absolute;
-top:48%;
+top:46%;
 margin-top:-15px; 
 font-size:20px;
 text-align:center;
@@ -66,11 +66,11 @@ text-decoration:none;
 line-height:30px;}
 .mainbanner .slide .btn a.prev{left:30px;}
 .mainbanner .slide .btn a.next{right:30px;}
-.mainbanner .slide .btn a i.fa-solid{color:white;}
+.mainbanner .slide .btn a i.fa-solid{margin:10px; color:white; font-size:20px;}
 .mainbanner .slide .autoBtn{
 	position:absolute;
-	top:20px;
-	right:20px;
+	top:30px;
+	right:30px;
 	border-radius:3px;
 	width:30px;
 	height:30px;
@@ -95,6 +95,8 @@ color:white;
 }
  
 /* 이미지리스트 슬라이드 */
+
+			 
 
 .topText{
 	width:100%;
@@ -189,6 +191,8 @@ div.cellInfo{
 	color : gray;
 	float: right;
 }
+
+
 #foodcate_title, #foodcate_title{
 	color : black;
 	z-index:5;
@@ -244,19 +248,35 @@ div.cellInfo{
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-$(function(){
-	let tcno=$('#tcno2').attr("data-no");
-	$.ajax({
-		type:'post',
-		url:'listChange.jsp',
-		data:{"tcno":tcno},
-		success:function(result)
-		{
-			$('#changePrint').html(result);
-		}
-	})
 
+
+$(function(){
+	// alert("1")
+	 $.ajax({
+		 type:'get',
+		 url:'../main/listChange.do',
+		 data:{"tcno":"2"},
+		 success:function(result)
+		 {
+			 //alert(result)
+			 $('#changePrint').html(result);
+		 }
+	 })
+	 $('.tc_btn').click(function(){
+		 let tcno=$(this).attr("tcno");
+		 $.ajax({
+			 type:'post',
+			 url:'../main/listChange.do',
+			 data:{"tcno":tcno},
+			 success:function(result)
+			 {
+				 $('#changePrint').html(result)
+			 }
+		 })
+	 })
+	
 })
+
 
 </script>
 </head>
@@ -320,22 +340,27 @@ $(function(){
       	</div>
     </div>
     
+	
+				   
+
+
     <div class="topText">
     	<h3>테마별로 즐기는 서울</h3>
 		<!-- ajax로 화면이동 없이 바뀌게 하기 -->
 	    <div>
-			<input type=button value="자연" class="tc_btn text_btn" id="tcno2" data-no="2">
-			<input type=button value="즐길거리" class="tc_btn text_btn" id="tcno3" data-no="3">
-			<input type=button value="쇼핑" class="tc_btn text_btn" id="tcno4" data-no="4">
+			<input type=button value="자연" class="tc_btn text_btn" tcno="2">
+			<input type=button value="즐길거리" class="tc_btn text_btn" tcno="3">
+			<input type=button value="쇼핑" class="tc_btn text_btn" tcno="4">
     	</div>
     	<a href="../trip/trip_all.do?tcno=2" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a>
     </div>
-    <div class="imglistSection">
+<%--     <div class="imglistSection">
       	<div class="imglistGroup">
-			<div class="main-carousel" id="changePrint">
+			<div class="main-carousel">
 			
-			<jsp:include page="${main_listChange }"></jsp:include>
-<%--     		  <c:forEach var="tvo" items="${tlist2 }" >
+			   <span id="changePrint">
+			     
+			  <c:forEach var="tvo" items="${tlist1 }" >
   
 			     <div class="cell">
 			         <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
@@ -343,19 +368,24 @@ $(function(){
 			         <img class="cellImg" src="${tvo.image }">
 			         <h4 class="cellName">${tvo.name }</h4>
 			         <div class="cellInfo">
-			            <span class="gu">서울 ${tvo.addr}</span><span class="hit">&nbsp;&nbsp;조회수 ${tvo.hit}</span> 
+			            <span class="gu">서울 ${tvo.addr}</span><span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${tvo.hit}</span> 
 			         </div>
 			     	 </a>	     
 			     </div>
 			      
-			  </c:forEach> --%>
+			  </c:forEach>
 			  
+			  </span>
 			  
 			</div>
       	</div>
-    </div>
+    </div> --%>
     
+			  
     
+	
+
+	
     <!-- 맛집 카테고리 리스트 -->
     
 	<div class="topText">

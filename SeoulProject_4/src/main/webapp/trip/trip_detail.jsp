@@ -19,6 +19,9 @@
 	font-size:16px;
 	color: black;
 }
+.container{
+	position:relative;
+}
 .container a{
 	color:black;
 	text-decoration:none;
@@ -52,7 +55,7 @@ h2{
 .trip_name a{
 	font-size:36px;
 }
-.share_btn{
+.copyLink_btn{
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	 appearance:none;
@@ -206,15 +209,15 @@ h2{
 .mainbanner .slide .slideCnt li img{width:100%; height:100%;}
 .mainbanner .slide .btn a{
 position:absolute;
-top:48%;
+top:46%;
 margin-top:-15px; 
 font-size:20px;
 text-align:center;
 text-decoration:none;
 line-height:30px;}
-.mainbanner .slide .btn a.prev{left:30px;}
-.mainbanner .slide .btn a.next{right:30px;}
-.mainbanner .slide .btn a i.fa-solid{color:white;}
+.mainbanner .slide .btn a.prev{left:20px;}
+.mainbanner .slide .btn a.next{right:20px;}
+.mainbanner .slide .btn a i.fa-solid{margin:20px; color:white; font-size:20px;}
 /* .mainbanner .slide .autoBtn{
 	position:absolute;
 	top:20px;
@@ -303,12 +306,12 @@ line-height:30px;}
 }
 .tReview_body{
 	width:100%;
-	padding: 50px;
+	padding: 70px;
 	background: white;
 	box-shadow : 0 3px 13px 0 rgb(0,0,0,0.2);
 }
 .tripReview_section ul{
-	margin: 0 0 50px 0;
+	margin: 0 0 70px 0;
 	display:flex;
 	justify-content: space-between;
 }
@@ -337,8 +340,12 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 	float: left;
 }
 .big_reviewBox div{
+	margin: 0 0 30px 0;
 	width:85%;
 	float:right;
+}
+.big_reviewBox button{
+
 }
 .tReview_date{
 	color:gray;
@@ -351,8 +358,98 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 	margin: 30px 0;
 	clear: both;
 }
+
+/* 리뷰작성 팝업창 */
+.tReview_writePopup{
+	margin:0 auto;
+	padding:40px;
+	width:600px;
+	height:600px;
+ 	position:fixed;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	background:white;
+	border-radius:4px;
+	box-shadow : 0 10px 50px 0 rgb(0,0,0,0.4);
+	z-index:30;
+}
+.tReview_writePopup h2{
+	margin: 0 0 50px 0;
+}
+.tReview_writePopup h4{
+	margin: 0 0 30px 0;
+}
+.tReview_writePopup h4 span{
+	color:gray;
+}
+input.whitegray_btn,input.blue_btn{
+	width:40%;
+	margin:20px 10px;	
+}
+input.score_input{
+	width:10%;
+	margin: 5px;
+}
+.like_btn{
+	padding:0;
+}
+.like_btn i:hover{
+	color:#ff6555;
+}
 </style>
 </head>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+
+//좋아요 버튼 횟수
+let likeCount=0;
+function likeClick(){
+	likeCount++;
+}
+
+$(function(){
+	
+	
+	/* 글쓰기/수정/삭제 등 완료 후 넣기 */	
+	/*$('#tReviewAdd_btn').click(function(){
+		if(${sessionScope.id==null})
+		{
+			alert("로그인이 필요합니다.")
+			return
+		}
+	}) */
+	
+	$('#tReviewAdd_btn').click(function(){
+
+		let tno=$('.trip_name').attr("tno");
+		$.ajax({
+			type:'post',
+			url:'../trip/trip_reviewInsert.do',
+			data:{"tno":tno},
+			success:function(result)
+			{
+				$('#reviewPrint').html(result)
+				$('#cancel').click(function(){
+					$('.tReview_writePopup').hide();
+				})
+				$('#insert').click(function(){
+					if(!$.trim($('textarea').val()))
+					{
+						$('textarea').focus();
+						return;
+					}
+					$('#reviewInsert.frm').submit();
+				})
+			}
+		})
+		
+	})
+	
+	
+}) 
+
+</script>
 <body>
 <div class="container">
 
@@ -366,11 +463,12 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 			<a href="">여행지</a>
 		</div>
 		
+		<form method="post" action="../trip/trip_reviewInsert_ok.do">
 		
 		<div class="top_section">
-			<h1 class="trip_name"><a href="../trip/trip_detail.do?tno=${vo.tno }">${vo.name }</a></h1>
+			<h1 class="trip_name" tno="${vo.tno }"><a href="../trip/trip_detail.do?tno=${vo.tno }">${vo.name }</a></h1>
 			<div class="top_buttons">
-				<button class="share_btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+				<button class="copyLink_btn" onClick={copyLink()}><i class="fa-solid fa-link"></i></button>
 				<button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
 			</div>
 			<div class="item_info">
@@ -416,6 +514,7 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 			
 				<%-- forEach 돌려서 최근 리뷰 3개 가져오기 --%>
 				<%-- 리뷰 없는 경우 "아직 등록된 리뷰가 없습니다!" 표시, 리뷰박스는 1개만 출력 --%>
+				<%-- 유저명 & 평점 부분 위치 제대로 주기, 평점은 파란색 넣기 --%>
 				<div>
 					<div class="recent_reviewBox">
 						<span>유저명&nbsp;&nbsp;&nbsp;★4/5</span>
@@ -460,7 +559,7 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 				        </div>
 				        <hr>
 				        <ul id="placesList"></ul>
-				        <div id="pagination"></div>
+				        <%-- <div id="pagination"></div> --%>
 				    </div>
 				</div>
 		
@@ -476,7 +575,7 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 			<div class="tReview_top">
 				<h2 class="tReview_name">${vo.name }&nbsp;</h2><h2>리뷰</h2>
 				<span class="tReview_score">★4.6점</span><span>(153건)</span>
-				<button class="blue_btn">리뷰작성</button>
+				<button class="blue_btn" id="tReviewAdd_btn">리뷰작성</button>
 			</div>	
 			
 			<div class="tReview_body">
@@ -488,30 +587,78 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 				  <li><button class="tReviewfilter_btn">아쉬워요</button></li>
 				</ul>
 				
-				<div class="big_reviewBox">
-					<span class="tReview_user">유저명</span>
-					<div>
-						<span class="tReview_score">4.5점</span>&nbsp;&nbsp;
-						<span class="tReview_date">2023.01.28</span>
-						<span class="tReview_cont">날씨가 좋아서 더 예뻤습니다.<br>다음에도 또 오고 싶어요~~</span>
-					</div>
-					
-					<hr>
-				</div>
+				<%-- <c:forEach var="vo" items="${list }"> --%>
 				
+					<div class="big_reviewBox">
+						<span class="tReview_user">유저아이디</span>
+						<div>
+							<span class="tReview_score">4점</span>&nbsp;&nbsp;
+							<span class="tReview_date">2023.02.02</span>
+							<span class="tReview_cont">정말 좋았어요!</span> 
+							<button class="like_btn text_btn"><i class="fa-regular fa-thumbs-up" style="padding:0; font-size:20px"></i></button>
+						</div>
+						
+						<hr>
+					</div>
+				<%-- </c:forEach> --%>
+
 				<!-- 페이지네이션 -->
-				<div class="">
+<!-- 				<div class="">
 							
-				</div>
+				</div> -->
+					
 			</div>
+
 		</div>
+		
+		<span id="reviewPrint">		
+		
+		
+		<!-- 리뷰작성 팝업창 -->
+<!-- 		<div class="tReview_writePopup">
+			<h2 class="text-center">리뷰 작성하기</h2>
+			<h4 class="text-left">여행지는 어떠셨나요?</h4>
+			<div style="margin-bottom:30px;">
+				<input class="score_input" type=radio name="score" value="5" checked>5점
+				<input class="score_input" type=radio name="score" value="4">4점
+				<input class="score_input" type=radio name="score" value="3">3점
+				<input class="score_input" type=radio name="score" value="2">2점
+				<input class="score_input" type=radio name="score" value="1">1점
+			</div>
+			<h4 class="text-left">이 곳을 방문한 후기를 들려주세요!</h4>
+			<textarea style="width:100%; height:35%; margin-bottom:30px;" ></textarea>
+			<div class="text-center">
+				<input type=button class="whitegray_btn" value="취소" onclick="javascript:history.back()">
+				<input type=button class="blue_btn" value="등록">
+			</div>
+		</div> -->
+		
+		</span>		
+		
+		</form>
+		
+</div>
 
 
 		<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=32c8b981048bb9ecf1ccc44705676320&libraries=services"></script>
-		<script>
-		<%-- 상단 이미지 슬라이드 관련 --%>
+		<script type="text/javascript">
+	
+		<%-- url 복사 기능 관련 --%>
+		const copyLink = () => {
+			var url = '';
+			var textarea = document.createElement("textarea");
+			document.body.appendChild(textarea);
+			url = window.document.location.href;
+			textarea.value = url;
+			textarea.select();
+			document.execCommand("copy");
+			document.body.removeChild(textarea);
+			alert("링크가 복사되었습니다.");
+		}
 		
+		
+		<%-- 상단 이미지 슬라이드 관련 --%>		
 		var SLIDE_TIME = 800,
 		AUTO_TIME = 7000,
 
@@ -592,7 +739,6 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 		moveIng = false;
 		});
 		};
-		
 		
 		
 		<%-- 카카오 지도 api 관련 --%>
@@ -813,9 +959,11 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 		        el.removeChild (el.lastChild);
 		    }
 		}
+		 
+		 
 		</script>
 		
 		
-</div>
+
 </body>
 </html>

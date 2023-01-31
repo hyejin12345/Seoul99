@@ -43,20 +43,30 @@ public class MainModel {
 		return "../main/main.jsp";
 
 	}
-	@RequestMapping("main/listChange.do")
-	public String main_listChange(HttpServletRequest request,HttpServletResponse response)
-	{
-		String tcno=request.getParameter("tcno");
-		if(tcno==null)
-			tcno="2";
-
-		TripDAO dao = new TripDAO();	
-		List<TripVO> tlist2 = dao.tripOhterList(Integer.parseInt(tcno));
-		request.setAttribute("tlist2", tlist2);
-		return "../main/listChange.jsp";
-	}
+//	@RequestMapping("main/listChange.do")
+//	public String main_listChange(HttpServletRequest request,HttpServletResponse response)
+//	{
+//		String tcno=request.getParameter("tcno");
+//		if(tcno==null)
+//			tcno="2";
+//
+//		TripDAO dao = new TripDAO();	
+//		List<TripVO> tlist2 = dao.tripOhterList(Integer.parseInt(tcno));
+//		request.setAttribute("tlist2", tlist2);
+//		return "../main/listChange.jsp";
+//	}
+	 @RequestMapping("main/listChange.do")
+	 public String main_listChange(HttpServletRequest request,HttpServletResponse response)
+	 {
+		 String tcno=request.getParameter("tcno");
+		 TripDAO dao = new TripDAO();	
+		 List<TripVO> tlist2 = dao.tripOhterList(Integer.parseInt(tcno));
+		 request.setAttribute("tlist2", tlist2);		 
+		 return "../main/listChange.jsp";
+	 }
 	@RequestMapping("main/search.do")
-	public String main_search(HttpServletRequest request, HttpServletResponse response) {
+	public String main_search(HttpServletRequest request, HttpServletResponse response)
+	{
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (Exception ex) {
@@ -64,12 +74,16 @@ public class MainModel {
 		}
 		String searchWord = request.getParameter("searchWord");
 
-		String page = request.getParameter("page");
-		if (page == null)
-			page = "1";
-		int t_curpage = Integer.parseInt(page);
-		int f_curpage = Integer.parseInt(page);
+		String tpage = request.getParameter("tpage");
+		if (tpage == null)
+			tpage = "1";
+		int t_curpage = Integer.parseInt(tpage);
 
+		String fpage = request.getParameter("fpage");
+		if (fpage == null)
+			fpage = "1";
+		int f_curpage = Integer.parseInt(fpage);
+		
 		SearchDAO dao = new SearchDAO();
 		List<TripVO> tlist = dao.searchTripAllListData(searchWord, t_curpage);
 		List<FoodVO> flist = dao.searchFoodAllListData(searchWord, f_curpage);
