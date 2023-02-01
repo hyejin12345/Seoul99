@@ -185,9 +185,18 @@ $(function(){
 	                        </li>
                         </c:if>
                         <c:if test="${sessionScope.id!=null }">
-					        <li style="font-size: 10px;">${sessionScope.id }(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다</li>
-					        <li><input type=button value="로그아웃" id="logoutBtn"></li>
+                       		<c:choose>
+                       			<c:when test="${sessionScope.admin=='y'}">
+                       				<li style="font-size: 10px;">${sessionScope.id }(관리자)님 로그인중입니다</li>
+                       			</c:when>
+                       			<c:otherwise>
+                       				<li style="font-size: 10px;">${sessionScope.id }(일반사용자)님 로그인중입니다</li>
+                       			</c:otherwise>
+                       		</c:choose>
+                       		<li><input type=button value="로그아웃" id="logoutBtn"></li>
 					    </c:if>
+					    
+					    <!-- <li style="font-size: 10px;">${sessionScope.id }(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다</li> -->
                         <!-- 마이페이지 -->
 <!--                    <li><a href="#"><i class="fa-solid fa-user"></a></i>
                         	<ul class="sub-menu">

@@ -209,10 +209,6 @@ public class MemberDAO {
 	   }
 	   return vo;
    }
-   
-   //3. 닉네임 검색 
-   
-   
    // 3. 회원 수정 
    // 4. ID찾기 
    public String memberIdfind(String name, String email)

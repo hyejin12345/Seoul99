@@ -40,7 +40,8 @@ $(function(){
 			// 실행된 JSP파일을 읽어 온다 ==> 1. HTML , 2. JSON 
 			success:function(result) // 콜백:시스템에 의해 자동 호출 
 			{
-				let res=Number(result.trim()); // 정수형 변경 
+				console.log(result)
+				let res=result.trim(); 
 				if(res===0)
 				{
 					$('#result').html('<font color=blue>'+id+"입니다.</font>");

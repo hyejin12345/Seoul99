@@ -269,7 +269,7 @@ $(function(){
 	                           <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="phone3" class="col-xs-4"  id="phone3" style="padding: 12px 10px; width: 31.4%;" maxlength="4" required>
                             </div>
                             <div class="inputWrap">
-                                <button id="tBtn" type="button">인증요청</button>
+                                <button id="tBtn" type="button">중복확인</button>
                             </div>
                         </div>
                         <p style="font-size: 12px; color: rgb(33, 160, 100); margin-top: 5px" id="tPrint"></p>

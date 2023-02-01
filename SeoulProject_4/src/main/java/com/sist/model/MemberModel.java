@@ -150,8 +150,6 @@ public class MemberModel {
 	  return "../member/email_check.jsp";
   }
   
-  
-  /*
   @RequestMapping("member/idfind.do")
   public String member_idFind(HttpServletRequest request,HttpServletResponse response)
   {
@@ -163,11 +161,11 @@ public class MemberModel {
 	  String name=request.getParameter("name");
 	  String email=request.getParameter("email");
 	  MemberDAO dao=new MemberDAO();
-	  //String idfind=dao.memberIdfind()
+	  String idfind=dao.memberIdfind(name, email);
+	  System.out.println("model :" + idfind);
 	  request.setAttribute("idfind", idfind);//JSP로 값을 전송 
 	  return "../member/idcheck_result.jsp";
   }
-  */
   
 }
 
