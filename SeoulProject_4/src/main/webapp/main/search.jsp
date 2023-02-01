@@ -185,24 +185,21 @@ h3.view_title{
 }
 
 </style>
-<script type="text/javascript" src="http://code.jquery.con/jquery.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	
-	let searchWord=$('.main_input').attr("placeholder");
-	$.ajax({
-		type:'post',
-		url:'listChange.jsp',
-		data:{"searchWord":searchWord,"page":1},
-		success:function(result)
-		{
-			$('#trip_content').html(result);
-		},
-		error:function(ex)
-		{
-			alert("와이라노...")
-		}
-	})	
+	$('#viewAll_btn').click(function(){
+		$('#srhTripList').show()
+		$('#srhFoodList').show()
+	})
+	$('#viewTrip_btn').click(function(){
+		$('#srhTripList').show()
+		$('#srhFoodList').hide()
+	})
+	$('#viewFood_btn').click(function(){
+		$('#srhFoodList').show()
+		$('#srhTripList').hide()
+	})
 })
 </script>
 </head>
@@ -224,142 +221,141 @@ $(function(){
 		<input type=text class="main_input" placeholder="${searchWord }" name="searchWord" autocomplete="off">
 	</form>
 	<div class="view_buttons">
-		<button class="whitegray_btn">전체보기</button>
-		<button class="whitegray_btn">여행지</button>
-		<button class="whitegray_btn">맛집</button>
-		<button class="whitegray_btn">커뮤니티</button>
+		<button class="whitegray_btn" id="viewAll_btn">전체보기(${allCount })</button>
+		<button class="whitegray_btn" id="viewTrip_btn">여행지(${tripCount })</button>
+		<button class="whitegray_btn" id="viewFood_btn">맛집(${foodCount })</button>
+		<!-- <button class="whitegray_btn">커뮤니티</button> -->
 	</div>
 	
 	
 	<%-- 리스트 --%>
-	<%-- content_allItem 세로값을 한줄만 보여주는 높이로 하고, 더보기 클릭시 세로값 3줄+페이지 넘버링부분까지 늘리기 --%>
 		<%-- 여행지 리스트 --%>
+		<div id="srhTripList">
 		
-		<div class="topText">
-	 	<h3 class="view_title">여행지(${tripCount>0?tripCount:0 }건)</h3>
-		<c:if test="${tripCount>5 }">
-			<%-- <h4><a href="../main/search.do?searchWord=${searchWord }" class="moreClick">전체보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4> --%>
-		</c:if>
-		</div>
-		
-		
-		<div id="trip_content">
-	
-			<!-- 3*3 정렬 -->
-			<div class="content_allItem">
-			
-			   <c:forEach var="tvo" items="${tlist }" varStatus="s">
-				 <div class="content_item">
-				    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
-				    
-				    <a href="../trip/trip_detail.do?tno=${tvo.tno }">
-				    <img src="${tvo.image }">
-				    <h4 class="item_name">${tvo.name }</h4>
-			        
-			        </a>
-			        
-				 </div>
-			   </c:forEach>
-			   
+			<div class="topText">
+		 	<h3 class="view_title">여행지(${tripCount>0?tripCount:0 }건)</h3>
 			</div>
 			
- 	   	    <div class="pagination">
-	   	    	<c:if test="${tripCount>5 }">
-		        <ul>
-		        	<li><a href="../main/search.do?searchWord=${searchWord }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
-		        	<c:choose>
-			          	<c:when test="${t_startpage<=1 }">
-			          		<li><a href="../main/search.do?searchWord=${searchWord }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
-			          	</c:when>
-			          	<c:when test="${t_startpage>1 }">
-			          		<li><a href="../main/search.do?searchWord=${searchWord }&page=${t_startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
-			          	</c:when>
-			        	</c:choose>
-		        	<c:forEach var="i" begin="${t_startpage }" end="${t_endpage }">
-		            	<li ${i==t_curpage?"class=current":"" }><a href="../main/search.do?searchWord=${searchWord }&page=${i }">${i }</a></li>
-		        	</c:forEach>
-		        	<c:choose>
-			        	<c:when test="${t_endpage<t_totalpage }">
-			        		<li><a href="../main/search.do?searchWord=${searchWord }&page=${t_endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
-			        	</c:when>
-			        	<c:when test="${t_endpage==t_totalpage }">
-			        		<li><a href="../main/search.do?searchWord=${searchWord }&page=${t_endpage }"><i class="fa-solid fa-angle-right"></i></a></li>
-			        	</c:when>
-			       	</c:choose>
-					<li><a href="../main/search.do?searchWord=${searchWord }&page=${t_totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>		       	
-		        </ul>
-		        </c:if>
-		    </div>
-	      
-	      
+			
+			<div id="trip_content">
+		
+				<!-- 3*3 정렬 -->
+				<div class="content_allItem">
+				
+				   <c:forEach var="tvo" items="${tlist }" varStatus="s">
+					 <div class="content_item">
+					    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
+					    
+					    <a href="../trip/trip_detail.do?tno=${tvo.tno }">
+					    <img src="${tvo.image }">
+					    <h4 class="item_name">${tvo.name }</h4>
+				        
+				        </a>
+				        
+					 </div>
+				   </c:forEach>
+				   
+				</div>
+				
+	 	   	    <div class="pagination">
+		   	    	<c:if test="${tripCount>5 }">
+			        <ul>
+			        	<li><a href="../main/search.do?searchWord=${searchWord }&tpage=1"><i class="fa-solid fa-angles-left"></i></a></li>
+			        	<c:choose>
+				          	<c:when test="${t_startpage<=1 }">
+				          		<li><a href="../main/search.do?searchWord=${searchWord }&tpage=1"><i class="fa-solid fa-angle-left"></i></a></li>
+				          	</c:when>
+				          	<c:when test="${t_startpage>1 }">
+				          		<li><a href="../main/search.do?searchWord=${searchWord }&tpage=${t_startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
+				          	</c:when>
+				        	</c:choose>
+			        	<c:forEach var="t" begin="${t_startpage }" end="${t_endpage }">
+			            	<li ${t==t_curpage?"class=curpage":"" }><a href="../main/search.do?searchWord=${searchWord }&tpage=${t }">${t }</a></li>
+			        	</c:forEach>
+			        	<c:choose>
+				        	<c:when test="${t_endpage<t_totalpage }">
+				        		<li><a href="../main/search.do?searchWord=${searchWord }&tpage=${t_endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
+				        	</c:when>
+				        	<c:when test="${t_endpage==t_totalpage }">
+				        		<li><a href="../main/search.do?searchWord=${searchWord }&tpage=${t_endpage }"><i class="fa-solid fa-angle-right"></i></a></li>
+				        	</c:when>
+				       	</c:choose>
+						<li><a href="../main/search.do?searchWord=${searchWord }&tpage=${t_totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>		       	
+			        </ul>
+			        </c:if>
+			    </div>
+		      
+		      
+			</div>
+		
 		</div>
+		
 		
 		<%-- 맛집 리스트 --%>
-		<div class="topText">
-		<h3 class="view_title">맛집(${foodCount>0?foodCount:0}건)</h3>
-		<c:if test="${foodCount>5 }">
-			<%-- <h4><a href="../main/search.do?searchWord=${searchWord }" class="moreClick">전체보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4> --%>
-		</c:if>
-		</div>
-		<div class="food_content">
-	
-			<!-- 3*3 정렬 -->
-			<div class="content_allItem">
+		<div id="srhFoodList">
 			
-			   <c:forEach var="fvo" items="${flist }" varStatus="s">
-				 <div class="content_item">
-				    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
-				    
-				    <a href="../food/food_detail.do?fno=${fvo.fno }">
-				    <img src="${fvo.poster }">
-				    <h4 class="item_name">${fvo.name }</h4>
-			        
-			        </a>
-			        
-				 </div>
-			   </c:forEach>
-			   
+			<div class="topText">
+			<h3 class="view_title">맛집(${foodCount>0?foodCount:0}건)</h3>
+			</div>
+			<div class="food_content">
+		
+				<!-- 3*3 정렬 -->
+				<div class="content_allItem">
+				
+				   <c:forEach var="fvo" items="${flist }" varStatus="s">
+					 <div class="content_item">
+					    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
+					    
+					    <a href="../food/food_detail.do?fno=${fvo.fno }">
+					    <img src="${fvo.poster }">
+					    <h4 class="item_name">${fvo.name }</h4>
+				        
+				        </a>
+				        
+					 </div>
+				   </c:forEach>
+				   
+				</div>
+				
+	   	   	    <div class="pagination">
+		   	    	<c:if test="${foodCount>5 }">
+			        <ul>
+			        	<li><a href="../main/search.do?searchWord=${searchWord }&fpage=1"><i class="fa-solid fa-angles-left"></i></a></li>
+			        	<c:choose>
+				          	<c:when test="${f_startpage<=1 }">
+				          		<li><a href="../main/search.do?searchWord=${searchWord }&fpage=1"><i class="fa-solid fa-angle-left"></i></a></li>
+				          	</c:when>
+				          	<c:when test="${f_startpage>1 }">
+				          		<li><a href="../main/search.do?searchWord=${searchWord }&fpage=${f_startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
+				          	</c:when>
+				        	</c:choose>
+			        	<c:forEach var="f" begin="${f_startpage }" end="${f_endpage }">
+			            	<li ${f==f_curpage?"class=curpage":"" }><a href="../main/search.do?searchWord=${searchWord }&fpage=${f }">${f }</a></li>
+			        	</c:forEach>
+			        	<c:choose>
+				        	<c:when test="${f_endpage<f_totalpage }">
+				        		<li><a href="../main/search.do?searchWord=${searchWord }&fpage=${f_endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
+				        	</c:when>
+				        	<c:when test="${f_endpage==f_totalpage }">
+				        		<li><a href="../main/search.do?searchWord=${searchWord }&fpage=${f_endpage }"><i class="fa-solid fa-angle-right"></i></a></li>
+				        	</c:when>
+				       	</c:choose>
+						<li><a href="../main/search.do?searchWord=${searchWord }&fpage=${f_totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>		       	
+			        </ul>
+			        </c:if>
+			    </div> 
+			       
 			</div>
 			
-  	   	    <div class="pagination">
-	   	    	<c:if test="${foodCount>5 }">
-		        <ul>
-		        	<li><a href="../main/search.do?searchWord=${searchWord }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
-		        	<c:choose>
-			          	<c:when test="${f_startpage<=1 }">
-			          		<li><a href="../main/search.do?searchWord=${searchWord }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
-			          	</c:when>
-			          	<c:when test="${f_startpage>1 }">
-			          		<li><a href="../main/search.do?searchWord=${searchWord }&page=${f_startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
-			          	</c:when>
-			        	</c:choose>
-		        	<c:forEach var="i" begin="${f_startpage }" end="${f_endpage }">
-		            	<li ${i==f_curpage?"class=current":"" }><a href="../main/search.do?searchWord=${searchWord }&page=${i }">${i }</a></li>
-		        	</c:forEach>
-		        	<c:choose>
-			        	<c:when test="${f_endpage<f_totalpage }">
-			        		<li><a href="../main/search.do?searchWord=${searchWord }&page=${f_endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
-			        	</c:when>
-			        	<c:when test="${f_endpage==f_totalpage }">
-			        		<li><a href="../main/search.do?searchWord=${searchWord }&page=${f_endpage }"><i class="fa-solid fa-angle-right"></i></a></li>
-			        	</c:when>
-			       	</c:choose>
-					<li><a href="../main/search.do?searchWord=${searchWord }&page=${f_totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>		       	
-		        </ul>
-		        </c:if>
-		    </div>
-		    
-		    
-		    
 		</div>
 	
 		<%-- 커뮤니티 리스트 --%>
-		<div class="topText">
+<%-- 		<div class="topText">
 		<h3 class="view_title">커뮤니티(${comunityCount>0?comunityCount:0}건)</h3>
 		</div>
 		<c:if test="${comunityCount>0 }">
 			<h4><a href="../main/search.do?searchWord=${searchWord }" class="moreClick">전체보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4>
-		</c:if>
+		</c:if> --%>
 		
 		
 		

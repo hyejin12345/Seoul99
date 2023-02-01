@@ -246,39 +246,7 @@ div.cellInfo{
 }
 
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript">
 
-
-$(function(){
-	// alert("1")
-	 $.ajax({
-		 type:'get',
-		 url:'../main/listChange.do',
-		 data:{"tcno":"2"},
-		 success:function(result)
-		 {
-			 //alert(result)
-			 $('#changePrint').html(result);
-		 }
-	 })
-	 $('.tc_btn').click(function(){
-		 let tcno=$(this).attr("tcno");
-		 $.ajax({
-			 type:'post',
-			 url:'../main/listChange.do',
-			 data:{"tcno":tcno},
-			 success:function(result)
-			 {
-				 $('#changePrint').html(result)
-			 }
-		 })
-	 })
-	
-})
-
-
-</script>
 </head>
 <body>
      
@@ -311,12 +279,6 @@ $(function(){
 	<!-- 여행지 리스트 -->
 	<div class="topText">
     	<h3>서울에서 꼭 가봐야할 곳</h3>
-<%--     	<div class="tripcate">
-	    	  <a href="../main/home.do?tcno=${tcno }"><h4 class="tripcate_h4">${tcno1}</h4></a>
-	    	  <a href="../main/home.do?tcno=${tcno }"><h4 class="tripcate_h4">${tcno2}</h4></a>
-	    	  <a href="../main/home.do?tcno=${tcno }"><h4 class="tripcate_h4">${tcno3}</h4></a>
-	    	  <a href="../main/home.do?tcno=${tcno }"><h4 class="tripcate_h4">${tcno4}</h4></a>  	  
-    	    </div> --%>
     	<a href="../trip/trip_all.do?tcno=1" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a>
     </div>
     <div class="imglistSection">
@@ -345,22 +307,13 @@ $(function(){
 
 
     <div class="topText">
-    	<h3>테마별로 즐기는 서울</h3>
-		<!-- ajax로 화면이동 없이 바뀌게 하기 -->
-	    <div>
-			<input type=button value="자연" class="tc_btn text_btn" tcno="2">
-			<input type=button value="즐길거리" class="tc_btn text_btn" tcno="3">
-			<input type=button value="쇼핑" class="tc_btn text_btn" tcno="4">
-    	</div>
+    	<h3>자연과 휴식을 즐길 수 있는 곳</h3>
     	<a href="../trip/trip_all.do?tcno=2" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a>
     </div>
-<%--     <div class="imglistSection">
+    <div class="imglistSection">
       	<div class="imglistGroup">
 			<div class="main-carousel">
-			
-			   <span id="changePrint">
-			     
-			  <c:forEach var="tvo" items="${tlist1 }" >
+			  <c:forEach var="tvo" items="${tlist2 }" >
   
 			     <div class="cell">
 			         <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
@@ -374,12 +327,9 @@ $(function(){
 			     </div>
 			      
 			  </c:forEach>
-			  
-			  </span>
-			  
 			</div>
       	</div>
-    </div> --%>
+    </div>
     
 			  
     

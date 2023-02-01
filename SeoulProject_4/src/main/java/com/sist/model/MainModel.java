@@ -24,7 +24,7 @@ public class MainModel {
 		List<TripVO> tlist1 = tdao.tripLandmarkList();
 		request.setAttribute("tlist1", tlist1);
 		
-		List<TripVO> tlist2 = tdao.tripOhterList(Integer.parseInt(tcno));
+		List<TripVO> tlist2 = tdao.tripOhterList(2);
 		request.setAttribute("tlist2", tlist2);
 		
 		// 메인 맛집리스트

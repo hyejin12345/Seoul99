@@ -163,6 +163,9 @@
 <script type="text/javascript" src="http://code.jquery.con/jquery.js"></script>
 <script type="text/javascript">
 
+$(function(){
+
+})
 
 </script>
 </head>
@@ -178,7 +181,8 @@
 		
 		<h1 class="trip_toptitle">${content_title }</h1>
 		<div class="filterbar">
-		지역필터
+		<!--  -->
+			
 		</div>
 		<div class="trip_side">
 
@@ -201,9 +205,9 @@
 		    </ul>
 		  </div>
 		</div>
-		<div class="trip_content">
+		<div class="trip_content" id="Print">
 		
-			<!-- 3*3 정렬 -->
+ 			<!-- 3*3 정렬 -->
 			<div class="content_allItem">
 			   <c:forEach var="vo" items="${list }">
 			 	 
@@ -222,9 +226,10 @@
 				 
 			   </c:forEach>
 			   
-			   
-			<%-- 페이지네이션 --%>
+
 			</div>
+			
+			<!-- 페이지네이션 -->
 			<div class="pagination">
 		        <ul>
 		        	<li><a href="../trip/trip_all.do?tcno=${tcno }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
@@ -251,7 +256,7 @@
 		        </ul>
 		      </div>
 
-			</div>
+		</div>
 			
 		
 		

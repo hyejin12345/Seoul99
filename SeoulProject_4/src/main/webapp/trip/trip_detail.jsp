@@ -315,7 +315,7 @@ line-height:30px;}
 	display:flex;
 	justify-content: space-between;
 }
-.tripReview_section ul li{
+.tripReview_section ul li.reviewFilter{
 	width:22%;
 }
 hr{ margin: 0; border-top: 1px solid lightgray;}
@@ -335,13 +335,14 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 	background: #004fff;
 }
 .tReview_user{
-	width:15%;
+	width:25%;
+	padding:0 0 0 30px;
 	display:inline-block;
 	float: left;
 }
 .big_reviewBox div{
 	margin: 0 0 30px 0;
-	width:85%;
+	width:75%;
 	float:right;
 }
 .big_reviewBox button{
@@ -349,11 +350,18 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 }
 .tReview_date{
 	color:gray;
+	margin: 0 0 0 30px;
 }
 .tReview_cont{
-	margin: 30px 0;
+	margin: 20px 0;
+	width:100%;
+/* 	height:80px; */
 	display:block;
+	border:0;
+	background:white;
+	resize:none;
 }
+.tReview_cont:focus{outline:none;}
 .big_reviewBox hr{
 	margin: 30px 0;
 	clear: both;
@@ -374,6 +382,12 @@ hr{ margin: 0; border-top: 1px solid lightgray;}
 	box-shadow : 0 10px 50px 0 rgb(0,0,0,0.4);
 	z-index:30;
 }
+.tReview_writePopup textarea#content{
+	resize:none;
+	width:100%;
+	height:190px;
+	margin:0 0 20px 0;
+}
 .tReview_writePopup h2{
 	margin: 0 0 50px 0;
 }
@@ -391,11 +405,49 @@ input.score_input{
 	width:10%;
 	margin: 5px;
 }
-.like_btn{
+#like_btn{
 	padding:0;
 }
-.like_btn i:hover{
+#like_btn i:hover{
 	color:#ff6555;
+}
+
+/* 페이지 넘버링 */
+.pagination{
+
+	margin: 0px;
+	width:100%;
+	text-align: center;
+	
+	/* background: lightgray; */
+}
+.pagination ul{
+	display:inline-block;
+	margin: 20px auto;
+	
+	text-align:center;
+}
+.pagination ul li{
+	float:left;
+	
+	display:inline-block;
+}
+.pagination ul li i{
+	font-size: 16px;
+}
+.pagination ul li a{
+ 	padding: 10px 17px;
+    border-radius: 50px;
+    display: block;
+    
+/*  background: yellow;
+    border: 1px solid black; */
+}
+.pagination ul li a:hover{
+	background:lightgray;
+}
+.curpage a{
+	color: #004fff;
 }
 </style>
 </head>
@@ -405,7 +457,16 @@ input.score_input{
 //좋아요 버튼 횟수
 let likeCount=0;
 function likeClick(){
-	likeCount++;
+	likeCount++
+	$('#likeCnt').text(Number(likeCount)).css("color","#f46555")
+	$('.fa-thumbs-up').css("color","#f46555")
+	
+	if(likeCount==2)
+	{
+		likeCount=likeCount-2
+		$('#likeCnt').text("")
+		$('.fa-thumbs-up').css("color","black")
+	}
 }
 
 $(function(){
@@ -420,7 +481,7 @@ $(function(){
 		}
 	}) */
 	
-	$('#tReviewAdd_btn').click(function(){
+	$('#write_btn').click(function(){
 
 		let tno=$('.trip_name').attr("tno");
 		$.ajax({
@@ -432,15 +493,26 @@ $(function(){
 				$('#reviewPrint').html(result)
 				$('#cancel').click(function(){
 					$('.tReview_writePopup').hide();
+					
 				})
-				$('#insert').click(function(){
+ 				$('#insert').click(function(){
 					if(!$.trim($('textarea').val()))
 					{
 						$('textarea').focus();
 						return;
 					}
-					$('#reviewInsert.frm').submit();
+					$('.tReview_writePopup').hide();
+					$.ajax({
+					type:'post',
+					url:'../trip/trip_reviewInsert_ok.do',
+					data:{"tno":tno,"score":score,"cont":cont},
+					success:function(result)
+					{
+						
+					}
 				})
+				}) 
+
 			}
 		})
 		
@@ -463,7 +535,7 @@ $(function(){
 			<a href="">여행지</a>
 		</div>
 		
-		<form method="post" action="../trip/trip_reviewInsert_ok.do">
+		
 		
 		<div class="top_section">
 			<h1 class="trip_name" tno="${vo.tno }"><a href="../trip/trip_detail.do?tno=${vo.tno }">${vo.name }</a></h1>
@@ -574,42 +646,78 @@ $(function(){
 		
 			<div class="tReview_top">
 				<h2 class="tReview_name">${vo.name }&nbsp;</h2><h2>리뷰</h2>
-				<span class="tReview_score">★4.6점</span><span>(153건)</span>
-				<button class="blue_btn" id="tReviewAdd_btn">리뷰작성</button>
+				<c:if test="${reviewCnt>0}">
+				<h2 class="tReview_score">★${scoreAvg }</h2>
+				</c:if>
+				<h2>(${reviewCnt>0?reviewCnt:0 })건</h2>
+				<!-- sessionScope.id로 로그인 확인 => 비로그인 => "※리뷰는 로그인 후 작성 가능합니다." 보여주기 -->
+				<button class="blue_btn" id="write_btn">리뷰작성</button>
+				<!-- <span class="text-right">※리뷰는 로그인 후 작성 가능합니다.</span> -->
 			</div>	
 			
 			<div class="tReview_body">
 				<!-- 필터버튼 -->
+				
 				<ul>
-				  <li><button class="tReviewfilter_btn">전체보기</button></li>
-				  <li><button class="tReviewfilter_btn">좋아요</button></li>
-				  <li><button class="tReviewfilter_btn">보통이에요</button></li>
-				  <li><button class="tReviewfilter_btn">아쉬워요</button></li>
+				  <li class="reviewFilter"><button class="tReviewfilter_btn">전체보기</button></li>
+				  <li class="reviewFilter"><button class="tReviewfilter_btn">좋아요</button></li>
+				  <li class="reviewFilter"><button class="tReviewfilter_btn">보통이에요</button></li>
+				  <li class="reviewFilter"><button class="tReviewfilter_btn">아쉬워요</button></li>
 				</ul>
 				
-				<%-- <c:forEach var="vo" items="${list }"> --%>
+										 
 				
+				
+					
 					<div class="big_reviewBox">
-						<span class="tReview_user">유저아이디</span>
+					  <c:forEach var="vo" items="${list }">		
+						<span class="tReview_user">${vo.id }</span>
 						<div>
-							<span class="tReview_score">4점</span>&nbsp;&nbsp;
-							<span class="tReview_date">2023.02.02</span>
-							<span class="tReview_cont">정말 좋았어요!</span> 
-							<button class="like_btn text_btn"><i class="fa-regular fa-thumbs-up" style="padding:0; font-size:20px"></i></button>
+							<span class="tReview_score">★${vo.score }점</span>&nbsp;/&nbsp;5점
+							<span class="tReview_date">${vo.dbday }</span>
+																					 
+																									
+							<textarea class="tReview_cont">${vo.content }</textarea> 
+<!-- 							<button class="text_btn" id="like_btn" onclick="likeClick()"><i class="fa-regular fa-thumbs-up" style="padding:0; font-size:20px"></i></button>
+							<span id="likeCnt"></span> -->
 						</div>
-						
 						<hr>
+					  </c:forEach>
 					</div>
-				<%-- </c:forEach> --%>
-
+				
+				
 				<!-- 페이지네이션 -->
-<!-- 				<div class="">
-							
-				</div> -->
+ 				<div class="pagination">
+		        <ul>
+		        	<li><a href="../trip/trip_detail.do?tno=${tno }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
+		        	<c:choose>
+			          	<c:when test="${startpage<=1 }">
+			          		<li><a href="../trip/trip_detail.do?tno=${tno }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
+			          	</c:when>
+			          	<c:when test="${startpage>1 }">
+			          		<li><a href="../trip/trip_detail.do?tno=${tno }&page=${startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
+			          	</c:when>
+		        	</c:choose>
+		        	<c:forEach var="i" begin="${startpage }" end="${endpage }">
+		            	<li ${i==curpage?"class=curpage":"" }><a href="../trip/trip_detail.do?tno=${tno }&page=${i }">${i }</a></li>
+		        	</c:forEach>
+		        	<c:choose>
+		        		<c:when test="${endpage<totalpage }">
+		        			<li><a href="../trip/trip_detail.do?tno=${tno }&page=${endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
+		        		</c:when>
+		        		<c:when test="${endpage==totalpage }">
+		        			<li><a href="../trip/trip_detail.do?tno=${tno }&page=${endpage }"><i class="fa-solid fa-angle-right"></i></a></li>
+		        		</c:when>
+		        	</c:choose>
+		        	<li><a href="../trip/trip_detail.do?tno=${tno }&page=${totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>
+		        </ul>
+		      </div>
+		      
 					
 			</div>
 
 		</div>
+		
 		
 		<span id="reviewPrint">		
 		
@@ -635,7 +743,7 @@ $(function(){
 		
 		</span>		
 		
-		</form>
+		
 		
 </div>
 
@@ -778,7 +886,7 @@ $(function(){
 		}
 		
 		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-		function placesSearchCB(data, status, pagination) {
+ 		function placesSearchCB(data, status, pagination) {
 		    if (status === kakao.maps.services.Status.OK) {
 		
 		        // 정상적으로 검색이 완료됐으면
