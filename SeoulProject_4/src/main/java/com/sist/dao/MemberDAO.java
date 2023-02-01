@@ -76,6 +76,31 @@ public class MemberDAO {
 	   }
 	   return count;
    }
+ //3. 닉네임 검색 
+   public int memberNickCheck(String nick)
+   {
+	   int count=0;
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT COUNT(*) FROM gg_member_4 "
+				     +"WHERE nick=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, nick);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   count=rs.getInt(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return count;
+   }
    //4. 전화번호 검색 
    public int memberPhoneCheck(String phone)
    {
@@ -184,8 +209,37 @@ public class MemberDAO {
 	   }
 	   return vo;
    }
+   
+   //3. 닉네임 검색 
+   
+   
    // 3. 회원 수정 
    // 4. ID찾기 
+   public String memberIdfind(String name, String email)
+   {
+	   String id = "";
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT id FROM gg_member_4 "
+		   			+ "WHERE name = ? AND email = ?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, name);
+		   ps.setString(2, email);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   id=rs.getString(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return id;
+   }
    // 5. PWD 찾기 
    // 6. 회원 탈퇴 
 }

@@ -40,15 +40,6 @@ public class MemberModel {
 	  return "../member/postfind.jsp";
   }
   
-  @RequestMapping("member/email_check.do")
-  public String member_email_check(HttpServletRequest request,HttpServletResponse response)
-  {
-	  String email=request.getParameter("email");
-	  MemberDAO dao=new MemberDAO();
-	  int count=dao.memberEmailCheck(email);
-	  request.setAttribute("count", count);
-	  return "../member/email_check.jsp";
-  }
   @RequestMapping("member/tel_check.do")
   public String member_tel_check(HttpServletRequest request,HttpServletResponse response)
   {
@@ -78,6 +69,11 @@ public class MemberModel {
 	  String phone3=request.getParameter("phone3");
 	  String tos=request.getParameter("tos");
 	  
+	  System.out.println(id);
+	  System.out.println(pwd);
+	  System.out.println(name);
+	  System.out.println(sex);
+	  
 	  MemberVO vo=new MemberVO();
 	  vo.setId(id);
 	  vo.setPwd(pwd);
@@ -89,19 +85,26 @@ public class MemberModel {
 	  vo.setPhone(phone1+"-"+phone2+"-"+phone3);
 	  vo.setTos("y");
 	  
+	  
 	  MemberDAO dao=new MemberDAO();
 	  dao.memberInsert(vo);
 	  
 	  return "redirect:../main/main.do";
   }
   @RequestMapping("member/login.do")
-  public String member_login_ok(HttpServletRequest request,HttpServletResponse response)
+  public String member_login(HttpServletRequest request,HttpServletResponse response)
+  {
+	  return "../member/login.jsp";
+  }
+  @RequestMapping("member/loginok.do")
+  public String member_loginok(HttpServletRequest request,HttpServletResponse response)
   {
 	  //data:{"id":id,"pwd":pwd}
 	  String id=request.getParameter("id");
 	  String pwd=request.getParameter("pwd");
 	  MemberDAO dao=new MemberDAO();
 	  // 결과값 받기 
+	  
 	  MemberVO vo=dao.memberLogin(id, pwd);
 	  if(vo.getMsg().equals("OK"))// 로그인되었다면 
 	  {
@@ -113,8 +116,9 @@ public class MemberModel {
 		  session.setAttribute("name", vo.getName());
 		  session.setAttribute("admin", vo.getAdmin());
 	  }
-	  request.setAttribute("result", vo.getMsg()); 
-	  return "../member/login.jsp";
+	  request.setAttribute("result", vo.getMsg());
+	  
+	  return "../member/loginok.jsp";
   }
   @RequestMapping("member/logout.do")
   public String member_logout(HttpServletRequest request,HttpServletResponse response)
@@ -123,6 +127,48 @@ public class MemberModel {
 	  session.invalidate();// 모든 정보 해제 
 	  return "redirect:../main/main.do";
   }
+  @RequestMapping("member/email_check.do")
+  public String member_email_check(HttpServletRequest request,HttpServletResponse response)
+  {
+	  String email=request.getParameter("email");
+	  MemberDAO dao=new MemberDAO();
+	  System.out.println(email);
+	  int count=dao.memberEmailCheck(email);
+	  System.out.println(count);
+	  request.setAttribute("count", count);
+	  return "../member/email_check.jsp";
+  }
+  @RequestMapping("member/nick_check.do")
+  public String member_nick_check(HttpServletRequest request,HttpServletResponse response)
+  {
+	  String nick=request.getParameter("nick");
+	  MemberDAO dao=new MemberDAO();
+	  System.out.println(nick);
+	  int count=dao.memberNickCheck(nick);
+	  System.out.println(count);
+	  request.setAttribute("count", count);
+	  return "../member/email_check.jsp";
+  }
+  
+  
+  /*
+  @RequestMapping("member/idfind.do")
+  public String member_idFind(HttpServletRequest request,HttpServletResponse response)
+  {
+	  return "../member/idfind.jsp";
+  }
+  @RequestMapping("member/idfind_result.do")
+  public String member_idFind_result(HttpServletRequest request,HttpServletResponse response)
+  {
+	  String name=request.getParameter("name");
+	  String email=request.getParameter("email");
+	  MemberDAO dao=new MemberDAO();
+	  //String idfind=dao.memberIdfind()
+	  request.setAttribute("idfind", idfind);//JSP로 값을 전송 
+	  return "../member/idcheck_result.jsp";
+  }
+  */
+  
 }
 
 
