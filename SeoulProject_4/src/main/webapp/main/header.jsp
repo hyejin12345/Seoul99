@@ -184,6 +184,7 @@ $(function(){
 	                        	</a>
 	                        </li>
                         </c:if>
+                        
                         <c:if test="${sessionScope.id!=null }">
                        		<c:choose>
                        			<c:when test="${sessionScope.admin=='y'}">
@@ -195,6 +196,8 @@ $(function(){
                        		</c:choose>
                        		<li><input type=button value="로그아웃" id="logoutBtn"></li>
 					    </c:if>
+					    
+					    
 					    
 					    <!-- <li style="font-size: 10px;">${sessionScope.id }(${sessionScope.admin=='y'?"관리자":"일반사용자" })님 로그인중입니다</li> -->
                         <!-- 마이페이지 -->
