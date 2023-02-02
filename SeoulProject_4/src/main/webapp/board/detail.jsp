@@ -23,7 +23,7 @@
 			else
 			{
 				$('#del').hide();
-				$('#delete').text("수정");
+				$('#delete').text("삭제");
 				i=0;
 			}
 		})
