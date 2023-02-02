@@ -213,11 +213,13 @@ public class MemberDAO {
    // 4. ID찾기 
    public String memberIdfind(String name, String email)
    {
-	   String id = "";
+	   String id = "no";
+	   System.out.println(name);
+	   System.out.println(email);
 	   try
 	   {
 		   conn=CreateConnection.getConnection();
-		   String sql="SELECT id FROM gg_member_4 "
+		   String sql="SELECT rpad(substr(id,1,length(id)/2),length(id),'*') as id FROM gg_member_4 "
 		   			+ "WHERE name = ? AND email = ?";
 		   ps=conn.prepareStatement(sql);
 		   ps.setString(1, name);
@@ -226,6 +228,7 @@ public class MemberDAO {
 		   rs.next();
 		   id=rs.getString(1);
 		   rs.close();
+		   
 	   }catch(Exception ex)
 	   {
 		   ex.printStackTrace();
@@ -236,6 +239,34 @@ public class MemberDAO {
 	   }
 	   return id;
    }
-   // 5. PWD 찾기 
+   // 5. PWD 찾기
+   public String memberPwdfind(String id, String email)
+   {
+	   String pwd = "no";
+	   System.out.println(id);
+	   System.out.println(email);
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT pwd FROM gg_member_4 "
+		   			+ "WHERE id = ? AND email = ?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, id);
+		   ps.setString(2, email);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   id=rs.getString(1);
+		   rs.close();
+		   
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return pwd;
+   }
    // 6. 회원 탈퇴 
 }

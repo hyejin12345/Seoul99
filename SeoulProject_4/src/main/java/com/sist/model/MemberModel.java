@@ -149,7 +149,7 @@ public class MemberModel {
 	  request.setAttribute("count", count);
 	  return "../member/email_check.jsp";
   }
-  
+  //아이디 찾기
   @RequestMapping("member/idfind.do")
   public String member_idFind(HttpServletRequest request,HttpServletResponse response)
   {
@@ -160,12 +160,35 @@ public class MemberModel {
   {
 	  String name=request.getParameter("name");
 	  String email=request.getParameter("email");
+	  System.out.println(name);
+	  System.out.println(email);
 	  MemberDAO dao=new MemberDAO();
 	  String idfind=dao.memberIdfind(name, email);
 	  System.out.println("model :" + idfind);
 	  request.setAttribute("idfind", idfind);//JSP로 값을 전송 
-	  return "../member/idcheck_result.jsp";
+	  return "../member/idfind_result.jsp";
   }
+  
+  //비밀번호 찾기
+  @RequestMapping("member/pwdfind.do")
+  public String member_pwdFind(HttpServletRequest request,HttpServletResponse response)
+  {
+	  return "../member/pwdfind.jsp";
+  }
+  @RequestMapping("member/pwdfind_result.do")
+  public String member_pwdFind_result(HttpServletRequest request,HttpServletResponse response)
+  {
+	  String id=request.getParameter("id");
+	  String email=request.getParameter("email");
+	  System.out.println("id :" +id);
+	  System.out.println("email : " +email);
+	  MemberDAO dao=new MemberDAO();
+	  String pwdfind=dao.memberIdfind(id, email);
+	  System.out.println("리턴값 :" + pwdfind);
+	  request.setAttribute("pwdfind", pwdfind);//JSP로 값을 전송 
+	  return "../member/pwdfind_result.jsp";
+  }
+
   
 }
 

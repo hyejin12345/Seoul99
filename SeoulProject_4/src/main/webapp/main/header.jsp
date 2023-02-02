@@ -86,6 +86,7 @@
 	right:8px;
 	z-index:-1;
 }
+
 #login_bg{
 width:80px;
 height:40px;

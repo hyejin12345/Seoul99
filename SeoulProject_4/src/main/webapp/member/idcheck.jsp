@@ -50,6 +50,8 @@ $(function(){
 	})
 	$('#okBtn').click(function(){
 		parent.join_frm.id.value=$('#id').val();
+		
+		parent.join_frm.id.readOnly = true;
 		parent.Shadowbox.close();
 	})
 })

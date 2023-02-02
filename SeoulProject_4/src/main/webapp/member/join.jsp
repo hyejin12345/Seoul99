@@ -16,7 +16,7 @@ Shadowbox.init({
 	players:['iframe']
 })
 $(function(){
-	$('#idcheck').click(function(){
+	/*$('#idcheck').click(function(){
 		Shadowbox.open({
 			content:'../member/idcheck.do',
 			player:'iframe',
@@ -24,7 +24,9 @@ $(function(){
 			height:180,
 			title:'아이디 중복체크'
 		})
-	})
+		
+	})*/
+	
 	// email 검색 => 후보키 (unique)
 	$('#eBtn').click(function(){
 		let email=$('#email').val();
@@ -138,13 +140,14 @@ $(function(){
 	})
 	
 	$('#joinBtn').click(function(){
-		let id=$('#id').val();
+		
+		/*let id=$('#id').val();
 		if(id.trim()==="")
 		{
 			alert("아이디 중복 체크버튼을 클릭하세요!!");
 			$('#id').focus();
 			return;
-		}
+		}*/
 		let email=$('#email').val()
 		if(email.trim()==="")
 		{
@@ -154,9 +157,9 @@ $(function(){
 		}
 		let pwd = $("#pwd").val();
 		let pwd1 = $("#pwd1").val();
-		let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$/;
+		let reg = /^(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&-]).{8,20}$/;;
 		if(!reg.test(pwd)){
-			alert("비밀번호는 8자리 이상이어야 하며, 대문자/소문자/숫자/특수문자 모두 포함해야 합니다.");
+			alert("비밀번호는 8자리 이상이어야 하며, 소문자/숫자/특수문자 모두 포함해야 합니다.");
 			$("#pwd").val("");
 			$("#pwd1").val("");
 			$("#pwd").focus();
@@ -176,18 +179,58 @@ $(function(){
 		  $("#sex").focus();
 		  return;
 		}
-		let name=$('#name').val()
-		if(name.trim()==="")
-		{
-			alert("이름은 필수 입력입니다")
-			$('#name').focus()
-			return 
-		}
+		
 		
 		$('#join_frm').submit();
 	})
 	
 })
+function checkId(){
+        var id = $('#id').val();
+        if(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g.test(id)){ // 한글이 입력되면
+            alert("한글은 아이디로 사용할 수 없습니다");
+            $('#id').val('');
+            return; // 함수 종료
+        }
+        $.ajax({
+            url:'../member/idcheck_result.do', 
+            type:'post',
+            data:{"id":id},
+            success:function(result){ 
+            	
+            	let count=Number(result.trim());
+                if(count == 0){ 
+                    $('#id_ok').text("사용 가능한 아이디입니다.")
+                    $('#id_already').text('');
+                } else if (count == 1) {
+                	$('#id_already').text("이미 사용중인 아이디입니다.")
+                	$('#id_ok').text('');
+                    $('#id').val('');
+                	
+                }
+            },
+            error:function(){
+                alert("에러입니다");
+            }
+        });
+};
+function checkName() {
+	let name=$('#name').val()
+	if(name.trim()==="")
+	{
+		alert("이름은 필수 입력입니다")
+		$('#name').focus()
+		return 
+	}
+	let nameRegExp = /[A-Za-z!@#$%^&*()_+,-./:;<=>?@[\]^_`{|}~]/;
+	if(nameRegExp.test(name))
+	{
+		alert("이름은 한글만 입력 가능합니다")
+		$("#name").val("");
+		$('#name').focus()
+		return
+	}
+}
 </script>
 </head>
 <body>
@@ -196,15 +239,13 @@ $(function(){
         	<img src="../member/logo.png" class="loginimg"> 
             <form method="POST" action="../member/join_ok.do" name="join_frm" id="join_frm">
                 <fieldset>
-                    <label>아이디</label>
-                    <div class="input-phone">
-                    	<div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
-                    		<input type="text" name="id" id="id" required readonly placeholder="아이디 중복 확인을 해주세요">
-                    	</div>
-                    	<div class="inputWrap">
-                    		<button id="idcheck" type="button">중복확인</button>
-                    	</div>
+                    <div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
+	                    <label>아이디</label>
+	                    <input type="text" name="id" id="id" required oninput = "checkId()">
                     </div>
+                    <span id="id_ok" style="color: blue;"></span>
+					<span id="id_already" style="color: red;"></span>
+					
 	                <label>이메일</label>
                     <div class="input-phone">
                     	<div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
@@ -232,7 +273,7 @@ $(function(){
                     
                     <div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
                         <label>이름</label>
-                        <input type="text" name="name" maxlength="150" autofocus required id="id_username">
+                        <input type="text" name="name" maxlength="150" autofocus required id="name" oninput = "checkName()">
                     </div>
                         <label>닉네임</label>
 	                    <div class="input-phone">
