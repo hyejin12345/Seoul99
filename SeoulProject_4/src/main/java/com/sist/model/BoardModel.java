@@ -34,6 +34,8 @@ public class BoardModel {
     int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
     if (endPage > totalpage)
         endPage = totalpage;
+    if (totalpage==0)
+    	totalpage = totalpage+1;
     
     request.setAttribute("list", list);
     request.setAttribute("curpage", curpage);
