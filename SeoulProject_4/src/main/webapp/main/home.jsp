@@ -402,7 +402,7 @@ $(function(){
            <c:forEach var="fvo" items="${flist }" varStatus="s">
               <c:if test="${s.index>=7 && s.index<=11 }">
                  <div class="cell" id="foodcate_cell">
-                     <a href="../food/food_list.do?fcno=${fvo.fcno }">
+                     <a href="../food/food_list.do?no=${fvo.fcno }">
                      <div class="foodcate_back"></div>
                      <img src="${fvo.image }" id="foodcate_cellimg">
                      <div class="foodcate_titles">
@@ -429,7 +429,7 @@ $(function(){
            <c:forEach var="fvo" items="${flist }" varStatus="s">
               <c:if test="${s.index>=18 && s.index<30 }">
                  <div class="cell" id="foodcate_cell">
-                     <a href="../food/food_list.do?fcno=${fvo.fcno }">
+                     <a href="../food/food_list.do?no=${fvo.fcno }">
                      <div class="foodcate_back"></div>
                      <img src="${fvo.image }" id="foodcate_cellimg">
                      <div class="foodcate_titles">
