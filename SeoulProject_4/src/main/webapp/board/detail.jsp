@@ -97,11 +97,16 @@
    width:100%;
    padding: 70px;
    background: white;
+   box-shadow: 5px 5px 5px 3px gray;
+   background-color:white;
 }
 .whitegray_btn{
-	width:8px;
-	padding : 3px 8px 3px 8px;
-	margin : 1px 1px 1px 1px;
+	/* width:15px; */
+	 padding : 3px 8px 3px 8px;
+	 margin : 1px 1px 1px 1px; 
+}
+textarea{
+resize: none;
 }
 </style>
 </head>
@@ -178,7 +183,9 @@
                                      </c:forEach>
                                      <img src="../img/re_icon.png">
                                   </c:if>
-                                 <img src="../img/user.jpg"><span style="color:orange">${rvo.name }</span>&nbsp;(${rvo.dbday })</td>
+                                 <img src="../img/user.jpg"><span style="color:orange">${rvo.name }</span>&nbsp;(${rvo.dbday })
+                                 <pre style="white-space: pre-wrap; background-color: white; border: none">${rvo.msg }</pre>
+                                 </td>
                                  <td class="text-right">
                                     <c:if test="${sessionScope.id != null }">
                                        <c:if test="${sessionScope.id == rvo.id }">
@@ -189,19 +196,19 @@
                                     </c:if>
                                  </td>
                               </tr>
-                              <tr>
+                              <%-- <tr>
                                  <td colspan="2">
                                     <pre style="white-space: pre-wrap; background-color: white; border: none">${rvo.msg }</pre>
                                  </td>
-                              </tr>
+                              </tr> --%>
                               <%-- 대댓글 --%>
                               <tr id="r${rvo.rno }" class="rinsert" style="display:none">
-                                 <td colspan="2">
+                                 <td colspan="2" style="height:15px;">
                                     <form method="post" action="../board/reply_reply_insert.do">
                                        <input type=hidden name="bno" value="${vo.bno }">
                                        <input type="hidden" name="pno" value="${rvo.rno }">
-                                       <textarea rows="3" cols="80" name="msg" style="float: left"></textarea>&nbsp;
-                                       <input type="submit" value="댓글" class="btn btn-sm btn-danger" style="height: 65px">
+                                       <textarea rows="3" cols="80" name="msg" style="float: left"></textarea>
+                                       <input type="submit" value="댓글쓰기" class="whitegray_btn" style="height: 65px">
                                     </form>
                                  </td>
                               </tr>
@@ -229,7 +236,7 @@
                         <form method="post" action="../board/reply_insert.do">
                            <input type=hidden name="bno" value="${vo.bno }">
                            <textarea rows="3" cols="80" name="msg" style="float: left"></textarea>&nbsp;
-                           <input type="submit" value="댓글쓰기" class="btn btn-sm btn-danger" style="height: 65px">
+                           <input type="submit" value="댓글쓰기" class="whitegray_btn" style="height: 65px;">
                         </form>
                      </td>
                   </tr>
