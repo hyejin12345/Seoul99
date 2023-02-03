@@ -19,9 +19,9 @@ public class BoardDAO {
 		try
 		{
 			conn=CreateConnection.getConnection();
-			String sql = "SELECT bno, title, name, TO_CHAR(regdate, 'YYYY-MM-DD'), hit,filesize, num "
-					+ "FROM (SELECT bno, title, name, regdate, hit,filesize, rownum as num "
-					+ "FROM (SELECT bno, title, name, regdate, hit, filesize "
+			String sql = "SELECT  id, bno, title, name, TO_CHAR(regdate, 'YYYY-MM-DD'), hit,filesize, num "
+					+ "FROM (SELECT id, bno, title, name, regdate, hit,filesize, rownum as num "
+					+ "FROM (SELECT id, bno, title, name, regdate, hit, filesize "
 					+ "FROM gg_board_4 ORDER BY bno DESC)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps = conn.prepareStatement(sql);
@@ -37,12 +37,13 @@ public class BoardDAO {
 			// 값을 ArrayList에 저장
 			while(rs.next()) {
 				BoardVO vo = new BoardVO();
-				vo.setBno(rs.getInt(1));
-				vo.setTitle(rs.getString(2));
-				vo.setName(rs.getString(3));
-				vo.setDbday(rs.getString(4));
-				vo.setHit(rs.getInt(5));
-				vo.setFilesize(rs.getInt(6));
+				vo.setId(rs.getString(1));
+				vo.setBno(rs.getInt(2));
+				vo.setTitle(rs.getString(3));
+				vo.setName(rs.getString(4));
+				vo.setDbday(rs.getString(5));
+				vo.setHit(rs.getInt(6));
+				vo.setFilesize(rs.getInt(7));
 				
 				list.add(vo);
 			}
@@ -91,7 +92,7 @@ public class BoardDAO {
 			ps.executeUpdate();
 			
 			// 2-1 사용자가 요청한 게시물 상세 받기
-			sql = "SELECT bno, name, title, content, hit, TO_CHAR(regdate,'YYYY-MM-DD'),filename, filesize "
+			sql = "SELECT bno, name, title, content, hit, TO_CHAR(regdate,'YYYY-MM-DD'),filename, filesize,id "
 					+ "FROM gg_board_4 "
 					+ "WHERE bno=?";
 			ps = conn.prepareStatement(sql);
@@ -107,6 +108,7 @@ public class BoardDAO {
 			vo.setDbday(rs.getString(6));
 			vo.setFilename(rs.getString(7));
 			vo.setFilesize(rs.getInt(8));
+			vo.setId(rs.getString(9));
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -119,8 +121,8 @@ public class BoardDAO {
 	public void boardInsert(BoardVO vo) {
 		try {
 			conn=CreateConnection.getConnection();
-			String sql = "INSERT INTO gg_board_4(bno, name, title, content, pwd,filename,filesize) "
-					+ "VALUES(gb_bno_seq_4.nextval, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO gg_board_4(bno, name, title, content, pwd,filename,filesize,id) "
+					+ "VALUES(gb_bno_seq_4.nextval, ?, ?, ?, ?, ?, ?, ?)";
 			ps = conn.prepareStatement(sql);
 			// ?에 값을 채운다
 			ps.setString(1, vo.getName());
@@ -129,6 +131,7 @@ public class BoardDAO {
 			ps.setString(4, vo.getPwd());
 			ps.setString(5, vo.getFilename());
 			ps.setInt(6, vo.getFilesize());
+			ps.setString(7, vo.getId());
 			ps.executeUpdate(); // COMMIT 포함 => INSERT, UPDATE, DELETE
 			
 		} catch (Exception e) {

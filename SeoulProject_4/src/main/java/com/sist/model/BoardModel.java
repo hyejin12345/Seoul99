@@ -63,6 +63,9 @@ public class BoardModel {
 			String enctype="UTF-8"; // 한글 파일명
 			MultipartRequest mr=new MultipartRequest(request,path,size,enctype,new DefaultFileRenamePolicy());
 			// 사용자가 보내준 데이터를 받는다
+			HttpSession session=request.getSession();
+			String id=(String)session.getAttribute("id");
+	//		String id=mr.getParameter("id");
 			String name=mr.getParameter("name");
 			String title=mr.getParameter("title");
 			String content=mr.getParameter("content");
@@ -70,6 +73,7 @@ public class BoardModel {
 			String filename=mr.getFilesystemName("upload");			
 			// BoardVO에 묶어서 오라클 전송
 			BoardVO vo=new BoardVO();
+			vo.setId(id);
 			vo.setName(name);
 			vo.setTitle(title);
 			vo.setContent(content);
@@ -107,6 +111,8 @@ public class BoardModel {
 		String bno=request.getParameter("bno"); // 상세보기 => 1개만 출력한다. => primary key
 		// DAO로 전송 => 오라클에서 데이터 읽기
 		BoardDAO dao=new BoardDAO();
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
 		BoardVO vo=dao.boardDetailData(Integer.parseInt(bno));
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../board/detail.jsp");
