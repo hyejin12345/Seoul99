@@ -18,7 +18,7 @@
     		<tr>
     		<c:if test="${sessionScope.id!=vo.id }">
     			<td>
-    				<a href="../board/insert.do" class="btn btn-sm btn-danger" style="float:left">새글</a>
+    				<a href="../board/insert.do" class="whitegray_btn" style="float:left">글쓰기</a>
     			</td>
     		 </c:if>
     		</tr>
