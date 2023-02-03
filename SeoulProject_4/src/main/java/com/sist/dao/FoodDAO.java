@@ -14,9 +14,10 @@ public class FoodDAO {
 		try
 		{
 			conn=CreateConnection.getConnection();
-			String sql="SELECT /*+ INDEX_ASC(gg_foodCategory_4 fc_fcno_pk_4)*/ "
+			String sql="SELECT "
 					  +"fcno,title,subtitle,image "
-					  +"FROM gg_foodCategory_4";
+					  +"FROM gg_foodCategory_4 "
+					  +"ORDER BY fcno DESC";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())
@@ -55,7 +56,7 @@ public class FoodDAO {
 				    +"WHERE num BETWEEN ? AND ?";
 			
 			ps=conn.prepareStatement(sql);
-			int rowSize=20;
+			int rowSize=9;
 			int start=(rowSize*page)-(rowSize-1);
 			int end=rowSize*page;
 			ps.setString(1, ss);
@@ -122,8 +123,8 @@ public class FoodDAO {
 		try
 		{
 			conn=CreateConnection.getConnection();
-			String sql="SELECT /*+ INDEX_ASC(gg_locationFood_4 lf_no_pk)*/fno,name,addr,tel,type,poster,score "
-					  +"FROM gg_locationFood_4 "
+			String sql="SELECT /*+ INDEX_DESC(gg_foodDetail_4 fd_fno_pk)*/fno,name,addr,tel,type,poster,score "
+					  +"FROM gg_foodDetail_4 "
 					  +"WHERE fcno=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, fcno);
@@ -197,7 +198,7 @@ public class FoodDAO {
 			ps.executeUpdate();
 			
 			sql="SELECT fno,name,tel,score,poster,addr,type,time,parking,menu,price,good,soso,bad "
-			   +"FROM gg_foodDetail_4 "
+			   +"FROM gg_locationFood_4 "
 			   +"WHERE fno=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, fno);
