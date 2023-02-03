@@ -10,8 +10,6 @@
 <link rel="stylesheet" href="../member/login.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel ="stylesheet" href="../shadow/css/shadowbox.css">
-<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
 <style type="text/css">
 .background_pwd,
 .background_id {
@@ -99,22 +97,9 @@
      
 #photoby_content a{
 	color:#004fff;
-}  
+}
 </style>
 <script type="text/javascript">
-$(document).ready(function(){
-	
-	$('ul.tabs li').click(function(){
-		var tab_id = $(this).attr('data-tab');
-
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
-
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	})
-
-})
 $(function(){
 	// 로그인 버튼 
 	$('#logBtn').click(function(){
@@ -203,7 +188,8 @@ $(function(){
 	$('#okBtn').click(function() {
 		$('#name').val('');
 		$('#email').val('');
-		$('#result').hide();
+		$('#result').empty();
+		$('#result').removeAttr('style');
 		$('#okBtn').hide();
 		$('#close_btn').show();
 	});
@@ -211,7 +197,8 @@ $(function(){
 	$('#close_btn').click(function() {
 		$('#name').val('');
 		$('#email').val('');
-		$('#result').hide();
+		$('#result').empty();
+		$('#result').removeAttr('style');
 		$('#okBtn').hide();
 		$('#close_btn').show();
 	});
@@ -228,7 +215,7 @@ $(function(){
 			$('#id').focus();
 		}
 		if(email.trim()=="") {
-			$('#email').focus();
+			$('#email_pwd').focus();
 		}
 		$.ajax({
 			type:'post', //get,post
@@ -253,17 +240,19 @@ $(function(){
 		})
 	})
 	$('#okBtn_pwd').click(function() {
-		$('#name').val('');
-		$('#email').val('');
-		$('#result_pwd').hide();
+		$('#id').val('');
+		$('#email_pwd').val('');
+		$('#result_pwd').empty();
+		$('#result_pwd').removeAttr('style');
 		$('#okBtn_pwd').hide();
 		$('#close_btn_pwd').show();
 	});
 	
 	$('#close_btn_pwd').click(function() {
-		$('#name').val('');
-		$('#email').val('');
-		$('#result_pwd').hide();
+		$('#id').val('');
+		$('#email_pwd').val('');
+		$('#result_pwd').empty();
+		$('#result_pwd').removeAttr('style');
 		$('#okBtn_pwd').hide();
 		$('#close_btn_pwd').show();
 	});
@@ -275,10 +264,10 @@ $(function(){
     <div class="container" id="container">
         <div class="form-container sign-in-container">
             <form method="POST">
-                <img src="../member/logo.png" class="loginimg" style="margin-top: -10px;margin-left: 13px;">
+            	<a href="../main/main.do"><img src="../member/logo.png" class="loginimg" style="margin-top: -10px;margin-left: 13px;"></a>
                 <span style="margin-top: 4px">서울99여행 아이디로 <br>모든 서비스를 이용할 수 있어요.</span>
-				    <input type=text name=id size=10 placeholder="ID" id="log_id">
-					<input type=password name=pwd size=10 placeholder="Password" id="log_pwd">
+				    <input type=text name=id size=10 placeholder="아이디" id="log_id">
+					<input type=password name=pwd size=10 placeholder="비밀번호" id="log_pwd">
 				    <button type=button value="로그인" id="logBtn">로그인</button>
                 <div style="margin: 5px;">
 	                <button class="btn btn-link btn-main py-0" type="button" id="show_btn_id">아이디 찾기</button>|
@@ -291,7 +280,7 @@ $(function(){
                 <div class="overlay-panel overlay-right">
                     <h2>서울99여행에 오신것을 <br>환영합니다!</h2>
                     <p>서울99여행을 이용하고 싶다면 <br>회원가입을 해주세요!</p>
-                    <button type="button" onclick="location.href='../member/join.do'" class="ghost" id="signUp">Sign Up</button>
+                    <button type="button" onclick="location.href='../member/join.do'" class="ghost" id="signUp">회원가입</button>
                 </div>
             </div>
         </div>
@@ -310,7 +299,7 @@ $(function(){
 						           		이메일<input type=text name=id id=email size=15 class="input-sm" style="margin: 3px;">
 						           	</div>
 						           	<div>
-						           		<input type=button value="아이디찾기" class="btn btn-sm btn-primary" id="idBtn">
+						           		<input type=button value="아이디찾기" class="btn btn-sm btn-primary" id="idBtn" style="width: 50%">
 						           	</div>
 						         </td>
 						     </tr>
@@ -321,8 +310,8 @@ $(function(){
 						     	</tr>
 						     	<tr>
 						     		<td class="text-center">
-						     			<input type=button value="확인" class="btn btn-sm btn-success" id="okBtn">
-						     			<input type=button value="닫기" class="btn btn-sm btn-success" id="close_btn">
+						     			<input type=button value="확인" class="btn btn-sm btn-success" id="okBtn" style="width: 50%">
+						     			<input type=button value="닫기" class="btn btn-sm btn-success" id="close_btn" style="width: 50%">
 						     		</td>
 						     	</tr>
 						  </table>
@@ -345,7 +334,7 @@ $(function(){
 						           		이메일<input type=text name=id id=email_pwd size=15 class="input-sm" style="margin: 3px;">
 						           	</div>
 						           	<div>
-						           		<input type=button value="비밀번호 찾기" class="btn btn-sm btn-primary" id="idBtn_pwd">
+						           		<input type=button value="비밀번호 찾기" class="btn btn-sm btn-primary" id="idBtn_pwd" style="width: 50%">
 						           	</div>
 						         </td>
 						     </tr>
@@ -356,8 +345,8 @@ $(function(){
 						     	</tr>
 						     	<tr>
 						     		<td class="text-center">
-						     			<input type=button value="확인" class="btn btn-sm btn-success" id="okBtn_pwd">
-						     			<input type=button value="닫기" class="btn btn-sm btn-success" id="close_btn_pwd">
+						     			<input type=button value="확인" class="btn btn-sm btn-success" id="okBtn_pwd" style="width: 50%">
+						     			<input type=button value="닫기" class="btn btn-sm btn-success" id="close_btn_pwd" style="width: 50%">
 						     		</td>
 						     	</tr>
 						  </table>
@@ -376,7 +365,6 @@ $(function(){
         document.querySelector(".background_id").className = "background_id";
         
       }
-
       document.querySelector("#show_btn_id").addEventListener("click", id_show);
       document.querySelector("#close_btn").addEventListener("click", id_close);
       document.querySelector("#okBtn").addEventListener("click", id_close);

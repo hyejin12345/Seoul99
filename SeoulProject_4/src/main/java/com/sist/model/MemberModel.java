@@ -183,7 +183,7 @@ public class MemberModel {
 	  System.out.println("id :" +id);
 	  System.out.println("email : " +email);
 	  MemberDAO dao=new MemberDAO();
-	  String pwdfind=dao.memberIdfind(id, email);
+	  String pwdfind=dao.memberPwdfind(id, email);
 	  System.out.println("리턴값 :" + pwdfind);
 	  request.setAttribute("pwdfind", pwdfind);//JSP로 값을 전송 
 	  return "../member/pwdfind_result.jsp";

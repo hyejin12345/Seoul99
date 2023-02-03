@@ -248,14 +248,14 @@ public class MemberDAO {
 	   try
 	   {
 		   conn=CreateConnection.getConnection();
-		   String sql="SELECT pwd FROM gg_member_4 "
-		   			+ "WHERE id = ? AND email = ?";
+		   String sql= "select rpad(substr(pwd,1,length(pwd)/2),length(pwd),'*') as pwd FROM gg_member_4 "
+				   		+ "WHERE id = ? AND email = ?";
 		   ps=conn.prepareStatement(sql);
 		   ps.setString(1, id);
 		   ps.setString(2, email);
 		   ResultSet rs=ps.executeQuery();
 		   rs.next();
-		   id=rs.getString(1);
+		   pwd=rs.getString(1);
 		   rs.close();
 		   
 	   }catch(Exception ex)

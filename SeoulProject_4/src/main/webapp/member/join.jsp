@@ -12,9 +12,63 @@
 <link rel ="stylesheet" href="../shadow/css/shadowbox.css">
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
 <script type="text/javascript">
-Shadowbox.init({
-	players:['iframe']
-})
+//아이디 유효성 검사
+function checkId(){
+	let id = $('#id').val();
+	if(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g.test(id)){ 
+		alert("한글은 아이디로 사용할 수 없습니다");
+		$('#id').val('');
+		return;
+	}
+	if(/[\{\}\[\]\/?.,;:|\*~`!^\-_+<>@#$%&₩\\\=\(\'\"]/.test(id)) {
+		alert("특수문자를 사용할 수 없습니다");
+		$('#id').val('');
+		return;
+	}
+	if (/\s/.test(id)) {
+		alert("공백 문자를 사용할 수 없습니다");
+		$('#id').val('');
+		return;
+	}
+	if (/admin/i.test(id)) {
+		  alert("아이디로 admin은 사용할 수 없습니다");
+		  $('#id').val('');
+		  return;
+	}
+	$.ajax({
+		url:'../member/idcheck_result.do', 
+		type:'post',
+		data:{"id":id},
+		success:function(result){ 
+			
+			let count=Number(result.trim());
+			if(count == 0){ 
+				$('#id_ok').text("사용 가능한 아이디입니다.")
+				$('#id_already').text('');
+			} else if (count == 1) {
+				$('#id_already').text("이미 사용중인 아이디입니다.")
+				$('#id_ok').text('');
+			}
+			$('#joinBtn').click(function(){
+				if(count == 1) {
+					alert("이미 사용중인 아이디 입니다.")
+					$('#id_already').text("이미 사용중인 아이디입니다. 다시 입력해 주세요.")
+					$('#id').val('');
+				}
+				if(!/^.{6,20}$/.test(id)) {
+					alert("6 ~ 20글자를 입력해 주세요");
+					$('#id').val('');
+					return;
+				}
+				
+			})
+		},
+		error:function(){
+			alert("에러입니다");
+		}
+	});
+        
+};
 $(function(){
 	/*$('#idcheck').click(function(){
 		Shadowbox.open({
@@ -89,7 +143,6 @@ $(function(){
 				else
 				{
 					$('#nPrint').text(nick+"는(은) 이미 사용중인 닉네임 입니다")
-					$('#nick').val("")
 					$('#nick').focus()
 				}
 			}
@@ -159,7 +212,7 @@ $(function(){
 		let pwd1 = $("#pwd1").val();
 		let reg = /^(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&-]).{8,20}$/;;
 		if(!reg.test(pwd)){
-			alert("비밀번호는 8자리 이상이어야 하며, 소문자/숫자/특수문자 모두 포함해야 합니다.");
+			alert("비밀번호는 8자리 이상이어야 하며, 영문/숫자/특수문자 모두 포함해야 합니다.");
 			$("#pwd").val("");
 			$("#pwd1").val("");
 			$("#pwd").focus();
@@ -185,35 +238,7 @@ $(function(){
 	})
 	
 })
-function checkId(){
-        var id = $('#id').val();
-        if(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g.test(id)){ // 한글이 입력되면
-            alert("한글은 아이디로 사용할 수 없습니다");
-            $('#id').val('');
-            return; // 함수 종료
-        }
-        $.ajax({
-            url:'../member/idcheck_result.do', 
-            type:'post',
-            data:{"id":id},
-            success:function(result){ 
-            	
-            	let count=Number(result.trim());
-                if(count == 0){ 
-                    $('#id_ok').text("사용 가능한 아이디입니다.")
-                    $('#id_already').text('');
-                } else if (count == 1) {
-                	$('#id_already').text("이미 사용중인 아이디입니다.")
-                	$('#id_ok').text('');
-                    $('#id').val('');
-                	
-                }
-            },
-            error:function(){
-                alert("에러입니다");
-            }
-        });
-};
+
 function checkName() {
 	let name=$('#name').val()
 	if(name.trim()==="")
@@ -222,15 +247,25 @@ function checkName() {
 		$('#name').focus()
 		return 
 	}
-	let nameRegExp = /[A-Za-z!@#$%^&*()_+,-./:;<=>?@[\]^_`{|}~]/;
-	if(nameRegExp.test(name))
+	if(/[A-Za-z!@#$%^&*()_+,-./:;<=>?@[\]^_`{|}~]/.test(name))
 	{
 		alert("이름은 한글만 입력 가능합니다")
 		$("#name").val("");
 		$('#name').focus()
 		return
 	}
+	if(/[\{\}\[\]\/?.,;:|\*~`!^\-_+<>@#$%&₩\\\=\(\'\"]/.test(name)) {
+  	  alert("특수문자를 사용할 수 없습니다");
+  	  $('#id').val('');
+  	  return;
+  	}
+	if (/\s/.test(name)) {
+		alert("공백 문자를 사용할 수 없습니다");
+		$('#id').val('');
+		return;
+	}
 }
+
 </script>
 </head>
 <body>
@@ -241,10 +276,10 @@ function checkName() {
                 <fieldset>
                     <div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
 	                    <label>아이디</label>
-	                    <input type="text" name="id" id="id" required oninput = "checkId()">
+	                    <input type="text" name="id" id="id" required oninput = "checkId()" placeholder="아이디는 6 ~ 20자 사이에서 영문과 숫자를 조합해 주세요">
                     </div>
-                    <span id="id_ok" style="color: blue;"></span>
-					<span id="id_already" style="color: red;"></span>
+                    <span id="id_ok" class="subcomment" style="color: blue;"></span>
+					<span id="id_already" class="subcomment" style="color: red;"></span>
 					
 	                <label>이메일</label>
                     <div class="input-phone">
@@ -255,7 +290,7 @@ function checkName() {
                     		<button id="eBtn" type="button">중복확인</button>
                     	</div>
                     </div>
-                    &nbsp;<span style="color:blue" id="ePrint"></span>
+                    &nbsp;<span style="color:blue" id="ePrint" class="subcomment"></span>
                     
                     <div class="inputDWrap">
                         <div class="inputWrap50">
@@ -264,10 +299,10 @@ function checkName() {
                         </div>
                         <div class="inputWrap50">
                             <label>비밀번호 확인</label>
-                            <input type="password" name="pwd1" class="inputFull"  id="pwd1" placeholder="입력 오류 방지를 위해 한 번 더 입력해 주세요" required>
+                            <input type="password" name="pwd1" class="inputFull"  id="pwd1" placeholder="입력 오류 방지를 위해 한 번 더 입력해 주세요" required >
                             <p style="font-size: 12px; color: rgb(33, 160, 100); margin-top: 5px" id="pPrint"></p>
                         </div>
-                        <p style="font-size: 11px; color: rgb(33, 160, 100);">* 비밀번호는 8 ~ 20자리 이상이어야 하며, 대문자/소문자/숫자/특수문자가 포함해야 합니다</p>
+                        <p style="font-size: 11px; color: rgb(33, 160, 100);">* 비밀번호는 8 ~ 20자리 이상이어야 하며, 영문/소문자/숫자/특수문자가 포함해야 합니다</p>
                     </div>
                     
                     
@@ -284,19 +319,19 @@ function checkName() {
 	                    		<button id="nBtn" type="button">중복확인</button>
 	                    	</div>
 	                    </div>
-	                    <span style="color:blue" id="nPrint"></span>
+	                    <span style="color:blue" id="nPrint" class="subcomment"></span>
                     <div class="inputDWrap">
                     	<div class="inputWrap50">
                             <label>성별</label>
                             <select name="sex" class="inputFull" id="sex" required>
-							  <option value="0">선택</option>
-							  <option value="남자">남자</option>
-							  <option value="여자">여자</option>
+							  <option value="0" style="font-size: 9px">선택</option>
+							  <option value="남자" style="font-size: 9px">남자</option>
+							  <option value="여자" style="font-size: 9px">여자</option>
 							</select>
                         </div>
                         <div class="inputWrap50">
                         	<label>생년월일</label>
-                        	<input type=date size=30 class="inputFull" name=day id="day "style="width: 100%; font-size: 12.5px;" required>
+                        	<input type=date size=30 class="inputFull" name=day id="day "style="width: 100%; font-size: 12.5px; padding: 5px 10px;"  required>
                         </div>
                      </div>
                     <div>
@@ -313,7 +348,7 @@ function checkName() {
                                 <button id="tBtn" type="button">중복확인</button>
                             </div>
                         </div>
-                        <p style="font-size: 12px; color: rgb(33, 160, 100); margin-top: 5px" id="tPrint"></p>
+                        <p style="color: blue; margin-top: 5px" id="tPrint" class="subcomment"></p>
                     </div>
                     <div class="confirm">
                         <input type="checkbox" name="term" id="tos" class="checkbox" required>
@@ -325,7 +360,7 @@ function checkName() {
                 </div>
             </form>
             <div class="jump">
-                <span><a href="../member/login.jsp">이미 아이디가 있다면 여기에서 로그인하세요</a></span> <!--로그인 페이지로 이동 -->
+                <span><a href="../member/login.do">이미 아이디가 있다면 여기에서 로그인하세요</a></span> <!--로그인 페이지로 이동 -->
             </div>
         </div>
     </div>
