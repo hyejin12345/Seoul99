@@ -134,7 +134,7 @@ resize: none;
     		<td colspan="3" class="text-left">${vo.title }</td>
     	</tr>
     	<tr>
-    		<td class="text-left" valign="top" colspan="4" height="200"><pre style="white-space: pre-wrap;background-color:white;border:none">${vo.content }</pre></td>
+    		<td class="text-left" valign="top" colspan="4" height="200"><pre style="white-space: pre-wrap;background-color:white;border:none;font-size: 16px;font-family:Noto Sans KR">${vo.content }</pre></td>
     	</tr>
     	<tr>
     		<td class="text-right" colspan="4">
@@ -184,7 +184,7 @@ resize: none;
                                      <img src="../img/re_icon.png">
                                   </c:if>
                                  <img src="../img/user.jpg"><span style="color:orange">${rvo.name }</span>&nbsp;(${rvo.dbday })
-                                 <pre style="white-space: pre-wrap; background-color: white; border: none">${rvo.msg }</pre>
+                                 <pre style="white-space: pre-wrap; background-color: white; border: none;">${rvo.msg }</pre>
                                  </td>
                                  <td class="text-right">
                                     <c:if test="${sessionScope.id != null }">
