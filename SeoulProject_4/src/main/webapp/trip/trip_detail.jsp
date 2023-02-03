@@ -632,9 +632,9 @@ $(function(){
          
              <!-- (로그인상태) 댓글리뷰 등록란 -->
              <h3 style="display:inline-block"><span style="color:#004fff;font-size:24px;">&nbsp;${vo.name }</span>에 대한 방문후기를 들려주세요!</h3>
-<%--              <c:if test="${sessionScope.id==null }">
+              <c:if test="${sessionScope.id==null }">
                 <span style="color:#f46555">&nbsp;&nbsp;(※로그인 후 댓글리뷰 등록이 가능합니다.)</span>
-             </c:if> --%>
+             </c:if>
              
              
               <table class="table">
@@ -643,19 +643,18 @@ $(function(){
                     <tr>
                       <td>
                       
-                       <form method="post" action="../all_reply/all_reply_insert.do">
-                          <input type=hidden name="no" value="${vo.tno }">
-                          <input type=hidden name="cate_no" value="1">
-                          
-                          <c:if test="${sessionScope.id==null }">
+                         <c:if test="${sessionScope.id==null }">
                              <textarea class="commentBox"  name="msg" placeholder="&nbsp;&nbsp;로그인 후 댓글리뷰 등록이 가능합니다." disabled></textarea>&nbsp;
                              <input type=submit value="리뷰등록" class="post_btn" disabled>
-                          </c:if>
+                         </c:if>
                           
-                          <c:if test="${sessionScope.id!=null }">
+                       <form method="post" action="../all_reply/all_reply_insert.do">   
+                         <c:if test="${sessionScope.id!=null }">
+                            <input type=hidden name="no" value="${vo.tno }">
+                            <input type=hidden name="cate_no" value="1">
                             <textarea class="commentBox"  name="msg"></textarea>&nbsp;
                             <input type=submit value="리뷰등록" class="post_btn">
-                          </c:if>
+                         </c:if>
                        </form>
                        
                       </td>
@@ -682,7 +681,7 @@ $(function(){
                      <table class="table">
                        
                      
-                       <!-- (로그인상태) 댓글입력란 -->
+                       <!-- (로그인상태) 댓글 출력 -->
                        <tr>                        
                          <td class="text-left" width=70%>
                          <span style="color:#004fff">${rvo.name }</span>&nbsp;(${rvo.dbday })
@@ -704,16 +703,16 @@ $(function(){
                        <hr style="margin:20px 0;">
                        
                                               
-                       <!-- 댓글 출력-수정/삭제버튼 -->
+                       <!-- 댓글 수정 -->
                        <tr id="u${rvo.arno }" class="rupdate" style="display:none">
                           <td colspan="2">
                             <form method="post" action="../all_reply/all_reply_update.do">
-                            <input type=hidden name="no" value="${vo.tno }">
-                            <input type=hidden name="arno" value="${rvo.arno }">
-                            <input type=hidden name="cate_no" value="1">
-                            <textarea class="commentBox" name="msg">${rvo.msg}</textarea>&nbsp;
-                            <input type=submit value="수정" class="post_btn">
-                          </form>
+	                            <input type=hidden name="no" value="${vo.tno }">
+	                            <input type=hidden name="arno" value="${rvo.arno }">
+	                            <input type=hidden name="cate_no" value="1">
+	                            <textarea class="commentBox" name="msg">${rvo.msg}</textarea>&nbsp;
+	                            <input type=submit value="수정" class="post_btn">
+                            </form>
                           </td>
                        </tr>
                         
@@ -726,25 +725,7 @@ $(function(){
               </c:if>
              
              
-               
-               <!-- 내가 쓴 코드 -->   
-<%--                <div class="big_reviewBox">
-                 <c:forEach var="vo" items="${list }">      
-                  <span class="tReview_user">${vo.id }</span>
-                  <div>
-                     <span class="tReview_score">★${vo.score }점</span>&nbsp;/&nbsp;5점
-                     <span class="tReview_date">${vo.dbday }</span>
-                                                                
-                                                                           
-                     <textarea class="tReview_cont">${vo.content }</textarea> 
-                  </div>
-                  <hr>
-                 </c:forEach>
-               </div> --%>
-            
 
-            
-               
          </div>
 
       </div>

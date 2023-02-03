@@ -190,7 +190,7 @@ public class FoodDAO {
 		{
 			conn=CreateConnection.getConnection();
 			String sql="UPDATE gg_foodDetail_4 SET "
-					  +"hit=hit=1 "
+					  +"hit=hit+1 "
 					  +"WHERE fno=?";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, fno);

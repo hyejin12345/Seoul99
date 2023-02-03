@@ -3,22 +3,13 @@ import java.util.*;
 import java.sql.*;
 import com.sist.vo.*;
 public class AllReplyDAO {
-  // => 글쓰기 , 목록 , 수정 , 삭제
+
   private Connection conn;
   private PreparedStatement ps;
-  /*
-   *    RNO     NOT NULL NUMBER       
-		CATE_NO          NUMBER       
-		NO               NUMBER       
-		ID               VARCHAR2(20) 
-		NAME    NOT NULL VARCHAR2(34) 
-		MSG     NOT NULL CLOB         
-		REGDATE          DATE       
-   */
-  //1. 댓글 올리기 
+
+  //댓글리뷰 등록
   public void allReplyInsert(AllReplyVO vo)
   {
-	  // par_rno_seq 
 	  try
 	  {
 		  conn=CreateConnection.getConnection();
@@ -39,23 +30,11 @@ public class AllReplyDAO {
 		  CreateConnection.disConnection(conn, ps);
 	  }
   }
-  // 2. 댓글 목록 
-  /*
-   *   RNO     NOT NULL NUMBER       
-		CATE_NO          NUMBER       
-		NO               NUMBER       
-		ID               VARCHAR2(20) 
-		NAME    NOT NULL VARCHAR2(34) 
-		MSG     NOT NULL CLOB         
-		REGDATE          DATE    
-   */
+  
+  //댓글 목록
   public List<AllReplyVO> allReplyListData(int no,int cate_no)
   {
-	  /*
-	   *   1. rno => 댓글 고유번호 
-	   *   2. no  => 맛집,명소,상품에 대한 번호 
-	   *   3. cate_no => 구분자 (맛집,명소,상품)
-	   */
+
 	  List<AllReplyVO> list=new ArrayList<AllReplyVO>();
 	  try
 	  {
@@ -94,7 +73,7 @@ public class AllReplyDAO {
 	  return list;
   }
   
-  //삭제 
+  //댓글 삭제 
   public void allReplyDelete(int arno)
   {
 	  try
@@ -114,7 +93,7 @@ public class AllReplyDAO {
 		  CreateConnection.disConnection(conn, ps);
 	  }
   }
-  // 수정 
+  //댓글 수정 
   public void allReplyUpdate(int arno,String msg)
   {
 	  try
