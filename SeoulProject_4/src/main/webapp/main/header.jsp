@@ -190,7 +190,7 @@ $(function(){
                        <c:if test="${sessionScope.admin=='n' }">
                         <li><a href="#"><i class="fa-solid fa-user"></i></a>
                              <ul class="sub-menu">
-                                 <li><a href="#">마이페이지</a></li>
+                                 <li><a href="../mypage/mypage_main.do">마이페이지</a></li>
                                  <li><a href="../member/logout.do" id="logoutBtn">로그아웃</a></li>
                              </ul>
                         </li>  
