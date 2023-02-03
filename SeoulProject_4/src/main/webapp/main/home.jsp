@@ -18,10 +18,10 @@
 
 /* 메인배너, 검색창 */
 .mainbanner{
-	position:relative;
-	width:1200px;
-	height:400px;
-	margin:0 auto;
+   position:relative;
+   width:1200px;
+   height:400px;
+   margin:0 auto;
 }
 .mainbanner .main_input{
     -webkit-appearance: none;
@@ -44,12 +44,12 @@
   color:gray;
 }
 .mainbanner .main_input:focus{
-	outline:none;
-	color:black;
+   outline:none;
+   color:black;
 }
 .mainbanner .main_input:hover{
-	outline:none;
-	box-shadow:0 0 10px 5px rgb(0,0,0,0.2);
+   outline:none;
+   box-shadow:0 0 10px 5px rgb(0,0,0,0.2);
 }
 
 .mainbanner .slide{position:relative;margin:0 auto;}
@@ -68,18 +68,18 @@ line-height:30px;}
 .mainbanner .slide .btn a.next{right:30px;}
 .mainbanner .slide .btn a i.fa-solid{margin:10px; color:white; font-size:20px;}
 .mainbanner .slide .autoBtn{
-	position:absolute;
-	top:30px;
-	right:30px;
-	border-radius:3px;
-	width:30px;
-	height:30px;
-	text-align:center;
-	text-decoration:none;
-	line-height:30px;
-	/*background-color:transparent;*/
-	color:white;
-	font-weight:bold;
+   position:absolute;
+   top:30px;
+   right:30px;
+   border-radius:3px;
+   width:30px;
+   height:30px;
+   text-align:center;
+   text-decoration:none;
+   line-height:30px;
+   /*background-color:transparent;*/
+   color:white;
+   font-weight:bold;
 }
 .mainbanner .slide .autoBtn:hover{
   color:white;
@@ -96,346 +96,397 @@ color:white;
  
 /* 이미지리스트 슬라이드 */
 
-			 
-
 .topText{
-	width:100%;
-	height:30px;
-	line-height:30px;
-	margin:70px 0 10px 0;
-	z-index:2;
+   width:100%;
+   height:30px;
+   line-height:30px;
+   margin:70px 0 10px 0;
+   z-index:2;
 
 }
 .topText div{
-	display:inline-block;
-	margin: 0 0 0 50px;
+   display:inline-block;
+   margin: 0 0 0 50px;
 }
 .text_btn{
-	margin: 0 10px;
-	padding: 0 15px;
-	border-radius:4px;
-	background: #e0e0e0;
-	
+   margin: 0 10px;
+   padding: 0 15px;
+   border-radius:4px;
+   background: #e0e0e0;
+   
 }
 .text_btn:hover{
-	color:white;
-	background: #004fff;
+   color:white;
+   background: #004fff;
 }
 .topText h3{
-	float:left;
+   float:left;
 }
 .topText a{
-	float:right;
-	color:black;
-	text-decoration:none;
+   float:right;
+   color:black;
+   text-decoration:none;
 }
 .imglistSection{
-	width:100%;
+   width:100%;
 }
 .main-carousel{
-	width:100%;
-	margin-top:10px;
+   width:100%;
+   margin-top:10px;
 
 }
 .flickity-viewport{
-	width:100%;
+   width:100%;
 
 }
 .cell{
-	width:270px;
-	height:270px;
-	margin:20px;
-	overflow:hidden;
-	background:white;
-	box-shadow : 0 5px 10px 0 rgb(0,0,0,0.2);
-	position:relative;
+   width:270px;
+   height:270px;
+   margin:20px;
+   overflow:hidden;
+   background:white;
+   box-shadow : 0 5px 10px 0 rgb(0,0,0,0.2);
+   position:relative;
 }
 .flickity-viewport .cell img{
-	width:100%;
-	height:180px;
-	object-fit:fit;
+   width:100%;
+   height:180px;
+   object-fit:fit;
 }
 .flickity-page-dots{
-	display:none;
+   display:none;
 }
 path.arrow{
-	width:20%;
-	height:20%
+   width:20%;
+   height:20%
 }
 .flickity-prev-next-button{
-	width:30px;
-	height:30px;
-	background:white;
+   width:30px;
+   height:30px;
+   background:white;
 }
 .flickity-prev-next-button.previous{
-	left:20px;
+   left:20px;
 }
 .flickity-prev-next-button.next{
-	right:20px;
+   right:20px;
 }
 
 h4.cellName{
-	margin:20px 20px 10px 20px;
+   margin:20px 20px 10px 20px;
 }
 div.cellInfo{
-	margin:0 20px 20px 20px;
+   margin:0 20px 20px 20px;
 }
 .cell a{
-	color : black;
-	text-decoration:none;
+   color : black;
+   text-decoration:none;
 }
 .cell .cellInfo .gu,i.fa-star{
-	color : #004fff;
+   color : #004fff;
 }
 .cell .cellInfo .hit{
-	color : gray;
-	float: right;
+   color : gray;
+   float: right;
 }
 
 
 #foodcate_title, #foodcate_title{
-	color : black;
-	z-index:5;
+   color : black;
+   z-index:5;
 }
-/*.jjim{
-	position:absolute;
-	margin:20px;
-}*/
+
 #foodcate_cell{
-	width:380px;
-	height:230px;
-	margin:15px;
-	
-}	
+   width:380px;
+   height:230px;
+   margin:15px;
+   
+}   
 #foodcate_cellimg{
-	width:100%;
-	height:100%;
-	object-fit:fit;
+   width:100%;
+   height:100%;
+   object-fit:fit;
 }
 .foodcate_back{
-	position:absolute;
-	width:100%; height:100%;
-	background-color:rgba(0,0,0,0.3);
+   position:absolute;
+   width:100%; height:100%;
+   background-color:rgba(0,0,0,0.3);
 }
 .foodcate_titles{
-	width:100%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-align:center;
+   width:100%;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   text-align:center;
 }
 .foodcate_h3, .foodcate_h5{
-	color:white;
+   color:white;
 }
 
 #festival_cell{
-	width:580px;
-	height:350px;
-	margin:20px;
+   width:1200px;
+   height:350px;
+   margin:20px;
+   box-shadow : 0 0px 20px 0 rgb(0,0,0,0.2);
+}
+#festival_cell div{
+   width:50%;
+   height:100%;
+   float:right;
+   padding:50px;
+}
+#festival_cell th{
+   padding:15px;
+}
+#festival_cell td{
+   padding:15px;
 }
 #festival_cellimg{
-	width:100%;
-	height:100%;
-	object-fit:fit;
-}
-.festival_imgbtn{
-	width:100%;
-	background-color:transparent;
-	border:0;
+   width:50%;
+   height:100%;
+   object-fit:fit;
 }
 
 </style>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+   let rcnt_count=0;
+   $('#recent_btn').click(function(){
+      rcnt_count++;
+      $('#recent_list').show()
+      $('#recentOpen').hide()
+      $('#recentClose').show()
+      if(rcnt_count==2)
+      {
+         $('#recent_list').hide()
+         $('#recentOpen').show()
+         $('#recentClose').hide()
+         rcnt_count=0
+      }
+   })
+})
+</script>
 </head>
 <body>
      
 <div class="container">   
   
+  
     <!-- 메인배너 -->
     <div class="mainbanner">
-	   <div class="slide">
-		    <ul class="slideCnt">
-		        <li><img src="../img/seoul-01.png" title="경복궁 경회루"></li>
-		        <li><img src="../img/seoul-02.png" title="N서울타워"></li>
-		        <li><img src="../img/seoul-03.png" title="DDP"></li>
-		        <li><img src="../img/seoul-04.png" title="북한산"></li>
-		        <li><img src="../img/seoul-05.png" title="광화문"></li>
-		        <li><img src="../img/seoul-06.png" title="반포대교"></li>
-		    </ul>
-		    <div class="btn">
-		        <a href="#" class="prev"><i class="fa-solid fa-angle-left"></i></a>
-		        <a href="#" class="next"><i class="fa-solid fa-angle-right"></i></a>
-		    </div>
-		    <a href="#" class="autoBtn"></a>
-		    <p class="slogan">서울 구석구석을 여행하다</p>
-		    <form method =post action="../main/search.do">
-		    	<input type=text class="main_input" placeholder="서울 어디로 떠나볼까요?" name="searchWord" autocomplete="off">
-		    </form>
-		</div>
+      <div class="slide">
+          <ul class="slideCnt">
+              <li><img src="../img/seoul-01.png" title="경복궁 경회루"></li>
+              <li><img src="../img/seoul-02.png" title="N서울타워"></li>
+              <li><img src="../img/seoul-03.png" title="DDP"></li>
+              <li><img src="../img/seoul-04.png" title="북한산"></li>
+              <li><img src="../img/seoul-05.png" title="광화문"></li>
+              <li><img src="../img/seoul-06.png" title="반포대교"></li>
+          </ul>
+          <div class="btn">
+              <a href="#" class="prev"><i class="fa-solid fa-angle-left"></i></a>
+              <a href="#" class="next"><i class="fa-solid fa-angle-right"></i></a>
+          </div>
+          <a href="#" class="autoBtn"></a>
+          <p class="slogan">서울 구석구석을 여행하다</p>
+          <form method =post action="../main/search.do">
+             <input type=text class="main_input" placeholder="서울 어디로 떠나볼까요?" name="searchWord" autocomplete="off">
+          </form>
+      </div>
     </div>
     
-    <!-- *** 추후 리스트 지정된 기준(추천, 조회수 등)에 맞춰 출력하기 -->
-	<!-- 여행지 리스트 -->
-	<div class="topText">
-    	<h3>서울에서 꼭 가봐야할 곳</h3>
-    	<a href="../trip/trip_all.do?tcno=1" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    
+    <!-- 최근 방문기록 버튼 -->
+    
+    <div id="recent_btn" style="padding:10px;width:40px;height:150px;background:gray;color:white;position:fixed;top:50%;right:0;transform:translateY(-50%);z-index:50;writing-mode: vertical-rl;text-align:center;letter-spacing:5px;cursor:pointer;">
+       <i id="recentOpen" class="fa-solid fa-angle-left" style="display:inline-block;color:white;"></i>
+       <i id="recentClose" class="fa-solid fa-angle-right" style="display:none; color:white;"></i>
+       최근방문
+    </div>
+    <div id="recent_list" style="display:none; padding:15px;height:150px;background:white;float:right;position:fixed;top:50%;right:40px;transform:translateY(-50%);z-index:45;box-shadow:0 0 10px 5px rgb(0,0,0,0.2);">
+       <c:if test="${tcList.size()==0 && fcList.size()==0}">
+          <h4 style="margin:0 0 10px 0;padding-left:5px;">최근 여행지 & 맛집 방문기록이 없습니다.</h4>
+       </c:if>
+       <c:if test="${tcList.size()>0 }">
+          <div style="float:right;">
+             <h4 style="margin:0 0 10px 0;padding-left:5px;">여행지 기록</h4>
+            <div>
+               <c:forEach var="tcvo" items="${tcList }" varStatus="s">
+                  <c:if test="${s.index<5 }">
+                     <a href="../trip/trip_before_detail.do?tno=${tcvo.tno }"><img src="${tcvo.image }" style="margin:0 5px;width: 90px;height: 90px;" title=${tcvo.name }></a>
+                  </c:if>
+               </c:forEach>
+            </div>
+         </div>
+      </c:if>         
+      <c:if test="${fcList.size()>0 }">
+         <div style="float:right;">
+             <h4 style="margin:0 0 10px 0;padding-left:5px;">맛집 기록</h4>
+            <div>
+               <c:forEach var="fcvo" items="${fcList }" varStatus="s2">
+                  <c:if test="${s2.index<5 }">
+                     <a href="../food/food_before_detail.do?fno=${fcvo.fno }"><img src="${fcvo.poster }" style="margin:0 5px;width: 90px;height: 90px;" title=${fcvo.name }></a>
+                  </c:if>
+               </c:forEach>
+            </div>
+         </div>
+      </c:if>
+      
+
+   </div>
+   
+
+   <!-- 여행지 리스트 -->
+   <div class="topText">
+       <h3>서울에서 꼭 가봐야할 곳</h3>
+       <a href="../trip/trip_all.do?tcno=1" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a>
     </div>
     <div class="imglistSection">
-      	<div class="imglistGroup">
-			<div class="main-carousel">
-			  <c:forEach var="tvo" items="${tlist1 }" >
+         <div class="imglistGroup">
+         <div class="main-carousel">
+           <c:forEach var="tvo" items="${tlist1 }" >
   
-			     <div class="cell">
-			         <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
-			     	 <a href="../trip/trip_detail.do?tno=${tvo.tno }">    
-			         <img class="cellImg" src="${tvo.image }">
-			         <h4 class="cellName">${tvo.name }</h4>
-			         <div class="cellInfo">
-			            <span class="gu">서울 ${tvo.addr}</span><span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${tvo.hit}</span> 
-			         </div>
-			     	 </a>	     
-			     </div>
-			      
-			  </c:forEach>
-			</div>
-      	</div>
+              <div class="cell">
+                  <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
+                  <a href="../trip/trip_before_detail.do?tno=${tvo.tno }">    
+                     <img class="cellImg" src="${tvo.image }">
+                     <h4 class="cellName">${tvo.name }</h4>
+                     <div class="cellInfo">
+                        <span class="gu">서울 ${tvo.addr}</span><span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${tvo.hit}</span> 
+                     </div>
+                  </a>        
+              </div>
+               
+           </c:forEach>
+         </div>
+         </div>
     </div>
     
-	
-				   
-
 
     <div class="topText">
-    	<h3>자연과 휴식을 즐길 수 있는 곳</h3>
-    	<a href="../trip/trip_all.do?tcno=2" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+       <h3>자연과 휴식을 즐길 수 있는 곳</h3>
+       <a href="../trip/trip_all.do?tcno=2" class="moreClick">더보기&nbsp;<i class="fa-solid fa-angle-right"></i></a>
     </div>
     <div class="imglistSection">
-      	<div class="imglistGroup">
-			<div class="main-carousel">
-			  <c:forEach var="tvo" items="${tlist2 }" >
+         <div class="imglistGroup">
+         <div class="main-carousel">
+           <c:forEach var="tvo" items="${tlist2 }">
+              <div class="cell">
+                  <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
+                  <a href="../trip/trip_before_detail.do?tno=${tvo.tno }">    
+                     <img class="cellImg" src="${tvo.image }">
+                     <h4 class="cellName">${tvo.name }</h4>
+                     <div class="cellInfo">
+                        <span class="gu">서울 ${tvo.addr}</span><span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${tvo.hit}</span> 
+                     </div>
+                  </a>        
+              </div>
+           </c:forEach>
+         </div>
+         </div>
+    </div>
+    
+           
+ 
+    <!-- 맛집리스트 -->
+    
+   <div class="topText">
+       <h3>서울 최고의 맛집리스트</h3>
+    </div>
+    <div class="imglistSection">
+         <div class="imglistGroup">
+         <div class="main-carousel">
+         
+           <c:forEach var="fvo" items="${flist }" varStatus="s">
+              <c:if test="${s.index>=7 && s.index<=11 }">
+                 <div class="cell" id="foodcate_cell">
+                     <a href="../food/food_list.do?fcno=${fvo.fcno }">
+                     <div class="foodcate_back"></div>
+                     <img src="${fvo.image }" id="foodcate_cellimg">
+                     <div class="foodcate_titles">
+                       <h3 class="cellName foodcate_h3">${fvo.title }</h3>
+                       <h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5>
+                     </div>
+                     </a>
+                 </div>
+              </c:if>
+           </c:forEach>
+           
+         </div>
+         </div>
+    </div>
+
   
-			     <div class="cell">
-			         <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
-			     	 <a href="../trip/trip_detail.do?tno=${tvo.tno }">    
-			         <img class="cellImg" src="${tvo.image }">
-			         <h4 class="cellName">${tvo.name }</h4>
-			         <div class="cellInfo">
-			            <span class="gu">서울 ${tvo.addr}</span><span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${tvo.hit}</span> 
-			         </div>
-			     	 </a>	     
-			     </div>
-			      
-			  </c:forEach>
-			</div>
-      	</div>
+    <div class="topText">
+       <h3>서울 메뉴별 인기 맛집리스트</h3>
+    </div>
+    <div class="imglistSection">
+         <div class="imglistGroup">
+         <div class="main-carousel">
+         
+           <c:forEach var="fvo" items="${flist }" varStatus="s">
+              <c:if test="${s.index>=18 && s.index<30 }">
+                 <div class="cell" id="foodcate_cell">
+                     <a href="../food/food_list.do?fcno=${fvo.fcno }">
+                     <div class="foodcate_back"></div>
+                     <img src="${fvo.image }" id="foodcate_cellimg">
+                     <div class="foodcate_titles">
+                       <h3 class="cellName foodcate_h3">${fvo.title }</h3>
+                       <h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5>
+                     </div>
+                     </a>
+                 </div>
+              </c:if>
+           </c:forEach>
+           
+         </div>
+         </div>
     </div>
     
-			  
     
-	
 
-	
-    <!-- 맛집 카테고리 리스트 -->
-    
-	<div class="topText">
-    	<h3>서울 최고의 맛집리스트</h3>
-    </div>
-    <div class="imglistSection">
-      	<div class="imglistGroup">
-			<div class="main-carousel">
-			
-			  <c:forEach var="fvo" items="${flist }" varStatus="s">
-			     <c:if test="${s.index>=0 && s.index<12 }">
-				     <div class="cell" id="foodcate_cell">
-				         <a href="../food/food_list.do?fcno=${fvo.fcno }">
-				         <div class="foodcate_back"></div>
-	    			     <img src="${fvo.image }" id="foodcate_cellimg">
-	    			     <div class="foodcate_titles">
-				           <h3 class="cellName foodcate_h3">${fvo.title }</h3>
-				           <h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5>
-				         </div>
-				         </a>
-				     </div>
-			  	</c:if>
-			  </c:forEach>
-			  
-			</div>
-      	</div>
-    </div>
-    
-    <div class="topText">
-    	<h3>서울 지역별 인기 맛집</h3>
-    </div>
-    <div class="imglistSection">
-      	<div class="imglistGroup">
-			<div class="main-carousel">
-			
-			  <c:forEach var="fvo" items="${flist }" varStatus="s">
-			     <c:if test="${s.index>=12 && s.index<18 }">
-				     <div class="cell" id="foodcate_cell">
-				         <a href="../food/food_list.do?fcno=${fvo.fcno }">
-				         <div class="foodcate_back"></div>
-	    			     <img src="${fvo.image }" id="foodcate_cellimg">
-	    			     <div class="foodcate_titles">
-				           <h3 class="cellName foodcate_h3">${fvo.title }</h3>
-				           <h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5>
-				         </div>
-				         </a>
-				     </div>
-			  	</c:if>
-			  </c:forEach>
-			  
-			</div>
-      	</div>
-    </div>
-    
-    
-    <div class="topText">
-    	<h3>메뉴별 인기 맛집</h3>
-    </div>
-    <div class="imglistSection">
-      	<div class="imglistGroup">
-			<div class="main-carousel">
-			
-			  <c:forEach var="fvo" items="${flist }" varStatus="s">
-			     <c:if test="${s.index>=18 && s.index<30 }">
-				     <div class="cell" id="foodcate_cell">
-				         <a href="../food/food_list.do?fcno=${fvo.fcno }">
-				         <div class="foodcate_back"></div>
-	    			     <img src="${fvo.image }" id="foodcate_cellimg">
-	    			     <div class="foodcate_titles">
-				           <h3 class="cellName foodcate_h3">${fvo.title }</h3>
-				           <h5 class="cellName foodcate_h5" id="foodcate_subtitle">${fvo.subtitle }</h5>
-				         </div>
-				         </a>
-				     </div>
-			  	</c:if>
-			  </c:forEach>
-			  
-			</div>
-      	</div>
-    </div>
+   
     
     <!-- 축제 리스트 -->
     
-	<div class="topText">
-    	<h3>현재 진행중인 행사</h3>
+   <div class="topText">
+       <h3>현재 진행중인 행사</h3>
     </div>
     <div class="imglistSection">
-      	<div class="imglistGroup">
-			<div class="main-carousel">
-			
-			  <c:forEach var="fsvo" items="${fslist }" >
-			     <div class="cell" id="festival_cell">
-    			   <img src="${fsvo.image }" id="festival_cellimg">
-			     </div>
-			  </c:forEach>
-			</div>
-      	</div>
-    </div>	
+         <div class="imglistGroup">
+         <div class="main-carousel">
+         
+           <c:forEach var="fsvo" items="${fslist }" >
+              <div class="cell" id="festival_cell">
+                <img src="${fsvo.image }" id="festival_cellimg">
+                 <div>
+               <table class="table">
+                 <tr>
+                   <th width=30%>행사이름</th>
+                   <td width=70%>${fsvo.name }</td>
+                 </tr>
+                 <tr>
+                   <th width=30%>행사기간</th>
+                   <td width=70%>${fsvo.period }</td>
+                 </tr>
+                 <tr>
+                   <th width=30%>웹사이트</th>
+                   <td width=70%><a href="${fsvo.web }">웹사이트 바로가기</a></td>
+                 </tr>
+                 <tr>
+                   <th width=30%>주소</th>
+                   <td width=70%>${fsvo.addr }</td>
+                 </tr>
+               </table>
+               </div>
+              </div>
+           </c:forEach>
+         </div>
+         </div>
+    </div>   
     
-
 
 
 </div>
@@ -569,11 +620,11 @@ prevNum = nextNum;
 /* 이미지리스트 슬라이드 */
 
 $('.main-carousel').flickity({
-	  // options
-	  cellAlign: 'left',
-	  wrapAround:true,
-	  freeScroll: true
-	});
+     // options
+     cellAlign: 'left',
+     wrapAround:true,
+     freeScroll: true
+   });
 
 /* 행사 이미지버튼(상세정보 팝업) */
 
@@ -591,4 +642,3 @@ $('.main-carousel').flickity({
 </script>
 </body>
 </html>
-
