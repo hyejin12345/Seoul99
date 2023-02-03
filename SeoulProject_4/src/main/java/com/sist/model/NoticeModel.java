@@ -115,7 +115,7 @@ import com.sist.vo.NoticeVO;
 			NoticeVO vo=dao.NoticeDetailData(Integer.parseInt(bno));
 			request.setAttribute("vo", vo);
 			request.setAttribute("main_jsp", "../notice/detail.jsp");
-			return "../main/main.jsp";
+			return "../main/main.jsp";//
 		}
 		@RequestMapping("notice/ad_detail.do")
 		   public String ad_notice_detail(HttpServletRequest request,HttpServletResponse response)
