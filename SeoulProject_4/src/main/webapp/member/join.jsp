@@ -50,37 +50,40 @@ function checkId(){
 				$('#id_ok').text('');
 			}
 			$('#joinBtn').click(function(){
+				alert(count)
 				if(count == 1) {
 					alert("이미 사용중인 아이디 입니다.")
 					$('#id_already').text("이미 사용중인 아이디입니다. 다시 입력해 주세요.")
 					$('#id').val('');
 				}
-				if(!/^.{6,20}$/.test(id)) {
-					alert("6 ~ 20글자를 입력해 주세요");
-					$('#id').val('');
-					return;
-				}
-				
 			})
 		},
-		error:function(){
-			alert("에러입니다");
-		}
-	});
+		
+	})
         
 };
+function checkName() {
+	let name=$('#name').val()
+	if(name.trim()==="")
+	{
+		alert("이름은 필수 입력입니다")
+		$('#name').focus()
+		return 
+	}
+	if(/[A-Za-z!@#$%^&*()_+,-./:;<=>?@[\]^_`{|}~]/.test(name))
+	{
+		alert("이름은 한글만 입력 가능합니다")
+		$("#name").val("");
+		$('#name').focus()
+		return
+	}
+	if (/\s/.test(name)) {
+		alert("공백 문자를 사용할 수 없습니다");
+		$('#id').val('');
+		return;
+	}
+};
 $(function(){
-	/*$('#idcheck').click(function(){
-		Shadowbox.open({
-			content:'../member/idcheck.do',
-			player:'iframe',
-			width:420,
-			height:180,
-			title:'아이디 중복체크'
-		})
-		
-	})*/
-	
 	// email 검색 => 후보키 (unique)
 	$('#eBtn').click(function(){
 		let email=$('#email').val();
@@ -193,24 +196,15 @@ $(function(){
 	})
 	
 	$('#joinBtn').click(function(){
-		
-		/*let id=$('#id').val();
-		if(id.trim()==="")
-		{
-			alert("아이디 중복 체크버튼을 클릭하세요!!");
-			$('#id').focus();
-			return;
-		}*/
-		let email=$('#email').val()
-		if(email.trim()==="")
-		{
-			alert("Email은 필수 입력입니다")
-			$('#email').focus()
+		if(/^[a-zA-Z0-9]{6,20}$/.test(id)) {
+			alert("영문과 숫자를 조합하여 6 ~ 20글자를 입력해 주세요");
+			$('#id').val('');
 			return;
 		}
+
 		let pwd = $("#pwd").val();
 		let pwd1 = $("#pwd1").val();
-		let reg = /^(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&-]).{8,20}$/;;
+		let reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
 		if(!reg.test(pwd)){
 			alert("비밀번호는 8자리 이상이어야 하며, 영문/숫자/특수문자 모두 포함해야 합니다.");
 			$("#pwd").val("");
@@ -232,39 +226,20 @@ $(function(){
 		  $("#sex").focus();
 		  return;
 		}
-		
+		/*
+		if (!$('#tos').prop('checked')) {
+		    $('#tosPrint').text("약관에 동의해주셔야 회원가입이 가능합니다.")
+		    $("#tos").focus()
+		    return;
+		  }
+		*/
 		
 		$('#join_frm').submit();
 	})
 	
 })
 
-function checkName() {
-	let name=$('#name').val()
-	if(name.trim()==="")
-	{
-		alert("이름은 필수 입력입니다")
-		$('#name').focus()
-		return 
-	}
-	if(/[A-Za-z!@#$%^&*()_+,-./:;<=>?@[\]^_`{|}~]/.test(name))
-	{
-		alert("이름은 한글만 입력 가능합니다")
-		$("#name").val("");
-		$('#name').focus()
-		return
-	}
-	if(/[\{\}\[\]\/?.,;:|\*~`!^\-_+<>@#$%&₩\\\=\(\'\"]/.test(name)) {
-  	  alert("특수문자를 사용할 수 없습니다");
-  	  $('#id').val('');
-  	  return;
-  	}
-	if (/\s/.test(name)) {
-		alert("공백 문자를 사용할 수 없습니다");
-		$('#id').val('');
-		return;
-	}
-}
+
 
 </script>
 </head>
@@ -357,6 +332,7 @@ function checkName() {
                 </fieldset>
                 <div>
                     <button type="submit" class="btn submit" id="joinBtn">회원 가입</button>
+                    <span style="color:blue" id="tosPrint" class="subcomment"></span>
                 </div>
             </form>
             <div class="jump">
