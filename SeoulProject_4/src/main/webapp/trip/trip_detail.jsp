@@ -112,12 +112,18 @@ h2{
    overflow: auto;
 }
 /* 최근 댓글리뷰 */
-.titleAndBtn{
-   display:flex;
-   justify-content: space-between;
+.titleAndBtn h2{
+	margin: 0 30px 30px 0;
+	display: inline-block;
 }
 .titleAndBtn a{
-   line-height:35px;
+   width:120px;
+   line-height:40px;
+   display:inline-block;
+   background: #e0e0e0;
+   text-align:center;
+   vertical-align:super;
+   border-radius:4px;
 }
 .recent_review{
    margin: 0 0 70px 0;
@@ -622,7 +628,7 @@ $(function(){
       <div class="tripReview_section" id="tripReview_section">
       
          <div class="tReview_top">
-            <h2 class="tReview_name">${vo.name }&nbsp;</h2><h2>댓글리뷰</h2>
+            <h2 class="tReview_name">${vo.name }&nbsp;</h2><h2>댓글리뷰(${count!=0?count:"0" })</h2>
          </div>   
          
          <div class="tReview_body">
