@@ -125,7 +125,7 @@ resize: none;
     	</tr>
     	<tr>
     		<th width=20% class="text-center">이름</th>
-    		<td width=30% class="text-left">${vo.name }</td>
+    		<td width=30% class="text-left">${vo.id }</td>
     		<th width=30% class="text-center">조회수</th>
     		<td width=30% class="text-left">${vo.hit }</td>
     	</tr>

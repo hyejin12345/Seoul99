@@ -16,11 +16,14 @@
     <div style="height: 550px">
     	<table class="table">
     		<tr>
+    		<c:if test="${sessionScope.id==null }">
+    		<td><span class="whitegray_btn" style="float:left">글쓰기</span> &nbsp; <span style="margin:0 20px;float:left;line-height:46px;color:gray;">로그인 후 이용 가능합니다</span></td>
+    		</c:if>
     		<c:if test="${sessionScope.id!=vo.id }">
     			<td>
     				<a href="../board/insert.do" class="whitegray_btn" style="float:left">글쓰기</a>
     			</td>
-    		 </c:if>
+    		</c:if>
     		</tr>
     	</table>
     	<table class="table">
@@ -45,7 +48,7 @@
     	 			<sup><img src="../img/new.gif"></sup>
     	 		</c:if>
     	 		</td>
-    	 		<td width="15%" class="text-center">${vo.name }</td>
+    	 		<td width="15%" class="text-center">${vo.id }</td>
     	 		<td width="15%" class="text-center">${vo.dbday }</td>
     	 		<td width="10%" class="text-center">${vo.hit }</td>
     	 		<td width="20%" class="text-center">

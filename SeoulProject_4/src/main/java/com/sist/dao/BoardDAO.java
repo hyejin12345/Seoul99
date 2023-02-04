@@ -19,9 +19,9 @@ public class BoardDAO {
 		try
 		{
 			conn=CreateConnection.getConnection();
-			String sql = "SELECT  id, bno, title, name, TO_CHAR(regdate, 'YYYY-MM-DD'), hit,filesize, num "
-					+ "FROM (SELECT id, bno, title, name, regdate, hit,filesize, rownum as num "
-					+ "FROM (SELECT id, bno, title, name, regdate, hit, filesize "
+			String sql = "SELECT id,bno, title, name, TO_CHAR(regdate, 'YYYY-MM-DD'), hit,filesize, num "
+					+ "FROM (SELECT id,bno, title, name, regdate, hit,filesize, rownum as num "
+					+ "FROM (SELECT id,bno, title, name, regdate, hit, filesize "
 					+ "FROM gg_board_4 ORDER BY bno DESC)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps = conn.prepareStatement(sql);
@@ -121,17 +121,17 @@ public class BoardDAO {
 	public void boardInsert(BoardVO vo) {
 		try {
 			conn=CreateConnection.getConnection();
-			String sql = "INSERT INTO gg_board_4(bno, name, title, content, pwd,filename,filesize,id) "
-					+ "VALUES(gb_bno_seq_4.nextval, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO gg_board_4(bno, title, content, pwd,filename,filesize,id) "
+					+ "VALUES(gb_bno_seq_4.nextval, ?, ?, ?, ?, ?, ?)";
 			ps = conn.prepareStatement(sql);
 			// ?에 값을 채운다
-			ps.setString(1, vo.getName());
-			ps.setString(2, vo.getTitle());
-			ps.setString(3, vo.getContent());
-			ps.setString(4, vo.getPwd());
-			ps.setString(5, vo.getFilename());
-			ps.setInt(6, vo.getFilesize());
-			ps.setString(7, vo.getId());
+	//		ps.setString(1, vo.getName());
+			ps.setString(1, vo.getTitle());
+			ps.setString(2, vo.getContent());
+			ps.setString(3, vo.getPwd());
+			ps.setString(4, vo.getFilename());
+			ps.setInt(5, vo.getFilesize());
+			ps.setString(6, vo.getId());
 			ps.executeUpdate(); // COMMIT 포함 => INSERT, UPDATE, DELETE
 			
 		} catch (Exception e) {
@@ -146,7 +146,7 @@ public class BoardDAO {
 		BoardVO vo = new BoardVO();
 		try {
 			conn=CreateConnection.getConnection();
-			String sql = "SELECT bno, name, title, content "
+			String sql = "SELECT bno, title, content "
 					+ "FROM gg_board_4 "
 					+ "WHERE bno=?";
 			ps = conn.prepareStatement(sql);
@@ -154,9 +154,9 @@ public class BoardDAO {
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			vo.setBno(rs.getInt(1));
-			vo.setName(rs.getString(2));
-			vo.setTitle(rs.getString(3));
-			vo.setContent(rs.getString(4));
+	//		vo.setName(rs.getString(2));
+			vo.setTitle(rs.getString(2));
+			vo.setContent(rs.getString(3));
 			rs.close();
 			
 		} catch (Exception e) {
@@ -190,13 +190,13 @@ public class BoardDAO {
 				bCheck = true;
 				// 실제 수정
 				sql = "UPDATE gg_board_4 SET "
-					+ "name=?, title=?, content=?, moddate=SYSDATE " //regdate=SYSDATE 수정날짜 
+					+ "title=?, content=?, moddate=SYSDATE " //regdate=SYSDATE 수정날짜 
 					+ "WHERE bno=?";
 				ps = conn.prepareStatement(sql);
-				ps.setString(1, vo.getName());
-				ps.setString(2, vo.getTitle());
-				ps.setString(3, vo.getContent());
-				ps.setInt(4, vo.getBno());
+		//		ps.setString(1, vo.getName());
+				ps.setString(1, vo.getTitle());
+				ps.setString(2, vo.getContent());
+				ps.setInt(3, vo.getBno());
 				
 				// 실행 명령
 				ps.executeUpdate();

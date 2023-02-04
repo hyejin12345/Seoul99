@@ -25,8 +25,13 @@ public class BoardModel {
 	         page = "1";
 	      }
 	      int curpage = Integer.parseInt(page);
+	HttpSession session=request.getSession();
+	String id=(String)session.getAttribute("id");
+	BoardVO vo=new BoardVO();
+	vo.setId(id);
 	BoardDAO dao=new BoardDAO();
 	ArrayList<BoardVO> list=dao.boardListData(curpage);
+	
 	int totalpage = dao.boardTotalPage();
     
     final int BLOCK = 10;
@@ -48,6 +53,11 @@ public class BoardModel {
 	@RequestMapping("board/insert.do")
 	public String board_insert(HttpServletRequest request, HttpServletResponse response)
 	{
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		BoardVO vo=new BoardVO();
+		vo.setId(id);
+		
 		// 중간에 들어가는 파일을 지정
 		request.setAttribute("main_jsp", "../board/insert.jsp"); // 화면 출력
 		return "../main/main.jsp";
@@ -66,7 +76,7 @@ public class BoardModel {
 			HttpSession session=request.getSession();
 			String id=(String)session.getAttribute("id");
 	//		String id=mr.getParameter("id");
-			String name=mr.getParameter("name");
+	//		String name=mr.getParameter("name");
 			String title=mr.getParameter("title");
 			String content=mr.getParameter("content");
 			String pwd=mr.getParameter("pwd");
@@ -74,7 +84,7 @@ public class BoardModel {
 			// BoardVO에 묶어서 오라클 전송
 			BoardVO vo=new BoardVO();
 			vo.setId(id);
-			vo.setName(name);
+	//		vo.setName(name);
 			vo.setTitle(title);
 			vo.setContent(content);
 			vo.setPwd(pwd);
@@ -189,14 +199,14 @@ public class BoardModel {
 			   // 한글 변환
 			   request.setCharacterEncoding("UTF-8");
 		   }catch(Exception ex) {}
-		   String name=request.getParameter("name");
+	//	   String name=request.getParameter("name");
 		   String title=request.getParameter("title");
 		   String content=request.getParameter("content");
 		   String pwd=request.getParameter("pwd");
 		   String bno=request.getParameter("bno");
 		   String moddate=request.getParameter(bno);
 		   BoardVO vo=new BoardVO();
-		   vo.setName(name);
+	//	   vo.setName(name);
 		   vo.setTitle(title);
 		   vo.setContent(content);
 		   vo.setPwd(pwd);
