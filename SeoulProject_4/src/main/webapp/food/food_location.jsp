@@ -233,7 +233,7 @@ div.item_info{
 				 <div>
 				    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
 				    
-				    <a href="../food/food_detail.do?fno=${vo.fno }">
+				    <a href="../food/food_before_detail.do?fno=${vo.fno }">
 				    <img src="${vo.poster }">
 				    <h4 class="item_name">${vo.name }</h4>
 			        <div class="item_info">

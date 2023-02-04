@@ -92,8 +92,8 @@ public class FoodModel {
 		request.setAttribute("list", list);
 		FoodCategoryVO vo=dao.categoryInfoData(Integer.parseInt(fcno));
 		request.setAttribute("vo", vo);
-		System.out.println(vo.getSubtitle());
-		System.out.println(vo.getTitle());
+		//System.out.println(vo.getSubtitle());
+		//System.out.println(vo.getTitle());
 		request.setAttribute("main_jsp", "../food/food_list.jsp");
 		return "../main/main.jsp";
 				
