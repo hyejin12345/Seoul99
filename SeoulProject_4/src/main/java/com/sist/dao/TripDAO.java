@@ -267,6 +267,42 @@ public class TripDAO {
       }
       return list;
    }
+   
+   //여행지 최신 댓글리뷰
+   public List<AllReplyVO> tripRecentReply(int cate_no,int no)
+   {
+      List<AllReplyVO> list=new ArrayList<AllReplyVO>();
+      try
+      {
+         conn=CreateConnection.getConnection();
+         String sql="SELECT id,name,TO_CHAR(regdate,'YYYY-MM-DD'),msg,rownum "
+         		   +"FROM gg_allreply_4 "
+        		   +"WHERE cate_no=? AND no=? AND rownum<=2 "
+         		   +"ORDER BY regdate DESC";
+         ps=conn.prepareStatement(sql);
+         ps.setInt(1, cate_no);
+         ps.setInt(2, no);
+         ResultSet rs=ps.executeQuery();
+         while(rs.next())
+         {
+        	 AllReplyVO vo=new AllReplyVO();
+        	 vo.setId(rs.getString(1));
+        	 vo.setName(rs.getString(2));
+        	 vo.setDbday(rs.getString(3));
+        	 vo.setMsg(rs.getString(4));
+        	 list.add(vo);
+         }
+         rs.close();
+      }catch(Exception ex)
+      {
+         ex.printStackTrace();
+      }
+      finally
+      {
+         CreateConnection.disConnection(conn, ps);
+      }
+      return list;	   
+   }
 }
 
 

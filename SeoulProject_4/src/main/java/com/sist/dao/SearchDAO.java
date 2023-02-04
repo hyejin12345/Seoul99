@@ -205,6 +205,4 @@ public class SearchDAO {
       return foodCount; 
    }
    
-   //---------- 검색 관련 커뮤니티 ----------
-
 }

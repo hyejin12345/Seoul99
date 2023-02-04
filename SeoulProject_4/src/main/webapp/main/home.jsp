@@ -400,7 +400,7 @@ $(function(){
          <div class="main-carousel">
          
            <c:forEach var="fvo" items="${flist }" varStatus="s">
-              <c:if test="${s.index>=7 && s.index<=11 }">
+              <c:if test="${s.index>=6 && s.index<=11 }">
                  <div class="cell" id="foodcate_cell">
                      <a href="../food/food_list.do?no=${fvo.fcno }">
                      <div class="foodcate_back"></div>

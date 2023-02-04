@@ -17,7 +17,7 @@ public class FoodDAO {
 			String sql="SELECT "
 					  +"fcno,title,subtitle,image "
 					  +"FROM gg_foodCategory_4 "
-					  +"ORDER BY fcno DESC";
+					  +"ORDER BY fcno";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next())

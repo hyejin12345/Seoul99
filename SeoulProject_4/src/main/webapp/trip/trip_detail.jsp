@@ -74,8 +74,6 @@ h2{
 }
 .item_info{
    margin : 20px 0 0 0;
-   
-   /*background:pink;*/
 }
 .item_info .gu{
    color : #004fff;
@@ -113,10 +111,10 @@ h2{
    height:80%;
    overflow: auto;
 }
+/* 최근 댓글리뷰 */
 .titleAndBtn{
    display:flex;
    justify-content: space-between;
-   /* background:yellow; */
 }
 .titleAndBtn a{
    line-height:35px;
@@ -124,30 +122,29 @@ h2{
 .recent_review{
    margin: 0 0 70px 0;
    width:100%;
-   height:200px;
+   height:150px;
 }
 .recent_review > div{
    height:100%;
    display:flex;
-   justify-content: space-between;
+   justify-content:space-between;
 }
 .recent_reviewBox{
+   padding:30px;
    width:48%;
    height:100%;
+   overflow:hidden;
+   white-space: nowrap;
+   text-overflow:ellipsis;   
    box-shadow : 0 3px 13px 0 rgb(0,0,0,0.2);
    /* background: lightgray; */
 }
-.recent_reviewBox div{
-   width: 100%;
-   height: 80%;
-   padding: 30px;
-}
-.recent_reviewBox span{
-   width:100%;
-   height:20%;
-   display: block;
-   margin: 0 0 0 30px;
-   line-height: 80px;
+.recent_reviewBox .msg{
+   margin:30px 0 0 0;
+   display:block;
+   overflow:hidden;
+   white-space: nowrap;
+   text-overflow:ellipsis;
 }
 /* 근처 맛집 이미지리스트 관련 */
 
@@ -538,30 +535,32 @@ $(function(){
       
       <!-- 최근 리뷰 (최신 2개 출력)  -->
       <!-- 최근 리뷰가 0개이면 전체 안 보이게 하기 -->
-<%--       <div class="titleAndBtn">
-         <h2>최근 리뷰</h2>
-         <a>리뷰 보러가기</a>
+      <c:if test="${count>0 }">
       
-      </div>
-      <div class="recent_review">
-         
-            <div>
-               <div class="recent_reviewBox">
-                  <span>유저명&nbsp;&nbsp;&nbsp;★4/5</span>
-                  <div>본문내용 중략...(중략된 부분 클릭 시 해당 리뷰 위치로 이동)</div>
-               </div>
-               <div class="recent_reviewBox">
-                  <span>유저명&nbsp;&nbsp;&nbsp;★4/5</span>
-                  <div>본문내용 중략...</div>
-               </div>
-            </div>   
-         
-      </div> --%>
+	      <div class="titleAndBtn">
+	         <h2>최근 댓글리뷰</h2>
+	         <a href="#tripReview_section">전체 보러가기</a>
+	      
+	      </div>
+	      <div class="recent_review">
+	         <div>
+	            <c:forEach var="rcvo" items="${rcList }">
+	            
+	               <div class="recent_reviewBox">
+	                  <span style="color:#004fff">${rcvo.id }</span>
+	                  <span style="color:gray">&nbsp;(${rcvo.dbday })</span>
+	                  <span class="msg">${rcvo.msg }</span>
+	               </div>
+	            
+	         	</c:forEach>
+	         </div>
+	      </div>
+      
+      </c:if>
       
       
       <div class="trip_address">
-         <h2>주소</h2>
-         <h3>${vo.addr }</h3>
+         <h2>주소<span style="margin:0 30px;font-size:24px;color:black;">${vo.addr }</span></h2>
       </div>
 
       <%-- 근처 가볼만한 곳 --%>   
@@ -620,8 +619,7 @@ $(function(){
    
       
       <!-- 여행지 댓글 리뷰 -->
-
-      <div class="tripReview_section">
+      <div class="tripReview_section" id="tripReview_section">
       
          <div class="tReview_top">
             <h2 class="tReview_name">${vo.name }&nbsp;</h2><h2>댓글리뷰</h2>
@@ -632,11 +630,8 @@ $(function(){
          
              <!-- (로그인상태) 댓글리뷰 등록란 -->
              <h3 style="display:inline-block"><span style="color:#004fff;font-size:24px;">&nbsp;${vo.name }</span>에 대한 방문후기를 들려주세요!</h3>
-              <c:if test="${sessionScope.id==null }">
-                <span style="color:#f46555">&nbsp;&nbsp;(※로그인 후 댓글리뷰 등록이 가능합니다.)</span>
-             </c:if>
              
-             
+
               <table class="table">
                   
                    <table class="table">
@@ -684,7 +679,7 @@ $(function(){
                        <!-- (로그인상태) 댓글 출력 -->
                        <tr>                        
                          <td class="text-left" width=70%>
-                         <span style="color:#004fff">${rvo.name }</span>&nbsp;(${rvo.dbday })
+                         <span style="color:#004fff">${rvo.id }</span>&nbsp;(${rvo.dbday })
                          </td>
                          
                          <td class="text-right" width=30%>
