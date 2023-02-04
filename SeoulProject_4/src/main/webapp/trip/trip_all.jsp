@@ -19,28 +19,15 @@
    font-size:16px;
    color: black;
 }
-
 .container a{
    color:black;
    text-decoration:none;
-}
-.trip_toptitle{
-   width:100%;
-   margin:60px 0;
-   line-height:36px;
-}
-.filterbar{
-   width:100%;
-   margin-bottom:30px;
-
 }
 .trip_side{
    position:relative;
    width:20%;
    height:800px;
    float:left;
-   
-   /*background:pink;*/
 }
 .tripCategory_section{
    position:absolute;
@@ -53,10 +40,6 @@
 }
 .trip_side a:hover{
    color: #004fff;
-}
-.tripScore_section{
-   position:absolute;
-   top:35%;
 }
 .trip_content{
    width:80%;
@@ -146,6 +129,24 @@
 <script type="text/javascript" src="http://code.jquery.con/jquery.js"></script>
 <script type="text/javascript">
 
+$(function(){
+ 	if($('#tcCheck').attr("tcno")==1)
+	{
+		$('#tc1').css("color","#004fff")
+	}
+	if($('#tcCheck').attr("tcno")==2)
+	{
+		$('#tc2').css("color","#004fff")
+	}
+	if($('#tcCheck').attr("tcno")==3)
+	{
+		$('#tc3').css("color","#004fff")
+	}
+	if($('#tcCheck').attr("tcno")==4)
+	{
+		$('#tc4').css("color","#004fff")
+	}
+})
 
 </script>
 </head>
@@ -153,26 +154,23 @@
 <div class="container">
 
 
-
-      <h1 class="trip_toptitle">${content_title }</h1>
-      <div class="filterbar">
-      <!--  -->
-         
-      </div>
+	  <input type=hidden tcno=${tcno } id="tcCheck">
+	  
+      <h1 class="allTopTitle">${content_title }</h1>
+      
+	  
       <div class="trip_side">
 
-
         <div class="tripCategory_section">
-           <h4>여행지 카테고리</h4>
+          <h4>여행지 카테고리</h4>
           <ul>
-            <li><a class="tripCate" href="../trip/trip_all.do?tcno=1">명소</a></li>
-            <li><a class="tripCate" href="../trip/trip_all.do?tcno=2">자연</a></li>
-            <li><a class="tripCate" href="../trip/trip_all.do?tcno=3">즐길거리</a></li>
-            <li><a class="tripCate" href="../trip/trip_all.do?tcno=4">쇼핑</a></li>
+            <li><a id="tc1" class="tripCate" href="../trip/trip_all.do?tcno=1">명소</a></li>
+            <li><a id="tc2" class="tripCate" href="../trip/trip_all.do?tcno=2">자연</a></li>
+            <li><a id="tc3" class="tripCate" href="../trip/trip_all.do?tcno=3">즐길거리</a></li>
+            <li><a id="tc4" class="tripCate" href="../trip/trip_all.do?tcno=4">쇼핑</a></li>
           </ul>
         </div>
-        
-        
+
       </div>
       <div class="trip_content" id="Print">
       

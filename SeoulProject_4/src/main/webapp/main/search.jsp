@@ -79,7 +79,7 @@
 /* 이미지리스트 */
 
 h3.view_title{
-   margin: 60px 0 30px 0;
+   margin: 30px 0 30px 0;
    width: 85%;
    float:left;
    line-height: 24px;
@@ -284,7 +284,7 @@ $(function(){
                    <img src="${fvo.poster }">
                    <h4 class="item_name">${fvo.name }</h4>
                     
-                    </a>
+                   </a>
                     
                 </div>
                </c:forEach>

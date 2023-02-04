@@ -9,4 +9,5 @@
   <bean class="com.sist.model.AdminModel"/>
   <bean class="com.sist.model.MyPageModel"/>
   <bean class="com.sist.model.AllReplyModel"/>
+  <bean class="com.sist.model.ReserveModel"/>
 </beans>

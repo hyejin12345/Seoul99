@@ -46,6 +46,7 @@ public class TripDAO {
       }
       return list;
    }
+   
    //메인페이지 - 여행지 자연/즐길거리/쇼핑 리스트
    public List<TripVO> tripOhterList(int tcno)
    {
@@ -126,7 +127,6 @@ public class TripDAO {
       try
       {
          conn=CreateConnection.getConnection();
-         /*int[] tripCategory={1,2,3,4};*/ //1번 명소, 2번 자연, 3번 즐길거리, 4번 쇼핑
          String sql="SELECT tcno,tno,name,image,addr,hit,num "
                  +"FROM (SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ "
                  +"tcno,tno,name,image,addr,hit,rownum as num "
@@ -190,7 +190,7 @@ public class TripDAO {
       }
       return totalpage;
    }
-
+   
    //여행지 상세페이지
    public TripVO tripDetail(int tno)
    {
@@ -303,6 +303,7 @@ public class TripDAO {
       }
       return list;	   
    }
+   
 }
 
 
