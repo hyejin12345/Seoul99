@@ -133,7 +133,7 @@ public class SearchDAO {
          while(rs.next())
          {
             FoodVO vo=new FoodVO();
-            vo.setFcno(rs.getInt(1));
+            vo.setFno(rs.getInt(1));
             vo.setName(rs.getString(2));
             vo.setPoster(rs.getString(3));
             list.add(vo);

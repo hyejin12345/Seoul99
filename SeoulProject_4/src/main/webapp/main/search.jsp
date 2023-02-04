@@ -215,14 +215,13 @@ $(function(){
          
          <div id="trip_content">
       
-            <!-- 3*3 정렬 -->
             <div class="content_allItem">
             
                <c:forEach var="tvo" items="${tlist }" varStatus="s">
                 <div class="content_item">
                    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
                    
-                   <a href="../trip/trip_detail.do?tno=${tvo.tno }">
+                   <a href="../trip/trip_before_detail.do?tno=${tvo.tno }">
                    <img src="${tvo.image }">
                    <h4 class="item_name">${tvo.name }</h4>
                     
@@ -281,7 +280,7 @@ $(function(){
                 <div class="content_item">
                    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
                    
-                   <a href="../food/food_detail.do?fno=${fvo.fno }">
+                   <a href="../food/food_before_detail.do?fno=${fvo.fno }">
                    <img src="${fvo.poster }">
                    <h4 class="item_name">${fvo.name }</h4>
                     
