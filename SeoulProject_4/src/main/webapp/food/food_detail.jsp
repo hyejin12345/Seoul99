@@ -93,6 +93,7 @@
        </tr>
       </table>
    </div>
+   <!-- 지도~ -->
     <div class= "col-sm-5">
        <div id="map" style="width:100%;height:350px;"></div>
 
@@ -136,7 +137,7 @@
       });    
       </script>
     </div>
-   </div>
+	</div>
    </div>
 </body>
 </html>
