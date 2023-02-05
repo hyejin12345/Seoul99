@@ -185,8 +185,7 @@ public class JjimDAO {
 		}
 		
 	}
-	
-	//test - 상세페이지 내 찜 취소
+	//여행지상세페이지 - 찜 취소
 	public void tripJjimDelete(int cate_no,int no,String id)
 	{
 		try

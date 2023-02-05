@@ -109,7 +109,7 @@ public class LikeDAO {
 	      return count;
 	}
 	
-	//test - 상세페이지 내 좋아요 취소
+	//여행지상세페이지 - 좋아요 취소
 	public void tripLikeDelete(int cate_no,int no,String id)
 	{
 		try
