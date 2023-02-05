@@ -31,18 +31,18 @@
                 <td width="30%" class="text-center" rowspan="4">
                   <a href="../food/food_before_detail.do?fno=${fvo.fno }"><img src="${fvo.poster }" style="width: 300px;height: 160px" class="img-rounded"></a>
                 </td>
-                <td width=70% class="inline"><h4><a href="../food/food_detail.do?fno=${fvo.fno }">${fvo.name }</a>&nbsp;<span style="color:orange">${fvo.score }</span></h4>
+                <td width=70% class="inline text-left"><h4><a href="../food/food_detail.do?fno=${fvo.fno }"><span style="color:black">${fvo.name }</span></a>&nbsp;<span style="color:orange">${fvo.score }</span></h4>
                   <%-- <img src="../food/img/like1.png" style="width: 35px;height: 35px;padding-right:10px" title=${fvo.count }>--%>
                 </td>
               </tr>
               <tr>
-                <td width=70%>${fvo.addr }</td>
+                <td width=70% class="text-left">${fvo.addr }</td>
               </tr>
               <tr>
-                <td width=70%>${fvo.tel }</td>
+                <td width=70% class="text-left">${fvo.tel }</td>
               </tr>
               <tr>
-                <td width=70%>${fvo.type }</td>
+                <td width=70% class="text-left">${fvo.type }</td>
               </tr>
             </table>
           </c:forEach>

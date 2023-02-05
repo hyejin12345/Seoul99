@@ -8,13 +8,13 @@
 <title>서울99여행</title>
 <style type="text/css">
 *{
-	margin:0;
-	padding:0;
-	list-style: none;
-	border-collapse: collapse;
-	text-decoration: none;
-	font-size:16px;
-	color: black;
+   margin:0;
+   padding:0;
+   list-style: none;
+   border-collapse: collapse;
+   text-decoration: none;
+   font-size:16px;
+   color: black;
 }
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -84,12 +84,28 @@
        </tr>
        </c:if>
        <tr>
-         <td colspan="2" class="text-right">
-           <input type=button class="btn btn-xs btn-success" value="찜하기">
-           <input type=button class="btn btn-xs btn-info" value="좋아요">
-           <input type=button class="btn btn-xs btn-warning" value="예약">
-           <input type=button class="btn btn-xs btn-primary" value="목록" onclick="javascript:history.back()">
-         </td>
+          <td colspan="2" class="text-right">
+             <c:if test="${sessionScope.id!=null }">
+             
+             
+                 <c:if test="${mylike_count==0 }">
+                  <a href="../like/foodlike_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up"></i></a>(${like_total })
+                 </c:if>
+                 <c:if test="${mylike_count!=0 }">
+                   <span class="circle_btn"><i class="fa-regular fa-thumbs-up"></i></span>(${like_total })
+                 </c:if>
+                 
+                 <c:if test="${myjjim_count==0 }">
+                  <a href="../jjim/foodjjim_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-sharp fa-solid fa-heart"></i></a>
+                 </c:if>
+                 <c:if test="${myjjim_count!=0 }">
+                   <span class="circle_btn"><i class="fa-sharp fa-solid fa-heart"></i></span>
+                 </c:if>
+                 
+                 <a href="#" class="btn btn-xs btn-warning">예약하기</a>
+             </c:if>
+              <a href="javascript:history.back()" class="btn btn-xs btn-primary">목록</a>
+            </td>
        </tr>
       </table>
    </div>
@@ -137,7 +153,7 @@
       });    
       </script>
     </div>
-	</div>
+   </div>
    </div>
 </body>
 </html>

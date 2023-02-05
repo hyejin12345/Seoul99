@@ -20,7 +20,13 @@ SOSO             NUMBER
 BAD              NUMBER         
  */
 public class FoodVO {
-	private int fno,fcno,jjim,flike,hit,good,soso,bad;
+	private int fno,fcno,jjim,flike,hit,good,soso,bad,count;
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	private double score;
 	private String poster,name,addr,tel,type,price,time,menu,parking;
 	public int getFno() {

@@ -77,17 +77,18 @@ public class FoodModel {
 	public String food_list(HttpServletRequest request, HttpServletResponse response)
 	{
 		// ../food/food_list.do?fcno=10
-		System.out.println(1);
+		//System.out.println(1);
 		// 1. 요청값 받기
 		String fcno=request.getParameter("no");
 		// 데이터베이스에서 값 읽어오기
 		FoodDAO dao=new FoodDAO();
 		// 결과값을 얻어서 request에 담아주기 >> 
 		ArrayList<FoodVO> list=dao.foodListData(Integer.parseInt(fcno));
-		
+		//LikeDAO ldao=new LikeDAO();
 		for(FoodVO fvo:list)
 		{
-			System.out.println(fvo.getName());
+			//System.out.println(fvo.getName());
+			//fvo.setCount(ldao.foodLikeInsert(null))
 		}
 		request.setAttribute("list", list);
 		FoodCategoryVO vo=dao.categoryInfoData(Integer.parseInt(fcno));
@@ -98,42 +99,7 @@ public class FoodModel {
 		return "../main/main.jsp";
 				
 	}
-	@RequestMapping("food/food_detail.do")
-	public String food_detail(HttpServletRequest request, HttpServletResponse response)
-	{
-		String fno=request.getParameter("fno");
-		// 데이터베이스 연결
-		FoodDAO dao=new FoodDAO();
-		FoodVO vo=dao.foodDetail(Integer.parseInt(fno));
-		String addr=vo.getAddr();
-		String addr1=addr.substring(0, addr.lastIndexOf("지"));
-		addr1=addr1.trim();
-		String addr2=addr.substring(addr.lastIndexOf("지")+3);
-		request.setAttribute("vo",vo);
-		request.setAttribute("addr1", addr1);
-		request.setAttribute("addr2", addr2);
-		// 화면 출력
-		request.setAttribute("main_jsp", "../food/food_detail.jsp");
-		AllReplyDAO rdao=new AllReplyDAO();
-		List<AllReplyVO> rList=rdao.allReplyListData(Integer.parseInt(fno), 2);
-		request.setAttribute("rList1", rList);
-		request.setAttribute("count", rList.size());
-		//
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		JjimDAO jdao=new JjimDAO();
-		int jcount=jdao.JjimCount(Integer.parseInt(fno), id);
-		request.setAttribute("jjim_count", jcount);
-		
-		LikeDAO ldao=new LikeDAO();
-		int mc=ldao.myLikeCount(Integer.parseInt(fno), id);
-		int tc=ldao.foodLikeCount(Integer.parseInt(fno));
-		request.setAttribute("like_count", mc);
-		request.setAttribute("like_total", tc);
 	
-		
-		return "../main/main.jsp";
-	}
 	
 	// 쿠우우우우우키 최근 방문 기록
 	
@@ -160,4 +126,40 @@ public class FoodModel {
 	      }catch(Exception ex) {}
 	      return "redirect:../food/food_detail.do?fno="+fno;
 	   }
+	 @RequestMapping("food/food_detail.do")
+		public String food_detail(HttpServletRequest request, HttpServletResponse response)
+		{
+			String fno=request.getParameter("fno");
+			// 데이터베이스 연결
+			FoodDAO dao=new FoodDAO();
+			FoodVO vo=dao.foodDetail(Integer.parseInt(fno));
+			String addr=vo.getAddr();
+			String addr1=addr.substring(0, addr.lastIndexOf("지"));
+			addr1=addr1.trim();
+			String addr2=addr.substring(addr.lastIndexOf("지")+3);
+			request.setAttribute("vo",vo);
+			request.setAttribute("addr1", addr1);
+			request.setAttribute("addr2", addr2);
+			// 화면 출력
+			
+			AllReplyDAO rdao=new AllReplyDAO();
+			List<AllReplyVO> rList=rdao.allReplyListData(Integer.parseInt(fno), 2);
+			request.setAttribute("rList1", rList);
+			request.setAttribute("count", rList.size());
+			//
+			HttpSession session=request.getSession();
+			String id=(String)session.getAttribute("id");
+			JjimDAO jdao=new JjimDAO();
+			int jcount=jdao.myJjimCount(2,Integer.parseInt(fno), id);
+			request.setAttribute("myjjim_count", jcount);
+			
+			LikeDAO ldao=new LikeDAO();
+			int mc=ldao.myLikeCount(2,Integer.parseInt(fno), id);
+			int tc=ldao.allLikeCount(2,Integer.parseInt(fno));
+			request.setAttribute("mylike_count", mc);
+			request.setAttribute("like_total", tc);
+		
+			request.setAttribute("main_jsp", "../food/food_detail.jsp");
+			return "../main/main.jsp";
+		}
 }
