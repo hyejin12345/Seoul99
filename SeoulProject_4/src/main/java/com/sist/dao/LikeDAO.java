@@ -109,4 +109,27 @@ public class LikeDAO {
 	      return count;
 	}
 	
+	//test - 상세페이지 내 좋아요 취소
+	public void tripLikeDelete(int cate_no,int no,String id)
+	{
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="DELETE FROM gg_alllike_4 "
+					+"WHERE cate_no=1 AND no=? AND id=? ";  //cate_no 1번 여행지
+			
+			ps=conn.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			ps.setString(2, id);
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}	
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}	
+	}
 }

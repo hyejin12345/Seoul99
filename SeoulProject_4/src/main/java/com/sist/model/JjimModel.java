@@ -47,4 +47,22 @@ public class JjimModel {
 		
 		return "redirect:../trip/trip_detail.do?tno="+tno;
 	}
+	@RequestMapping("jjim/tripjjim_delete.do")
+	public String tripjjim_delete(HttpServletRequest request, HttpServletResponse response)
+	{
+		String tno=request.getParameter("tno");
+		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		AllJjimVO vo=new AllJjimVO();
+		vo.setNo(Integer.parseInt(tno));
+		vo.setId(id);
+		
+		// db연동
+		JjimDAO dao=new JjimDAO();
+		dao.tripJjimDelete(1, Integer.parseInt(tno), id);
+		
+		return "redirect:../trip/trip_detail.do?tno="+tno;
+	}
 }

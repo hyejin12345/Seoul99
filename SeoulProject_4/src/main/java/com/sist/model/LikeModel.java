@@ -45,4 +45,21 @@ public class LikeModel {
 		
 		return "redirect:../trip/trip_detail.do?tno="+tno;
 	}
+	@RequestMapping("like/triplike_delete.do")
+	public String triplike_delete(HttpServletRequest request, HttpServletResponse response)
+	{
+		String tno=request.getParameter("tno");
+		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		AllLikeVO vo=new AllLikeVO();
+		vo.setNo(Integer.parseInt(tno));
+		vo.setId(id);
+
+		LikeDAO dao=new LikeDAO();
+		dao.tripLikeDelete(1, Integer.parseInt(tno), id);
+		
+		return "redirect:../trip/trip_detail.do?tno="+tno;
+	}
 }

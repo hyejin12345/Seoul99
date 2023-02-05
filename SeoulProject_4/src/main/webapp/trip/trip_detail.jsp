@@ -50,6 +50,7 @@ h2{
 .trip_name a{
    font-size:36px;
 }
+/* 링크복사 버튼 */
 .circle_btn{
    -webkit-appearance: none;
    -moz-appearance: none;
@@ -68,6 +69,7 @@ h2{
 .circle_btn i:hover{
 	color:#f46555;
 }
+/* 찜버튼, 좋아요 버튼 */
 i.fa-heart,i.fa-thumbs-up{
     padding: 10px;
     font-size: 20px;
@@ -461,8 +463,8 @@ span.whitegray_btn,a.whitegray_btn{
 
 
 let u=0
-
-
+let j_cnt=0 //찜 버튼 클릭수
+let l_cnt=0 //좋아요 버튼 클릭수
 
 $(function(){
    $('.ups').click(function(){
@@ -482,7 +484,7 @@ $(function(){
        }
    })
 
-   
+
 })
 
    
@@ -515,23 +517,23 @@ $(function(){
             
             <%-- 로그인 상태 찜/좋아요 --%>
             <c:if test="${sessionScope.id!=null }">
-	              
+
 		          <%-- 찜 --%>
- 		          <c:if test="${myJjim_count==0 }">
-		            <a href="../jjim/tripjjim_insert.do?tno=${vo.tno }"><i class="fa-sharp fa-solid fa-heart"></i></a>
- 		          </c:if>
- 		          <c:if test="${myJjim_count!=0 }">
-		            <span><i class="fa-sharp fa-solid fa-heart" tno="${vo.tno }" style="color:#f46555"></i></span>
+		          <c:if test="${myJjim_count==0 }">
+		            <a href="../jjim/tripjjim_insert.do?tno=${vo.tno }"><i class="fa-sharp fa-solid fa-heart j_btn" style="color:gray"></i></a>
 		          </c:if>
-		          
+		          <c:if test="${myJjim_count>0 }">
+		            <a href="../jjim/tripjjim_delete.do?tno=${vo.tno }"><i class="fa-sharp fa-solid fa-heart j_btn" style="color:#f46555"></i></a>
+		          </c:if>
+
 		          <%-- 좋아요 --%>
-	              <c:if test="${myLike_count==0 }">
-		            <a href="../like/triplike_insert.do?tno=${vo.tno }"><i class="fa-regular fa-thumbs-up"><span style="font-size:16px">(${like_total })</span></i></a>
+		          <c:if test="${myLike_count==0 }">
+		            <a href="../like/triplike_insert.do?tno=${vo.tno }"><i class="fa-regular fa-thumbs-up" style="color:gray"><span style="font-size:16px">(${like_total })</span></i></a>
 		          </c:if>
-		          <c:if test="${myLike_count!=0 }">
-		            <span><i class="fa-regular fa-thumbs-up" style="color:#f46555"><span style="font-size:16px">(${like_total })</span></i></span>
+		          <c:if test="${myLike_count>0 }">
+		            <a href="../like/triplike_delete.do?tno=${vo.tno }"><i class="fa-regular fa-thumbs-up" style="color:#f46555"><span style="font-size:16px">(${like_total })</span></i></a>
 		          </c:if>
-		          
+
             </c:if>
          </div>
          <div class="item_info">
