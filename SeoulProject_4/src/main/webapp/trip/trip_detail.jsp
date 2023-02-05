@@ -43,14 +43,14 @@ h2{
 .trip_name{
    margin:0 50px 0 0;
    line-height:36px;
-   display:inline;
+   /* display:inline; */
    float:left;
    /*background:yellow;*/
 }
 .trip_name a{
    font-size:36px;
 }
-.copyLink_btn{
+.circle_btn{
    -webkit-appearance: none;
    -moz-appearance: none;
     appearance:none;
@@ -62,15 +62,23 @@ h2{
    background : white;
    border : 1px solid lightgray;
    border-radius : 50%;
-
+   cursor:pointer;
+   display:inline-block;
 }
-.jjim_btn{
-   position:inherit;  /* 원래 적용된 position 빼기 */
-   
-   width : 40px;
-   height : 40px;
-   border : 1px solid lightgray;
-
+.circle_btn i:hover{
+	color:#f46555;
+}
+i.fa-heart,i.fa-thumbs-up{
+    padding: 10px;
+    font-size: 20px;
+    color: gray;
+    border: 1px solid lightgray;
+    border-radius: 50px;
+    text-align: center;
+    cursor:pointer;
+}
+i.fa-heart:hover,i.fa-thumbs-up:hover{
+	color:#f46555;
 }
 .item_info{
    margin : 20px 0 0 0;
@@ -340,17 +348,6 @@ line-height:30px;}
 .mainbanner .slide .btn a.prev{left:20px;}
 .mainbanner .slide .btn a.next{right:20px;}
 .mainbanner .slide .btn a i.fa-solid{margin:20px; color:white; font-size:20px;}
-/* .mainbanner .slide .autoBtn{
-   position:absolute;
-   top:20px;
-   right:20px;
-   border-radius:3px;
-   width:30px;
-   height:30px;
-   text-align:center;
-   text-decoration:none;
-   line-height:30px;
-   /*background-color:transparent;*/
    color:white;
    font-weight:bold;
 } */
@@ -463,32 +460,33 @@ span.whitegray_btn,a.whitegray_btn{
 <script type="text/javascript">
 
 
+let u=0
+
+
+
 $(function(){
+   $('.ups').click(function(){
+	   $('.rupdate').hide();
+       let arno=$(this).attr("data-no");
+       if(u==0)
+       {
+           $(this).text("취소");
+           $('#u'+arno).show();
+           u=1;
+       }
+       else
+       {
+           $(this).text("수정");
+           $('#u'+arno).hide();
+           u=0;
+       }
+   })
 
    
-      let u=0;
-      $(function(){
-         $('.ups').click(function(){
-            $('.rupdate').hide();
-            let arno=$(this).attr("data-no");
-            if(u==0)
-            {
-               $(this).text("취소");
-               $('#u'+arno).show();
-               u=1;
-            }
-            else
-            {
-               $(this).text("수정");
-               $('#u'+arno).hide();
-               u=0;
-            }
-         })
-      })
+})
 
    
    
-}) 
 
 </script>
 <body>
@@ -496,13 +494,45 @@ $(function(){
 
 
    
-      <!-- 여행지명 / 평점 / 조회수 / 공유 / 찜버튼 -->
+      <!-- 여행지명 / 조회수 / 링크복사 / 찜 / 좋아요 -->
 
       <div class="top_section">
          <h1 class="trip_name" tno="${vo.tno }"><a href="../trip/trip_detail.do?tno=${vo.tno }">${vo.name }</a></h1>
          <div class="top_buttons">
-            <button class="copyLink_btn" onClick={copyLink()}><i class="fa-solid fa-link"></i></button>
-            <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
+         
+            <button class="circle_btn" onClick={copyLink()}><i class="fa-solid fa-link"></i></button>
+            
+            <%-- 비로그인 상태 찜/좋아요 --%>
+            <c:if test="${sessionScope.id==null }">
+	              
+		          <%-- 찜 --%>
+		          <span><i class="fa-sharp fa-solid fa-heart" onclick="alert('로그인이 필요합니다.')"></i></span>
+
+		          <%-- 좋아요 --%>
+		          <span><i class="fa-regular fa-thumbs-up" onclick="alert('로그인이 필요합니다.')"><span style="font-size:16px">(${like_total })</span></i></span>&nbsp;
+		          
+            </c:if>
+            
+            <%-- 로그인 상태 찜/좋아요 --%>
+            <c:if test="${sessionScope.id!=null }">
+	              
+		          <%-- 찜 --%>
+ 		          <c:if test="${myJjim_count==0 }">
+		            <a href="../jjim/tripjjim_insert.do?tno=${vo.tno }"><i class="fa-sharp fa-solid fa-heart"></i></a>
+ 		          </c:if>
+ 		          <c:if test="${myJjim_count!=0 }">
+		            <span><i class="fa-sharp fa-solid fa-heart" tno="${vo.tno }" style="color:#f46555"></i></span>
+		          </c:if>
+		          
+		          <%-- 좋아요 --%>
+	              <c:if test="${myLike_count==0 }">
+		            <a href="../like/triplike_insert.do?tno=${vo.tno }"><i class="fa-regular fa-thumbs-up"><span style="font-size:16px">(${like_total })</span></i></a>
+		          </c:if>
+		          <c:if test="${myLike_count!=0 }">
+		            <span><i class="fa-regular fa-thumbs-up" style="color:#f46555"><span style="font-size:16px">(${like_total })</span></i></span>
+		          </c:if>
+		          
+            </c:if>
          </div>
          <div class="item_info">
             <span class="gu">서울 ${gu }</span><span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${vo.hit }</span> 
