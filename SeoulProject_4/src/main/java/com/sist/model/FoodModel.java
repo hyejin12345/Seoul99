@@ -102,6 +102,7 @@ public class FoodModel {
 	public String food_detail(HttpServletRequest request, HttpServletResponse response)
 	{
 		String fno=request.getParameter("fno");
+		// 데이터베이스 연결
 		FoodDAO dao=new FoodDAO();
 		FoodVO vo=dao.foodDetail(Integer.parseInt(fno));
 		String addr=vo.getAddr();
@@ -111,11 +112,25 @@ public class FoodModel {
 		request.setAttribute("vo",vo);
 		request.setAttribute("addr1", addr1);
 		request.setAttribute("addr2", addr2);
-		
+		// 화면 출력
 		request.setAttribute("main_jsp", "../food/food_detail.jsp");
 		AllReplyDAO rdao=new AllReplyDAO();
 		List<AllReplyVO> rList=rdao.allReplyListData(Integer.parseInt(fno), 2);
-		request.setAttribute("rList", rList);
+		request.setAttribute("rList1", rList);
+		request.setAttribute("count", rList.size());
+		//
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		JjimDAO jdao=new JjimDAO();
+		int jcount=jdao.JjimCount(Integer.parseInt(fno), id);
+		request.setAttribute("jjim_count", jcount);
+		
+		LikeDAO ldao=new LikeDAO();
+		int mc=ldao.myLikeCount(Integer.parseInt(fno), id);
+		int tc=ldao.foodLikeCount(Integer.parseInt(fno));
+		request.setAttribute("like_count", mc);
+		request.setAttribute("like_total", tc);
+	
 		
 		return "../main/main.jsp";
 	}

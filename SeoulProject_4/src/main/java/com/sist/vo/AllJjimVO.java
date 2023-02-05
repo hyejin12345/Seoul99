@@ -7,8 +7,39 @@ package com.sist.vo;
 
  */
 public class AllJjimVO {
-	private int ajno,cate_no;
-	private String id;
+	private int ajno,cate_no,no;
+	private String id,poster,name,addr,tel;
+	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public int getAjno() {
 		return ajno;
 	}

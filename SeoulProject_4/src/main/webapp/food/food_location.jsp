@@ -21,9 +21,7 @@
 ::placeholder {
   color: #004fff;
 }
-.container{
-	width:1200px;
-}
+
 .route{
 	/* 페이지 경로 */
 	width:100%;
@@ -34,7 +32,7 @@
 .route a{
 	color:black;
 }
-.trip_toptitle{
+.food_toptitle{
 	width:100%;
 	margin:60px 0;
 	line-height:36px;
@@ -47,7 +45,7 @@
 	
 	/*background:lightblue;*/
 }
-.container .trip_side{
+.container .food_side{
 	position:relative;
 	width:20%;
 	height:800px;
@@ -55,14 +53,14 @@
 	
 	/*background:pink;*/
 }
-.trip_category{
+.food_category{
 	position:absolute;
 }
-.trip_score{
+.food_score{
 	position:absolute;
 	top:30%;
 }
-.trip_content{
+.food_content{
 	width:80%;
 	float:right;
 	
@@ -84,7 +82,7 @@
  width:270px;
  height:270px;
  float:left;
- margin: 15px 30px 15px 0;
+ margin: 0 30px 3px 0;
  box-shadow : 0 5px 10px 0 rgb(0,0,0,0.2);
  
  position:relative;
@@ -101,7 +99,7 @@
  display:inline-block;
  vertical-align:middle;
  width:100%;
- height:180px;
+ height:170px;
  object-fit:fit;
  
 }
@@ -109,9 +107,10 @@
 
 .item_name{
 	margin: 20px 20px 10px 20px;
+	color: black;
 }
 div.item_info{
-	margin: 0 0 0 20px;
+	margin: 0 20px 20px 20px;
 }
 
 
@@ -199,13 +198,13 @@ div.item_info{
 		</div> -->
 		
 		
-		<h1 class="trip_toptitle">서울의 모든 맛집</h1>
+		<h1 class="food_toptitle">서울의 모든 맛집</h1>
 		<div class="filterbar">
 		지역필터
 		</div>
-		<div class="trip_side">
+		<div class="food_side">
 
-		  <div class="trip_category">
+		  <div class="food_category">
 		  맛집 분류
 		    <ul>
 		      <li>편의기능</li>
@@ -214,7 +213,7 @@ div.item_info{
 		      <li></li>
 		    </ul>
 		  </div>
-		  <div class="trip_score">
+		  <div class="food_score">
 		  맛집 평가 필터
 		  	<ul>
 		      <li>좋아요</li>
@@ -223,7 +222,7 @@ div.item_info{
 		    </ul>
 		  </div>
 		</div>
-		<div class="trip_content">
+		<div class="food_content">
 			<h3 class="content_title">${content_title }</h3>
 			<!-- 3*3 정렬 -->
 		
@@ -237,7 +236,7 @@ div.item_info{
 				    <img src="${vo.poster }">
 				    <h4 class="item_name">${vo.name }</h4>
 			        <div class="item_info">
-			            <span class="score"><i class="fa-solid fa-star"></i>4.6</span><span class="hit">(652건)&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${vo.hit}</span> 
+			            <span class="score"><i class="fa-solid fa-star"></i>{vo.score}</span><span class="hit">(652건)&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${vo.hit}</span> 
 			        </div>
 			        </a>
 			        
