@@ -1,8 +1,15 @@
 package com.sist.vo;
 
 public class AllLikeVO {
-	private int alno,no;
+	private int alno,cate_no,no;
 	private String id;
+	
+	public int getCate_no() {
+		return cate_no;
+	}
+	public void setCate_no(int cate_no) {
+		this.cate_no = cate_no;
+	}
 	public int getAlno() {
 		return alno;
 	}

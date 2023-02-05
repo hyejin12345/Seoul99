@@ -8,13 +8,14 @@ public class JjimDAO {
 	private Connection conn;
 	private PreparedStatement ps;
 	
-	public void JjimInsert(AllJjimVO vo)
+	//여행지 찜 insert (cate_no 1번 여행지)
+	public void tripJjimInsert(AllJjimVO vo)
 	{
 		try
 		{
 			conn=CreateConnection.getConnection();
 			String sql="INSERT INTO gg_allJjim_4 VALUES("
-					+"(SELECT NVL(MAX(ajno)+1,1) FROM gg_allJjim_4),?,?)";
+					+"(SELECT NVL(MAX(ajno)+1,1) FROM gg_allJjim_4),1,?,?)";
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, vo.getNo());
 			ps.setString(2, vo.getId());
@@ -31,18 +32,43 @@ public class JjimDAO {
 		}
 		
 	}
-	// 찜 됐는지 확인이요~
-	public int JjimCount(int no, String id)
+	//맛집 찜 insert (cate_no 2번 맛집)
+	public void foodJjimInsert(AllJjimVO vo)
+	{
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="INSERT INTO gg_allJjim_4 VALUES("
+					+"(SELECT NVL(MAX(ajno)+1,1) FROM gg_allJjim_4),2,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, vo.getNo());
+			ps.setString(2, vo.getId());
+			ps.executeUpdate();
+			
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+			
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		
+	}
+	// 여행지/맛집 1개에 대한 나의 찜개수
+	public int myJjimCount(int cate_no,int no,String id)
 	{
 		int count=0;
 		try 
 		{
 			conn=CreateConnection.getConnection();
 			String sql="SELECT COUNT(*) FROM gg_allJjim_4 "
-					+"WHERE no=? AND id=?";
+					+"WHERE cate_no=? AND no=? AND id=?";
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, no);
-			ps.setString(2, id);
+			ps.setInt(1, cate_no);
+			ps.setInt(2, no);
+			ps.setString(3, id);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
 			count=rs.getInt(1);
@@ -59,8 +85,8 @@ public class JjimDAO {
 		return count;
 		
 	}
-	// 찜한 것들 목록 출력 (마이페이지에서 출력될 수 있게)
-	public List<AllJjimVO> JjimListData(String id)
+	//마이페이지 - 맛집 찜 목록
+	public List<AllJjimVO> foodJjimListData(String id)
 	{
 		List<AllJjimVO> list=new ArrayList<AllJjimVO>();
 		try
@@ -100,7 +126,43 @@ public class JjimDAO {
 		}
 		return list;
 	}
-	// 찜 취소 했을 때 
+	//마이페이지 - 여행지 찜 목록
+	public List<AllJjimVO> tripJjimListData(String id)
+	{
+		List<AllJjimVO> list=new ArrayList<AllJjimVO>();
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="SELECT /*+ INDEX_DESC(gg_allJjim_4 jj_jno_pk_4*/ ajno,no, "
+					+"(SELECT DISTINCT name FROM gg_trip_4 WHERE tno=gg_allJjim_4.no), "
+					+"(SELECT DISTINCT image FROM gg_trip_4 WHERE tno=gg_allJjim_4.no), "
+					+"(SELECT DISTINCT addr FROM gg_trip_4 WHERE tno=gg_allJjim_4.no) "
+					+"FROM gg_allJjim_4 "
+					+"WHERE id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				AllJjimVO vo=new AllJjimVO();
+				vo.setAjno(rs.getInt(1));
+				vo.setNo(rs.getInt(2));
+				vo.setName(rs.getString(3));
+				vo.setPoster(rs.getString(4));
+				vo.setAddr(rs.getString(5));
+				list.add(vo);
+			}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return list;
+	}
+	//찜 취소
 	public void JjimDelete(int ajno)
 	{
 		try
@@ -123,4 +185,6 @@ public class JjimDAO {
 		}
 		
 	}
+	
+	
 }

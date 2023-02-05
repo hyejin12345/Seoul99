@@ -11,17 +11,38 @@ import com.sist.vo.AllLikeVO;
 
 @Controller
 public class LikeModel {
-	@RequestMapping("like/like_insert.do")
-	public String like_insert(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping("like/foodlike_insert.do")
+	public String foodlike_insert(HttpServletRequest request, HttpServletResponse response)
 	{
 		String fno=request.getParameter("fno");
+		
 		HttpSession session=request.getSession();
 		String id=(String)session.getAttribute("id");
+		
 		AllLikeVO vo=new AllLikeVO();
 		vo.setNo(Integer.parseInt(fno));
 		vo.setId(id);
+		
 		LikeDAO dao=new LikeDAO();
-		dao.LikeInsert(vo);
+		dao.foodLikeInsert(vo);
+		
 		return "redirect:../food/food_detail.do?fno="+fno;
+	}
+	@RequestMapping("like/triplike_insert.do")
+	public String triplike_insert(HttpServletRequest request, HttpServletResponse response)
+	{
+		String tno=request.getParameter("tno");
+		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		AllLikeVO vo=new AllLikeVO();
+		vo.setNo(Integer.parseInt(tno));
+		vo.setId(id);
+
+		LikeDAO dao=new LikeDAO();
+		dao.tripLikeInsert(vo);
+		
+		return "redirect:../trip/trip_detail.do?tno="+tno;
 	}
 }

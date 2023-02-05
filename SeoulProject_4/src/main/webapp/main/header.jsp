@@ -163,7 +163,7 @@ $(function(){
                         <li><a href="../food/food_location.do">맛집</a>
                            <ul class="sub-menu">
                               <li><a href="../food/food_location.do">서울 맛집 검색</a></li>
-                              <li><a href="#">맛집예약</a></li>
+                              <li><a href="../reserve/reserve_main.do">맛집예약</a></li>
 
                            </ul></li>
                         <li><a href="#">커뮤니티</a>
