@@ -18,9 +18,8 @@
 			커뮤니티 관리</span></a>
 			<!-- Media Sub Menu -->
 				<div id="media-sub" style="display: none;">
-					<a href="" title="Video Gallery"><i class="icon-film"></i><span>  
-					묻고 답하기</span></a>
-					<a href="" title="Photo Gallery"><i class="icon-picture"></i><span>  
+					
+					<a href="../adminpage/board_list.do" title="Photo Gallery"><i class="icon-picture"></i><span>  
 					자유게시판</span></a>
 				</div>
 			<!-- Media Sub Menu -->
