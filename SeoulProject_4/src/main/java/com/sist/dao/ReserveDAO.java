@@ -44,7 +44,7 @@ public class ReserveDAO {
 		}
 		return list;
 	}
-	// 예약일을 읽을게요
+	// 예약일
 	public  String reserveDayData(int fno)
 	{
 		String rdate="";
@@ -70,7 +70,7 @@ public class ReserveDAO {
 		return rdate;
 	}
 	
-	// 예약 시간 읽을게요
+	// 예약시간
 	public String reserveTimeData(int fdno)
 	{
   		String times="";
