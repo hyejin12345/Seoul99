@@ -68,7 +68,7 @@ public class BoardModel {
 		
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String path="C:\\webDev\\webStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\SeoulPractice\\upload"; // 업로드된 파일 저장 위치
+			String path="C:\\webDev\\webStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\SeoulProject_4\\upload"; // 업로드된 파일 저장 위치
 			int size=1024*1024*100; // 업로드된 파일의 최대 크기 : 100MB
 			String enctype="UTF-8"; // 한글 파일명
 			MultipartRequest mr=new MultipartRequest(request,path,size,enctype,new DefaultFileRenamePolicy());
@@ -292,28 +292,4 @@ public class BoardModel {
 		dao.replyDelete(Integer.parseInt(rno));
 		return "redirect:detail.do?bno="+bno;
 	}
-///////////////////////////////////////////////////admin
-@RequestMapping("board/ad_detail.do")
-			public String board_ad_detail(HttpServletRequest request, HttpServletResponse response)
-			{
-			// 출력에 필요한 데이터 전송
-			// 사용자 요청한 데이터를 받아서 처리 => 게시물 번호
-			String bno=request.getParameter("bno"); // 상세보기 => 1개만 출력한다. => primary key
-			// DAO로 전송 => 오라클에서 데이터 읽기
-			BoardDAO dao=new BoardDAO();
-			HttpSession session=request.getSession();
-			String id=(String)session.getAttribute("id");
-			BoardVO vo=dao.boardDetailData(Integer.parseInt(bno));
-			request.setAttribute("vo", vo);
-			request.setAttribute("main_jsp", "../board/detail.jsp");
-			
-			List<BoardReplyVO> list=dao.replyListData(Integer.parseInt(bno));
-			request.setAttribute("list", list);
-			request.setAttribute("count", list.size());
-			request.setAttribute("main_jsp", "../adminpage/board_detail.jsp");
-			
-			return "../main/main.jsp";
-			
-			
-			}
 }

@@ -24,28 +24,47 @@ public class MyPageModel {
 	  
 	   return "../main/main.jsp";
    }
-   @RequestMapping("mypage/jjim_list.do")
-   public String mypage_jjim(HttpServletRequest request,HttpServletResponse response)
+   @RequestMapping("mypage/trip_jjim_list.do")
+   public String mypage_trip_jjim(HttpServletRequest request,HttpServletResponse response)
    {
 	   HttpSession session=request.getSession();
 	   String id=(String)session.getAttribute("id");
 	   JjimDAO dao=new JjimDAO();
-	   List<AllJjimVO> tlist=dao.tripJjimListData(id);
-	   List<AllJjimVO> flist=dao.foodJjimListData(id);
-	   request.setAttribute("tlist", tlist);
-	   request.setAttribute("flist", flist);
-	   request.setAttribute("mypage_jsp", "../jjim/jjim_list.jsp");
+	   List<AllJjimVO> list=dao.tripJjimListData(id);
+	   request.setAttribute("list", list);
+	   request.setAttribute("mypage_jsp", "../jjim/trip_jjim_list.jsp");
 	   request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 	   
 	   return "../main/main.jsp";
    }
-   @RequestMapping("mypage/jjim_delete.do")
-   public String mypage_jjim_delete(HttpServletRequest request,HttpServletResponse response)
+   @RequestMapping("mypage/trip_jjim_delete.do")
+   public String mypage_trip_jjim_delete(HttpServletRequest request,HttpServletResponse response)
    {
 	   String ajno=request.getParameter("ajno");
 	   JjimDAO dao=new JjimDAO();
 	   dao.jjimDelete(Integer.parseInt(ajno));
-	   return "redirect:jjim_list.do";
+	   return "redirect:trip_jjim_list.do";
+   }
+   @RequestMapping("mypage/food_jjim_list.do")
+   public String mypage_food_jjim(HttpServletRequest request,HttpServletResponse response)
+   {
+	   HttpSession session=request.getSession();
+	   String id=(String)session.getAttribute("id");
+	   JjimDAO dao=new JjimDAO();
+	   List<AllJjimVO> list=dao.foodJjimListData(id);
+	   request.setAttribute("list", list);
+	   request.setAttribute("mypage_jsp", "../jjim/food_jjim_list.jsp");
+	   request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+	   
+	   return "../main/main.jsp";
+   }
+   @RequestMapping("mypage/food_jjim_delete.do")
+   public String mypage_food_jjim_delete(HttpServletRequest request,HttpServletResponse response)
+   {
+	   String ajno=request.getParameter("ajno");
+	   JjimDAO dao=new JjimDAO();
+	   dao.jjimDelete(Integer.parseInt(ajno));
+	   return "redirect:food_jjim_list.do";
    }
    
    @RequestMapping("mypage/member_update.do")
