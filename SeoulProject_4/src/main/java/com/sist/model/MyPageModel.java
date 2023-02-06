@@ -44,7 +44,7 @@ public class MyPageModel {
    {
 	   String ajno=request.getParameter("ajno");
 	   JjimDAO dao=new JjimDAO();
-	   dao.JjimDelete(Integer.parseInt(ajno));
+	   dao.jjimDelete(Integer.parseInt(ajno));
 	   return "redirect:jjim_list.do";
    }
    
