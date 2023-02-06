@@ -268,5 +268,182 @@ public class MemberDAO {
 	   }
 	   return pwd;
    }
-   // 6. 회원 탈퇴 
+   ///////////////////////////////////////////////////////mypage
+   /*
+    * ID    NOT NULL VARCHAR2(20) 
+	PWD   NOT NULL VARCHAR2(20) 
+	NAME  NOT NULL VARCHAR2(34) 
+	SEX            VARCHAR2(6)  
+	NICK  NOT NULL VARCHAR2(20) 
+	BIRTH NOT NULL VARCHAR2(20) 
+	EMAIL          VARCHAR2(50) 
+	PHONE NOT NULL VARCHAR2(20) 
+	TOS   NOT NULL CLOB         
+	ADMIN          CHAR(1)      
+	COUNT          NUMBER 
+    */
+   public MemberVO member_info(String id) {
+	   MemberVO vo=new MemberVO();
+	   try {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT id,pwd,name,sex,nick,birth,email,phone,tos,admin,"
+		   		+ "(SELECT SUBSTR(phone,5,4) FROM gg_member_4 WHERE id=?) tel1,"
+		   		+ "(SELECT SUBSTR(phone,10,4) FROM gg_member_4 WHERE id=?) tel2 "
+		   		+ "FROM gg_member_4 "
+		   		+ "WHERE id=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, id);
+		   ps.setString(2, id);
+		   ps.setString(3, id);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   vo.setId(rs.getString(1));
+		   vo.setPwd(rs.getString(2));
+		   vo.setName(rs.getString(3));
+		   vo.setSex(rs.getString(4));
+		   vo.setNick(rs.getString(5));
+		   vo.setBirth(rs.getString(6));
+		   vo.setEmail(rs.getString(7));
+		   vo.setPhone(rs.getString(8));
+		   vo.setTos(rs.getString(9));
+		   vo.setAdmin(rs.getString(10));
+		   vo.setTel1(rs.getString(11));
+		   vo.setTel2(rs.getString(12));
+		   rs.close();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return vo;
+   }
+   
+// 3. 회원 수정 
+   public MemberVO memberJoinUpdateData(String id)
+   {
+	   MemberVO vo=new MemberVO();
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT id,pwd,name,sex,nick,birth,email,phone,tos,admin "
+				   + "(SELECT SUBSTR(phone,5,4) FROM gg_member_4 WHERE id=?) tel1,"
+			   		+ "(SELECT SUBSTR(phone,10,4) FROM gg_member_4 WHERE id=?) tel2 "
+				     +"FROM gg_member_4 "
+				     +"WHERE id=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, id);
+		   ps.setString(2, id);
+		   ps.setString(3, id);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   vo.setId(rs.getString(1));
+		   vo.setPwd(rs.getString(2));
+		   vo.setName(rs.getString(3));
+		   vo.setSex(rs.getString(4));
+		   vo.setNick(rs.getString(5));
+		   vo.setBirth(rs.getString(6));
+		   vo.setEmail(rs.getString(7));
+		   vo.setPhone(rs.getString(8));
+		   vo.setTos(rs.getString(9));
+		   vo.setAdmin(rs.getString(10));
+		   vo.setTel1(rs.getString(11));
+		   vo.setTel2(rs.getString(12));
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return vo;
+   }
+   
+   // 회원 수정 
+   public boolean memberJoinUpdate(MemberVO vo)
+   {
+	   boolean bCheck=false;
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT pwd FROM gg_member_4 "
+				     +"WHERE id=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, vo.getId());
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   String db_pwd=rs.getString(1);
+		   rs.close();
+		   
+		   if(db_pwd.equals(vo.getPwd()))
+		   {
+			   bCheck=true;
+			   //id,pwd,name,sex,nick,birth,email,phone,tos,admin
+			   sql="UPDATE gg_member_4 SET "
+				  +"pwd=?,name=?,sex=?,nick=?,birth=?,email=?,phone=?,tos=? "
+				  +"WHERE id=?";
+			   ps=conn.prepareStatement(sql);
+			   
+			   ps.setString(1, vo.getPwd());
+			   ps.setString(2, vo.getName());
+			   ps.setString(3, vo.getSex());
+			   ps.setString(4, vo.getNick());
+			   ps.setString(5, vo.getBirth());
+			   ps.setString(6, vo.getEmail());
+			   ps.setString(7, vo.getPhone());
+			   ps.setString(8, vo.getTos());
+			   ps.setString(9, vo.getId());
+			   ps.executeUpdate();
+			   
+			  
+		   }
+		   
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return bCheck;
+   }
+// 6. 회원 탈퇴 
+   public boolean memberJoinDelete(String id,String pwd)
+   {
+	   boolean bCheck=false;
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT pwd FROM gg_member_4 "
+				     +"WHERE id=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, id);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   String db_pwd=rs.getString(1);
+		   rs.close();
+		   
+		   if(db_pwd.equals(pwd))
+		   {
+			   bCheck=true;
+			   sql="DELETE FROM gg_member_4 "
+				  +"WHERE id=?";
+			   ps=conn.prepareStatement(sql);
+			   ps.setString(1, id);
+			   ps.executeUpdate();
+		   }
+		   
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return bCheck;
+   }
+   ///////////////////////////////////////////////////////
 }

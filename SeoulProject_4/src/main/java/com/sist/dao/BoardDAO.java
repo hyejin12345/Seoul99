@@ -477,5 +477,73 @@ public class BoardDAO {
 			   }catch(Exception ex) {}
 		   }
 	   }
-	
-}
+//////////////////////////////////////////////////////admin
+		public void ad_boardInsert(BoardVO vo) {
+		try {
+		conn=CreateConnection.getConnection();
+		String sql = "INSERT INTO gg_board_4(bno, name, title, content,filename,filesize,id) "
+		+ "VALUES(gb_bno_seq_4.nextval, ?, ?, ?, ?, ?, ?)";
+		ps = conn.prepareStatement(sql);
+		// ?에 값을 채운다
+		ps.setString(1, vo.getName());
+		ps.setString(2, vo.getTitle());
+		ps.setString(3, vo.getContent());
+		ps.setString(4, vo.getFilename());
+		ps.setInt(5, vo.getFilesize());
+		ps.setString(6, vo.getId());
+		ps.executeUpdate(); // COMMIT 포함 => INSERT, UPDATE, DELETE
+		
+		} catch (Exception e) {
+		e.printStackTrace();
+		} finally {
+		CreateConnection.disConnection(conn, ps);
+		}
+		}
+		public void ad_boardUpdate(BoardVO vo) { // 수정할 데이터 여러개 => VO, 한개, 두개, 일반변수
+		// boolean => 비밀번호가 맞는 경우 / 틀린경우 => 경우의수가 여러개면 int, String, 두개명 : boolean
+		// 수정 => 비밀번호(O) => 수정하고 상세보기로 이동, 비밀번호(X) => 수정없이 이전화면으로 이동
+		
+		try {
+		// 1. 연결
+		conn=CreateConnection.getConnection();
+		// 2. SQL => 두번 수행
+		// 2-1 => 비밀번호 확인
+		String sql = "UPDATE gg_board_4 SET "
+		+ "name=?, title=?, content=?, moddate=SYSDATE " //regdate=SYSDATE 수정날짜 
+		+ "WHERE bno=?";
+		ps = conn.prepareStatement(sql);
+		ps.setString(1, vo.getName());
+		ps.setString(2, vo.getTitle());
+		ps.setString(3, vo.getContent());
+		ps.setInt(4, vo.getBno());
+		
+		// 실행 명령
+		ps.executeUpdate();
+		
+		} catch (Exception e) {
+		e.printStackTrace();
+		} finally {
+		CreateConnection.disConnection(conn, ps);
+		}
+		}
+		public void ad_boardDelete(int no) {
+		
+		try {
+		conn=CreateConnection.getConnection();
+		// 비밀번호 체크
+		String sql ="DELETE FROM gg_board_4 "
+		+ "WHERE bno=?";
+		ps = conn.prepareStatement(sql);
+		ps.setInt(1, no);
+		ps.executeUpdate();
+		
+		
+		} catch (Exception e) {
+		e.printStackTrace();
+		} finally {
+		CreateConnection.disConnection(conn, ps);
+		}
+		
+		}
+			
+		}

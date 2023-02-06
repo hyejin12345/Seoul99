@@ -292,4 +292,28 @@ public class BoardModel {
 		dao.replyDelete(Integer.parseInt(rno));
 		return "redirect:detail.do?bno="+bno;
 	}
+///////////////////////////////////////////////////admin
+@RequestMapping("board/ad_detail.do")
+			public String board_ad_detail(HttpServletRequest request, HttpServletResponse response)
+			{
+			// 출력에 필요한 데이터 전송
+			// 사용자 요청한 데이터를 받아서 처리 => 게시물 번호
+			String bno=request.getParameter("bno"); // 상세보기 => 1개만 출력한다. => primary key
+			// DAO로 전송 => 오라클에서 데이터 읽기
+			BoardDAO dao=new BoardDAO();
+			HttpSession session=request.getSession();
+			String id=(String)session.getAttribute("id");
+			BoardVO vo=dao.boardDetailData(Integer.parseInt(bno));
+			request.setAttribute("vo", vo);
+			request.setAttribute("main_jsp", "../board/detail.jsp");
+			
+			List<BoardReplyVO> list=dao.replyListData(Integer.parseInt(bno));
+			request.setAttribute("list", list);
+			request.setAttribute("count", list.size());
+			request.setAttribute("main_jsp", "../adminpage/board_detail.jsp");
+			
+			return "../main/main.jsp";
+			
+			
+			}
 }
