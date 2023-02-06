@@ -88,18 +88,18 @@
              <c:if test="${sessionScope.id!=null }">
              
              
-                 <c:if test="${mylike_count==0 }">
+                 <c:if test="${myLike_count==0 }">
                   <a href="../like/foodlike_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up"></i></a>(${like_total })
                  </c:if>
-                 <c:if test="${mylike_count!=0 }">
-                   <span class="circle_btn"><i class="fa-regular fa-thumbs-up"></i></span>(${like_total })
+                 <c:if test="${myLike_count>0 }">
+                   <a href="../like/foodlike_delete.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up"></i></a>(${like_total })
                  </c:if>
                  
-                 <c:if test="${myjjim_count==0 }">
+                 <c:if test="${myJjim_count==0 }">
                   <a href="../jjim/foodjjim_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-sharp fa-solid fa-heart"></i></a>
                  </c:if>
-                 <c:if test="${myjjim_count!=0 }">
-                   <span class="circle_btn"><i class="fa-sharp fa-solid fa-heart"></i></span>
+                 <c:if test="${myJjim_count>0 }">
+                   <a href="../jjim/foodjjim_delete.do?fno=${vo.fno }" class="circle_btn"><i class="fa-sharp fa-solid fa-heart" style="color:#f46555"></i></a>
                  </c:if>
                  
                  <a href="#" class="btn btn-xs btn-warning">예약하기</a>

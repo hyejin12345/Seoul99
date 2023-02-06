@@ -144,19 +144,23 @@ public class FoodModel {
 			
 			AllReplyDAO rdao=new AllReplyDAO();
 			List<AllReplyVO> rList=rdao.allReplyListData(Integer.parseInt(fno), 2);
-			request.setAttribute("rList1", rList);
+			request.setAttribute("rList", rList);
 			request.setAttribute("count", rList.size());
-			//
+			
+			// 찜, 좋아요 관련 id 받기
 			HttpSession session=request.getSession();
 			String id=(String)session.getAttribute("id");
+			
+			// 찜 개수(개인)
 			JjimDAO jdao=new JjimDAO();
 			int jcount=jdao.myJjimCount(2,Integer.parseInt(fno), id);
-			request.setAttribute("myjjim_count", jcount);
+			request.setAttribute("myJjim_count", jcount);
 			
+			// 좋아요 개수 (개인, 전체)
 			LikeDAO ldao=new LikeDAO();
 			int mc=ldao.myLikeCount(2,Integer.parseInt(fno), id);
 			int tc=ldao.allLikeCount(2,Integer.parseInt(fno));
-			request.setAttribute("mylike_count", mc);
+			request.setAttribute("myLike_count", mc);
 			request.setAttribute("like_total", tc);
 		
 			request.setAttribute("main_jsp", "../food/food_detail.jsp");

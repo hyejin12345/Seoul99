@@ -132,4 +132,28 @@ public class LikeDAO {
 			CreateConnection.disConnection(conn, ps);
 		}	
 	}
+	
+	//맛집상세페이지 - 좋아요 취소
+		public void foodLikeDelete(int cate_no,int no,String id)
+		{
+			try
+			{
+				conn=CreateConnection.getConnection();
+				String sql="DELETE FROM gg_alllike_4 "
+						+"WHERE cate_no=2 AND no=? AND id=? ";  //cate_no 2번 맛집
+				
+				ps=conn.prepareStatement(sql);
+				
+				ps.setInt(1, no);
+				ps.setString(2, id);
+				ps.executeUpdate();
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}	
+			finally
+			{
+				CreateConnection.disConnection(conn, ps);
+			}	
+		}
 }

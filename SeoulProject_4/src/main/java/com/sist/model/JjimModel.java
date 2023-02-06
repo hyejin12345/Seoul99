@@ -65,4 +65,23 @@ public class JjimModel {
 		
 		return "redirect:../trip/trip_detail.do?tno="+tno;
 	}
+	
+	@RequestMapping("jjim/foodjjim_delete.do")
+	public String foodjjim_delete(HttpServletRequest request, HttpServletResponse response)
+	{
+		String fno=request.getParameter("fno");
+		
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		
+		AllJjimVO vo=new AllJjimVO();
+		vo.setNo(Integer.parseInt(fno));
+		vo.setId(id);
+		
+		// db연동
+		JjimDAO dao=new JjimDAO();
+		dao.foodJjimDelete(2, Integer.parseInt(fno), id);
+		
+		return "redirect:../food/food_detail.do?fno="+fno;
+	}
 }

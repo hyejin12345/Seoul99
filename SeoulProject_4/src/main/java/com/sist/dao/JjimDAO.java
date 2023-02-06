@@ -162,8 +162,8 @@ public class JjimDAO {
 		}
 		return list;
 	}
-	//찜 취소
-	public void JjimDelete(int ajno)
+	//마이페이지 찜 취소
+	public void jjimDelete(int ajno)
 	{
 		try
 		{
@@ -193,6 +193,30 @@ public class JjimDAO {
 			conn=CreateConnection.getConnection();
 			String sql="DELETE FROM gg_allJjim_4 "
 					+"WHERE cate_no=1 AND no=? AND id=? ";  //cate_no 1번 여행지
+			
+			ps=conn.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			ps.setString(2, id);
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}	
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}	
+	}
+	
+	// 맛집상세페이지 - 찜 취소
+	public void foodJjimDelete(int cate_no,int no,String id)
+	{
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="DELETE FROM gg_allJjim_4 "
+					+"WHERE cate_no=2 AND no=? AND id=? ";  //cate_no 2번 맛집
 			
 			ps=conn.prepareStatement(sql);
 			
