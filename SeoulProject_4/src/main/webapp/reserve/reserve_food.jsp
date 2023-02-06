@@ -28,12 +28,15 @@ $(function(){
 	$('.trs').click(function(){
 		let img=$(this).attr("data-img")
 		let name=$(this).attr("data-name");
+		let fno=$(this).attr("data-fno");
 		$('#food_img').attr("src",img)
 		$('#food_name').text(name)
+		$('#fno').val(fno)
 		
 		$.ajax({
 			type:'post',
 			url:'../reserve/reserve_date.do',
+			data:{"fno":fno},
 			success:function(response)
 			{
 				$('#select_date').html(response)
@@ -50,7 +53,7 @@ $(function(){
 
   <table class="table here">
 	  <c:forEach var="vo" items="${list }">
-	     <tr class="trs" data-img="${vo.poster }" data-name="${vo.name }" style="border-bottom:1px solid lightgray;">
+	     <tr class="trs" data-img="${vo.poster }" data-name="${vo.name }" data-fno="${vo.fno }"style="border-bottom:1px solid lightgray;">
 	      <td class="text-left" style="padding:10px;width:25%;">
 	        <img src="${vo.poster }" style="width:90%;height:90%">
 	      </td>

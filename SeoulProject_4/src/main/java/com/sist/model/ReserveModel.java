@@ -1,6 +1,7 @@
 package com.sist.model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -8,11 +9,13 @@ import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.ReserveDAO;
 import com.sist.vo.FoodVO;
+import com.sist.vo.ReserveVO;
 @Controller
 public class ReserveModel {
   @RequestMapping("reserve/reserve_main.do")
@@ -49,6 +52,7 @@ public class ReserveModel {
 	  
 	  String syear=request.getParameter("year");
 	  String smonth=request.getParameter("month");
+	  String fno=request.getParameter("fno");
 	  
 	  if(syear==null)
 	  {
@@ -87,8 +91,47 @@ public class ReserveModel {
 	  request.setAttribute("strWeek", strWeek);
 	  request.setAttribute("strWeek", strWeek);
 	  //request.setAttribute("", month)  //예약 가능 날짜 (food_location) => 예약일 => 시간 => 인원
+	  
+	  ReserveDAO dao=new ReserveDAO();
+	     String rdate=dao.reserveDayData(Integer.parseInt(fno));
+	     int[] rdays=new int[32];
+	     String[] temp=rdate.split(",");
+	     for(String ss:temp)
+	     {
+	        if(Integer.parseInt(ss)>=day)
+	        {
+	           rdays[Integer.parseInt(ss)]=1;
+	        }
+	     }
+	     request.setAttribute("rdays", rdays);
 	  return "../reserve/reserve_date.jsp";
   }
+  @RequestMapping("reserve/reserve_time.do")
+  public String reserve_time(HttpServletRequest request, HttpServletResponse response)
+  {
+     String day = request.getParameter("day");
+     List<String> reserve_time = new ArrayList<String>();
+     // DAO 연결
+     ReserveDAO dao = new ReserveDAO();
+     String dd=dao.reserveTimeData(Integer.parseInt(day));
+     // 1,2,3
+     StringTokenizer st = new StringTokenizer(dd,",");
+     while(st.hasMoreTokens())
+     {
+        String ss = dao.reserveTimeRealData(Integer.parseInt(st.nextToken()));
+        reserve_time.add(ss);
+     }
+     request.setAttribute("rtime", reserve_time);
+     return "../reserve/reserve_time.jsp";
+  }
+  
+    @RequestMapping("reserve/reserve_inwon.do")
+    public String reserve_inwon(HttpServletRequest request, HttpServletResponse response)
+    {
+       return "../reserve/reserve_inwon.jsp";
+    }
+  
+    
 }
 
 

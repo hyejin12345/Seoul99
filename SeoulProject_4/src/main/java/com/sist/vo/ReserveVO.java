@@ -20,15 +20,28 @@ import java.sql.Date;
    CONSTRAINT res_inwon_ck_4 CHECK(inwon>0)
 
  */
+
+/*
+ 	FRNO    NOT NULL NUMBER         
+	FNO              NUMBER         
+	ID               VARCHAR2(20)   
+	RNO     NOT NULL VARCHAR2(50)   
+	RDATE   NOT NULL VARCHAR2(100)  
+	RTIME   NOT NULL VARCHAR2(100)  
+	INWON            NUMBER         
+	MSG              VARCHAR2(1000) 
+	OK               CHAR(10)       
+	REGDATE          DATE           
+ */
 public class ReserveVO {
-	private int rno,fno,inwon;
-	private String id,rdate,rtime,reserve_no,ok;
+	private int frno,fno,inwon;
+	private String id,rno,rdate,rtime,msg,ok;
 	private Date regdate;
-	public int getRno() {
-		return rno;
+	public int getFrno() {
+		return frno;
 	}
-	public void setRno(int rno) {
-		this.rno = rno;
+	public void setFrno(int frno) {
+		this.frno = frno;
 	}
 	public int getFno() {
 		return fno;
@@ -48,6 +61,12 @@ public class ReserveVO {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getRno() {
+		return rno;
+	}
+	public void setRno(String rno) {
+		this.rno = rno;
+	}
 	public String getRdate() {
 		return rdate;
 	}
@@ -60,11 +79,11 @@ public class ReserveVO {
 	public void setRtime(String rtime) {
 		this.rtime = rtime;
 	}
-	public String getReserve_no() {
-		return reserve_no;
+	public String getMsg() {
+		return msg;
 	}
-	public void setReserve_no(String reserve_no) {
-		this.reserve_no = reserve_no;
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 	public String getOk() {
 		return ok;
@@ -78,6 +97,5 @@ public class ReserveVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
 
 }

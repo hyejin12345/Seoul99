@@ -37,6 +37,16 @@ $(function(){
 		let month=$(this).attr("data-month");
 		let day=$(this).text();
 	    $('#r_day').text(year+"년도 "+month+"월 "+day+"일")
+	    $('#reserveday').val(year+"년도 "+month+"월 "+day+"일")
+	    $.ajax({
+	    	type:'post',
+	    	url:'../reserve/reserve_time.do',
+	    	data:{"day":day},
+	    	success:function(response)
+	    	{
+	    		$('#select_time').html(response);
+	    	}
+	    })
 	})
 	
 })

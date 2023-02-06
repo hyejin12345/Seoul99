@@ -44,4 +44,83 @@ public class ReserveDAO {
 		}
 		return list;
 	}
+	// 예약일을 읽을게요
+	public  String reserveDayData(int fno)
+	{
+		String rdate="";
+		try
+		{
+			conn=CreateConnection.getConnection();
+			String sql="SELECT reserve_day FROM gg_locationFood_4 "
+					+"WHERE fno=?";
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, fno);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			rdate=rs.getString(1);
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			CreateConnection.disConnection(conn, ps);
+		}
+		return rdate;
+	}
+	
+	// 예약 시간 읽을게요
+	public String reserveTimeData(int fdno)
+	{
+  		String times="";
+  		try
+  		{
+  			conn=CreateConnection.getConnection();
+  			String sql = "SELECT time FROM gg_foodDate_4 "
+  					+ "WHERE fdno=?";
+  			ps=conn.prepareStatement(sql);
+  			ps.setInt(1, fdno);
+  			ResultSet rs = ps.executeQuery();
+  			rs.next();
+  			times=rs.getString(1);
+  			rs.close();
+  		}catch(Exception ex)
+  		{
+  			ex.printStackTrace();
+  		}
+  		finally
+  		{
+  			CreateConnection.disConnection(conn, ps);
+  		}
+  		return times;
+  		
+  	}
+	
+	public String reserveTimeRealData(int ftno)
+  	{
+  		String times="";
+  		try
+  		{
+  			conn=CreateConnection.getConnection();
+  			String sql = "SELECT time FROM gg_foodTime_4 "
+  					+ "WHERE ftno=?";
+  			ps=conn.prepareStatement(sql);
+  			ps.setInt(1, ftno);
+  			ResultSet rs = ps.executeQuery();
+  			rs.next();
+  			times=rs.getString(1);
+  			rs.close();
+  		}catch(Exception ex)
+  		{
+  			ex.printStackTrace();
+  		}
+  		finally
+  		{
+  			CreateConnection.disConnection(conn, ps);
+  		}
+  		return times;
+  		
+  	}
+	
 }
