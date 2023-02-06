@@ -12,7 +12,7 @@
 {
 	padding:2px;
 }
-.days{
+.days_true,.days_false{
 	cursor:pointer;
 }
 .days b{
@@ -26,13 +26,13 @@
 <script type="text/javascript">
 $(function(){
 
- 	$('.days').hover(function(){
+ 	$('.days_true').hover(function(){
 		$(this).css("color","#004fff")
 	},function(){
 		$(this).css("color","black")
 	}) 
 	
-	$('.days').click(function(){
+	$('.days_true').click(function(){
 		let year=$(this).attr("data-year");
 		let month=$(this).attr("data-month");
 		let day=$(this).text();
@@ -66,8 +66,9 @@ $(function(){
       <c:forEach var="w" items="${strWeek }">
         <th class="text-center cal" height="35">${w }</th>
       </c:forEach>
+      
     </tr>
-    <c:forEach var="i" begin="1" end="${lastday }">
+    <c:forEach var="i" begin="1" end="${lastday }" varStatus="s">
       <!-- 칸 간격 띄우기 -->
       <c:if test="${i==1 }">  
         <tr>
@@ -76,7 +77,12 @@ $(function(){
             <td class="text-center cal" height="35"></td>
           </c:forEach>
       </c:if>
-      <td class="days text-center cal ${i==day?'danger':'' }" height="35" data-year="${year }" data-month="${month }">${i }</td>
+      <c:if test="${rdays[s.index]==1}">
+        <td class="days_true text-center info" height="35" data-year="${year }" data-month="${month }">${i }</td>
+      </c:if>
+        <c:if test="${rdays[s.index]!=1}">
+        <td class="days_false text-center" height="35" style="color:gray">${i }</td>
+       </c:if>
       <c:set var="week" value="${week+1 }"/> <%-- week++ --%>
       <c:if test="${week>6 }">
         <c:set var="week" value="0"/> <%-- week=0 --%>

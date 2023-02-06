@@ -85,7 +85,7 @@ $(function(){
    <div style="height: 60px"></div>
    <table class="table" style="width: 100%;height: 700px">
      <tr>
-       <td style="width:200px;height:500px;">
+       <td style="width:35%;height:500px;">
          <table class="table">
            <caption><h3 class="text-center subtitle">맛집 선택</h3></caption>
            <tr style="border-bottom:3px solid #004fff">
@@ -106,7 +106,7 @@ $(function(){
            </tr>
          </table>
        </td>
-       <td width=40% height="500">
+       <td width=35% height="500">
          <table class="table">
            <caption><h3 class="text-center subtitle">예약일 선택</h3></caption>
            <tr>
@@ -121,18 +121,37 @@ $(function(){
            <caption><h3 class="text-center subtitle">예약 정보</h3></caption>
            <tr>
              <td class="text-center" colspan=2>
-                 <img id="food_img" src="def.png" style="width:250px;height:250px;background:#ededed;" >
+                 <img id="food_img" src="image/ready.png" style="margin:0 0 0 10px;width:300px;height:300px;" >
              </td>
            </tr>
            <tr>
-             <th class="text-center" width=30%>맛집명</th>
+             <th width=30%>맛집명</th>
              <td class="text-left" colspan=2>
-               <span id="food_name" style="color:#004fff">(선택전)</span>
+               <span id="food_name">(선택전)</span>
              </td>
            </tr>
            <tr>
-             <th class="text-center" width=30%>예약일</th>
-             <td width=70%><span id="r_day" style="color:#004fff">(선택전)</span></td>
+             <th width=30%>예약일</th>
+             <td width=70%><span id="r_day" >(선택전)</span></td>
+           </tr>
+           <tr>
+             <th width="30%">예약시간</th>
+             <td width=70%><span id="r_time">(선택전)</span></td>
+           </tr>
+           <tr>
+             <th width="30%">예약인원</th>
+             <td width=70%><span id="r_inwon">(선택전)</span></td>
+           </tr>
+           <tr>
+             <td colspan="2" class="text-center ok_btn" style="display:none">
+               <form method="post" action="../reserve/reserve_ok.do">
+                 <input type=hidden name="fno" id="fno">
+                 <input type=hidden name="reserveday" id="reserveday">
+                 <input type=hidden name="reservetime" id="reservetime">
+                 <input type=hidden name="reserveinwon" id="reserveinwon">
+                 <input type=submit value="예약하기" class="btn btn-lg btn-primary">
+               </form>
+             </td>
            </tr>
          </table>
        </td>
@@ -141,11 +160,21 @@ $(function(){
        <td class="default" width="35%" height="200">
          <table class="table">
            <caption><h3 class="text-center subtitle">시간 선택</h3></caption>
+           <tr>
+             <td>
+               <div id="select_time"></div>
+             </td>
+           </tr>
          </table>
        </td>
        <td class="warning" width="35%" height="200">
          <table class="table">
            <caption><h3 class="text-center subtitle">인원 선택</h3></caption>
+           <tr>
+             <td>
+               <div id="select_inwon"></div>
+             </td>
+           </tr>
          </table>
        </td>
      </tr>

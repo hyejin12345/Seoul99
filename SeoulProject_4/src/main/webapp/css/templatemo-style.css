@@ -156,9 +156,6 @@ i.fa-heart{
    color : gray;
    text-align : center;
 }
-i.fa-heart:hover{
-   color : #ff6555;
-}
 
 .blue-button a {
   display: inline-block;
