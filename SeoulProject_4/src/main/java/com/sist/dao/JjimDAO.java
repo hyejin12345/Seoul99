@@ -93,10 +93,10 @@ public class JjimDAO {
 		{
 			conn=CreateConnection.getConnection();
 			String sql="SELECT /*+ INDEX_DESC(gg_allJjim_4 jj_jno_pk_4*/ ajno,no,"
-					+"(SELECT DISTINCT name FROM gg_foodDetail_4 WHERE fno=gg_allJjim_4.no),"
-					+"(SELECT DISTINCT poster FROM gg_foodDetail_4 WHERE fno=gg_allJjim_4.no),"
-					+"(SELECT DISTINCT addr FROM gg_foodDetail_4 WHERE fno=gg_allJjim_4.no),"
-					+"(SELECT DISTINCT tel FROM gg_foodDetail_4 WHERE fno=gg_allJjim_4.no) "
+					+"(SELECT DISTINCT name FROM gg_locationfood_4 WHERE fno=gg_allJjim_4.no),"
+					+"(SELECT DISTINCT poster FROM gg_locationfood_4 WHERE fno=gg_allJjim_4.no),"
+					+"(SELECT DISTINCT addr FROM gg_locationfood_4 WHERE fno=gg_allJjim_4.no),"
+					+"(SELECT DISTINCT tel FROM gg_locationfood_4 WHERE fno=gg_allJjim_4.no) "
 					+"FROM gg_allJjim_4 "
 					+"WHERE id=?";
 			ps=conn.prepareStatement(sql);
