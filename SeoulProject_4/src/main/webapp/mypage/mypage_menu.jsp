@@ -31,10 +31,10 @@
 			서비스 수정</span></a>
 			<!-- Media Sub Menu -->
 				<div id="media-sub" style="display: none;">
-					<a href="" title="../mypage/like_list.do"><i class="icon-thumbs-up"></i><span>  
-					좋아요</span></a>
-					<a href="" title="../mypage/jjim_list.do"><i class="icon-heart"></i><span>  
-					찜</span></a>
+					<a href="../mypage/trip_jjim_list.do" title="Video Gallery"><i class="icon-heart"></i><span>  
+					여행지 찜</span></a>
+					<a href="../mypage/food_jjim_list.do" title=""><i class="icon-heart"></i><span>  
+					맛집 찜</span></a>
           <a href="" title="Photo Gallery"><i class="icon-food"></i><span>  
 					예약</span></a>
 				</div>
