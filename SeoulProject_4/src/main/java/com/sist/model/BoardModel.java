@@ -68,7 +68,7 @@ public class BoardModel {
 		
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String path="C:\\webDev\\webStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\SeoulPractice\\upload"; // 업로드된 파일 저장 위치
+			String path="C:\\webDev\\webStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\SeoulPractice\\upload"; // 업로드된 파일 저장 위치
 			int size=1024*1024*100; // 업로드된 파일의 최대 크기 : 100MB
 			String enctype="UTF-8"; // 한글 파일명
 			MultipartRequest mr=new MultipartRequest(request,path,size,enctype,new DefaultFileRenamePolicy());

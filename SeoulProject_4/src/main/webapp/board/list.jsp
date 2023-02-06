@@ -7,6 +7,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+h2{
+margin:60px 0;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 15px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+</style>
 </head>
 <body>
 <div class="wrapper row3">
@@ -30,7 +41,7 @@
     	 <tr>
     	 	<th width=10% class="text-center">번호</th>
     	 	<th width=30% class="text-center">제목</th>
-    	 	<th width=15% class="text-center">이름</th>
+    	 	<th width=15% class="text-center">작성자</th>
     	 	<th width=15% class="text-center">작성일</th>
     	 	<th width=10% class="text-center">조회수</th>
     	 	<th width=20% class="text-center">첨부파일</th>
@@ -60,12 +71,12 @@
     	 </c:forEach>
     	</table>
     	</div>
-    	<table class="table">
+    	<table class="table" height="60px;">
     		<tr>
     			<td class="text-center">
-    				<a href="../board/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
-    				${curpage } page / ${totalpage } pages
-    				<a href="../board/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+    				<a href="../board/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm" style="background-color:#004fff;">이전</a>
+    				${curpage } 페이지 / ${totalpage } 페이지
+    				<a href="../board/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm" style="background-color:#004fff;">다음</a>
     			</td>
     		</tr>
     	</table>
