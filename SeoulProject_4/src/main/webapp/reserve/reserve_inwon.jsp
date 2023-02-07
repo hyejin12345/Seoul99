@@ -6,12 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('.inwons').click(function(){
 		let inwon=$(this).text();
-		$('#r_inwon').text(inwon+"명");
+		$('#r_inwon').text(inwon);
 		$('#reserveinwon').val(inwon)
 		$(".ok_btn").show();
 	})
@@ -20,7 +23,7 @@ $(function(){
 </head>
 <body>
   <c:forEach var="i" begin="1" end="10">
-    <span class="btn btn-sm btn-primary inwons">${i }</span>
+    <span class="whitegray_btn inwons">${i }명</span>
   </c:forEach>
 </body>
 </html>
