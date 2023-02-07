@@ -219,7 +219,6 @@ $(function(){
             
                <c:forEach var="tvo" items="${tlist }" varStatus="s">
                 <div class="content_item">
-                   <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
                    
                    <a href="../trip/trip_before_detail.do?tno=${tvo.tno }">
                    <img src="${tvo.image }">
@@ -278,7 +277,6 @@ $(function(){
             
                <c:forEach var="fvo" items="${flist }" varStatus="s">
                 <div class="content_item">
-                   <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
                    
                    <a href="../food/food_before_detail.do?fno=${fvo.fno }">
                    <img src="${fvo.poster }">

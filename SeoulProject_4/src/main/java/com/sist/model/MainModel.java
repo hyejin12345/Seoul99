@@ -29,6 +29,27 @@ public class MainModel {
       List<TripVO> tlist2 = tdao.tripOhterList(2);
       request.setAttribute("tlist2", tlist2);
       
+      
+      //찜 표시
+    JjimDAO jdao=new JjimDAO();
+    
+    HttpSession session=request.getSession();
+    String id=(String)session.getAttribute("id");
+    
+    for(TripVO vo:tlist1)
+    {
+       if(id==null)
+       {	   
+          vo.setJjim(0);
+       }
+       else
+       {
+       vo.setJjim(jdao.myJjimCount(1, vo.getTno(),id));
+       }
+    }
+    //request.setAttribute("jjimcount", jjimcount);
+      
+      
       // 메인 맛집리스트
       FoodDAO fdao = new FoodDAO();
       List<FoodCategoryVO> flist = fdao.mainpageFoodListData(); // ArrayList에서 List로 수정
@@ -37,15 +58,15 @@ public class MainModel {
       // 메인 축제리스트
       List<FestivalVO> fslist = tdao.festivalListData();
       request.setAttribute("fslist", fslist);
-
+      
       // main 본문에 include할 jsp파일
       request.setAttribute("main_jsp", "../main/home.jsp");// main.jsp
       
       // cookie 전송 - 여행지
       Cookie[] cookies=request.getCookies();
       List<TripVO> tcList=new ArrayList<TripVO>();
-      HttpSession session=request.getSession();
-      String id=(String)session.getAttribute("id");
+      /*HttpSession*/ session=request.getSession();
+      /*String*/ id=(String)session.getAttribute("id");
       if(cookies!=null)
       {
          if(id==null)
@@ -75,12 +96,13 @@ public class MainModel {
       }
       request.setAttribute("tcList", tcList);
       
+      
       //cookie 전송 - 맛집
       Cookie[] cookies2=request.getCookies();
       List<FoodVO> fcList=new ArrayList<FoodVO>();
       session=request.getSession();
       id=(String)session.getAttribute("id");
-      if(cookies!=null)
+      if(cookies2!=null)
       {
          if(id==null)
          {
@@ -96,11 +118,11 @@ public class MainModel {
          }
          else
          {
-            for(int i=cookies.length-1;i>=0;i--)
+            for(int i=cookies2.length-1;i>=0;i--)
             {
-               if(cookies[i].getName().startsWith(id+"_food"))
+               if(cookies2[i].getName().startsWith(id+"_food"))
                {
-                  String fno=cookies[i].getValue();
+                  String fno=cookies2[i].getValue();
                   FoodVO vo=fdao.foodDetail(Integer.parseInt(fno));
                   fcList.add(vo);
                }
@@ -108,6 +130,7 @@ public class MainModel {
          }
       }
       request.setAttribute("fcList", fcList);
+      
       
       return "../main/main.jsp";
 

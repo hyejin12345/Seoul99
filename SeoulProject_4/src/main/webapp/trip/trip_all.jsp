@@ -91,7 +91,6 @@
    font-size:14px;
    float:right;
 }
-
 /* 페이지 넘버링 */
 .pagination{
 
@@ -179,8 +178,7 @@ $(function(){
             <c:forEach var="vo" items="${list }">
               
              <div class="content_item">
-                <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
-                
+
                 <a href="../trip/trip_before_detail.do?tno=${vo.tno }">
                    <img src="${vo.image }">
                    <h4 class="item_name">${vo.name }</h4>

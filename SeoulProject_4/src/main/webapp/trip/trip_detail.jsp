@@ -66,9 +66,6 @@ h2{
    cursor:pointer;
    display:inline-block;
 }
-.circle_btn i:hover{
-	color:#f46555;
-}
 /* 찜버튼, 좋아요 버튼 */
 i.fa-heart,i.fa-thumbs-up{
     padding: 10px;
@@ -78,9 +75,6 @@ i.fa-heart,i.fa-thumbs-up{
     border-radius: 50px;
     text-align: center;
     cursor:pointer;
-}
-i.fa-heart:hover,i.fa-thumbs-up:hover{
-	color:#f46555;
 }
 .item_info{
    margin : 20px 0 0 0;
@@ -123,8 +117,8 @@ i.fa-heart:hover,i.fa-thumbs-up:hover{
 }
 /* 최근 댓글리뷰 */
 .titleAndBtn h2{
-	margin: 0 30px 30px 0;
-	display: inline-block;
+   margin: 0 30px 30px 0;
+   display: inline-block;
 }
 .titleAndBtn a{
    width:120px;
@@ -463,12 +457,10 @@ span.whitegray_btn,a.whitegray_btn{
 
 
 let u=0
-let j_cnt=0 //찜 버튼 클릭수
-let l_cnt=0 //좋아요 버튼 클릭수
 
 $(function(){
    $('.ups').click(function(){
-	   $('.rupdate').hide();
+      $('.rupdate').hide();
        let arno=$(this).attr("data-no");
        if(u==0)
        {
@@ -506,33 +498,33 @@ $(function(){
             
             <%-- 비로그인 상태 찜/좋아요 --%>
             <c:if test="${sessionScope.id==null }">
-	              
-		          <%-- 찜 --%>
-		          <span><i class="fa-sharp fa-solid fa-heart" onclick="alert('로그인이 필요합니다.')"></i></span>
+                 
+                <%-- 찜 --%>
+                <span><i class="fa-sharp fa-solid fa-heart" onclick="alert('로그인이 필요합니다.')"></i></span>
 
-		          <%-- 좋아요 --%>
-		          <span><i class="fa-regular fa-thumbs-up" onclick="alert('로그인이 필요합니다.')"><span style="font-size:16px">(${like_total })</span></i></span>&nbsp;
-		          
+                <%-- 좋아요 --%>
+                <span><i class="fa-regular fa-thumbs-up" onclick="alert('로그인이 필요합니다.')"><span style="font-size:16px">(${like_total })</span></i></span>&nbsp;
+                
             </c:if>
             
             <%-- 로그인 상태 찜/좋아요 --%>
             <c:if test="${sessionScope.id!=null }">
 
-		          <%-- 찜 --%>
-		          <c:if test="${myJjim_count==0 }">
-		            <a href="../jjim/tripjjim_insert.do?tno=${vo.tno }"><i class="fa-sharp fa-solid fa-heart j_btn" style="color:gray"></i></a>
-		          </c:if>
-		          <c:if test="${myJjim_count>0 }">
-		            <a href="../jjim/tripjjim_delete.do?tno=${vo.tno }"><i class="fa-sharp fa-solid fa-heart j_btn" style="color:#f46555"></i></a>
-		          </c:if>
+                <%-- 찜 --%>
+                <c:if test="${myJjim_count==0 }">
+                  <a href="../jjim/tripjjim_insert.do?tno=${vo.tno }"><i class="fa-sharp fa-solid fa-heart" style="color:gray"></i></a>
+                </c:if>
+                <c:if test="${myJjim_count>0 }">
+                  <a href="../jjim/tripjjim_delete.do?tno=${vo.tno }"><i class="fa-sharp fa-solid fa-heart" style="color:#f46555"></i></a>
+                </c:if>
 
-		          <%-- 좋아요 --%>
-		          <c:if test="${myLike_count==0 }">
-		            <a href="../like/triplike_insert.do?tno=${vo.tno }"><i class="fa-regular fa-thumbs-up" style="color:gray"><span style="font-size:16px">(${like_total })</span></i></a>
-		          </c:if>
-		          <c:if test="${myLike_count>0 }">
-		            <a href="../like/triplike_delete.do?tno=${vo.tno }"><i class="fa-regular fa-thumbs-up" style="color:#f46555"><span style="font-size:16px">(${like_total })</span></i></a>
-		          </c:if>
+                <%-- 좋아요 --%>
+                <c:if test="${myLike_count==0 }">
+                  <a href="../like/triplike_insert.do?tno=${vo.tno }"><i class="fa-regular fa-thumbs-up" style="color:gray"><span style="font-size:16px">(${like_total })</span></i></a>
+                </c:if>
+                <c:if test="${myLike_count>0 }">
+                  <a href="../like/triplike_delete.do?tno=${vo.tno }"><i class="fa-regular fa-thumbs-up" style="color:#f46555"><span style="font-size:16px">(${like_total })</span></i></a>
+                </c:if>
 
             </c:if>
          </div>
@@ -575,24 +567,24 @@ $(function(){
       <!-- 최근 리뷰가 0개이면 전체 안 보이게 하기 -->
       <c:if test="${count>0 }">
       
-	      <div class="titleAndBtn">
-	         <h2>최근 댓글리뷰</h2>
-	         <a href="#tripReview_section">전체 보러가기</a>
-	      
-	      </div>
-	      <div class="recent_review">
-	         <div>
-	            <c:forEach var="rcvo" items="${rcList }">
-	            
-	               <div class="recent_reviewBox">
-	                  <span style="color:#004fff">${rcvo.id }</span>
-	                  <span style="color:gray">&nbsp;(${rcvo.dbday })</span>
-	                  <span class="msg">${rcvo.msg }</span>
-	               </div>
-	            
-	         	</c:forEach>
-	         </div>
-	      </div>
+         <div class="titleAndBtn">
+            <h2>최근 댓글리뷰</h2>
+            <a href="#tripReview_section">전체 보러가기</a>
+         
+         </div>
+         <div class="recent_review">
+            <div>
+               <c:forEach var="rcvo" items="${rcList }">
+               
+                  <div class="recent_reviewBox">
+                     <span style="color:#004fff">${rcvo.id }</span>
+                     <span style="color:gray">&nbsp;(${rcvo.dbday })</span>
+                     <span class="msg">${rcvo.msg }</span>
+                  </div>
+               
+               </c:forEach>
+            </div>
+         </div>
       
       </c:if>
       
@@ -740,11 +732,11 @@ $(function(){
                        <tr id="u${rvo.arno }" class="rupdate" style="display:none">
                           <td colspan="2">
                             <form method="post" action="../all_reply/all_reply_update.do">
-	                            <input type=hidden name="no" value="${vo.tno }">
-	                            <input type=hidden name="arno" value="${rvo.arno }">
-	                            <input type=hidden name="cate_no" value="1">
-	                            <textarea class="commentBox" name="msg">${rvo.msg}</textarea>&nbsp;
-	                            <input type=submit value="수정" class="post_btn">
+                               <input type=hidden name="no" value="${vo.tno }">
+                               <input type=hidden name="arno" value="${rvo.arno }">
+                               <input type=hidden name="cate_no" value="1">
+                               <textarea class="commentBox" name="msg">${rvo.msg}</textarea>&nbsp;
+                               <input type=submit value="수정" class="post_btn">
                             </form>
                           </td>
                        </tr>

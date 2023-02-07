@@ -4,7 +4,6 @@ package com.sist.vo;
     cate_no NUMBER,
     no NUMBER,
     id VARCHAR2(20),
-
  */
 public class AllJjimVO {
 	private int ajno,cate_no,no;

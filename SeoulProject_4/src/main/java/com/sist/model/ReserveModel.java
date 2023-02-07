@@ -126,11 +126,58 @@ public class ReserveModel {
   }
   
     @RequestMapping("reserve/reserve_inwon.do")
-    public String reserve_inwon(HttpServletRequest request, HttpServletResponse response)
+    public String reserve_inwon(HttpServletRequest request,HttpServletResponse response)
     {
-       return "../reserve/reserve_inwon.jsp";
+  	  return "../reserve/reserve_inwon.jsp";
     }
-  
+    
+    @RequestMapping("reserve/reserve_ok.do")
+    public String reserve_ok(HttpServletRequest request,HttpServletResponse response)
+    {
+  	  /*
+  	   *         <input type=hidden name="fno" id="fno">
+                   <input type=hidden name="reserveday" id="reserveday">
+                   <input type=hidden name="reservetime" id="reservetime">
+                   <input type=hidden name="reserveinwon" id="reserveinwon">
+                   
+                  RNO        NOT NULL NUMBER       
+  				FNO                 NUMBER  O    
+  				ID                  VARCHAR2(20)  O
+  				RDATE      NOT NULL VARCHAR2(20)  O
+  				RTIME      NOT NULL VARCHAR2(20)  O
+  				INWON               NUMBER       
+  				RESERVE_NO NOT NULL VARCHAR2(20)  O
+  				OK                  CHAR(1)       'n'  
+  				REGDATE             DATE     SYSDATE
+  	   */ 
+  	  try
+  	  {
+  		  request.setCharacterEncoding("UTF-8");
+  	  }catch(Exception ex) {}
+  	  String fno=request.getParameter("fno");
+  	  String rdate=request.getParameter("reserveday");
+  	  String rtime=request.getParameter("reservetime");
+  	  String inwon=request.getParameter("reserveinwon");
+  	  HttpSession session=request.getSession();
+  	  String id=(String)session.getAttribute("id");
+  	  
+  	  Date date=new Date();
+  	  SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+  	  String reserve_no=sdf.format(date)+fno;
+  	  
+  	  ReserveVO vo=new ReserveVO();
+  	  vo.setFno(Integer.parseInt(fno));
+  	  vo.setRdate(rdate);
+  	  vo.setRtime(rtime);
+  	  vo.setInwon(Integer.parseInt(inwon));
+  	  vo.setId(id);
+  	  vo.setReserve_no(reserve_no);
+  	  
+  	  //DAO연동 
+  	  ReserveDAO dao=new ReserveDAO();
+  	  dao.reserveOk(vo);
+  	  return "redirect:../mypage/reserve.do";
+    }
     
 }
 

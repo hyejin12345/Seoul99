@@ -34,14 +34,22 @@ import java.sql.Date;
 	REGDATE          DATE           
  */
 public class ReserveVO {
-	private int frno,fno,inwon;
-	private String id,rno,rdate,rtime,msg,ok;
+	private int fno,inwon;
+	private String id,rno,rdate,rtime,msg,ok,reserve_no;
 	private Date regdate;
-	public int getFrno() {
-		return frno;
+	private FoodVO fvo=new FoodVO();
+	
+	public FoodVO getFvo() {
+		return fvo;
 	}
-	public void setFrno(int frno) {
-		this.frno = frno;
+	public void setFvo(FoodVO fvo) {
+		this.fvo = fvo;
+	}
+	public String getReserve_no() {
+		return reserve_no;
+	}
+	public void setReserve_no(String reserve_no) {
+		this.reserve_no = reserve_no;
 	}
 	public int getFno() {
 		return fno;

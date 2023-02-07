@@ -247,7 +247,6 @@ div.cellInfo{
    height:100%;
    object-fit:fit;
 }
-
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -266,7 +265,12 @@ $(function(){
          rcnt_count=0
       }
    })
+   
+
 })
+
+
+
 </script>
 </head>
 <body>
@@ -349,7 +353,6 @@ $(function(){
            <c:forEach var="tvo" items="${tlist1 }" >
   
               <div class="cell">
-                  <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
                   <a href="../trip/trip_before_detail.do?tno=${tvo.tno }">    
                      <img class="cellImg" src="${tvo.image }">
                      <h4 class="cellName">${tvo.name }</h4>
@@ -374,7 +377,6 @@ $(function(){
          <div class="main-carousel">
            <c:forEach var="tvo" items="${tlist2 }">
               <div class="cell">
-                  <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
                   <a href="../trip/trip_before_detail.do?tno=${tvo.tno }">    
                      <img class="cellImg" src="${tvo.image }">
                      <h4 class="cellName">${tvo.name }</h4>
