@@ -545,5 +545,43 @@ public class BoardDAO {
 		}
 		
 		}
+		public ArrayList<BoardVO> my_boardListData(String name)
+		{ // 사용자가 데이터 전송 => 처리 (매개변수)
+			ArrayList<BoardVO> list = new ArrayList<BoardVO>();
+			try
+			{
+				conn=CreateConnection.getConnection();
+				String sql = "SELECT id,bno, title, name, TO_CHAR(regdate, 'YYYY-MM-DD'), hit,filesize "
+						+ "FROM gg_board_4 "
+						+ "WHERE name=?";
+				ps = conn.prepareStatement(sql);
+				
+				// ?에 값을 채운다
+				
+				ps.setString(1, name);
+				
+				// 실행
+				ResultSet rs = ps.executeQuery();
+				// 값을 ArrayList에 저장
+				while(rs.next()) {
+					BoardVO vo = new BoardVO();
+					vo.setId(rs.getString(1));
+					vo.setBno(rs.getInt(2));
+					vo.setTitle(rs.getString(3));
+					vo.setName(rs.getString(4));
+					vo.setDbday(rs.getString(5));
+					vo.setHit(rs.getInt(6));
+					vo.setFilesize(rs.getInt(7));
+					
+					list.add(vo);
+				}
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+			return list;
+		}
 			
 		}

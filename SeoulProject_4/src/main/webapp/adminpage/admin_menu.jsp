@@ -5,9 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#responsive-admin-menu{
+position:relative;
+top:80px;
+}
+</style>
 </head>
 <body>
-  <div id="menu">
+  <div id="menu" >
 			<a href="" title="mm"><i class="icon-user"></i><span> 
 			회원 관리</span></a>
 			<a href="../adminpage/notice_list.do" title="News"><i class="icon-bullhorn"></i><span> 공지사항</span></a>
@@ -28,10 +34,9 @@
 			서비스 관리</span></a>
 			<!-- Other Contents Sub Menu -->
 				<div id="other-sub" style="display: none;">
-					<a href="" title="Forms"><i class="icon-list"></i><span>  
+					<a href="../adminpage/admin_reserve.do" title="Forms"><i class="icon-list"></i><span>  
 					예약관리</span></a>
-					<a href="" title="Mail Lists"><i class="icon-list-ul"></i><span>  
-					회원 관리</span></a>
+					
 					
 				</div>
 			<!-- Other Contents Sub Menu -->

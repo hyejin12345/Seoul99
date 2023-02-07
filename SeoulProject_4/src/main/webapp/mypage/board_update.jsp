@@ -35,14 +35,14 @@ $(function(){
       
       $.ajax({
          type:'post',
-         url:'../adminpage/update_ok.do',
+         url:'../mypage/update_ok.do',
          data:queryString,
          //data:{"no":no, "name":name, "subject":subject, "content":content, "pwd":pwd},
          success:function(result) {
             let res = result.trim();
             
                // 비밀번호가 맞는 경우
-               location.href = "../adminpage/board_list.do"
+               location.href = "../mypage/board_list.do"
             
          }
       })
@@ -57,7 +57,7 @@ resize: none;
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear" style="width:80%;position:relative;left:-97px;">
+  <main class="container clear" style="width:80%;position:relative;left:0px;">
     <h2 class="sectiontitle">수정하기</h2>
     <div style="height: 5px"></div>
     <div style="height: 550px">
@@ -66,7 +66,8 @@ resize: none;
     	<tr>
     		<th width=20% class="text-center">이름</th>
     		<td width=80% align=left>
-    		<input type=text name=name size=30 class="input-sm" value="${vo.name}" id="name">
+    		
+    		<input type=text name=name size=20 class="input-sm"  value="${name }">
     		<input type="hidden" name=bno value="${vo.bno }" id="bno">
     		</td>
     	</tr>

@@ -14,9 +14,9 @@
 #responsive-admin-menu {
 	float: left;
 	width: 200px;
-	
 	height: 100%;
 	position: relative;
+	top:100px;
 	overflow: hidden;
 	left: 0px;
 	min-height: 500px;
@@ -63,7 +63,7 @@
 	width: 100%;
 }
 #responsive-admin-menu #menu a {
-	border-bottom: 1px dotted #52535a;
+    border-bottom: 1px solid lightgray;
 	font-size: 14px;
 	text-decoration: none;
 	display: block;

@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear">
+  <main class="container clear" style="width:80%;position:relative;left:20px;">
     <h2 class="sectiontitle">글쓰기</h2>
     <div style="height: 5px"></div>
     <div style="height: 550px">

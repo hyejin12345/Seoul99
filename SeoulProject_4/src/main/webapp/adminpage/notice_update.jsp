@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear">
+  <main class="container clear" style="width:80%;position:relative;left:-97px;">
   <h2 class="sectiontitle">공지사항 수정</h2>
   <div style="height: 5px"></div>
   <form method="post" action="../adminpage/notice_update_ok.do">

@@ -6,9 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-
-</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -30,7 +27,7 @@ $(function(){
 </head>
 <body>
   <c:forEach var="time" items="${rtime }">
-    <span class="whitegray_btn times">${time}</span>&nbsp;
+    <span class="btn btn-sm btn-success times">${time}</span>&nbsp;
   </c:forEach>
 </body>
 </html>

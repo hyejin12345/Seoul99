@@ -126,14 +126,30 @@ public class ReserveModel {
   }
   
     @RequestMapping("reserve/reserve_inwon.do")
-    public String reserve_inwon(HttpServletRequest request,HttpServletResponse response)
+    public String reserve_inwon(HttpServletRequest request, HttpServletResponse response)
     {
-  	  return "../reserve/reserve_inwon.jsp";
+       return "../reserve/reserve_inwon.jsp";
     }
-    
+   ///////////////////////////////////////////////////////////////////////////////////////
     @RequestMapping("reserve/reserve_ok.do")
     public String reserve_ok(HttpServletRequest request,HttpServletResponse response)
     {
+  	  /*
+  	   *         <input type=hidden name="fno" id="fno">
+                   <input type=hidden name="reserveday" id="reserveday">
+                   <input type=hidden name="reservetime" id="reservetime">
+                   <input type=hidden name="reserveinwon" id="reserveinwon">
+                   
+                  RNO        NOT NULL NUMBER       
+  				FNO                 NUMBER  O    
+  				ID                  VARCHAR2(20)  O
+  				RDATE      NOT NULL VARCHAR2(20)  O
+  				RTIME      NOT NULL VARCHAR2(20)  O
+  				INWON               NUMBER       
+  				RESERVE_NO NOT NULL VARCHAR2(20)  O
+  				OK                  CHAR(1)       'n'  
+  				REGDATE             DATE     SYSDATE
+  	   */ 
   	  try
   	  {
   		  request.setCharacterEncoding("UTF-8");
@@ -162,6 +178,42 @@ public class ReserveModel {
   	  dao.reserveOk(vo);
   	  return "redirect:../mypage/reserve.do";
     }
+    @RequestMapping("mypage/reserve.do")
+    public String mypage_reserve(HttpServletRequest request,HttpServletResponse response)
+    {
+  	  HttpSession session=request.getSession();
+  	  String id=(String)session.getAttribute("id");
+  	  ReserveDAO dao=new ReserveDAO();
+  	  List<ReserveVO> list=dao.reserveMyPageData(id);
+  	  request.setAttribute("list", list);
+  	  request.setAttribute("mypage_jsp", "../mypage/mypage_reserve.jsp");
+  	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+  	  
+  	  return "../main/main.jsp";
+    }
+    @RequestMapping("adminpage/admin_reserve.do")
+    public String admin_reserve(HttpServletRequest request,HttpServletResponse response)
+    {
+  	  System.out.println(11111);
+  	  ReserveDAO dao=new ReserveDAO();
+  	  List<ReserveVO> list=dao.reserveAdminPageData();
+  	  request.setAttribute("list", list);
+  	  request.setAttribute("admin_jsp", "../adminpage/admin_reserve.jsp");
+  	  request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+  	  
+  	  return "../main/main.jsp";
+    }
+    @RequestMapping("reserve/reserve_delete.do")
+    public String reserve_delete(HttpServletRequest request,HttpServletResponse response)
+    {
+  	  String rno=request.getParameter("rno");
+  	  //DB연동 
+  	  ReserveDAO dao=new ReserveDAO();
+  	  dao.reserveDelete(Integer.parseInt(rno));
+  	  return "redirect:../mypage/reserve.do";
+    }
+  
+  
     
 }
 

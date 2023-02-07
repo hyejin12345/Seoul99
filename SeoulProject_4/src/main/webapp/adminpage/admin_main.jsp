@@ -14,6 +14,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^
 <link rel="stylesheet" href="../adminpage/admin_css.css">
 </head>
 <body>
+<div class="container">
 <div id="responsive-admin-menu">
 	<div id="responsive-menu">
 		<div class="menuicon">≡</div>
@@ -34,6 +35,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^
 
 
 
+</div>
 </div>
 
 

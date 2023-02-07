@@ -11,7 +11,7 @@
 $(function(){
 	
 	/* 추가 : 미리불러오기*/
- 	$.ajax({
+  	$.ajax({
 		type:'post',
 		url:'../reserve/reserve_date.do',
 		success:function(result)
@@ -42,6 +42,8 @@ $(function(){
 				$('#select_date').html(response)
 			}
 		})
+		
+		$('#submsg').show();
 	})
 	
 	

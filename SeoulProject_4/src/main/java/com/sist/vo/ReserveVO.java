@@ -34,11 +34,18 @@ import java.sql.Date;
 	REGDATE          DATE           
  */
 public class ReserveVO {
-	private int fno,inwon;
-	private String id,rno,rdate,rtime,msg,ok,reserve_no;
+	private int fno,inwon,rno;
+	private String id,rdate,rtime,msg,ok,reserve_no;
 	private Date regdate;
 	private FoodVO fvo=new FoodVO();
 	
+	
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 	public FoodVO getFvo() {
 		return fvo;
 	}
@@ -69,12 +76,7 @@ public class ReserveVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getRno() {
-		return rno;
-	}
-	public void setRno(String rno) {
-		this.rno = rno;
-	}
+	
 	public String getRdate() {
 		return rdate;
 	}

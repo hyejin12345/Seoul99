@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -14,6 +15,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^
 <link rel="stylesheet" href="../mypage/mypage_css.css">
 </head>
 <body>
+<div class="container">
 <div id="responsive-admin-menu">
 	<div id="responsive-menu">
 		<div class="menuicon">≡</div>
@@ -35,7 +37,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^
 
 
 </div>
-
+</div>
 
 
 

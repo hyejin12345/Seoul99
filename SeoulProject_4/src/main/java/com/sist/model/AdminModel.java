@@ -15,6 +15,7 @@ import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.BoardDAO;
 import com.sist.dao.NoticeDAO;
+import com.sist.dao.ReserveDAO;
 import com.sist.vo.BoardVO;
 import com.sist.vo.NoticeVO;
 
@@ -302,5 +303,13 @@ public class AdminModel {
 		  BoardDAO dao=new BoardDAO();
 		  dao.ad_boardDelete(Integer.parseInt(no));
 		  return "redirect:board_list.do";
+	  }
+	@RequestMapping("adminpage/admin_reserve_ok.do")
+	  public String admin_reserve_ok(HttpServletRequest request,HttpServletResponse response)
+	  {
+		  String rno=request.getParameter("rno");
+		  ReserveDAO dao=new ReserveDAO();
+		  dao.reserveAdminOk(Integer.parseInt(rno));
+		  return "redirect:admin_reserve.do";
 	  }
 }

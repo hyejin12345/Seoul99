@@ -112,7 +112,7 @@ resize: none;
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear">
+  <main class="container clear" >
     <h2 class="sectiontitle">자유 게시판</h2>
     <div style="height: 5px"></div>
     

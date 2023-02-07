@@ -54,7 +54,7 @@ $(function(){
 <div class="container">
   <div class="row">
     <div class="Absolute-Center is-Responsive">
-      <div id="logo-container"></div>
+      
       <div class="col-sm-12 col-md-10 col-md-offset-1">
         <form action="" id="loginForm">
           
