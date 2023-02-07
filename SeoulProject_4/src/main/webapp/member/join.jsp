@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel ="stylesheet" href="../shadow/css/shadowbox.css">
-<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
 <script type="text/javascript">
 //아이디 유효성 검사
 function checkId(){
@@ -31,10 +29,11 @@ function checkId(){
 		return;
 	}
 	if (/admin/i.test(id)) {
-		  alert("아이디로 admin은 사용할 수 없습니다");
+		  alert("admin은 아이디로 사용할 수 없습니다");
 		  $('#id').val('');
 		  return;
 	}
+	
 	$.ajax({
 		url:'../member/idcheck_result.do', 
 		type:'post',
@@ -42,20 +41,37 @@ function checkId(){
 		success:function(result){ 
 			
 			let count=Number(result.trim());
-			if(count == 0){ 
-				$('#id_ok').text("사용 가능한 아이디입니다.")
-				$('#id_already').text('');
+			
+			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(id)) {
+				$('#id_regex').text("영문과 숫자를 조합하여 6 ~ 20글자를 입력해 주세요")
+			} else if(/^[a-zA-Z0-9]{6,20}$/.test(id)) {
+				$('#id_regex').text('');
+			} 
+			if(count == 0) {
+				if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(id)) {
+					$('#id_ok').text("사용 가능한 아이디입니다.")
+					$('#id_already').text('');
+				}else if (!/^[a-zA-Z0-9]{6,20}$/.test(id)){
+					$('#id_ok').text('');
+				}
+				
 			} else if (count == 1) {
 				$('#id_already').text("이미 사용중인 아이디입니다.")
 				$('#id_ok').text('');
+				$('#id_regex').text('');
+			}
+			if (!id) {
+				  $('#id_ok').text('');
+				  $('#id_regex').text('');
+				  $('#id_already').text('');
 			}
 			$('#joinBtn').click(function(){
-				alert(count)
 				if(count == 1) {
 					alert("이미 사용중인 아이디 입니다.")
 					$('#id_already').text("이미 사용중인 아이디입니다. 다시 입력해 주세요.")
 					$('#id').val('');
 				}
+				
 			})
 		},
 		
@@ -130,6 +146,27 @@ $(function(){
 			$('#nick').focus();
 			return;
 		}
+		if(/[\{\}\[\]\/?.,;:|\*~`!^\-_+<>@#$%&₩\\\=\(\'\"]/.test(nick)) {
+			alert("특수문자를 사용할 수 없습니다");
+			$('#nick').val('');
+			return;
+		}
+		if (/\s/.test(nick)) {
+			alert("공백 문자를 사용할 수 없습니다");
+			$('#nick').val('');
+			return;
+		}
+		if (/admin/i.test(nick)) {
+			  alert("admin은 닉네임으로 사용할 수 없습니다");
+			  $('#nick').val('');
+			  return;
+		}
+		if (nick.length > 7) {
+			 alert("닉네임은 최대 7글자 까지 입력 가능 합니다.");
+			  $('#nick').val('');
+			  return;
+		}
+		
 		$.ajax({
 			type:'post',
 			url:'../member/nick_check.do',
@@ -194,18 +231,20 @@ $(function(){
 			}
 		})
 	})
-	
+})
+$(function() {
 	$('#joinBtn').click(function(){
-		if(/^[a-zA-Z0-9]{6,20}$/.test(id)) {
-			alert("영문과 숫자를 조합하여 6 ~ 20글자를 입력해 주세요");
+		let id = $("#id").val();
+		let idreg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/;
+		if (!idreg.test(id)) {
+			alert("영문과 숫자를 조합하여 6 ~ 20글자를 입력해 주세요")
 			$('#id').val('');
 			return;
-		}
-
+		} 
 		let pwd = $("#pwd").val();
 		let pwd1 = $("#pwd1").val();
-		let reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
-		if(!reg.test(pwd)){
+		let pwdreg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
+		if(!pwdreg.test(pwd)){
 			alert("비밀번호는 8자리 이상이어야 하며, 영문/숫자/특수문자 모두 포함해야 합니다.");
 			$("#pwd").val("");
 			$("#pwd1").val("");
@@ -226,47 +265,44 @@ $(function(){
 		  $("#sex").focus();
 		  return;
 		}
-		/*
+		
 		if (!$('#tos').prop('checked')) {
-		    $('#tosPrint').text("약관에 동의해주셔야 회원가입이 가능합니다.")
+		    $('#tosPrint').text("약관에 동의해야 회원가입이 가능합니다.")
 		    $("#tos").focus()
 		    return;
 		  }
-		*/
 		
 		$('#join_frm').submit();
 	})
-	
 })
-
-
-
 </script>
 </head>
 <body>
 	<div class="innerContainer">
-        <div class="inner">
-        	<img src="../member/logo.png" class="loginimg"> 
-            <form method="POST" action="../member/join_ok.do" name="join_frm" id="join_frm">
-                <fieldset>
-                    <div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
-	                    <label>아이디</label>
-	                    <input type="text" name="id" id="id" required oninput = "checkId()" placeholder="아이디는 6 ~ 20자 사이에서 영문과 숫자를 조합해 주세요">
+		<div class="inner">
+			<img src="../member/logo.png" class="loginimg"> 
+			<form method="POST" action="../member/join_ok.do" name="join_frm" id="join_frm">
+				<fieldset>
+					<!-- 아이디 -->
+					<div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
+						<label>아이디</label>
+						<input type="text" name="id" id="id" required oninput = "checkId()" placeholder="아이디는 6 ~ 20자 사이에서 영문과 숫자를 조합해 주세요">
                     </div>
                     <span id="id_ok" class="subcomment" style="color: blue;"></span>
-					<span id="id_already" class="subcomment" style="color: red;"></span>
-					
+                    <span id="id_already" class="subcomment" style="color: red;"></span>
+                    <span id="id_regex" class="subcomment" style="color: red;"></span>
+                    <!-- 이메일 -->
 	                <label>이메일</label>
-                    <div class="input-phone">
-                    	<div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
-                    		<input type="text" name="email" id="email" required>
-                    	</div>
+	                <div class="input-phone">
+	                	<div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
+	                		<input type="text" name="email" id="email" required>
+	                	</div>
                     	<div class="inputWrap">
                     		<button id="eBtn" type="button">중복확인</button>
                     	</div>
                     </div>
                     &nbsp;<span style="color:blue" id="ePrint" class="subcomment"></span>
-                    
+                    <!-- 비밀번호 -->
                     <div class="inputDWrap">
                         <div class="inputWrap50">
                             <label>비밀번호</label>
@@ -279,66 +315,73 @@ $(function(){
                         </div>
                         <p style="font-size: 11px; color: rgb(33, 160, 100);">* 비밀번호는 8 ~ 20자리 이상이어야 하며, 영문/소문자/숫자/특수문자가 포함해야 합니다</p>
                     </div>
-                    
-                    
+					<!-- 이름 -->                    
                     <div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
                         <label>이름</label>
                         <input type="text" name="name" maxlength="150" autofocus required id="name" oninput = "checkName()">
                     </div>
-                        <label>닉네임</label>
-	                    <div class="input-phone">
-	                    	<div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
-	                    		<input type="text" name="nick" id="nick" required>
-	                    	</div>
-	                    	<div class="inputWrap">
-	                    		<button id="nBtn" type="button">중복확인</button>
-	                    	</div>
-	                    </div>
-	                    <span style="color:blue" id="nPrint" class="subcomment"></span>
+                    <!-- 닉네임 -->
+                    <label>닉네임</label>
+                    <div class="input-phone">
+                    	<div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
+                    		<input type="text" name="nick" id="nick" required placeholder="닉네임은 최대 7글자 까지 입력 가능 합니다.">
+                    	</div>
+                    	<div class="inputWrap">
+                    		<button id="nBtn" type="button">중복확인</button>
+                    	</div>
+                    </div>
+                    <span style="color:blue" id="nPrint" class="subcomment"></span>
+                    
                     <div class="inputDWrap">
+                    	<!-- 성별 -->
                     	<div class="inputWrap50">
-                            <label>성별</label>
-                            <select name="sex" class="inputFull" id="sex" required>
-							  <option value="0" style="font-size: 9px">선택</option>
-							  <option value="남자" style="font-size: 9px">남자</option>
-							  <option value="여자" style="font-size: 9px">여자</option>
-							</select>
-                        </div>
-                        <div class="inputWrap50">
-                        	<label>생년월일</label>
-                        	<input type=date size=30 class="inputFull" name=day id="day "style="width: 100%; font-size: 12.5px; padding: 5px 10px;"  required>
-                        </div>
-                     </div>
+                    	<label>성별</label>
+                    		<select name="sex" class="inputFull" id="sex" required>
+                    			<option value="0" style="font-size: 9px">선택</option>
+                    			<option value="남자" style="font-size: 9px">남자</option>
+                    			<option value="여자" style="font-size: 9px">여자</option>
+                    		</select>
+                    	</div>
+                    	<!-- 생년월일 -->
+                    	<div class="inputWrap50">
+                    	<label>생년월일</label>
+                    		<input type=date size=30 class="inputFull" name=day id="day "style="width: 100%; font-size: 12.5px; padding: 5px 10px;"  required>
+                    	</div>
+                    </div>
+                    
                     <div>
-                        <label style="margin-bottom: -2px;">휴대폰 번호</label>
-                        <div class="input-phone">
-                            <div class="inputWrap">
-                                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="phone1" class="col-xs-3"  id="phone1" value="010" style="padding: 12px 10px; width: 31.4%;" maxlength="3" required>
-	                           <div class="inputFull" style="float: left; margin: 10.5px 4px;">-</div>
-	                           <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="phone2" class="col-xs-4"  id="phone2" style="padding: 12px 10px; width: 31.4%;" maxlength="4" required>
-	                           <div class="inputFull" style="float: left; margin: 10.5px 4px;">-</div>
-	                           <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="phone3" class="col-xs-4"  id="phone3" style="padding: 12px 10px; width: 31.4%;" maxlength="4" required>
-                            </div>
-                            <div class="inputWrap">
-                                <button id="tBtn" type="button">중복확인</button>
-                            </div>
-                        </div>
-                        <p style="color: blue; margin-top: 5px" id="tPrint" class="subcomment"></p>
+                    	<!-- 휴대폰 번호 -->
+                    	<label style="margin-bottom: -2px;">휴대폰 번호</label>
+                    	<div class="input-phone">
+                    		<div class="inputWrap">
+                    			<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="phone1" class="col-xs-3"  id="phone1" value="010" style="padding: 12px 10px; width: 31.4%;" maxlength="3" required>
+                    			<div class="inputFull" style="float: left; margin: 10.5px 4px;">-</div>
+                    			<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="phone2" class="col-xs-4"  id="phone2" style="padding: 12px 10px; width: 31.4%;" maxlength="4" required>
+                    			<div class="inputFull" style="float: left; margin: 10.5px 4px;">-</div>
+                    			<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="phone3" class="col-xs-4"  id="phone3" style="padding: 12px 10px; width: 31.4%;" maxlength="4" required>
+                    		</div>
+                    		<!-- 중복 확인 -->
+                    		<div class="inputWrap">
+                    			<button id="tBtn" type="button">중복확인</button>
+                    		</div>
+                    	</div>
+                    	<p style="color: blue; margin-top: 5px" id="tPrint" class="subcomment"></p>
                     </div>
+                    
                     <div class="confirm">
-                        <input type="checkbox" name="term" id="tos" class="checkbox" required>
-                        <label for="tos" class="checkLabel">서울99여행 <a href="#" target="_blank">서비스 이용 약관</a> 및 <a href="#" target="_blank">개인 정보 수집 및 이용</a>에 동의합니다.</label>
+                    	<input type="checkbox" name="term" id="tos" class="checkbox" required>
+                    	<label for="tos" class="checkLabel">서울99여행 <a href="#" target="_blank">서비스 이용 약관</a> 및 <a href="#" target="_blank">개인 정보 수집 및 이용</a>에 동의합니다.</label>
+                    	<span style="color: red;" id="tosPrint" class="subcomment"></span>
                     </div>
-                </fieldset>
-                <div>
-                    <button type="submit" class="btn submit" id="joinBtn">회원 가입</button>
-                    <span style="color:blue" id="tosPrint" class="subcomment"></span>
-                </div>
-            </form>
-            <div class="jump">
-                <span><a href="../member/login.do">이미 아이디가 있다면 여기에서 로그인하세요</a></span> <!--로그인 페이지로 이동 -->
-            </div>
-        </div>
-    </div>
-    </body>
+				</fieldset>
+				<div>
+					<button type="submit" class="btn submit" id="joinBtn">회원 가입</button>
+				</div>
+			</form>
+			<div class="jump">
+				<span><a href="../member/login.do">이미 아이디가 있다면 여기에서 로그인하세요</a></span>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
