@@ -143,5 +143,57 @@ public class TripModel {
 
 	}
 
+   @RequestMapping("trip/trip_all_search.do")
+   public String food_location(HttpServletRequest request,HttpServletResponse response)
+   {
+      try
+      {
+         request.setCharacterEncoding("UTF-8");
+      }catch(Exception ex) {}
+      
+      String searchWord=request.getParameter("searchWord");
+
+      //페이지 정보 받기
+      String page=request.getParameter("page");
+      if(page==null)
+         page="1";
+      
+      //카테고리 관련 정보
+      String tcno=request.getParameter("tcno");
+      request.setAttribute("tcno", tcno);
+      
+      String tripCategory_name=request.getParameter("tripCategory_name");
+      request.setAttribute("tripCategory_name", tripCategory_name);
+      
+      String content_title=request.getParameter("content_title");
+      request.setAttribute("content_title", content_title);
+      
+      // 현재페이지
+      int curpage=Integer.parseInt(page);
+
+      // DAO
+      TripDAO dao=new TripDAO();
+      List<TripVO> tslist=dao.tripSearchAllListData(searchWord, Integer.parseInt(tcno), curpage);
+      int totalpage=dao.tripCateSearchTotalPage(searchWord, Integer.parseInt(tcno));
+      int srhCount=dao.tripCateSearchCount(searchWord, Integer.parseInt(tcno));
+      
+      //페이지네이션
+      final int BLOCK=7;
+      int startpage=((curpage-1)/BLOCK*BLOCK)+1;
+      int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+      if(endpage>totalpage)
+         endpage=totalpage;
+            
+      request.setAttribute("tslist", tslist);
+      request.setAttribute("curpage", curpage);
+      request.setAttribute("totalpage", totalpage);
+      request.setAttribute("startpage", startpage);
+      request.setAttribute("endpage", endpage);
+	  request.setAttribute("srhCount", srhCount);    
+      request.setAttribute("searchWord", searchWord);
+      request.setAttribute("main_jsp", "../trip/trip_all_search.jsp");
+      return "../main/main.jsp";
+            
+   }	
 
 }

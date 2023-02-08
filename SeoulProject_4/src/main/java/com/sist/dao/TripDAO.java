@@ -308,6 +308,114 @@ public class TripDAO {
       return list;	   
    }
    
+   /* test */
+   //전체여행지페이지 - 여행지 카테고리 내 검색
+   public List<TripVO> tripSearchAllListData(String searchWord,int tcno,int page)
+   {
+      List<TripVO> list=new ArrayList<TripVO>();
+      try
+      {
+         conn=CreateConnection.getConnection();
+         String sql="SELECT tcno,tno,name,image,addr,hit,num "
+                 +"FROM (SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ "
+                 +"tcno,tno,name,image,addr,hit,rownum as num "
+                 +"FROM gg_trip_4 "
+                 +"WHERE REGEXP_LIKE(addr,?) OR REGEXP_LIKE(name,?)) "
+                 +"WHERE tcno=? "
+                 +"AND num BETWEEN ? AND ?";
+         ps=conn.prepareStatement(sql);
+         int rowSize=9;
+         int start=(rowSize*page)-(rowSize-1);
+         int end=rowSize*page;
+         ps.setString(1, searchWord);
+         ps.setString(2, searchWord);
+         ps.setInt(3, tcno);
+         ps.setInt(4, start);
+         ps.setInt(5, end);
+         ResultSet rs=ps.executeQuery();
+         while(rs.next())
+         {
+            TripVO vo=new TripVO();
+            vo.setTcno(rs.getInt(1));
+            vo.setTno(rs.getInt(2));
+            vo.setName(rs.getString(3));
+            vo.setImage(rs.getString(4));
+            String addr=rs.getString(5);
+            String[] addrSplit=addr.split(" ");
+            vo.setAddr(addrSplit[1]);
+            vo.setHit(rs.getInt(6));
+            list.add(vo);
+         }
+         rs.close();
+      }catch(Exception ex)
+      {
+         ex.printStackTrace();
+      }
+      finally
+      {
+         CreateConnection.disConnection(conn, ps);
+      }
+      return list;
+   }
+   
+   //전체여행지페이지 - 여행지 카테고리 내 검색결과리스트 총페이지
+   public int tripCateSearchTotalPage(String searchWord,int tcno)
+   {
+      int totalpage=0;
+      try
+      {
+         conn=CreateConnection.getConnection();
+         String sql="SELECT CEIL(count(*)/9.0) FROM "
+               +"(SELECT * FROM gg_trip_4 "
+               +"WHERE REGEXP_LIKE(addr,?) OR REGEXP_LIKE(name,?)) "
+                 +"WHERE tcno=? ";
+         ps=conn.prepareStatement(sql);
+         ps.setString(1, searchWord);
+         ps.setString(2, searchWord);
+         ps.setInt(3, tcno);
+         ResultSet rs=ps.executeQuery();
+         rs.next();
+         totalpage=rs.getInt(1);
+         if(totalpage<=0)
+        	 totalpage=1;
+         rs.close();
+      }catch(Exception ex)
+      {
+         ex.printStackTrace();
+      }finally
+      {
+         CreateConnection.disConnection(conn, ps);
+      }
+      return totalpage;
+   }
+   //전체여행지페이지 - 검색결과 총개수
+   public int tripCateSearchCount(String searchWord,int tcno)
+   {
+      int count=0;
+      try
+      {
+         conn=CreateConnection.getConnection();
+         String sql="SELECT count(*) FROM "
+                   +"(SELECT * FROM gg_trip_4 "
+                   +"WHERE REGEXP_LIKE(addr,?) OR REGEXP_LIKE(name,?)) "
+                   +"WHERE tcno=? ";
+         ps=conn.prepareStatement(sql);
+         ps.setString(1, searchWord);
+         ps.setString(2, searchWord);
+         ps.setInt(3, tcno);
+         ResultSet rs=ps.executeQuery();
+         rs.next();
+         count=rs.getInt(1);
+         rs.close();
+      }catch(Exception ex)
+      {
+         ex.printStackTrace();
+      }finally
+      {
+         CreateConnection.disConnection(conn, ps);
+      }
+      return count;
+   }
 }
 
 
