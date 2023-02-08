@@ -40,14 +40,14 @@ $(function(){
   <table class="table">
     <tr class="text-right">
       <td>
-        <a href="../adminpage/notice_insert.do" class="btn btn-sm btn-danger">공지등록</a>
+        <a href="../adminpage/notice_insert.do" class="whitegray_btn" style="padding:6px; vertical-align: middle">공지등록</a>
       </td>
     </tr>
   </table>
   <table class="table">
     <tr>
-      <th width=10% class="text-center">구분</th>
-      <th width=40% class="text-center">제목</th>
+      <th width=15% class="text-center">구분</th>
+      <th width=35% class="text-center">제목</th>
       <th width=10% class="text-center">이름</th>
       <th width=15% class="text-center">작성일</th>
       <th width=10% class="text-center">조회수</th>
@@ -58,8 +58,8 @@ $(function(){
     --%>
     <c:forEach var="vo" items="${list }"><%-- request.setAttribute("list",list) => request.getAttribute("list") ${list} --%>
       <tr>
-        <td width="10%" class="text-center">${vo.prefix}</td><%-- vo.getNo() = {} getXxx() --%>
-        <td width="40%">
+        <td width="15%" class="text-center">${vo.prefix}</td><%-- vo.getNo() = {} getXxx() --%>
+        <td width="35%">
          <a href="../adminpage/notice_detail.do?nno=${vo.nno }" id="tt">${vo.title}</a>&nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../img/new.gif"></sup>
@@ -69,8 +69,8 @@ $(function(){
         <td width="15%" class="text-center">${vo.dbday }</td>
         <td width="10%" class="text-center">${vo.hit }</td>
         <td width="15%" class="text-center">
-          <a href="../adminpage/notice_update.do?nno=${vo.nno }" class="btn btn-xs btn-success">수정</a>
-          <a href="../adminpage/notice_delete.do?nno=${vo.nno }" class="btn btn-xs btn-info">삭제</span>
+          <a href="../adminpage/notice_update.do?nno=${vo.nno }" class="whitegray_btn" style="padding:5px">수정</a>
+          <a href="../adminpage/notice_delete.do?nno=${vo.nno }" class="whitegray_btn" style="padding:5px">삭제</a>
         </td>
       </tr>
     </c:forEach>

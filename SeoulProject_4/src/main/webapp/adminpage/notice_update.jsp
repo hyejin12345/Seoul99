@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+textarea{
+resize:none;
+}
+</style>
 </head>
 <body>
 <div class="wrapper row3">

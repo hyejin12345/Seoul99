@@ -492,7 +492,7 @@ public class BoardDAO {
 			   }
 			   else
 			   {
-				   String msg="관리자가 삭제한 댓글입니다.";
+				   String msg="삭제처리된 댓글입니다.";
 				   // update
 				   sql="UPDATE gg_reply_4 SET "
 					  +"msg=? "
