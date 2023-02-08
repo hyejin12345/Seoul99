@@ -183,7 +183,7 @@ resize: none;
                                      </c:forEach>
                                      <img src="../img/re_icon.png">
                                   </c:if>
-                                 <img src="../img/user.jpg"><span style="color:orange">${rvo.name }</span>&nbsp;(${rvo.dbday })
+                                 <img src="../img/user.jpg"><span style="color:#004fff">${rvo.name }</span>&nbsp;(${rvo.dbday })
                                  <pre style="white-space: pre-wrap; background-color: white; border: none;">${rvo.msg }</pre>
                                  </td>
                                  <td class="text-right" width=20%>

@@ -18,38 +18,92 @@ import com.sist.vo.*;
 
 @Controller
 public class BoardModel {
-	@RequestMapping("board/list.do")
-	 public String board(HttpServletRequest request, HttpServletResponse response) {
-		String page = request.getParameter("page");
-	      if (page == null) {
-	         page = "1";
-	      }
-	      int curpage = Integer.parseInt(page);
-	HttpSession session=request.getSession();
-	String id=(String)session.getAttribute("id");
-	BoardVO vo=new BoardVO();
-	vo.setId(id);
-	BoardDAO dao=new BoardDAO();
-	ArrayList<BoardVO> list=dao.boardListData(curpage);
-	
-	int totalpage = dao.boardTotalPage();
-    
-    final int BLOCK = 10;
-    int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
-    int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
-    if (endPage > totalpage)
-        endPage = totalpage;
-    if (totalpage==0)
-    	totalpage = totalpage+1;
-    
-    request.setAttribute("list", list);
-    request.setAttribute("curpage", curpage);
-    request.setAttribute("totalpage", totalpage);
-    request.setAttribute("startPage", startPage);
-    request.setAttribute("endPage", endPage);
-    request.setAttribute("main_jsp", "../board/list.jsp"); // main.jsp에서 include되는 파일 지정
-    return "../main/main.jsp";
-	}
+		   @RequestMapping("board/list.do")
+		    public String board(HttpServletRequest request, HttpServletResponse response) {
+		      String page = request.getParameter("page");
+		         if (page == null) {
+		            page = "1";
+		         }
+		         int curpage = Integer.parseInt(page);
+		   HttpSession session=request.getSession();
+		   String id=(String)session.getAttribute("id");
+		   BoardVO vo=new BoardVO();
+		   vo.setId(id);
+		   BoardDAO dao=new BoardDAO();
+		   ArrayList<BoardVO> list=dao.boardListData(curpage);
+		   try
+		   {
+		      request.setCharacterEncoding("UTF-8");
+		   }catch(Exception ex) {}
+		 //  String ss=request.getParameter("ss");
+		 //  List<BoardVO> flist=dao.boardFindData(curpage, ss);
+		   
+		   
+		   int totalpage = dao.boardTotalPage();
+		    
+		    final int BLOCK = 10;
+		    int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		    int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		    if (endPage > totalpage)
+		        endPage = totalpage;
+		    if (totalpage==0)
+		       totalpage = totalpage+1;
+		    
+		    request.setAttribute("list", list);
+		    request.setAttribute("curpage", curpage);
+		    request.setAttribute("totalpage", totalpage);
+		    request.setAttribute("startPage", startPage);
+		    request.setAttribute("endPage", endPage);
+//		    request.setAttribute("flist", flist);
+		//   request.setAttribute("ss", ss);
+		    request.setAttribute("main_jsp", "../board/list.jsp"); // main.jsp에서 include되는 파일 지정
+		    return "../main/main.jsp";
+		   }
+		   @RequestMapping("board/find.do")
+		   public String board_find(HttpServletRequest request, HttpServletResponse response)
+		   {
+			   try
+				{
+					request.setCharacterEncoding("UTF-8");
+				}catch(Exception ex) {}
+			   String page = request.getParameter("page");
+		       if (page == null) {
+		          page = "1";
+		       }
+		       int curpage = Integer.parseInt(page);
+		       
+			   HttpSession session=request.getSession();
+			   String id=(String)session.getAttribute("id");
+			   BoardVO vo=new BoardVO();
+			   vo.setId(id);
+			     
+			    //String field=request.getParameter("field");
+			    String ss=request.getParameter("ss");
+			    BoardDAO dao=new BoardDAO();
+			    ArrayList<BoardVO> list=dao.boardListData(curpage);
+			    List<BoardVO> flist=dao.boardFindData(curpage, ss);
+			    int totalpage = dao.boardTotalPage();
+			    
+			    final int BLOCK = 10;
+			    int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+			    int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+			    if (endPage > totalpage)
+			        endPage = totalpage;
+			    if (totalpage==0)
+			       totalpage = totalpage+1;
+			       
+//			    request.setAttribute("list", list);
+			    request.setAttribute("curpage", curpage);
+			    request.setAttribute("totalpage", totalpage);
+			    request.setAttribute("startPage", startPage);
+			    request.setAttribute("endPage", endPage);
+			    //request.setAttribute("field", field);
+			    request.setAttribute("ss", ss);
+			    request.setAttribute("flist", flist);
+			    //request.setAttribute("board_jsp", "../board/find.jsp");
+			    request.setAttribute("main_jsp", "../board/find.jsp");
+			    return "../main/main.jsp";
+		   }
 	@RequestMapping("board/insert.do")
 	public String board_insert(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -68,7 +122,7 @@ public class BoardModel {
 		
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String path="C:\\webDev\\webStudy\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\SeoulProject_4\\upload"; // 업로드된 파일 저장 위치
+			String path="C:\\download"; // 업로드된 파일 저장 위치
 			int size=1024*1024*100; // 업로드된 파일의 최대 크기 : 100MB
 			String enctype="UTF-8"; // 한글 파일명
 			MultipartRequest mr=new MultipartRequest(request,path,size,enctype,new DefaultFileRenamePolicy());
