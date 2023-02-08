@@ -171,31 +171,28 @@ $(function(){
         </div>
 
       </div>
+      
+      
       <div class="trip_content" id="Print">
       
 
-         <div class="content_allItem">
-            <c:forEach var="vo" items="${list }">
-              
-             <div class="content_item">
-
-                <a href="../trip/trip_before_detail.do?tno=${vo.tno }">
-                   <img src="${vo.image }">
-                   <h4 class="item_name">${vo.name }</h4>
-                    <div class="item_info">
-                        <span class="gu">서울 ${vo.addr }</span><span class="hit">&nbsp;&nbsp;조회수 ${vo.hit}</span> 
-                    </div>
-                 </a>
-                 
-             </div>
-             
-            </c:forEach>
-            
-
-         </div>
+	         <div class="content_allItem">
+	            <c:forEach var="vo" items="${list }">
+	              <div class="content_item">
+	                <a href="../trip/trip_before_detail.do?tno=${vo.tno }">
+	                   <img src="${vo.image }">
+	                   <h4 class="item_name">${vo.name }</h4>
+	                    <div class="item_info">
+	                        <span class="gu">서울 ${vo.addr }</span><span class="hit">&nbsp;&nbsp;조회수 ${vo.hit}</span> 
+	                    </div>
+	                 </a>
+	              </div>
+	            </c:forEach>
+	         </div>
+  
          
-         <!-- 페이지네이션 -->
-         <div class="pagination">
+            <!-- 페이지네이션 -->
+            <div class="pagination">
               <ul>
                  <li><a href="../trip/trip_all.do?tcno=${tcno }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
                  <c:choose>
@@ -220,14 +217,13 @@ $(function(){
                  <li><a href="../trip/trip_all.do?tcno=${tcno }&page=${totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>
               </ul>
             </div>
+            
+            
 
       </div>
          
       
       
 </div>
-
-
-
 </body>
 </html>
