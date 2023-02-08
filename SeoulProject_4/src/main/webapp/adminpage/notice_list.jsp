@@ -39,8 +39,8 @@ $(function(){
   <div style="height: 550px">
   <table class="table">
     <tr class="text-right">
-      <td>
-        <a href="../adminpage/notice_insert.do" class="btn btn-sm btn-danger">공지등록</a>
+      <td style="padding:20px">
+        <a href="../adminpage/notice_insert.do" class="whitegray_btn">공지등록</a>
       </td>
     </tr>
   </table>
@@ -69,8 +69,8 @@ $(function(){
         <td width="15%" class="text-center">${vo.dbday }</td>
         <td width="10%" class="text-center">${vo.hit }</td>
         <td width="15%" class="text-center">
-          <a href="../adminpage/notice_update.do?nno=${vo.nno }" class="btn btn-xs btn-success">수정</a>
-          <a href="../adminpage/notice_delete.do?nno=${vo.nno }" class="btn btn-xs btn-info">삭제</span>
+          <a href="../adminpage/notice_update.do?nno=${vo.nno }" class="whitegray_btn" style="padding:5px">수정</a>
+          <a href="../adminpage/notice_delete.do?nno=${vo.nno }" class="whitegray_btn" style="padding:5px">삭제</span>
         </td>
       </tr>
     </c:forEach>
@@ -79,9 +79,9 @@ $(function(){
   <table class="table">
     <tr>
       <td class="text-center">
-       <a href="../notice/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
+       <a href="../notice/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm" style="background-color:#004fff;">이전</a>
         ${curpage } page / ${totalpage } pages
-       <a href="../notice/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+       <a href="../notice/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm" style="background-color:#004fff;">다음</a>
       </td>
     </tr>
   </table>
