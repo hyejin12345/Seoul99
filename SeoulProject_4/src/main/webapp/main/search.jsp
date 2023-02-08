@@ -200,7 +200,6 @@ $(function(){
       <button class="whitegray_btn" id="viewAll_btn">전체보기(${allCount })</button>
       <button class="whitegray_btn" id="viewTrip_btn">여행지(${tripCount })</button>
       <button class="whitegray_btn" id="viewFood_btn">맛집(${foodCount })</button>
-      <!-- <button class="whitegray_btn">커뮤니티</button> -->
    </div>
    
    
@@ -321,17 +320,6 @@ $(function(){
          
       </div>
 
-
-   
-      <%-- 커뮤니티 리스트 --%>
-<%--       <div class="topText">
-      <h3 class="view_title">커뮤니티(${comunityCount>0?comunityCount:0}건)</h3>
-      </div>
-      <c:if test="${comunityCount>0 }">
-         <h4><a href="../main/search.do?searchWord=${searchWord }" class="moreClick">전체보기&nbsp;<i class="fa-solid fa-angle-right"></i></a></h4>
-      </c:if> --%>
-      
-      
 
 </div>
 </body>

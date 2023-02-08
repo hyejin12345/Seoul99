@@ -145,7 +145,11 @@ $(function(){
 	{
 		$('#tc4').css("color","#004fff")
 	}
+	
+	if($('#srhWord').val())
+	
 })
+
 
 </script>
 </head>
@@ -170,16 +174,19 @@ $(function(){
 	          </ul>
 	        </div>
 	        
+	        
 	        <!-- 카테고리 내 검색 -->
 	        <form method="post" action="../trip/trip_all_search.do?tcno=${tcno }">
 	          <div style="position:absolute;top:30%;">
 	            <h4><span style="color:#004fff;font-size:18px;">${tripCategory_name }</span>에서 검색하기</h4>
-	            <input id="srhWord" type="text" name="searchWord" size=15 value="${searchWord}" minlength="2" placeholder="2자 이상 입력해주세요." style="height:30px;border-radius:4px;border:1px solid gray;" autocomplete="off";>
+	            <input id="srhWord" type="text" name="searchWord" size=15 value="${searchWord}" minlength="2" placeholder="2자 이상 입력해주세요." style="height:30px;border-radius:4px;border:1px solid gray;" autocomplete="off">
 	            <input type="hidden" name="tcno" value="${tcno }">
 	            <input type="hidden" name="tripCategory_name" value="${tripCategory_name }">
 	            <input type="hidden" name="content_title" value="${content_title }">
+	            <span style="display:block;margin-top:10px;">검색결과 총 ${srhCount }건</span>
 	          </div>
 	        </form>
+        
 
       </div>
       
@@ -188,47 +195,51 @@ $(function(){
       
 
 	         <div class="content_allItem">
-	            <c:forEach var="vo" items="${list }">
+	            <c:forEach var="tsvo" items="${tslist }">
 	              <div class="content_item">
-	                <a href="../trip/trip_before_detail.do?tno=${vo.tno }">
-	                   <img src="${vo.image }">
-	                   <h4 class="item_name">${vo.name }</h4>
+	                <a href="../trip/trip_before_detail.do?tno=${tsvo.tno }">
+	                   <img src="${tsvo.image }">
+	                   <h4 class="item_name">${tsvo.name }</h4>
 	                    <div class="item_info">
-	                        <span class="gu">서울 ${vo.addr }</span><span class="hit">&nbsp;&nbsp;조회수 ${vo.hit}</span> 
+	                        <span class="gu">서울 ${tsvo.addr }</span><span class="hit">&nbsp;&nbsp;조회수 ${vo.hit}</span> 
 	                    </div>
 	                 </a>
 	              </div>
 	            </c:forEach>
 	         </div>
-  
-         
+  		
+  		
+  		<c:if test="${srhCount<=0 }">
+  			<h2 style="margin:0;">검색결과가 없습니다.</h2>
+  		</c:if>
+        <c:if test="${srhCount>0 }">
             <!-- 페이지네이션 -->
-            <div class="pagination">
+            <div class="pagination"> 
               <ul>
-                 <li><a href="../trip/trip_all.do?tcno=${tcno }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
+                 <li><a href="../trip/trip_all_search.do?searchWord=${searchWord }&tcno=${tcno }&tripCategory_name=${tripCategory_name }&content_title=${content_title }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>
                  <c:choose>
                       <c:when test="${startpage<=1 }">
-                         <li><a href="../trip/trip_all.do?tcno=${tcno }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
+                         <li><a href="../trip/trip_all_search.do?searchWord=${searchWord }&tcno=${tcno }&tripCategory_name=${tripCategory_name }&content_title=${content_title }&page=1"><i class="fa-solid fa-angle-left"></i></a></li>
                       </c:when>
                       <c:when test="${startpage>1 }">
-                         <li><a href="../trip/trip_all.do?tcno=${tcno }&page=${startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
+                         <li><a href="../trip/trip_all_search.do?searchWord=${searchWord }&tcno=${tcno }&tripCategory_name=${tripCategory_name }&content_title=${content_title }&page=${startpage-1 }"><i class="fa-solid fa-angle-left"></i></a></li>
                       </c:when>
                  </c:choose>
                  <c:forEach var="i" begin="${startpage }" end="${endpage }">
-                     <li ${i==curpage?"class=curpage":"" }><a href="../trip/trip_all.do?tcno=${tcno }&page=${i }">${i }</a></li>
+                     <li ${i==curpage?"class=curpage":"" }><a href="../trip/trip_all_search.do?searchWord=${searchWord }&tcno=${tcno }&tripCategory_name=${tripCategory_name }&content_title=${content_title }&page=${i }">${i }</a></li>
                  </c:forEach>
                  <c:choose>
                     <c:when test="${endpage<totalpage }">
-                       <li><a href="../trip/trip_all.do?tcno=${tcno }&page=${endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
+                       <li><a href="../trip/trip_all_search.do?searchWord=${searchWord }&tcno=${tcno }&tripCategory_name=${tripCategory_name }&content_title=${content_title }&page=${endpage+1 }"><i class="fa-solid fa-angle-right"></i></a></li>
                     </c:when>
                     <c:when test="${endpage==totalpage }">
-                       <li><a href="../trip/trip_all.do?tcno=${tcno }&page=${endpage }"><i class="fa-solid fa-angle-right"></i></a></li>
+                       <li><a href="../trip/trip_all_search.do?searchWord=${searchWord }&tcno=${tcno }&tripCategory_name=${tripCategory_name }&content_title=${content_title }&page=${totalpage }"><i class="fa-solid fa-angle-right"></i></a></li>
                     </c:when>
                  </c:choose>
-                 <li><a href="../trip/trip_all.do?tcno=${tcno }&page=${totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>
+                 <li><a href="../trip/trip_all_search.do?searchWord=${searchWord }&tcno=${tcno }&tripCategory_name=${tripCategory_name }&content_title=${content_title }&page=${totalpage}"><i class="fa-solid fa-angles-right"></i></a></li>
               </ul>
             </div>
-            
+        </c:if>    
             
 
       </div>
