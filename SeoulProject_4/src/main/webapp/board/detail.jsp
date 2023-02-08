@@ -93,6 +93,15 @@
 	})
 </script>
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+*{
+	font-family:'Noto Sans KR', sans-serif;
+	margin:0;
+	padding:0;
+	font-size:16px;
+	color:black;
+	text-decoration:none;
+}
 .commentbody{
    width:100%;
    padding: 70px;
@@ -184,7 +193,7 @@ resize: none;
                                      <img src="../img/re_icon.png">
                                   </c:if>
                                  <img src="../img/user.jpg"><span style="color:#004fff">${rvo.name }</span>&nbsp;(${rvo.dbday })
-                                 <pre style="white-space: pre-wrap; background-color: white; border: none;">${rvo.msg }</pre>
+                                 <pre style="white-space: pre-wrap; background-color: white; border: none;font-size: 16px;font-family:Noto Sans KR">${rvo.msg }</pre>
                                  </td>
                                  <td class="text-right" width=20%>
                                     <c:if test="${sessionScope.id != null }">
