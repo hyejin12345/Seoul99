@@ -170,7 +170,7 @@ div.item_info{
  <header class="heading">
    <form method=post action="../food/food_location.do" class="inline">
      
-     <%-- 쌤이 빼라함...ㅋㅋ  아 예..네네... (나중에 정리) --%>
+     <%-- (나중에 정리) --%>
     <div class="col-sm-2">
            <select id="id_searchType" name="searchType" class="form-control input-sm">
              <option value="T">추천검색어</option>
@@ -179,9 +179,11 @@ div.item_info{
            </select>
         </div>
         
-        <%-- 검색창 다시 넘 허접함 --%>
+        <%-- 검색창 다시. 위치 조정--%>
+        
          <div class="col-sm=2">
-          <input type="text" name="ss" class="input-sm" size=30 value="${ss}" placeholder="이곳에서 서울의 맛집을 찾아보세요!♡">
+         
+          <input type="text" name="ss" class="input-sm" placeholder="이곳에서 서울의 맛집을 찾아보세요!♡" size=30 value="${ss}" >
           <input type=submit value="검색">
          
         </div>
@@ -232,11 +234,11 @@ div.item_info{
 				 <div>
 				    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
 				    
-				    <a href="../food/food_before_detail.do?fno=${vo.fno }">
+				    <a href="../food/food_find_before_detail.do?fno=${vo.fno }">
 				    <img src="${vo.poster }">
 				    <h4 class="item_name">${vo.name }</h4>
 			        <div class="item_info">
-			            <span class="score"><i class="fa-solid fa-star"></i>{vo.score}</span><span class="hit">(652건)&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${vo.hit}</span> 
+			            <span class="score"><i class="fa-solid fa-star"></i>${vo.score}</span><span class="hit">&nbsp;&nbsp;&nbsp;&nbsp;조회수 ${vo.hit}</span> 
 			        </div>
 			        </a>
 			        
@@ -247,7 +249,7 @@ div.item_info{
 		
 			   </div>
 			     <div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <div id="map" style="width:450px;height:300px;position:relative;overflow:hidden;"></div>
 
     <div id="menu_wrap" class="bg_white">
         <ul id="placesList"></ul>

@@ -150,7 +150,7 @@ span.whitegray_btn,a.whitegray_btn{
        </c:if>
        <tr>
           <td colspan="2" class="text-right">
-           <%-- 비로그인 상태 찜/좋아요 --%>
+              <%-- 비로그인 상태 찜/좋아요 --%>
             <c:if test="${sessionScope.id==null }">
                  
                 <%-- 찜 --%>
@@ -166,10 +166,10 @@ span.whitegray_btn,a.whitegray_btn{
              
              <%-- 찜 --%>
                 <c:if test="${myJjim_count==0 }">
-                  <a href="../jjim/foodjjim_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-sharp fa-solid fa-heart j_btn" style="color:gray"></i></a>
+                  <a href="../jjim/foodjjim_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-sharp fa-solid fa-heart" style="color:gray"></i></a>
                 </c:if>
                 <c:if test="${myJjim_count>0 }">
-                  <a href="../jjim/foodjjim_delete.do?fno=${vo.fno }" class="circle_btn"><i class="fa-sharp fa-solid fa-heart j_btn" style="color:#f46555"></i></a>
+                  <a href="../jjim/foodjjim_delete.do?fno=${vo.fno }" class="circle_btn"><i class="fa-sharp fa-solid fa-heart" style="color:#f46555"></i></a>
                 </c:if>
 
                 <%-- 좋아요 --%>
@@ -181,14 +181,14 @@ span.whitegray_btn,a.whitegray_btn{
                 </c:if>
 
             </c:if>
-              <a href="javascript:history.back()" class="circle_btn"><i class="fa fa-home" style="font-size:17px">목록</i></a>
+              <a href="javascript:history.back()" class="circle_btn" style="color:white"><i class="fa fa-home" style="font-size:17px"></i>목록</a>
             </td>
        </tr>
       </table>
    </div>
    <!-- 지도~ -->
     <div class= "col-sm-2">
-       <div id="map" style="width:435;height:350px;"></div>
+       <div id="map" style="width:435px;height:500px;"></div>
 
       <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1b3cee0c7ab68fc8a8f7906e38fdf071&libraries=services"></script>
       <script>
@@ -253,7 +253,7 @@ span.whitegray_btn,a.whitegray_btn{
       
       </c:if>
       
-     <div class="fReview_body">
+     <div class="fReview_body" style="width:1150px">
          
          
              <!-- (로그인상태) 댓글리뷰 등록란 -->
@@ -274,7 +274,7 @@ span.whitegray_btn,a.whitegray_btn{
                        <form method="post" action="../all_reply/all_reply_insert.do">   
                          <c:if test="${sessionScope.id!=null }">
                             <input type=hidden name="no" value="${vo.fno }">
-                            <input type=hidden name="cate_no" value="2">
+                            <input type=hidden name="cate_no" value="3">
                             <textarea class="commentBox"  name="msg"></textarea>&nbsp;
                             <input type=submit value="리뷰등록" class="post_btn">
                          </c:if>
@@ -314,7 +314,7 @@ span.whitegray_btn,a.whitegray_btn{
                            <c:if test="${sessionScope.id!=null }">
                              <c:if test="${sessionScope.id==rvo.id }">
                                <span class="whitegray_btn ups" data-no="${rvo.arno }">수정</span>
-                               <a href="../all_reply/all_reply_delete.do?arno=${rvo.arno }&no=${vo.fno}&cate_no=2" class="whitegray_btn">삭제</a>
+                               <a href="../all_reply/all_reply_delete.do?arno=${rvo.arno }&no=${vo.fno}&cate_no=3" class="whitegray_btn">삭제</a>
                              </c:if>
                            </c:if>
                          </td>
@@ -332,7 +332,7 @@ span.whitegray_btn,a.whitegray_btn{
                             <form method="post" action="../all_reply/all_reply_update.do">
 	                            <input type=hidden name="no" value="${vo.fno }">
 	                            <input type=hidden name="arno" value="${rvo.arno }">
-	                            <input type=hidden name="cate_no" value="2">
+	                            <input type=hidden name="cate_no" value="3">
 	                            <textarea class="commentBox" name="msg">${rvo.msg}</textarea>&nbsp;
 	                            <input type=submit value="수정" class="post_btn">
                             </form>
