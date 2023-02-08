@@ -39,13 +39,27 @@ $(function(){
 </script>
 <style type="text/css">
 .container{
-  width:500px;
+  width:1150px;
 }
 #delBtn{
   width:100px;
   margin: auto;
   display: block;
   
+}
+#pwd{
+  width:200px;
+  position: relative;
+  left:350px;
+}
+#pwdicon{
+  position: relative;
+  left:350px;
+}
+#location{
+  position: relative;
+  left:-180px;
+
 }
 </style>
 </head>
@@ -57,9 +71,9 @@ $(function(){
       
       <div class="col-sm-12 col-md-10 col-md-offset-1">
         <form action="" id="loginForm">
-          
+          <div id="location">
           <div class="form-group input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <span class="input-group-addon" id="pwdicon"><i class="glyphicon glyphicon-lock"></i></span>
             <input class="form-control" type="password" name='password' placeholder="password" id="pwd" />     
           </div>
           <div class="checkbox text-center">
@@ -67,11 +81,13 @@ $(function(){
               <input type="checkbox" ><a href="#" style="color: black;">회원 탈퇴에 동의합니다.</a>
             </label>
           </div>
+          
           <div class="form-group text-center">
             <button type="button" class="btn btn-def btn-block" id="delBtn">확인</button>
           </div>
           <div class="form-group text-center">
             <a href="#" style="color: black;">비밀 번호 찾기</a>&nbsp;|&nbsp;<a href="#" style="color: black;">도움말</a>
+          </div>
           </div>
         </form>        
       </div>  

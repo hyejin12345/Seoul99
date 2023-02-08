@@ -446,4 +446,82 @@ public class MemberDAO {
 	   return bCheck;
    }
    ///////////////////////////////////////////////////////
+   public List<MemberVO> ad_allMemberList(){
+	   List<MemberVO> list=new ArrayList<MemberVO>();
+	   try {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT id,name,sex,email,phone,admin FROM gg_member_4";
+		   ps=conn.prepareStatement(sql);
+		   ResultSet rs=ps.executeQuery();
+		   while(rs.next()) {
+			   MemberVO vo=new MemberVO();
+			   vo.setId(rs.getString(1));
+			   vo.setName(rs.getString(2));
+			   vo.setSex(rs.getString(3));
+			   vo.setEmail(rs.getNString(4));
+			   vo.setPhone(rs.getString(5));
+			   vo.setAdmin(rs.getString(6));
+			   list.add(vo);
+		   }
+		   rs.close();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return list;
+   }
+   public void ad_memberDelete(String id) {
+	   try {
+		   conn=CreateConnection.getConnection();
+		   String sql="DELETE FROM gg_member_4 "
+		   		+ "WHERE id=?";
+		   ps=conn.prepareStatement(sql);
+		   ps.setString(1, id);
+		   ps.executeUpdate();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+   }
+   public int MemberListTotalPage()
+   {
+ 	   int total=0;
+ 	   try
+ 	   {
+ 		   conn=CreateConnection.getConnection();
+ 		   String sql="SELECT CEIL(COUNT(*)/10.0) FROM gg_member_4";
+ 		   ps=conn.prepareStatement(sql);
+ 		   ResultSet rs=ps.executeQuery();
+ 		   rs.next();
+ 		   total=rs.getInt(1);
+ 		   rs.close();
+ 	   }catch(Exception ex)
+ 	   {
+ 		   ex.printStackTrace();
+ 	   }
+ 	   finally
+ 	   {
+ 		   CreateConnection.disConnection(conn, ps);
+ 	   }
+ 	   return total;
+   }
+   public int membercount() {
+	   int count=0;
+	   try {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT COUNT(*) FROM gg_member_4";
+		   ps=conn.prepareStatement(sql);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   count=rs.getInt(1);
+		   rs.close();
+	   }catch(Exception ex) {
+		   ex.printStackTrace();
+	   }finally {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return count;
+   }
 }

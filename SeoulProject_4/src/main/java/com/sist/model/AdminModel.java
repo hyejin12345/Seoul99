@@ -13,10 +13,15 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.AllReplyDAO;
 import com.sist.dao.BoardDAO;
+import com.sist.dao.MemberDAO;
 import com.sist.dao.NoticeDAO;
 import com.sist.dao.ReserveDAO;
+import com.sist.vo.AllReplyVO;
+import com.sist.vo.BoardReplyVO;
 import com.sist.vo.BoardVO;
+import com.sist.vo.MemberVO;
 import com.sist.vo.NoticeVO;
 
 @Controller
@@ -312,4 +317,116 @@ public class AdminModel {
 		  dao.reserveAdminOk(Integer.parseInt(rno));
 		  return "redirect:admin_reserve.do";
 	  }
+	@RequestMapping("adminpage/ad_member_list.do")
+	   public String ad_member_list(HttpServletRequest request,HttpServletResponse response)
+	   {
+		String page = request.getParameter("page");
+	      if (page == null) {
+	         page = "1";
+	      }
+	      int curpage = Integer.parseInt(page);
+	      MemberDAO dao=new MemberDAO();
+	      int totalpage=dao.MemberListTotalPage();
+		  
+		  
+		  final int BLOCK = 10;
+		  int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		  int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		  if (endPage > totalpage)
+		      endPage = totalpage;
+		  if (totalpage==0)
+		  	totalpage = totalpage+1;
+		   int count=dao.membercount();
+		   List<MemberVO> list=dao.ad_allMemberList();
+		   request.setAttribute("count", count);
+		   request.setAttribute("curpage", curpage);
+		   request.setAttribute("totalpage", totalpage);
+		   request.setAttribute("startPage", startPage);
+		   request.setAttribute("endPage", endPage);
+		   request.setAttribute("list", list);
+		   request.setAttribute("admin_jsp", "../adminpage/all_member_list.jsp");
+		   request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+		   return "../main/main.jsp";
+	   }
+	String[] url={"","../trip/trip_detail.do?tno=","../food/food_detail.do?fno="};
+	@RequestMapping("adminpage/ad_all_reply_list.do")
+	   public String all_reply_list(HttpServletRequest request,HttpServletResponse response)
+	   {
+		String page = request.getParameter("page");
+	      if (page == null) {
+	         page = "1";
+	      }
+	      int curpage = Integer.parseInt(page);
+	      AllReplyDAO dao=new AllReplyDAO();
+	      int totalpage=dao.AllreplyTotalPage();
+		  
+		  
+		  final int BLOCK = 10;
+		  int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		  int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		  if (endPage > totalpage)
+		      endPage = totalpage;
+		  if (totalpage==0)
+		  	totalpage = totalpage+1;
+		   
+		   List<AllReplyVO> list=dao.ad_allReplyListData();
+		   request.setAttribute("curpage", curpage);
+		   request.setAttribute("totalpage", totalpage);
+		   request.setAttribute("startPage", startPage);
+		   request.setAttribute("endPage", endPage);
+		   request.setAttribute("list", list);
+		   request.setAttribute("admin_jsp", "../adminpage/ad_allreply_list.jsp");
+		   request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+		   return "../main/main.jsp";
+	   }
+	@RequestMapping("adminpage/ad_all_reply_delete.do")
+	   public String all_reply_delete(HttpServletRequest request,HttpServletResponse response)
+	   {
+		   String arno=request.getParameter("arno");
+		   
+		   // DAO연결
+		   AllReplyDAO dao=new AllReplyDAO();
+		   dao.ad_allReplyDelete(Integer.parseInt(arno));
+		   return "redirect:ad_all_reply_list.do";
+	   }
+	@RequestMapping("adminpage/ad_board_reply_list.do")
+	   public String board_reply_list(HttpServletRequest request,HttpServletResponse response)
+	   {
+		String page = request.getParameter("page");
+	      if (page == null) {
+	         page = "1";
+	      }
+	      int curpage = Integer.parseInt(page);
+	      AllReplyDAO dao=new AllReplyDAO();
+	      int totalpage=dao.BoardreplyTotalPage();
+		  
+		  
+		  final int BLOCK = 10;
+		  int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		  int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		  if (endPage > totalpage)
+		      endPage = totalpage;
+		  if (totalpage==0)
+		  	totalpage = totalpage+1;
+		   
+		   List<BoardReplyVO> list=dao.ad_boardReplyListData();
+		   request.setAttribute("curpage", curpage);
+		   request.setAttribute("totalpage", totalpage);
+		   request.setAttribute("startPage", startPage);
+		   request.setAttribute("endPage", endPage);
+		   request.setAttribute("list", list);
+		   request.setAttribute("admin_jsp", "../adminpage/ad_boardreply_list.jsp");
+		   request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+		   return "../main/main.jsp";
+	   }
+	@RequestMapping("adminpage/ad_board_reply_delete.do")
+	   public String board_reply_delete(HttpServletRequest request,HttpServletResponse response)
+	   {
+		   String rno=request.getParameter("rno");
+		   
+		   // DAO연결
+		   AllReplyDAO dao=new AllReplyDAO();
+		   dao.ad_boardReplyDelete(Integer.parseInt(rno));
+		   return "redirect:ad_board_reply_list.do";
+	   }
 }

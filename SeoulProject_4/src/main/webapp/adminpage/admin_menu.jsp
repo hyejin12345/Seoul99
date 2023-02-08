@@ -14,11 +14,11 @@ top:80px;
 </head>
 <body>
   <div id="menu" >
-			<a href="" title="mm"><i class="icon-user"></i><span> 
-			회원 관리</span></a>
+			<a href="../adminpage/ad_member_list.do" title="mm"><i class="icon-user"></i><span> 
+			회원</span></a>
 			<a href="../adminpage/notice_list.do" title="News"><i class="icon-bullhorn"></i><span> 공지사항</span></a>
-			<a href="" title="Pages"><i class="icon-file-alt"></i><span> 자유 게시판 댓글 관리</span></a>
-			<a href="" title="Pages"><i class="icon-plane"></i><span> 여행지 / 맛집 댓글관리</span></a>
+			<a href="../adminpage/ad_board_reply_list.do" title="Pages"><i class="icon-file-alt"></i><span> 자유 게시판 댓글 관리</span></a>
+			<a href="../adminpage/ad_all_reply_list.do" title="Pages"><i class="icon-plane"></i><span> 여행지 / 맛집 댓글관리</span></a>
     
 			<a href="" title="Media" class="submenu" name="media-sub"><i class="icon-eye-open"></i><span>  
 			커뮤니티 관리</span></a>

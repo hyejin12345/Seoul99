@@ -115,4 +115,175 @@ public class AllReplyDAO {
 		  CreateConnection.disConnection(conn, ps);
 	  }
   }
+  public List<AllReplyVO> ad_allReplyListData()
+  {
+
+	  List<AllReplyVO> list=new ArrayList<AllReplyVO>();
+	  try
+	  {
+		  conn=CreateConnection.getConnection();
+		  String sql="SELECT arno,cate_no,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
+				    +"FROM gg_allreply_4 "
+				    +"ORDER BY arno DESC";
+		  ps=conn.prepareStatement(sql);
+		 
+		  
+		  ResultSet rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  AllReplyVO vo=new AllReplyVO();
+			  vo.setArno(rs.getInt(1));
+			  vo.setCate_no(rs.getInt(2));
+			  vo.setId(rs.getString(3));
+			  vo.setName(rs.getString(4));
+			  vo.setMsg(rs.getString(5));
+			  vo.setDbday(rs.getString(6));
+			  list.add(vo);
+		  }
+		  rs.close();
+		  
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  CreateConnection.disConnection(conn, ps);
+	  }
+	  return list;
+  }
+  public void ad_allReplyDelete(int arno)
+  {
+	  try
+	  {
+		  conn=CreateConnection.getConnection();
+		  String sql="DELETE FROM gg_allreply_4 "
+				    +"WHERE arno=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, arno);
+		  ps.executeUpdate();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  CreateConnection.disConnection(conn, ps);
+	  }
+  }
+  public int AllreplyTotalPage()
+  {
+	   int total=0;
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT CEIL(COUNT(*)/10.0) FROM gg_AllReply_4";
+		   ps=conn.prepareStatement(sql);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   total=rs.getInt(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return total;
+  }
+  /*
+   * RNO        NOT NULL NUMBER       
+	NAME       NOT NULL VARCHAR2(34) 
+	MSG        NOT NULL CLOB         
+	REGDATE             DATE         
+	MODDATE             DATE         
+	GROUP_ID   NOT NULL NUMBER       
+	GROUP_STEP          NUMBER       
+	GROUP_TAB           NUMBER       
+	ROOT                NUMBER       
+	DEPTH               NUMBER       
+	BNO                 NUMBER       
+	ID                  VARCHAR2(20) 
+	QNO                 NUMBER     
+   */
+  public List<BoardReplyVO> ad_boardReplyListData()
+  {
+
+	  List<BoardReplyVO> list=new ArrayList<BoardReplyVO>();
+	  try
+	  {
+		  conn=CreateConnection.getConnection();
+		  String sql="SELECT rno,bno,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
+				    +"FROM gg_reply_4 "
+				    +"ORDER BY rno DESC";
+		  ps=conn.prepareStatement(sql);
+		 
+		  
+		  ResultSet rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  BoardReplyVO vo=new BoardReplyVO();
+			  vo.setRno(rs.getInt(1));
+			  vo.setBno(rs.getInt(2));
+			  vo.setId(rs.getString(3));
+			  vo.setName(rs.getString(4));
+			  vo.setMsg(rs.getString(5));
+			  vo.setDbday(rs.getString(6));
+			  list.add(vo);
+		  }
+		  rs.close();
+		  
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  CreateConnection.disConnection(conn, ps);
+	  }
+	  return list;
+  }
+  public void ad_boardReplyDelete(int rno)
+  {
+	  try
+	  {
+		  conn=CreateConnection.getConnection();
+		  String sql="DELETE FROM gg_reply_4 "
+				    +"WHERE rno=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, rno);
+		  ps.executeUpdate();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  CreateConnection.disConnection(conn, ps);
+	  }
+  }
+  public int BoardreplyTotalPage()
+  {
+	   int total=0;
+	   try
+	   {
+		   conn=CreateConnection.getConnection();
+		   String sql="SELECT CEIL(COUNT(*)/10.0) FROM gg_reply_4";
+		   ps=conn.prepareStatement(sql);
+		   ResultSet rs=ps.executeQuery();
+		   rs.next();
+		   total=rs.getInt(1);
+		   rs.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   finally
+	   {
+		   CreateConnection.disConnection(conn, ps);
+	   }
+	   return total;
+  }
 }
