@@ -2,6 +2,7 @@
 
 package com.sist.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
 import com.sist.dao.AllReplyDAO;
+import com.sist.dao.FoodDAO;
 import com.sist.dao.JjimDAO;
 import com.sist.dao.LikeDAO;
 import com.sist.dao.TripDAO;
@@ -96,7 +98,7 @@ public class TripModel {
 		request.setAttribute("tno", tno);
 
 		TripDAO dao=new TripDAO();
-		TripVO vo=dao.tripDetail(Integer.parseInt(tno));
+		TripVO vo=dao.tripDetail(Integer.parseInt(tno),1);
 
 		// 주소에서 지역구만 자르기
 		String gu=vo.getAddr();
@@ -140,5 +142,6 @@ public class TripModel {
 		return "../main/main.jsp";
 
 	}
+
 
 }

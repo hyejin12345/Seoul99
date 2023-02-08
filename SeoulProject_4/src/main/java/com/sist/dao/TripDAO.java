@@ -192,20 +192,24 @@ public class TripDAO {
    }
    
    //여행지 상세페이지
-   public TripVO tripDetail(int tno)
+   public TripVO tripDetail(int tno,int no)
    {
       TripVO vo=new TripVO();
       try
       {
          conn=CreateConnection.getConnection();
-         String sql="UPDATE gg_trip_4 SET "
-                 +"hit=hit+1 "
-                 +"WHERE tno=?";
-         ps=conn.prepareStatement(sql);
-         ps.setInt(1, tno);
-         ps.executeUpdate();
+         if(no==1)
+         {
+        	 
          
-         sql="SELECT tcno,tno,name,image,content,addr,hit,jjim "
+	         String sql="UPDATE gg_trip_4 SET "
+	                 +"hit=hit+1 "
+	                 +"WHERE tno=?";
+	         ps=conn.prepareStatement(sql);
+	         ps.setInt(1, tno);
+	         ps.executeUpdate();
+	     }
+         String sql="SELECT tcno,tno,name,image,content,addr,hit,jjim "
              +"FROM gg_trip_4 "
              +"WHERE tno=?";
          ps=conn.prepareStatement(sql);
@@ -232,7 +236,7 @@ public class TripDAO {
       return vo;
    }
    
-   //여행지 주변 맛집리스트 10곳
+   //여행지상세페이지 - 여행지 주변 맛집리스트 10곳
    public List<FoodVO> tripNearbyFood(String gu)
    {
       List<FoodVO> list=new ArrayList<FoodVO>();
@@ -268,7 +272,7 @@ public class TripDAO {
       return list;
    }
    
-   //여행지 최신 댓글리뷰
+   //여행지상세페이지 - 여행지 최신 댓글리뷰
    public List<AllReplyVO> tripRecentReply(int cate_no,int no)
    {
       List<AllReplyVO> list=new ArrayList<AllReplyVO>();

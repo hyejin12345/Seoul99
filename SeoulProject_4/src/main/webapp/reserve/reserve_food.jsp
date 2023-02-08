@@ -10,16 +10,6 @@
 <script type="text/javascript">
 $(function(){
 	
-	/* 추가 : 미리불러오기*/
- 	$.ajax({
-		type:'post',
-		url:'../reserve/reserve_date.do',
-		success:function(result)
-		{
-			$('#select_date').html(result)
-		}
-	})
-	
 	$('.trs').hover(function(){
 		$(this).css("background","#ededed")
 	},function(){

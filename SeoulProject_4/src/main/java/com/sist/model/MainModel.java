@@ -29,27 +29,6 @@ public class MainModel {
       List<TripVO> tlist2 = tdao.tripOhterList(2);
       request.setAttribute("tlist2", tlist2);
       
-      
-      //찜 표시
-    JjimDAO jdao=new JjimDAO();
-    
-    HttpSession session=request.getSession();
-    String id=(String)session.getAttribute("id");
-    
-    for(TripVO vo:tlist1)
-    {
-       if(id==null)
-       {	   
-          vo.setJjim(0);
-       }
-       else
-       {
-       vo.setJjim(jdao.myJjimCount(1, vo.getTno(),id));
-       }
-    }
-    //request.setAttribute("jjimcount", jjimcount);
-      
-      
       // 메인 맛집리스트
       FoodDAO fdao = new FoodDAO();
       List<FoodCategoryVO> flist = fdao.mainpageFoodListData(); // ArrayList에서 List로 수정
@@ -65,8 +44,8 @@ public class MainModel {
       // cookie 전송 - 여행지
       Cookie[] cookies=request.getCookies();
       List<TripVO> tcList=new ArrayList<TripVO>();
-      /*HttpSession*/ session=request.getSession();
-      /*String*/ id=(String)session.getAttribute("id");
+      HttpSession session=request.getSession();
+      String id=(String)session.getAttribute("id");
       if(cookies!=null)
       {
          if(id==null)
@@ -76,7 +55,7 @@ public class MainModel {
                if(cookies[i].getName().startsWith("guest_trip"))
                {
                   String tno=cookies[i].getValue();
-                  TripVO vo=tdao.tripDetail(Integer.parseInt(tno));
+                  TripVO vo=tdao.tripDetail(Integer.parseInt(tno),2);
                   tcList.add(vo);
                }
             }
@@ -88,7 +67,7 @@ public class MainModel {
                if(cookies[i].getName().startsWith(id+"_trip"))
                {
                   String tno=cookies[i].getValue();
-                  TripVO vo=tdao.tripDetail(Integer.parseInt(tno));
+                  TripVO vo=tdao.tripDetail(Integer.parseInt(tno),2);
                   tcList.add(vo);
                }
             }
@@ -159,14 +138,15 @@ public class MainModel {
       SearchDAO dao = new SearchDAO();
       List<TripVO> tlist = dao.searchTripAllListData(searchWord, t_curpage);
       List<FoodVO> flist = dao.searchFoodAllListData(searchWord, f_curpage);
-
+      
+      //카테고리별 검색결과 총페이지
       int t_totalpage = dao.searchTripTotalPage(searchWord);
       int f_totalpage = dao.searchFoodTotalPage(searchWord);
-
+      
+      //카테고리별 검색결과 총개수
       int tripCount = dao.searchTripCount(searchWord);
       int foodCount = dao.searchFoodCount(searchWord);
-      int boardCount = 0; // 게시판dao연결하기
-      int allCount = tripCount+foodCount+boardCount; /* 여행지count+맛집count+커뮤니티count */
+      int allCount = tripCount+foodCount;
 
       final int BLOCK = 7;
       int t_startpage = ((t_curpage - 1) / BLOCK * BLOCK) + 1;
