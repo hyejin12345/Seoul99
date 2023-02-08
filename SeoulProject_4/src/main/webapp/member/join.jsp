@@ -286,7 +286,7 @@ $(function() {
 					<!-- 아이디 -->
 					<div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
 						<label>아이디</label>
-						<input type="text" name="id" id="id" required oninput = "checkId()" placeholder="아이디는 6 ~ 20자 사이에서 영문과 숫자를 조합해 주세요">
+						<input type="text" name="id" id="id" required oninput = "checkId()" placeholder="아이디는 6 ~ 20자 사이에서 영문과 숫자를 포함해야 합니다.">
                     </div>
                     <span id="id_ok" class="subcomment" style="color: blue;"></span>
                     <span id="id_already" class="subcomment" style="color: red;"></span>
@@ -310,10 +310,10 @@ $(function() {
                         </div>
                         <div class="inputWrap50">
                             <label>비밀번호 확인</label>
-                            <input type="password" name="pwd1" class="inputFull"  id="pwd1" placeholder="입력 오류 방지를 위해 한 번 더 입력해 주세요" required >
+                            <input type="password" name="pwd1" class="inputFull"  id="pwd1" placeholder="입력 오류 방지를 위해 한 번 더 입력해 주세요." required >
                             <p style="font-size: 12px; color: rgb(33, 160, 100); margin-top: 5px" id="pPrint"></p>
                         </div>
-                        <p style="font-size: 11px; color: rgb(33, 160, 100);">* 비밀번호는 8 ~ 20자리 이상이어야 하며, 영문/소문자/숫자/특수문자가 포함해야 합니다</p>
+                        <p style="font-size: 11px; color: rgb(33, 160, 100);">* 비밀번호는 8 ~ 20자리 이상이어야 하며, 영문/숫자/특수문자가 포함해야 합니다.</p>
                     </div>
 					<!-- 이름 -->                    
                     <div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
@@ -324,7 +324,7 @@ $(function() {
                     <label>닉네임</label>
                     <div class="input-phone">
                     	<div class="inputWrap" style="flex-direction: column; align-items: flex-start;">
-                    		<input type="text" name="nick" id="nick" required placeholder="닉네임은 최대 7글자 까지 입력 가능 합니다.">
+                    		<input type="text" name="nick" id="nick" required placeholder="닉네임은 최대 7글자까지 입력 가능합니다.">
                     	</div>
                     	<div class="inputWrap">
                     		<button id="nBtn" type="button">중복확인</button>
