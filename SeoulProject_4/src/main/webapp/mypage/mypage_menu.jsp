@@ -19,8 +19,7 @@
     <div id="up-sub" style="display: none;">
 					<a href="../mypage/join_update.do" title=""><i class="icon-user"></i><span>  
 					회원 정보/수정</span></a>
-					<a href="../mypage/chage_pwd.do" title="Photo Gallery"><i class="icon-unlock"></i><span>  
-					비밀번호 변경</span></a>
+					
       <a href="../mypage/join_delete.do" title="Photo Gallery"><i class="icon-zoom-out"></i><span>  
 					회원 탈퇴</span></a>
 				</div>

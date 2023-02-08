@@ -33,21 +33,21 @@ $(function(){
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear" style="width:900px;position:relative;left:20px;">
+  <main class="container clear" style="width:900px;position:relative;left:-10px;">
   <h2 class="sectiontitle text-left">공지사항</h2>
   <div style="height: 5px"></div>
-  <div style="height: 550px">
+  <div style="height: 550px; margin-bottom: 100px">
   <table class="table">
     <tr class="text-right">
-      <td style="padding:20px">
-        <a href="../adminpage/notice_insert.do" class="whitegray_btn">공지등록</a>
+      <td>
+        <a href="../adminpage/notice_insert.do" class="btn btn-sm btn-danger">공지등록</a>
       </td>
     </tr>
   </table>
   <table class="table">
     <tr>
-      <th width=15% class="text-center">구분</th>
-      <th width=35% class="text-center">제목</th>
+      <th width=10% class="text-center">구분</th>
+      <th width=40% class="text-center">제목</th>
       <th width=10% class="text-center">이름</th>
       <th width=15% class="text-center">작성일</th>
       <th width=10% class="text-center">조회수</th>
@@ -58,9 +58,9 @@ $(function(){
     --%>
     <c:forEach var="vo" items="${list }"><%-- request.setAttribute("list",list) => request.getAttribute("list") ${list} --%>
       <tr>
-        <td width="15%" class="text-center">${vo.prefix}</td><%-- vo.getNo() = {} getXxx() --%>
-        <td width="35%" style="padding:15px 15px 15px 50px;" class="text-left"">
-         <a href="../notice/ad_detail.do?nno=${vo.nno }" id="tt">${vo.title}</a>&nbsp;
+        <td width="10%" class="text-center">${vo.prefix}</td><%-- vo.getNo() = {} getXxx() --%>
+        <td width="40%">
+         <a href="../adminpage/notice_detail.do?nno=${vo.nno }" id="tt">${vo.title}</a>&nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../img/new.gif"></sup>
          </c:if>
@@ -69,8 +69,8 @@ $(function(){
         <td width="15%" class="text-center">${vo.dbday }</td>
         <td width="10%" class="text-center">${vo.hit }</td>
         <td width="15%" class="text-center">
-          <a href="../adminpage/notice_update.do?nno=${vo.nno }" class="whitegray_btn" style="padding:5px">수정</a>
-          <a href="../adminpage/notice_delete.do?nno=${vo.nno }" class="whitegray_btn" style="padding:5px">삭제</span>
+          <a href="../adminpage/notice_update.do?nno=${vo.nno }" class="btn btn-xs btn-success">수정</a>
+          <a href="../adminpage/notice_delete.do?nno=${vo.nno }" class="btn btn-xs btn-info">삭제</span>
         </td>
       </tr>
     </c:forEach>
@@ -79,9 +79,9 @@ $(function(){
   <table class="table">
     <tr>
       <td class="text-center">
-       <a href="../notice/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm" style="background-color:#004fff;">이전</a>
+       <a href="../adminpage/notice_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
         ${curpage } page / ${totalpage } pages
-       <a href="../notice/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm" style="background-color:#004fff;">다음</a>
+       <a href="../adminpage/notice_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
       </td>
     </tr>
   </table>

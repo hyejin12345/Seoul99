@@ -59,7 +59,7 @@ public class AdminModel {
  request.setAttribute("totalpage", totalpage);
  request.setAttribute("startPage", startPage);
  request.setAttribute("endPage", endPage);
- request.setAttribute("main_jsp", "../board/list.jsp"); // main.jsp에서 include되는 파일 지정
+  // main.jsp에서 include되는 파일 지정
  request.setAttribute("admin_jsp", "../adminpage/board_list.jsp");
  request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
  return "../main/main.jsp";
@@ -75,19 +75,29 @@ public class AdminModel {
   public String admin_notice_list(HttpServletRequest request,HttpServletResponse response)
   {
 	// 사용자 보내준 데이터 받기 
-	   String page=request.getParameter("page");
-	   if(page==null)
-		   page="1";
-	   int curpage=Integer.parseInt(page);
-	   NoticeDAO dao=new NoticeDAO();
-	   List<NoticeVO> list=dao.noticeListData(curpage);
+	  String page = request.getParameter("page");
+      if (page == null) {
+         page = "1";
+      }
+      int curpage = Integer.parseInt(page);
+		NoticeDAO dao=new NoticeDAO();
+		List<NoticeVO> list=dao.noticeListData(curpage);
+		int totalpage = dao.NoticeTotalPage();
+		
+		final int BLOCK = 10;
+		int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		if (endPage > totalpage)
+		    endPage = totalpage;
+		if (totalpage==0)
+			totalpage = totalpage+1;
 	   
 	   for(NoticeVO vo:list)
 	   {
 		   vo.setPrefix("["+prefix[vo.getType()]+"]");
 	   }
 	   
-	   int totalpage=dao.noticeTotalPage();
+	   
 	   
 	   request.setAttribute("list", list);
 	   request.setAttribute("curpage", curpage);
@@ -96,6 +106,19 @@ public class AdminModel {
 	  request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
 	  
 	  return "../main/main.jsp";
+  }
+  @RequestMapping("adminpage/notice_detail.do")
+  public String ad_notice_detail(HttpServletRequest request,HttpServletResponse response)
+  {
+	   String nno=request.getParameter("nno");
+	   NoticeDAO dao=new NoticeDAO();
+	   NoticeVO vo=dao.noticeDetailData(Integer.parseInt(nno));
+	   vo.setPrefix(prefix[vo.getType()]);
+	   request.setAttribute("vo", vo);
+	   request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+	   request.setAttribute("admin_jsp", "../adminpage/notice_detail.jsp");
+	   
+	   return "../main/main.jsp";
   }
   @RequestMapping("adminpage/notice_insert.do")
   public String admin_notice_insert(HttpServletRequest request,HttpServletResponse response)
@@ -208,6 +231,27 @@ public class AdminModel {
 	  
 	  return "../main/main.jsp";
   }
+  @RequestMapping("adminpage/board_detail.do")
+	public String ad_board_detail(HttpServletRequest request, HttpServletResponse response)
+	{
+		// 출력에 필요한 데이터 전송
+		// 사용자 요청한 데이터를 받아서 처리 => 게시물 번호
+		String bno=request.getParameter("bno"); // 상세보기 => 1개만 출력한다. => primary key
+		// DAO로 전송 => 오라클에서 데이터 읽기
+		BoardDAO dao=new BoardDAO();
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		BoardVO vo=dao.boardDetailData(Integer.parseInt(bno));
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
+		request.setAttribute("admin_jsp", "../adminpage/board_detail.jsp");
+		
+		List<BoardReplyVO> list=dao.replyListData(Integer.parseInt(bno));
+		request.setAttribute("list", list);
+		request.setAttribute("count", list.size());
+		
+		return "../main/main.jsp";
+	}
   @RequestMapping("adminpage/board_insert.do")
   public String admin_board_insert(HttpServletRequest request,HttpServletResponse response)
   {
@@ -348,6 +392,7 @@ public class AdminModel {
 		   request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
 		   return "../main/main.jsp";
 	   }
+/////////////////////////////////////////////////////////////////////////////////////////
 	String[] url={"","../trip/trip_detail.do?tno=","../food/food_detail.do?fno="};
 	@RequestMapping("adminpage/ad_all_reply_list.do")
 	   public String all_reply_list(HttpServletRequest request,HttpServletResponse response)

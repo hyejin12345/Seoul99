@@ -112,7 +112,7 @@ resize: none;
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear" >
+  <main class="container clear" style="width:80%;position:relative;left:20px;">
     <h2 class="sectiontitle">자유 게시판</h2>
     <div style="height: 5px"></div>
     
@@ -227,7 +227,7 @@ resize: none;
                      <td>
                         <form method="post" action="../board/reply_insert.do">
                            <input type=hidden name="bno" value="${vo.bno }">
-                           <textarea rows="3" cols="80" name="msg" style="float: left"></textarea>&nbsp;
+                           <textarea rows="3" cols="65" name="msg" style="float: left"></textarea>&nbsp;
                            <input type="submit" value="댓글쓰기" class="whitegray_btn" style="height: 65px;">
                         </form>
                      </td>

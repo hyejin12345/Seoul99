@@ -57,7 +57,7 @@ resize: none;
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear" style="width:80%;position:relative;left:-97px;">
+  <main class="container clear" style="width:80%;position:relative;left:-20px;">
     <h2 class="sectiontitle">수정하기</h2>
     <div style="height: 5px"></div>
     <div style="height: 550px">
@@ -66,7 +66,7 @@ resize: none;
     	<tr>
     		<th width=20% class="text-center">이름</th>
     		<td width=80% align=left>
-    		<input type=text name=name size=30 class="input-sm" value="${vo.name}" id="name">
+    		<input type=text name=name size=30 class="input-sm" value="관리자" id="name">
     		<input type="hidden" name=bno value="${vo.bno }" id="bno">
     		</td>
     	</tr>
