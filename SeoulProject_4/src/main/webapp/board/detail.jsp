@@ -153,7 +153,7 @@ resize: none;
     		<span class="whitegray_btn" id="delete">삭제</span>
     		</c:if>
     		</c:if>
-    		<a href="../board/list.do" class="whitegray_btn">목록</a>
+    		<a href="../board/list.do" class="whitegray_btn" style="padding: 3px 8px 3px 8px;">목록</a>
     		</td>
     	</tr>
     	<tr id="del" style="display: none" data-no="${vo.bno }">
@@ -161,7 +161,7 @@ resize: none;
                   <form id="del_frm" class="inline">
                      비밀번호 : <input type="password" class="input-sm" size=15
                         id="del_pwd"> <input type="button" value="삭제"
-                        class="btn btn-sm btn-primary" id="del_btn">
+                        class="whitegray_btn" id="del_btn">
                   </form>
                </td>
         </tr>
@@ -228,7 +228,7 @@ resize: none;
                                        <input type=hidden name="bno" value="${vo.bno }">
                                        <input type=hidden name="rno" value="${rvo.rno }">
                                        <textarea rows="3" cols="80" name="msg" style="float: left">${rvo.msg }</textarea>&nbsp;
-                                       <input type="submit" value="수정" class="btn btn-sm btn-danger" style="height: 65px">
+                                       <input type="submit" value="수정" class="whitegray_btn" style="height: 65px">
                                     </form>
                                  </td>
                               </tr>

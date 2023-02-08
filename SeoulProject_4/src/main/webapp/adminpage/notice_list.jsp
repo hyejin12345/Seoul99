@@ -59,7 +59,7 @@ $(function(){
     <c:forEach var="vo" items="${list }"><%-- request.setAttribute("list",list) => request.getAttribute("list") ${list} --%>
       <tr>
         <td width="15%" class="text-center">${vo.prefix}</td><%-- vo.getNo() = {} getXxx() --%>
-        <td width="35%">
+        <td width="35%" style="padding:15px 15px 15px 50px;" class="text-left"">
          <a href="../notice/ad_detail.do?nno=${vo.nno }" id="tt">${vo.title}</a>&nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../img/new.gif"></sup>

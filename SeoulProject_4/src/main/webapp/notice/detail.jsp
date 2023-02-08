@@ -9,7 +9,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style type="text/css">
 .whitegray_btn{
-padding:7px;
+	/* width:15px; */
+	 padding : 3px 8px 3px 8px;
+	 margin : 1px 1px 1px 1px; 
 }
 </style>
 </head>

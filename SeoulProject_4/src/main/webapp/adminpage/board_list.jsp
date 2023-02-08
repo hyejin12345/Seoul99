@@ -25,30 +25,30 @@
     	</table>
     	<table class="table">
     	 <tr>
-    	 	<th width=10% class="text-center">번호</th>
-    	 	<th width=30% class="text-center">제목</th>
-    	 	<th width=15% class="text-center">이름</th>
+    	 	<th width=15% class="text-center">번호</th>
+    	 	<th width=35% class="text-center">제목</th>
+    	 	<th width=10% class="text-center">이름</th>
     	 	<th width=15% class="text-center">작성일</th>
     	 	<th width=10% class="text-center">조회수</th>
-    	 	<th width=20% class="text-center">첨부파일</th>
+    	 	<th width=15% class="text-center">첨부파일</th>
     	 </tr>
     	 <%--
     	 		for(FreeBoardVO vo:request.getAttribute("list"));
     	  --%>
     	 <c:forEach var="vo" items="${list }"> <%-- request.setAttribute("list", list)  => request.getAttribute("list") == ${list }--%>
     	 	<tr>
-    	 		<td width="10%" class="text-center">${vo.bno }</td> <%-- vo.getNo() --%>
-    	 		<td width="30%" style="color: black">
+    	 		<td width="15%" class="text-center">${vo.bno }</td> <%-- vo.getNo() --%>
+    	 		<td width="35%" style="color: black">
     	 		
     	 		<a href="../board/ad_detail.do?bno=${vo.bno }"style="color: black">${vo.title }</a> &nbsp;
     	 		<c:if test="${vo.dbday==today }">
     	 			<sup><img src="../img/new.gif"></sup>
     	 		</c:if>
     	 		</td>
-    	 		<td width="15%" class="text-center">${vo.name }</td>
+    	 		<td width="10%" class="text-center">${vo.name }</td>
     	 		<td width="15%" class="text-center">${vo.dbday }</td>
     	 		<td width="10%" class="text-center">${vo.hit }</td>
-    	 		<td width="20%" class="text-center">
+    	 		<td width="15%" class="text-center">
     	 			<c:if test="${vo.filesize>0 }">
     	 				<img src="../img/file.png" style="width:20px;height:20px" class="img-circle">
     	 			</c:if>
