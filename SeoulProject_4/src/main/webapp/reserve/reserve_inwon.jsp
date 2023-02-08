@@ -20,7 +20,7 @@ $(function(){
 </head>
 <body>
   <c:forEach var="i" begin="1" end="10">
-    <span class="btn btn-sm btn-primary inwons">${i }</span>
+    <span class="whitegray_btn inwons">${i }</span>
   </c:forEach>
 </body>
 </html>

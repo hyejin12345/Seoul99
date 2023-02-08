@@ -42,6 +42,8 @@ $(function(){
 				$('#select_date').html(response)
 			}
 		})
+		
+		$('#submsg').show();
 	})
 	
 	

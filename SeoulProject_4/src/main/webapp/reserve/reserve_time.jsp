@@ -27,7 +27,7 @@ $(function(){
 </head>
 <body>
   <c:forEach var="time" items="${rtime }">
-    <span class="btn btn-sm btn-success times">${time}</span>&nbsp;
+    <span class="whitegray_btn times">${time}</span>&nbsp;
   </c:forEach>
 </body>
 </html>

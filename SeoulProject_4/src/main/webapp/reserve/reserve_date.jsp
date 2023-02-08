@@ -7,11 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.table>thead>tr>th,.table>tbody>tr>th,.table>tfoot>tr>th,
-.table>thead>tr>td, .table>tbody>tr>td,.table>tfoot>tr>td
-{
-	padding:2px;
-}
 .days_true,.days_false{
 	cursor:pointer;
 }
@@ -25,7 +20,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-
  	$('.days_true').hover(function(){
 		$(this).css("color","#004fff")
 	},function(){
@@ -53,15 +47,15 @@ $(function(){
 </script>
 </head>
 <body>
-  <table class="table">
+  <table class="table" style="margin:0;">
     <tr>
-      <td class="text-center"><h3>${year }년 ${month }월</h3></td>
+      <td class="text-center"><h3 style="margin:40px 0 10px 0;font-size:20px;">${year }년 ${month }월</h3></td>
     </tr>
   </table>
   <div style="height:5px"></div>
   <c:set var="week" value="${week }"/>
   <%-- int week=3 --%>
-  <table class="table">
+  <table class="table" style="margin:0 auto;width:300px;">
     <tr>
       <c:forEach var="w" items="${strWeek }">
         <th class="text-center cal" height="35">${w }</th>

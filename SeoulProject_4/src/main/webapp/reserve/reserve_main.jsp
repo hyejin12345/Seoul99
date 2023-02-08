@@ -45,7 +45,15 @@ caption{
 .text_btn:last-child{
 	border-right:0;
 }
-
+.whitegray_btn{
+	padding: 8px;
+	margin: 6px 3px;
+	width:60px;
+	height:42px;
+	text-align:center;
+	display:inline-block;
+	cursor:pointer;
+}
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -73,7 +81,6 @@ $(function(){
 		})
 	}) 
 	
-
 	
 })
 </script>
@@ -83,9 +90,9 @@ $(function(){
 
 
    <div style="height: 60px"></div>
-   <table class="table" style="width: 100%;height: 700px">
+   <table class="table" style="width: 100%;height: 800px; box-shadow:0 3px 10px 0 rgba(0,0,0,0.2)">
      <tr>
-       <td style="width:35%;height:500px;">
+       <td style="width:409px;height:500px;">
          <table class="table">
            <caption><h3 class="text-center subtitle">맛집 선택</h3></caption>
            <tr style="border-bottom:3px solid #004fff">
@@ -106,7 +113,7 @@ $(function(){
            </tr>
          </table>
        </td>
-       <td width=35% height="500">
+       <td width=409 height="500">
          <table class="table">
            <caption><h3 class="text-center subtitle">예약일 선택</h3></caption>
            <tr>
@@ -115,41 +122,45 @@ $(function(){
              </td>
            </tr>
          </table>
+         <div id="submsg" style="display:none;">
+	         <div style="width:20px;height:20px;position:relative;top:30px;left:50px;background:#d9edf7;"></div>
+	         <span style="position:relative;top:7px;left:80px;">예약가능날짜</span>
+         </div>
        </td>
-       <td width=30% rowspan="2" height="700">
+       <td width=351 rowspan="2" height="700" style="border-left:2px solid #e0e0e0;">
          <table class="table">
            <caption><h3 class="text-center subtitle">예약 정보</h3></caption>
            <tr>
              <td class="text-center" colspan=2>
-                 <img id="food_img" src="image/ready.png" style="margin:0 0 0 10px;width:300px;height:300px;" >
+                 <img id="food_img" src="image/ready.png" style="margin:0 0 10px 0;width:295px;height:295px;" >
              </td>
            </tr>
            <tr>
-             <th width=30%>맛집명</th>
+             <th style="padding:8px 8px 8px 16px;">맛집명</th>
              <td class="text-left" colspan=2>
                <span id="food_name">(선택전)</span>
              </td>
            </tr>
            <tr>
-             <th width=30%>예약일</th>
+             <th width=30% style="padding:8px 8px 8px 16px;">예약일</th>
              <td width=70%><span id="r_day" >(선택전)</span></td>
            </tr>
            <tr>
-             <th width="30%">예약시간</th>
+             <th width="30%" style="padding:8px 8px 8px 16px;">예약시간</th>
              <td width=70%><span id="r_time">(선택전)</span></td>
            </tr>
            <tr>
-             <th width="30%">예약인원</th>
+             <th width="30%" style="padding:8px 8px 8px 16px;">예약인원</th>
              <td width=70%><span id="r_inwon">(선택전)</span></td>
            </tr>
            <tr>
-             <td colspan="2" class="text-center ok_btn" style="display:none">
+             <td colspan="2" class="text-center ok_btn" style="display:none;padding: 30px 0;">
                <form method="post" action="../reserve/reserve_ok.do">
                  <input type=hidden name="fno" id="fno">
                  <input type=hidden name="reserveday" id="reserveday">
                  <input type=hidden name="reservetime" id="reservetime">
                  <input type=hidden name="reserveinwon" id="reserveinwon">
-                 <input type=submit value="예약하기" class="btn btn-lg btn-primary">
+                 <input type=submit value="예약하기" class="blue_btn" style="width:50%;">
                </form>
              </td>
            </tr>
@@ -157,22 +168,22 @@ $(function(){
        </td>
      </tr>
      <tr>
-       <td class="default" width="35%" height="200">
+       <td class="default" width="35%" height="220">
          <table class="table">
            <caption><h3 class="text-center subtitle">시간 선택</h3></caption>
            <tr>
              <td>
-               <div id="select_time"></div>
+               <div id="select_time" style="position:relative;left:5px;"></div>
              </td>
            </tr>
          </table>
        </td>
-       <td class="warning" width="35%" height="200">
+       <td width="35%" height="220">
          <table class="table">
            <caption><h3 class="text-center subtitle">인원 선택</h3></caption>
            <tr>
              <td>
-               <div id="select_inwon"></div>
+               <div id="select_inwon" style="position:relative;left:10px;"></div>
              </td>
            </tr>
          </table>
