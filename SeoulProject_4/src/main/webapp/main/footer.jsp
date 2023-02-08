@@ -141,10 +141,10 @@ h5{
                         </div>
                         <div class="row">
                                 <ul>
-                                    <li><a href="#" ><i class="fa fa-stop"></i>홈</a></li>
-                                    <li><a href="#" ><i class="fa fa-stop"></i>여행지</a></li>
-                                    <li><a href="#" ><i class="fa fa-stop"></i>맛집</a></li>
-                                    <li><a href="#" ><i class="fa fa-stop"></i>커뮤니티</a></li>
+                                    <li><a href="../main/main.do" ><i class="fa fa-stop"></i>홈</a></li>
+                                    <li><a href="../trip/trip_all.do?tcno=1" ><i class="fa fa-stop"></i>여행지</a></li>
+                                    <li><a href="../food/food_location.do" ><i class="fa fa-stop"></i>맛집</a></li>
+                                    <li><a href="../board/list.do" ><i class="fa fa-stop"></i>자유게시판</a></li>
                                 </ul>
                         </div>
                     </div>
@@ -157,8 +157,7 @@ h5{
                         <div class="row">
                                 <ul>
                                     <li><a href="../notice/list.do"><i class="fa fa-stop"></i>공지사항</a></li>
-                                    <li><a href="../board/list.do"><i class="fa fa-stop"></i>자유게시판</a></li>
-                                    <li><a href="#"><i class="fa fa-stop"></i>일반 관광 문의</a></li>
+                                    <li><a href="https://kto.visitkorea.or.kr/kor/customer/call/1330.kto"><i class="fa fa-stop"></i>일반 관광 문의</a></li>
                                 </ul>
                         </div>
                      </div>
@@ -169,7 +168,7 @@ h5{
                             <h5>운영</h5>
                         </div>
                         <p>월~금 오전 9시 ~ 오후 6시<br>
-                        <a href="#">staff@seoul99trip.com</a>
+                        <a href="mailto:staff@seoul99trip.com" title="메일전송 외부시스템 새창에서 실행">staff@seoul99trip.com</a>
                         </p>
                         <p>
                         <br><br><br><br><br>
