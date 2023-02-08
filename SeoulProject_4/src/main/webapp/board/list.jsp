@@ -84,7 +84,7 @@ margin:60px 0;
     	</div>
     	<table class="table" height="60px;">
     		<tr>
-    			<td class="text-center">
+    			<td class="text-center" style="padding:30px;">
     				<a href="../board/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm" style="background-color:#004fff;">이전</a>
     				${curpage } 페이지 / ${totalpage } 페이지
     				<a href="../board/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm" style="background-color:#004fff;">다음</a>
@@ -106,7 +106,7 @@ margin:60px 0;
 			   	 <input class="form-control" type="text" placeholder="게시글 제목 검색" name="ss" value="${ss }">
 			   	</td>
 			   	<td style="margin:10px">
-				   <a class="whitegray_btn" style="padding:5px">검색</a>
+				   <button class="whitegray_btn" type="submit" style="padding:5px">검색</button>
 				</td>
 				</tr>
 				</table>

@@ -74,7 +74,7 @@ margin:60px 0;
     	</div>
     	<table class="table" height="60px;">
     		<tr>
-    			<td class="text-center">
+    			<td class="text-center" style="padding:30px;">
     				<a href="../board/find.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm" style="background-color:#004fff;">이전</a>
     				${curpage } 페이지 / ${totalpage } 페이지
     				<a href="../board/find.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm" style="background-color:#004fff;">다음</a>
