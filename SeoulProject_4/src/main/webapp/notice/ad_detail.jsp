@@ -48,7 +48,7 @@
    </tr>
    <tr>
      <td class="text-right" colspan="4">
-       <a href="../notice/list.do" class="btn btn-xs btn-info">목록</a>
+       <a href="../notice/list.do" class="whitegray_btn" style="padding:7px">목록</a>
      </td>
    </tr>
   </table>

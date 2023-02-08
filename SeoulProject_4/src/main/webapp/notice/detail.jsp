@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+.whitegray_btn{
+padding:7px;
+}
+</style>
 </head>
 <body>
 <div class="wrapper row3">
@@ -36,9 +41,9 @@
     	</tr>
     	<tr>
     		<td class="text-right" colspan="4">
-    		<a href="../notice/update.do" class="btn btn-xs btn-success">수정</a>
-    		<a href="../notice/delete.do" class="btn btn-xs btn-warning">삭제</a>
-    		<a href="../notice/list.do" class="btn btn-xs btn-info">목록</a>
+    		<a href="../notice/update.do" class="whitegray_btn">수정</a>
+    		<a href="../notice/delete.do" class="whitegray_btn">삭제</a>
+    		<a href="../notice/list.do" class="whitegray_btn">목록</a>
     	</tr>
     </table>
   </main>
