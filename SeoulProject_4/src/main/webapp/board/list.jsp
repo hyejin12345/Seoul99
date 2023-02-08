@@ -35,7 +35,7 @@ margin:60px 0;
   <main class="container clear">
     <h2 class="sectiontitle">자유 게시판</h2>
     <div style="height: 5px"></div>
-    <div style="height: 550px">
+    <div style="height: 550px; margin-bottom: 160px">
     	<table class="table">
     		<tr>
     		<c:if test="${sessionScope.id==null }">
@@ -82,7 +82,8 @@ margin:60px 0;
     	 </c:forEach>
     	</table>
     	</div>
-    	<table class="table" height="60px;">
+    	
+ 		 <table class="table">
     		<tr>
     			<td class="text-center" style="padding:30px;">
     				<a href="../board/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm" style="background-color:#004fff;">이전</a>
@@ -112,7 +113,7 @@ margin:60px 0;
 				</table>
 			  </form>
 		</div>
-  </main>
+	  </main>
   </div>
 </body>
 </html>

@@ -25,7 +25,7 @@ margin:60px 0;
   <main class="container clear">
     <h2 class="sectiontitle">자유 게시판</h2>
     <div style="height: 5px"></div>
-    <div style="height: 550px">
+    <div style="height: 550px; margin-bottom: 160px">
     	<table class="table">
     		<tr>
     		<c:if test="${sessionScope.id==null }">
