@@ -286,4 +286,5 @@ public class AllReplyDAO {
 	   }
 	   return total;
   }
+  //ㄴㄴ
 }
