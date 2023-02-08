@@ -46,8 +46,8 @@ $(function(){
   </table>
   <table class="table">
     <tr>
-      <th width=10% class="text-center">구분</th>
-      <th width=40% class="text-center">제목</th>
+      <th width=15% class="text-center">구분</th>
+      <th width=35% class="text-center">제목</th>
       <th width=10% class="text-center">이름</th>
       <th width=15% class="text-center">작성일</th>
       <th width=10% class="text-center">조회수</th>
@@ -58,8 +58,8 @@ $(function(){
     --%>
     <c:forEach var="vo" items="${list }"><%-- request.setAttribute("list",list) => request.getAttribute("list") ${list} --%>
       <tr>
-        <td width="10%" class="text-center">${vo.prefix}</td><%-- vo.getNo() = {} getXxx() --%>
-        <td width="40%">
+        <td width="15%" class="text-center">${vo.prefix}</td><%-- vo.getNo() = {} getXxx() --%>
+        <td width="35%">
          <a href="../notice/ad_detail.do?nno=${vo.nno }" id="tt">${vo.title}</a>&nbsp;
          <c:if test="${vo.dbday==today }">
            <sup><img src="../img/new.gif"></sup>

@@ -17,7 +17,7 @@ import com.sist.vo.NoticeVO;
 
 	@Controller
 	public class NoticeModel {
-		private String[] prefix= {"","일반공지","축제공지","맛집공지","여행공지","예약공지"};
+		private String[] prefix= {"","일반공지","이벤트공지","맛집공지","여행공지","예약공지"};
 		@RequestMapping("notice/list.do")
 		 public String notice(HttpServletRequest request, HttpServletResponse response) {
 			String page = request.getParameter("page");
