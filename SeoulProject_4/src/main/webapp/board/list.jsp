@@ -106,9 +106,7 @@ margin:60px 0;
 			   	 <input class="form-control" type="text" placeholder="게시글 제목 검색" name="ss" value="${ss }">
 			   	</td>
 			   	<td style="margin:10px">
-			  	  <button class="search-btn" type="submit">
 				   <a class="whitegray_btn" style="padding:5px">검색</a>
-				  </button>
 				</td>
 				</tr>
 				</table>
