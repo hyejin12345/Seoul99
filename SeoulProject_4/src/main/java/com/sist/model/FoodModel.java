@@ -198,7 +198,7 @@ public class FoodModel {
 			request.setAttribute("myLike_count", mc);
 			request.setAttribute("like_total", tc);
 		
-			request.setAttribute("main_jsp", "../food/food_find_detail.jsp");
+			request.setAttribute("main_jsp", "../food/food_detail.jsp");
 			return "../main/main.jsp";
 		}
 	 // 검색용 상세페이지

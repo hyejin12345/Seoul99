@@ -174,10 +174,10 @@ span.whitegray_btn,a.whitegray_btn{
 
                 <%-- 좋아요 --%>
                 <c:if test="${myLike_count==0 }">
-                  <a href="../like/foodlike_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up" style="color:gray"><span style="font-size:16px">(${like_total })</span></i></a>
+                  <a href="../like/foodlike_Find_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up" style="color:gray"><span style="font-size:16px">(${like_total })</span></i></a>
                 </c:if>
                 <c:if test="${myLike_count>0 }">
-                  <a href="../like/foodlike_delete.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up" style="color:#f46555"><span style="font-size:16px">(${like_total })</span></i></a>
+                  <a href="../like/foodlike_Find_delete.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up" style="color:#f46555"><span style="font-size:16px">(${like_total })</span></i></a>
                 </c:if>
 
             </c:if>
