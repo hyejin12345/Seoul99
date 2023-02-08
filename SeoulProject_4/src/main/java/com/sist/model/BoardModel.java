@@ -292,4 +292,50 @@ public class BoardModel {
 		dao.replyDelete(Integer.parseInt(rno));
 		return "redirect:detail.do?bno="+bno;
 	}
+	
+	@RequestMapping("board/find.do")
+	   public String board_find(HttpServletRequest request, HttpServletResponse response)
+	   {
+		   try
+			{
+				request.setCharacterEncoding("UTF-8");
+			}catch(Exception ex) {}
+		   String page = request.getParameter("page");
+	       if (page == null) {
+	          page = "1";
+	       }
+	       int curpage = Integer.parseInt(page);
+
+		   HttpSession session=request.getSession();
+		   String id=(String)session.getAttribute("id");
+		   BoardVO vo=new BoardVO();
+		   vo.setId(id);
+
+		    //String field=request.getParameter("field");
+		    String ss=request.getParameter("ss");
+		    BoardDAO dao=new BoardDAO();
+		    ArrayList<BoardVO> list=dao.boardListData(curpage);
+		    List<BoardVO> flist=dao.boardFindData(curpage, ss);
+		    int totalpage = dao.boardTotalPage();
+
+		    final int BLOCK = 10;
+		    int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
+		    int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
+		    if (endPage > totalpage)
+		        endPage = totalpage;
+		    if (totalpage==0)
+		       totalpage = totalpage+1;
+
+//		    request.setAttribute("list", list);
+		    request.setAttribute("curpage", curpage);
+		    request.setAttribute("totalpage", totalpage);
+		    request.setAttribute("startPage", startPage);
+		    request.setAttribute("endPage", endPage);
+		    //request.setAttribute("field", field);
+		    request.setAttribute("ss", ss);
+		    request.setAttribute("flist", flist);
+		    //request.setAttribute("board_jsp", "../board/find.jsp");
+		    request.setAttribute("main_jsp", "../board/find.jsp");
+		    return "../main/main.jsp";
+	   }
 }
