@@ -79,9 +79,9 @@ $(function(){
   <table class="table">
     <tr>
       <td class="text-center">
-       <a href="../adminpage/notice_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
+       <a href="../adminpage/notice_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm" style="background-color: #004fff">이전</a>
         ${curpage } page / ${totalpage } pages
-       <a href="../adminpage/notice_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+       <a href="../adminpage/notice_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm" style="background-color: #004fff">다음</a>
       </td>
     </tr>
   </table>

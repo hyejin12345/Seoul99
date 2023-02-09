@@ -112,11 +112,11 @@ public class FoodModel {
 		// 결과값을 얻어서 request에 담아주기 >> 
 		ArrayList<FoodVO> list=dao.foodListData2(Integer.parseInt(fcno));
 		//LikeDAO ldao=new LikeDAO();
-		for(FoodVO fvo:list)
-		{
+//		for(FoodVO fvo:list)
+//		{
 			//System.out.println(fvo.getName());
 			//fvo.setCount(ldao.foodLikeInsert(null))
-		}
+//		}
 		request.setAttribute("list", list);
 		FoodCategoryVO vo=dao.categoryInfoData2(Integer.parseInt(fcno));
 		request.setAttribute("vo", vo);
