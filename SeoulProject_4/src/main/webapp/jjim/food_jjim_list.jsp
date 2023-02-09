@@ -11,7 +11,7 @@
 <body>
  <div class="container">
   <div class="wrapper row3">
-    <main class="container clear" style="position:relative;width:80%;left:-90px;">
+    <main class="container clear" style="position:relative;width:90%;left:-90px;">
      <h2 class="sectiontitle text-left">맛집 관심 목록</h2>
      <div style="height: 30px"></div>
      <table class="table">
