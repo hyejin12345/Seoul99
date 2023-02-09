@@ -96,7 +96,7 @@ public class JjimDAO {
 					+ "(SELECT DISTINCT name FROM gg_locationFood_4 WHERE fno=gg_allJjim_4.no),"
 					+ "(SELECT DISTINCT poster FROM gg_locationFood_4 WHERE fno=gg_allJjim_4.no),"
 					+ "(SELECT DISTINCT addr FROM gg_locationFood_4 WHERE fno=gg_allJjim_4.no),"
-					+ "(SELECT DISTINCT tel FROM gg_locationFood_4 WHERE fno=gg_allJjim_4.no) FROM gg_allJjim_4 WHERE id=?";
+					+ "(SELECT DISTINCT tel FROM gg_locationFood_4 WHERE fno=gg_allJjim_4.no) FROM gg_allJjim_4 WHERE id=? and cate_no=2";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ResultSet rs=ps.executeQuery();
@@ -136,7 +136,7 @@ public class JjimDAO {
 					+"(SELECT DISTINCT image FROM gg_trip_4 WHERE tno=gg_allJjim_4.no), "
 					+"(SELECT DISTINCT addr FROM gg_trip_4 WHERE tno=gg_allJjim_4.no) "
 					+"FROM gg_allJjim_4 "
-					+"WHERE id=?";
+					+"WHERE id=? and cate_no=1";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ResultSet rs=ps.executeQuery();
