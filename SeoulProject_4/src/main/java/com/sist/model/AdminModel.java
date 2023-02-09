@@ -116,7 +116,7 @@ public class AdminModel {
 	   vo.setPrefix(prefix[vo.getType()]);
 	   request.setAttribute("vo", vo);
 	   request.setAttribute("main_jsp", "../adminpage/admin_main.jsp");
-	   request.setAttribute("admin_jsp", "../adminpage/notice_detail.jsp");
+	   request.setAttribute("admin_jsp", "../notice/detail.jsp");
 	   
 	   return "../main/main.jsp";
   }

@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="wrapper row3">
-  <main class="container clear">
+  <main class="container clear" style="width:900px;position:relative;left:-10px;">
     <h2 class="sectiontitle">공지사항</h2>
     <div style="height: 5px"></div>
     <div style="height: 550px">
@@ -43,9 +43,8 @@
     	</tr>
     	<tr>
     		<td class="text-right" colspan="4">
-    		<a href="../notice/update.do" class="whitegray_btn">수정</a>
-    		<a href="../notice/delete.do" class="whitegray_btn">삭제</a>
-    		<a href="../notice/list.do" class="whitegray_btn">목록</a>
+    		
+    		<a href="../adminpage/notice_list.do" class="whitegray_btn">목록</a>
     	</tr>
     </table>
   </main>
