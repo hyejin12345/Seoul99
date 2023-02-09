@@ -393,16 +393,17 @@ $(function(){
  
    <!-- 맛집리스트 -->
    <div class="topText">
-       <h3>서울 최고의 맛집리스트</h3>
+       <h3>서울 메뉴별 인기 맛집리스트</h3>
     </div>
     <div class="imglistSection">
          <div class="imglistGroup">
          <div class="main-carousel">
          
            <c:forEach var="fvo" items="${flist }" varStatus="s">
-              <c:if test="${s.index>=6 && s.index<=11 }">
+              <c:if test="${s.index<5 }">
+              <%-- <c:if test="${s.index>=6 && s.index<=11 }"> --%>
                  <div class="cell" id="foodcate_cell">
-                     <a href="../food/food_list.do?no=${fvo.fcno }">
+                     <a href="../food/food_list2.do?no=${fvo.fcno }">
                      <div class="foodcate_back"></div>
                      <img src="${fvo.image }" id="foodcate_cellimg">
                      <div class="foodcate_titles">
@@ -420,14 +421,14 @@ $(function(){
 
   
     <div class="topText">
-       <h3>서울 메뉴별 인기 맛집리스트</h3>
+       <h3>서울 지역별 인기 맛집리스트</h3>
     </div>
     <div class="imglistSection">
          <div class="imglistGroup">
          <div class="main-carousel">
          
            <c:forEach var="fvo" items="${flist }" varStatus="s">
-              <c:if test="${s.index>=18 && s.index<30 }">
+              <c:if test="${s.index>=5 && s.index<10 }">
                  <div class="cell" id="foodcate_cell">
                      <a href="../food/food_list.do?no=${fvo.fcno }">
                      <div class="foodcate_back"></div>
