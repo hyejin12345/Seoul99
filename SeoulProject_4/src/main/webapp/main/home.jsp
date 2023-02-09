@@ -430,7 +430,7 @@ $(function(){
            <c:forEach var="fvo" items="${flist }" varStatus="s">
               <c:if test="${s.index>=5 && s.index<10 }">
                  <div class="cell" id="foodcate_cell">
-                     <a href="../food/food_list.do?no=${fvo.fcno }">
+                     <a href="../food/food_list2.do?no=${fvo.fcno }">
                      <div class="foodcate_back"></div>
                      <img src="${fvo.image }" id="foodcate_cellimg">
                      <div class="foodcate_titles">

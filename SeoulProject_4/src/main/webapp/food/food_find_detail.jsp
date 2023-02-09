@@ -192,7 +192,7 @@ $(function(){
              <c:if test="${sessionScope.id!=null }">
              
              <%-- 찜 --%>
-                <c:if test="${myJjim_count==0 }">
+                <c:if test="${myJjim_count==0 }"> 
                   <a href="../jjim/foodjjim_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-sharp fa-solid fa-heart" style="color:gray"></i></a>
                 </c:if>
                 <c:if test="${myJjim_count>0 }">
