@@ -12,25 +12,25 @@ import com.sist.vo.AllLikeVO;
 @Controller
 public class LikeModel {
 	// 맛집 카테고리 상세페이지 좋아요
-	@RequestMapping("like/foodlike_insert.do")
-	public String foodlike_insert(HttpServletRequest request, HttpServletResponse response)
-	{
-		String fno=request.getParameter("fno");
-		
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		
-		AllLikeVO vo=new AllLikeVO();
-		vo.setNo(Integer.parseInt(fno));
-		vo.setId(id);
-		
-		LikeDAO dao=new LikeDAO();
-		dao.foodLikeInsert(vo);
-		
-		return "redirect:../food/food_detail.do?fno="+fno;
-	}
+//	@RequestMapping("like/foodlike_insert.do")
+//	public String foodlike_insert(HttpServletRequest request, HttpServletResponse response)
+//	{
+//		String fno=request.getParameter("fno");
+//		
+//		HttpSession session=request.getSession();
+//		String id=(String)session.getAttribute("id");
+//		
+//		AllLikeVO vo=new AllLikeVO();
+//		vo.setNo(Integer.parseInt(fno));
+//		vo.setId(id);
+//		
+//		LikeDAO dao=new LikeDAO();
+//		dao.foodLikeInsert(vo);
+//		
+//		return "redirect:../food/food_detail.do?fno="+fno;
+//	}
 	// 맛집 검색 상세페이지 좋아요
-	@RequestMapping("like/foodlike_Find_insert.do")
+	@RequestMapping("like/foodlike_insert.do")
 	public String foodlike_Find_insert(HttpServletRequest request, HttpServletResponse response)
 	{
 		String fno=request.getParameter("fno");
@@ -82,26 +82,26 @@ public class LikeModel {
 		return "redirect:../trip/trip_detail.do?tno="+tno;
 	}
 	// 카테고리 상세페이지 좋아요 삭제 
-	@RequestMapping("like/foodlike_delete.do")
-	public String foodlike_delete(HttpServletRequest request, HttpServletResponse response)
-	{
-		String fno=request.getParameter("fno");
-		
-		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
-		
-		AllLikeVO vo=new AllLikeVO();
-		vo.setNo(Integer.parseInt(fno));
-		vo.setId(id);
-
-		LikeDAO dao=new LikeDAO();
-		dao.foodLikeDelete(2, Integer.parseInt(fno), id);
-		
-		return "redirect:../food/food_detail.do?fno="+fno;
-	}
+//	@RequestMapping("like/foodlike_delete.do")
+//	public String foodlike_delete(HttpServletRequest request, HttpServletResponse response)
+//	{
+//		String fno=request.getParameter("fno");
+//		
+//		HttpSession session=request.getSession();
+//		String id=(String)session.getAttribute("id");
+//		
+//		AllLikeVO vo=new AllLikeVO();
+//		vo.setNo(Integer.parseInt(fno));
+//		vo.setId(id);
+//
+//		LikeDAO dao=new LikeDAO();
+//		dao.foodLikeDelete(2, Integer.parseInt(fno), id);
+//		
+//		return "redirect:../food/food_detail.do?fno="+fno;
+//	}
 	
 	// 검색 상세페이지 좋아요 삭제 
-	@RequestMapping("like/foodlike_Find_delete.do")
+	@RequestMapping("like/foodlike_delete.do")
 	public String foodlike_Find_delete(HttpServletRequest request, HttpServletResponse response)
 	{
 		String fno=request.getParameter("fno");

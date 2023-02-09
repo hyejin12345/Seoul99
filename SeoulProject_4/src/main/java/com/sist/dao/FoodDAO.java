@@ -240,31 +240,31 @@ public class FoodDAO {
 	}
 	
 	// 카테고리 정보
-	public FoodCategoryVO categoryInfoData(int fcno)
-	{
-		FoodCategoryVO vo=new FoodCategoryVO();
-		try
-		{
-			conn=CreateConnection.getConnection();
-			String sql="SELECT title,subtitle FROM gg_foodCategory_4 "
-					  +"WHERE fcno=?";
-			ps=conn.prepareStatement(sql);
-			ps.setInt(1, fcno);
-			ResultSet rs=ps.executeQuery();
-			rs.next();
-			vo.setTitle(rs.getString(1));
-			vo.setSubtitle(rs.getString(2));
-			rs.close();
-		}catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		finally
-		{
-			CreateConnection.disConnection(conn, ps);
-		}
-		return vo;
-	}
+//	public FoodCategoryVO categoryInfoData(int fcno)
+//	{
+//		FoodCategoryVO vo=new FoodCategoryVO();
+//		try
+//		{
+//			conn=CreateConnection.getConnection();
+//			String sql="SELECT title,subtitle FROM gg_foodCategory_4 "
+//					  +"WHERE fcno=?";
+//			ps=conn.prepareStatement(sql);
+//			ps.setInt(1, fcno);
+//			ResultSet rs=ps.executeQuery();
+//			rs.next();
+//			vo.setTitle(rs.getString(1));
+//			vo.setSubtitle(rs.getString(2));
+//			rs.close();
+//		}catch(Exception ex)
+//		{
+//			ex.printStackTrace();
+//		}
+//		finally
+//		{
+//			CreateConnection.disConnection(conn, ps);
+//		}
+//		return vo;
+//	}
 	
 	
 	// test 2 카테고리 데이터
