@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>서울99여행</title>
+
 <style type="text/css">
 *{
    margin:0;
@@ -82,9 +83,35 @@ span.whitegray_btn,a.whitegray_btn{
 }
 
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
 </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+
+
+let u=0
+
+$(function(){
+   $('.ups').click(function(){
+      $('.rupdate').hide();
+       let arno=$(this).attr("data-no");
+       if(u==0)
+       {
+           $(this).text("취소");
+           $('#u'+arno).show();
+           u=1;
+       }
+       else
+       {
+           $(this).text("수정");
+           $('#u'+arno).hide();
+           u=0;
+       }
+   })
+
+
+})
+</script>
 <body>
 <div class="container">
    <div class="row">
