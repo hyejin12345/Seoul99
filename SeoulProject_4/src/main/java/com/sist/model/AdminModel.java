@@ -372,7 +372,7 @@ public class AdminModel {
 	      MemberDAO dao=new MemberDAO();
 	      int totalpage=dao.MemberListTotalPage();
 		  
-		  
+		  //
 		  final int BLOCK = 10;
 		  int startPage = ((curpage-1)/BLOCK*BLOCK) + 1;
 		  int endPage = ((curpage-1)/BLOCK * BLOCK) + BLOCK;
