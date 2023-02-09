@@ -19,9 +19,6 @@
 	font-size:16px;
 	color: black;
 }
-::placeholder {
-  color: #004fff;
-}
 
 body {
   font-family:'Noto Sans KR', sans-serif;
