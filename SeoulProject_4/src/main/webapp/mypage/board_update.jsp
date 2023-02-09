@@ -63,8 +63,8 @@ resize: none;
 <div class="wrapper row3">
   <main class="container clear">
     <h2 class="sectiontitle text-left">수정하기</h2>
-    <div style="height: 5px"></div>
-    <div style="height: 550px">
+    <div style="height: 5px" ></div>
+    <div style="height: 550px;width:80%;position:relative;left:10px;">
     <form id="update_frm">
     	    <table class="table">
     	<%-- <tr>
