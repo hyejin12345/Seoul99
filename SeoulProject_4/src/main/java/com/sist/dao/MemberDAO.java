@@ -457,11 +457,11 @@ public class MemberDAO {
 	   List<MemberVO> list=new ArrayList<MemberVO>();
 	   try {
 		   conn=CreateConnection.getConnection();
-		   String sql="SELECT id,name,sex,email,phone,admin,rownum  "
-		   		+ "FROM(SELECT id,name,sex,email,phone,admin,rownum "
+		   String sql="SELECT id,name,sex,email,phone,admin,num "
+		   		+ "FROM(SELECT id,name,sex,email,phone,admin,rownum as num "
 		   		+ "FROM(SELECT id,name,sex,email,phone,admin "
 		   		+ "FROM gg_member_4)) "
-		   		+ "WHERE rownum BETWEEN ? AND ?";
+		   		+ "WHERE num BETWEEN ? AND ?";
 		   ps=conn.prepareStatement(sql);
 		   int rowSize = 10;
 			int start = (page*rowSize) - (rowSize-1); // 1, 11, 21 ...

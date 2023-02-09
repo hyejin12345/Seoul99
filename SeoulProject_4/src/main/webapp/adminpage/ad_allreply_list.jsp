@@ -36,7 +36,7 @@ $(function(){
   <main class="container clear" style="width:900px;position:relative;left:20px;">
   <h2 class="sectiontitle text-left">서울여행/맛집 댓글</h2>
   <div style="height: 5px"></div>
-  <div style="height: 550px; margin-bottom: 200px;">
+  <div style="height: 550px;">
   
   <table class="table">
     <tr>

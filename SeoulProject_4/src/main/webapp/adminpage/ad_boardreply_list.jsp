@@ -38,7 +38,7 @@ $(function(){
   <main class="container clear" style="width:900px;position:relative;left:20px;">
   <h2 class="sectiontitle text-left">자유게시판 댓글</h2>
   <div style="height: 5px"></div>
-  <div style="height: 550px;margin-bottom: 350px;">
+  <div style="height: 550px;margin-bottom: 200px;">
   
   <table class="table">
     <tr>
