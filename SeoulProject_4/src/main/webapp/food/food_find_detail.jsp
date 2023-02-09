@@ -208,7 +208,7 @@ $(function(){
                 </c:if>
 
             </c:if>
-              <a href="javascript:history.back()" class="circle_btn" style="color:white"><i class="fa fa-home" style="font-size:17px"></i></a>
+              <a href="../food/food_location.do" class="circle_btn" style="color:white"><i class="fa fa-home" style="font-size:17px"></i></a>
             </td>
        </tr>
       </table>
@@ -279,7 +279,11 @@ $(function(){
 	      </div>
       
       </c:if>
+       <div class="foodReview_section" id="foodReview_section">
       
+         <div class="fReview_top">
+            <h2 class="fReview_name">${vo.name }&nbsp;</h2><h2>댓글리뷰(${count!=0?count:"0" })</h2>
+         </div>   
      <div class="fReview_body" style="width:1150px">
          
          

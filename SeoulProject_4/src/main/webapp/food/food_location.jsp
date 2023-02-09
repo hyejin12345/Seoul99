@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>서울99여행</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 <style type="text/css">
 
 *{
@@ -22,6 +23,56 @@
   color: #004fff;
 }
 
+body {
+  font-family:'Noto Sans KR', sans-serif;
+  
+}
+
+.wrapper {
+  width: 1200px;
+  max-width: 60rem;
+  margin: 6rem auto;
+  
+}
+
+.label {
+  font-size: .625rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: +1.3px;
+  margin-bottom: 1rem;
+}
+
+.searchBar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#searchQueryInput {
+  width: 100%;
+  height: 2.8rem;
+  background: #f5f5f5;
+  outline: none;
+  border: none;
+  border-radius: 1.625rem;
+  padding: 0 3.5rem 0 1.5rem;
+  font-size: 18px;
+}
+
+#searchQuerySubmit {
+  width: 3.5rem;
+  height: 2.8rem;
+  margin-left: -3.5rem;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+#searchQuerySubmit:hover {
+  cursor: pointer;
+}
 .route{
 	/* 페이지 경로 */
 	width:100%;
@@ -82,7 +133,7 @@
  width:270px;
  height:270px;
  float:left;
- margin: 0 30px 3px 0;
+ margin: -29px 30px 100px 0;
  box-shadow : 0 5px 10px 0 rgb(0,0,0,0.2);
  
  position:relative;
@@ -171,22 +222,12 @@ div.item_info{
    <form method=post action="../food/food_location.do" class="inline">
      
      <%-- (나중에 정리) --%>
-    <div class="col-sm-2">
-           <select id="id_searchType" name="searchType" class="form-control input-sm">
-             <option value="T">추천검색어</option>
-             <option value="W">인기검색어</option>
-             <option value="C">최근검색어</option>
-           </select>
-        </div>
+   
         
         <%-- 검색창 다시. 위치 조정--%>
+      
         
-         <div class="col-sm=2">
          
-          <input type="text" name="ss" class="input-sm" placeholder="이곳에서 서울의 맛집을 찾아보세요!♡" size=30 value="${ss}" >
-          <input type=submit value="검색">
-         
-        </div>
         
 		    
    </form>
@@ -201,6 +242,20 @@ div.item_info{
 		
 		
 		<h1 class="food_toptitle">서울의 모든 맛집</h1>
+		  <div class="wrapper">
+  <div class="label"></div>
+  <div class="searchBar">
+    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="이곳에서 서울의 맛집을 찾아보세요!♡" value="${ss }" />
+    <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+      <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+      </svg>
+    </button>
+  </div>
+</div>
+		
+		
+		
+		
 		<div class="filterbar">
 		지역필터
 		</div>
