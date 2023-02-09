@@ -36,7 +36,7 @@ $(function(){
   <main class="container clear" style="width:900px;position:relative;left:20px;">
   <h2 class="sectiontitle text-left">서울여행/맛집 댓글</h2>
   <div style="height: 5px"></div>
-  <div style="height: 550px">
+  <div style="height: 550px; margin-bottom: 200px;">
   
   <table class="table">
     <tr>
@@ -59,7 +59,7 @@ $(function(){
         <c:if test="${vo.cate_no==2 }">
           <td width="10%" class="text-center">맛집</td>
         </c:if>
-        <td width="40%">${vo.msg }</td>
+        <td width="40%" >${vo.msg }</td>
         
         <td width="15%" class="text-center">${vo.name }(${vo.id })</td>
         <td width="10%" class="text-center">${vo.dbday }</td>

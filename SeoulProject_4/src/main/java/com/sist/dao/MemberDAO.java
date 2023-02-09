@@ -446,12 +446,29 @@ public class MemberDAO {
 	   return bCheck;
    }
    ///////////////////////////////////////////////////////
-   public List<MemberVO> ad_allMemberList(){
+   /*
+    * "SELECT id,bno, title, name, TO_CHAR(regdate, 'YYYY-MM-DD'), hit,filesize, num "
+					+ "FROM (SELECT id,bno, title, name, regdate, hit,filesize, rownum as num "
+					+ "FROM (SELECT id,bno, title, name, regdate, hit, filesize "
+					+ "FROM gg_board_4 ORDER BY bno DESC)) "
+					+ "WHERE num BETWEEN ? AND ?";
+    */
+   public List<MemberVO> ad_allMemberList(int page){
 	   List<MemberVO> list=new ArrayList<MemberVO>();
 	   try {
 		   conn=CreateConnection.getConnection();
-		   String sql="SELECT id,name,sex,email,phone,admin FROM gg_member_4";
+		   String sql="SELECT id,name,sex,email,phone,admin,rownum  "
+		   		+ "FROM(SELECT id,name,sex,email,phone,admin,rownum "
+		   		+ "FROM(SELECT id,name,sex,email,phone,admin "
+		   		+ "FROM gg_member_4)) "
+		   		+ "WHERE rownum BETWEEN ? AND ?";
 		   ps=conn.prepareStatement(sql);
+		   int rowSize = 10;
+			int start = (page*rowSize) - (rowSize-1); // 1, 11, 21 ...
+			int end = page * rowSize; // 10, 20, 30
+			// ?에 값을 채운다
+			ps.setInt(1, start);
+			ps.setInt(2, end);
 		   ResultSet rs=ps.executeQuery();
 		   while(rs.next()) {
 			   MemberVO vo=new MemberVO();

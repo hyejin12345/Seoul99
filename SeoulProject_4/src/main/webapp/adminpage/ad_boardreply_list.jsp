@@ -12,6 +12,7 @@
   color:black;
   
 }
+
 </style>
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
@@ -37,16 +38,16 @@ $(function(){
   <main class="container clear" style="width:900px;position:relative;left:20px;">
   <h2 class="sectiontitle text-left">자유게시판 댓글</h2>
   <div style="height: 5px"></div>
-  <div style="height: 550px">
+  <div style="height: 550px;margin-bottom: 350px;">
   
   <table class="table">
     <tr>
       <th width=10% class="text-center">번호</th>
-      <th width=20% class="text-center">게시글번호</th>
-      <th width=20% class="text-center">내용</th>
+      <th width=10% class="text-center">게시글번호</th>
+      <th width=35% class="text-center">내용</th>
       <th width=10% class="text-center">이름</th>
       <th width=25% class="text-center">작성일</th>
-      <th width=15% class="text-center"></th>
+      <th width=10% class="text-center"></th>
     </tr>
     <%--
        for(FreeBoardVO vo:request.getAttribute("list"))
@@ -55,7 +56,7 @@ $(function(){
       <tr>
         <td width="10%" class="text-center">${vo.rno}</td>
           <td width="20%" class="text-center">${vo.bno }</td>
-           <td width="20%">${vo.msg }</td>
+           <td width="20%" id="msg">${vo.msg }</td>
         
         <td width="10%" class="text-center">${vo.name }(${vo.id })</td>
         <td width="25%" class="text-center">${vo.dbday }</td>
@@ -69,9 +70,9 @@ $(function(){
   <table class="table">
     <tr>
       <td class="text-center">
-       <a href="../adminpage/ad_all_reply_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
+       <a href="../adminpage/ad_board_reply_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
         ${curpage } page / ${totalpage } pages
-       <a href="../adminpage/ad_all_reply_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+       <a href="../adminpage/ad_board_reply_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
       </td>
     </tr>
   </table>

@@ -115,18 +115,33 @@ public class AllReplyDAO {
 		  CreateConnection.disConnection(conn, ps);
 	  }
   }
-  public List<AllReplyVO> ad_allReplyListData()
+  /*
+   * "SELECT id,bno, title, name, TO_CHAR(regdate, 'YYYY-MM-DD'), hit,filesize, num "
+					+ "FROM (SELECT id,bno, title, name, regdate, hit,filesize, rownum as num "
+					+ "FROM (SELECT id,bno, title, name, regdate, hit, filesize "
+					+ "FROM gg_board_4 ORDER BY bno DESC)) "
+					+ "WHERE num BETWEEN ? AND ?";
+   */
+  public List<AllReplyVO> ad_allReplyListData(int page)
   {
 
 	  List<AllReplyVO> list=new ArrayList<AllReplyVO>();
 	  try
 	  {
 		  conn=CreateConnection.getConnection();
-		  String sql="SELECT arno,cate_no,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
-				    +"FROM gg_allreply_4 "
+		  String sql="SELECT arno,cate_no,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS'),rownum "
+		  		    + "FROM(SELECT arno,cate_no,id,name,msg,regdate,rownum "
+		  		    + "FROM(SELECT arno,cate_no,id,name,msg,regdate "
+				    +"FROM gg_allreply_4)) "
+				    + "WHERE rownum BETWEEN ? AND ? "
 				    +"ORDER BY arno DESC";
 		  ps=conn.prepareStatement(sql);
-		 
+		  int rowSize = 10;
+			int start = (page*rowSize) - (rowSize-1); // 1, 11, 21 ...
+			int end = page * rowSize; // 10, 20, 30
+			// ?에 값을 채운다
+			ps.setInt(1, start);
+			ps.setInt(2, end);
 		  
 		  ResultSet rs=ps.executeQuery();
 		  while(rs.next())
@@ -207,19 +222,34 @@ public class AllReplyDAO {
 	BNO                 NUMBER       
 	ID                  VARCHAR2(20) 
 	QNO                 NUMBER     
+	"SELECT id,bno, title, name, TO_CHAR(regdate, 'YYYY-MM-DD'), hit,filesize, num "
+					+ "FROM (SELECT id,bno, title, name, regdate, hit,filesize, rownum as num "
+					+ "FROM (SELECT id,bno, title, name, regdate, hit, filesize "
+					+ "FROM gg_board_4 ORDER BY bno DESC)) "
+					+ "WHERE num BETWEEN ? AND ?";
    */
-  public List<BoardReplyVO> ad_boardReplyListData()
+  public List<BoardReplyVO> ad_boardReplyListData(int page)
   {
 
 	  List<BoardReplyVO> list=new ArrayList<BoardReplyVO>();
 	  try
 	  {
+	  
 		  conn=CreateConnection.getConnection();
-		  String sql="SELECT rno,bno,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') "
-				    +"FROM gg_reply_4 "
+		  String sql="SELECT rno,bno,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS'),rownum "
+				    +"FROM(SELECT rno,bno,id,name,msg,regdate,rownum "
+				    + "FROM(SELECT rno,bno,id,name,msg,regdate "
+				    + "FROM gg_reply_4)) "
+				    + "WHERE rownum BETWEEN ? AND ? "
 				    +"ORDER BY rno DESC";
 		  ps=conn.prepareStatement(sql);
-		 
+		  
+		  int rowSize = 10;
+			int start = (page*rowSize) - (rowSize-1); // 1, 11, 21 ...
+			int end = page * rowSize; // 10, 20, 30
+			// ?에 값을 채운다
+			ps.setInt(1, start);
+			ps.setInt(2, end);
 		  
 		  ResultSet rs=ps.executeQuery();
 		  while(rs.next())

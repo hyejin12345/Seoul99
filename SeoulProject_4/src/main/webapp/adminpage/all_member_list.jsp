@@ -36,7 +36,7 @@ $(function(){
   <main class="container clear" style="width:900px;position:relative;left:-10px;">
   <h2 class="sectiontitle text-left">회원 목록(${count }명)</h2>
   <div style="height: 5px"></div>
-  <div style="height: 550px; margin-bottom: 100px">
+  <div style="height: 550px; ">
   
   <table class="table">
     <tr>
@@ -71,9 +71,9 @@ $(function(){
   <table class="table">
     <tr>
       <td class="text-center">
-       <a href="../adminpage/board_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
+       <a href="../adminpage/ad_member_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
         ${curpage } page / ${totalpage } pages
-       <a href="../adminpage/board_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+       <a href="../adminpage/ad_member_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
       </td>
     </tr>
   </table>

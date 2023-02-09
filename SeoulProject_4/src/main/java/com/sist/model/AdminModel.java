@@ -381,7 +381,7 @@ public class AdminModel {
 		  if (totalpage==0)
 		  	totalpage = totalpage+1;
 		   int count=dao.membercount();
-		   List<MemberVO> list=dao.ad_allMemberList();
+		   List<MemberVO> list=dao.ad_allMemberList(curpage);
 		   request.setAttribute("count", count);
 		   request.setAttribute("curpage", curpage);
 		   request.setAttribute("totalpage", totalpage);
@@ -414,7 +414,7 @@ public class AdminModel {
 		  if (totalpage==0)
 		  	totalpage = totalpage+1;
 		   
-		   List<AllReplyVO> list=dao.ad_allReplyListData();
+		   List<AllReplyVO> list=dao.ad_allReplyListData(curpage);
 		   request.setAttribute("curpage", curpage);
 		   request.setAttribute("totalpage", totalpage);
 		   request.setAttribute("startPage", startPage);
@@ -454,7 +454,7 @@ public class AdminModel {
 		  if (totalpage==0)
 		  	totalpage = totalpage+1;
 		   
-		   List<BoardReplyVO> list=dao.ad_boardReplyListData();
+		   List<BoardReplyVO> list=dao.ad_boardReplyListData(curpage);
 		   request.setAttribute("curpage", curpage);
 		   request.setAttribute("totalpage", totalpage);
 		   request.setAttribute("startPage", startPage);

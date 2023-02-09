@@ -13,7 +13,7 @@
   <main class="container clear" style="width:900px;position:relative;left:-10px;">
     <h2 class="sectiontitle">자유 게시판</h2>
     <div style="height: 5px"></div>
-    <div style="height: 550px">
+    <div style="height: 550px; margin-bottom: 350px;">
     	<table class="table">
     		<tr >
     		<c:if test="${sessionScope.id!=vo.id }">
@@ -60,9 +60,9 @@
     	<table class="table">
     		<tr>
     			<td class="text-center">
-    				<a href="../board/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
+    				<a href="../adminpage/board_list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-primary">이전</a>
     				${curpage } page / ${totalpage } pages
-    				<a href="../board/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
+    				<a href="../adminpage/board_list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-primary">다음</a>
     			</td>
     		</tr>
     	</table>
