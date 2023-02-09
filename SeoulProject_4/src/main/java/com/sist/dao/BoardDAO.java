@@ -589,7 +589,7 @@ public class BoardDAO {
 		}
 		
 		}
-		public ArrayList<BoardVO> my_boardListData(String name)
+		public ArrayList<BoardVO> my_boardListData(String id)
 		{ // 사용자가 데이터 전송 => 처리 (매개변수)
 			ArrayList<BoardVO> list = new ArrayList<BoardVO>();
 			try
@@ -597,12 +597,12 @@ public class BoardDAO {
 				conn=CreateConnection.getConnection();
 				String sql = "SELECT id,bno, title, name, TO_CHAR(regdate, 'YYYY-MM-DD'), hit,filesize "
 						+ "FROM gg_board_4 "
-						+ "WHERE name=?";
+						+ "WHERE id=?";
 				ps = conn.prepareStatement(sql);
 				
 				// ?에 값을 채운다
 				
-				ps.setString(1, name);
+				ps.setString(1, id);
 				
 				// 실행
 				ResultSet rs = ps.executeQuery();
@@ -626,6 +626,73 @@ public class BoardDAO {
 				CreateConnection.disConnection(conn, ps);
 			}
 			return list;
+		}
+		public BoardVO my_boardDetailData(int bno) {
+			BoardVO vo = new BoardVO();
+			try {
+				conn=CreateConnection.getConnection();
+				String sql = "UPDATE gg_board_4 SET "
+						+ "hit= hit+1 "
+						+ "WHERE bno=?";
+				// => 기능 수행 => 한개의 기능에 여러개의 SQL문장을 실행 할 수 있다
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, bno);
+				ps.executeUpdate();
+				
+				// 2-1 사용자가 요청한 게시물 상세 받기
+				sql = "SELECT bno, name, title, content, hit, TO_CHAR(regdate,'YYYY-MM-DD'),filename, filesize,id "
+						+ "FROM gg_board_4 "
+						+ "WHERE bno=?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, bno);
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				// 데이터값을 받아서 저장 => JSP에서 읽기
+				vo.setBno(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				vo.setTitle(rs.getString(3));
+				vo.setContent(rs.getString(4));
+				vo.setHit(rs.getInt(5));
+				vo.setDbday(rs.getString(6));
+				vo.setFilename(rs.getString(7));
+				vo.setFilesize(rs.getInt(8));
+				vo.setId(rs.getString(9));
+				rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+			return vo;
+		}
+		public void my_boardUpdate(BoardVO vo) { // 수정할 데이터 여러개 => VO, 한개, 두개, 일반변수
+			// boolean => 비밀번호가 맞는 경우 / 틀린경우 => 경우의수가 여러개면 int, String, 두개명 : boolean
+			// 수정 => 비밀번호(O) => 수정하고 상세보기로 이동, 비밀번호(X) => 수정없이 이전화면으로 이동
+			
+			try {
+				// 1. 연결
+				conn=CreateConnection.getConnection();
+				// 2. SQL => 두번 수행
+				// 2-1 => 비밀번호 확인
+				String sql = "UPDATE gg_board_4 SET "
+						+ "title=?, content=?, moddate=SYSDATE " //regdate=SYSDATE 수정날짜 
+						+ "WHERE bno=?";
+					ps = conn.prepareStatement(sql);
+					ps.setString(1, vo.getName());
+					ps.setString(1, vo.getTitle());
+					ps.setString(2, vo.getContent());
+					ps.setInt(3, vo.getBno());
+					
+					// 실행 명령
+					ps.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				CreateConnection.disConnection(conn, ps);
+			}
+			
+			
 		}
 			
 }

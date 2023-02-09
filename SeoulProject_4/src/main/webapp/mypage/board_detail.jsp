@@ -113,7 +113,7 @@ resize: none;
 <body>
 <div class="wrapper row3">
   <main class="container clear" >
-    <h2 class="sectiontitle">자유 게시판</h2>
+    <h2 class="sectiontitle text-left">자유 게시판</h2>
     <div style="height: 5px"></div>
     
     <table class="table" style="width:80%;position:relative;left:10px;">

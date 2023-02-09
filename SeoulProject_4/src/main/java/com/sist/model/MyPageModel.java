@@ -10,6 +10,7 @@ import com.sist.dao.BoardDAO;
 import com.sist.dao.JjimDAO;
 import com.sist.dao.LikeDAO;
 import com.sist.dao.MemberDAO;
+import com.sist.dao.NoticeDAO;
 import com.sist.dao.ReserveDAO;
 
 import java.io.PrintWriter;
@@ -203,10 +204,14 @@ public class MyPageModel {
    {
  	// 사용자 보내준 데이터 받기 
 	   HttpSession session=request.getSession();
+	   String id=(String)session.getAttribute("id");
+	   
+	   
 	   String name=(String)session.getAttribute("name");
  	  
  		BoardDAO dao=new BoardDAO();
- 		ArrayList<BoardVO> list=dao.my_boardListData(name);
+ 		ArrayList<BoardVO> list=dao.my_boardListData(id);
+ 		request.setAttribute("name", name);
  		request.setAttribute("list", list);
  	  request.setAttribute("mypage_jsp", "../mypage/board_list.jsp");
  	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
@@ -237,7 +242,8 @@ public class MyPageModel {
 			   // 한글 변환
 			   request.setCharacterEncoding("UTF-8");
 		   }catch(Exception ex) {}
-		   String name=request.getParameter("name");
+		   HttpSession session=request.getSession();
+		   String name=(String)session.getAttribute("name");
 		   String title=request.getParameter("title");
 		   String content=request.getParameter("content");
 		   String bno=request.getParameter("bno");
@@ -282,5 +288,23 @@ public class MyPageModel {
 		  request.setAttribute("mypage_jsp", "../mypage/chage_pwd.jsp");
 		  return "../main/main.jsp";
 	  }
+	@RequestMapping("mypage/my_detail.do")
+	public String ad_board_detail(HttpServletRequest request, HttpServletResponse response)
+	{
+		String bno=request.getParameter("bno");
+		
+		   
+		BoardDAO dao=new BoardDAO();
+		BoardVO vo=dao.my_boardDetailData(Integer.parseInt(bno));
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+		request.setAttribute("mypage_jsp", "../mypage/board_detail.jsp");
+		
+		List<BoardReplyVO> list=dao.replyListData(Integer.parseInt(bno));
+		request.setAttribute("list", list);
+		request.setAttribute("count", list.size());
+		
+		return "../main/main.jsp";
+	}
    
 }

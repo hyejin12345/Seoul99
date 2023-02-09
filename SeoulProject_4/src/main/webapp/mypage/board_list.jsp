@@ -31,12 +31,12 @@
     	 		<td width="10%" class="text-center">${vo.bno }</td> <%-- vo.getNo() --%>
     	 		<td width="30%" style="color: black">
     	 		
-    	 		<a href="../board/my_detail.do?bno=${vo.bno }"style="color: black">${vo.title }</a> &nbsp;
+    	 		<a href="../mypage/my_detail.do?bno=${vo.bno }"style="color: black">${vo.title }</a> &nbsp;
     	 		<c:if test="${vo.dbday==today }">
     	 			<sup><img src="../img/new.gif"></sup>
     	 		</c:if>
     	 		</td>
-    	 		<td width="15%" class="text-center">${vo.name }</td>
+    	 		<td width="15%" class="text-center">${name }</td>
     	 		<td width="15%" class="text-center">${vo.dbday }</td>
     	 		<td width="10%" class="text-center">${vo.hit }</td>
     	 		<td width="20%" class="text-center">
