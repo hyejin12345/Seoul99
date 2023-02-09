@@ -10,6 +10,9 @@
 textarea{
 resize: none;
 }
+h2{
+margin:60px 0;
+}
 </style>
 </head>
 <body>
