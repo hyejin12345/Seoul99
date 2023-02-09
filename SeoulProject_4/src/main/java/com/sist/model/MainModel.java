@@ -31,7 +31,7 @@ public class MainModel {
       
       // 메인 맛집리스트
       FoodDAO fdao = new FoodDAO();
-      List<FoodCategoryVO> flist = fdao.mainpageFoodListData(); // ArrayList에서 List로 수정
+      List<FoodCategoryVO> flist = fdao.mainpageFoodListData2(); // ArrayList에서 List로 수정
       request.setAttribute("flist", flist);
 
       // 메인 축제리스트
