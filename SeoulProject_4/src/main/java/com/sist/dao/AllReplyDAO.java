@@ -132,9 +132,8 @@ public class AllReplyDAO {
 		  String sql="SELECT arno,cate_no,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS'),rownum "
 		  		    + "FROM(SELECT arno,cate_no,id,name,msg,regdate,rownum "
 		  		    + "FROM(SELECT arno,cate_no,id,name,msg,regdate "
-				    +"FROM gg_allreply_4)) "
-				    + "WHERE rownum BETWEEN ? AND ? "
-				    +"ORDER BY arno DESC";
+				    +"FROM gg_allreply_4 ORDER BY arno DESC)) "
+				    + "WHERE rownum BETWEEN ? AND ? ";
 		  ps=conn.prepareStatement(sql);
 		  int rowSize = 10;
 			int start = (page*rowSize) - (rowSize-1); // 1, 11, 21 ...
@@ -239,9 +238,8 @@ public class AllReplyDAO {
 		  String sql="SELECT rno,bno,id,name,msg,TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS'),rownum "
 				    +"FROM(SELECT rno,bno,id,name,msg,regdate,rownum "
 				    + "FROM(SELECT rno,bno,id,name,msg,regdate "
-				    + "FROM gg_reply_4)) "
-				    + "WHERE rownum BETWEEN ? AND ? "
-				    +"ORDER BY rno DESC";
+				    + "FROM gg_reply_4 ORDER BY rno DESC)) "
+				    + "WHERE rownum BETWEEN ? AND ? ";
 		  ps=conn.prepareStatement(sql);
 		  
 		  int rowSize = 10;
