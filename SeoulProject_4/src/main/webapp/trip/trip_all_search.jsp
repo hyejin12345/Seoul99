@@ -176,10 +176,10 @@ $(function(){
 	        
 	        
 	        <!-- 카테고리 내 검색 -->
-	        <form method="post" action="../trip/trip_all_search.do?tcno=${tcno }">
+	        <form method="post" action="../trip/trip_all_search.do">
 	          <div style="position:absolute;top:30%;">
 	            <h4><span style="color:#004fff;font-size:18px;">${tripCategory_name }</span>에서 검색하기</h4>
-	            <input id="srhWord" type="text" name="searchWord" size=15 value="${searchWord}" minlength="2" placeholder="2자 이상 입력해주세요." style="height:30px;border-radius:4px;border:1px solid gray;" autocomplete="off">
+	            <input id="srhWord" type="text" name="searchWord" size=15 value="${searchWord}" minlength="2" style="height:30px;border-radius:4px;border:1px solid gray;" autocomplete="off">
 	            <input type="hidden" name="tcno" value="${tcno }">
 	            <input type="hidden" name="tripCategory_name" value="${tripCategory_name }">
 	            <input type="hidden" name="content_title" value="${content_title }">
@@ -187,7 +187,7 @@ $(function(){
 	          </div>
 	        </form>
         
-
+			
       </div>
       
       
@@ -201,7 +201,7 @@ $(function(){
 	                   <img src="${tsvo.image }">
 	                   <h4 class="item_name">${tsvo.name }</h4>
 	                    <div class="item_info">
-	                        <span class="gu">서울 ${tsvo.addr }</span><span class="hit">&nbsp;&nbsp;조회수 ${vo.hit}</span> 
+	                        <span class="gu">서울 ${tsvo.addr }</span><span class="hit">&nbsp;&nbsp;조회수 ${tsvo.hit}</span> 
 	                    </div>
 	                 </a>
 	              </div>
@@ -212,8 +212,9 @@ $(function(){
   		<c:if test="${srhCount<=0 }">
   			<h2 style="margin:0;">검색결과가 없습니다.</h2>
   		</c:if>
-        <c:if test="${srhCount>0 }">
+        <c:if test="${srhCount>0 }"> 
             <!-- 페이지네이션 -->
+            <!-- 검색어 : ${searchWord }, 현재페이지 : ${curpage }, 총페이지 : ${totalpage }, 시작페이지 : ${startpage }, 끝페이지 : ${endpage } -->
             <div class="pagination"> 
               <ul>
                  <li><a href="../trip/trip_all_search.do?searchWord=${searchWord }&tcno=${tcno }&tripCategory_name=${tripCategory_name }&content_title=${content_title }&page=1"><i class="fa-solid fa-angles-left"></i></a></li>

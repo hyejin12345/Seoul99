@@ -308,7 +308,6 @@ public class TripDAO {
       return list;	   
    }
    
-   /* test */
    //전체여행지페이지 - 여행지 카테고리 내 검색
    public List<TripVO> tripSearchAllListData(String searchWord,int tcno,int page)
    {
@@ -320,7 +319,7 @@ public class TripDAO {
                  +"FROM (SELECT /*+ INDEX_ASC(gg_trip_4 t_tno_pk_4)*/ "
                  +"tcno,tno,name,image,addr,hit,rownum as num "
                  +"FROM gg_trip_4 "
-                 +"WHERE REGEXP_LIKE(addr,?) OR REGEXP_LIKE(name,?)) "
+                 +"WHERE addr LIKE '%'||?||'%' OR name LIKE '%'||?||'%') "
                  +"WHERE tcno=? "
                  +"AND num BETWEEN ? AND ?";
          ps=conn.prepareStatement(sql);
@@ -376,8 +375,6 @@ public class TripDAO {
          ResultSet rs=ps.executeQuery();
          rs.next();
          totalpage=rs.getInt(1);
-         if(totalpage<=0)
-        	 totalpage=1;
          rs.close();
       }catch(Exception ex)
       {

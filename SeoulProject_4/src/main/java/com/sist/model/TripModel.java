@@ -51,7 +51,8 @@ public class TripModel {
 		List<TripVO> list=dao.tripAllListData(Integer.parseInt(tcno),curpage);
 		int totalpage=dao.tripTotalPage(Integer.parseInt(tcno));
 		 
-		final int BLOCK=7; int startpage=((curpage-1)/BLOCK*BLOCK)+1;
+		final int BLOCK=7;
+		int startpage=((curpage-1)/BLOCK*BLOCK)+1;
 		int endpage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
 		if(endpage>totalpage)
 			endpage=totalpage;
