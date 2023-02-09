@@ -20,7 +20,7 @@
   <main class="container clear" style="width:900px;position:relative;left:-10px;">
     <h2 class="sectiontitle">공지사항</h2>
     <div style="height: 5px"></div>
-    <div style="height: 550px">
+
     <table class="table">
     	<tr>
     		<th width=20% class="text-center">번호</th>
@@ -43,10 +43,11 @@
     	</tr>
     	<tr>
     		<td class="text-right" colspan="4">
-    		
     		<a href="../adminpage/notice_list.do" class="whitegray_btn">목록</a>
+    		</td>
     	</tr>
     </table>
+
   </main>
 </div>
 

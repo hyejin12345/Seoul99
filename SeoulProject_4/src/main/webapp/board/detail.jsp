@@ -114,6 +114,9 @@
 	 padding : 3px 8px 3px 8px;
 	 margin : 1px 1px 1px 1px; 
 }
+h2{
+margin:60px 0;
+}
 textarea{
 resize: none;
 }
