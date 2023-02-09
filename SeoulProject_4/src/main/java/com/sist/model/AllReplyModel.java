@@ -11,7 +11,7 @@ import com.sist.vo.*;
 import com.sist.dao.*;
 @Controller
 public class AllReplyModel {
-   String[] url={"","../trip/trip_detail.do?tno=","../food/food_detail.do?fno=","../goods/goods_detail.do?gno="};
+   String[] url={"","../trip/trip_detail.do?tno=","../food/food_find_detail.do?fno="};
    @RequestMapping("all_reply/all_reply_insert.do")
    public String all_reply_insert(HttpServletRequest request,HttpServletResponse response)
    {
