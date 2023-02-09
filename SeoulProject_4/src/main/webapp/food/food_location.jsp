@@ -232,7 +232,7 @@ div.item_info{
 			   <c:forEach var="vo" items="${list }">
 			 	 
 				 <div>
-				    <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>
+				    <!--  <button class="jjim_btn"><i class="fa-sharp fa-solid fa-heart"></i></button>-->
 				    
 				    <a href="../food/food_find_before_detail.do?fno=${vo.fno }">
 				    <img src="${vo.poster }">

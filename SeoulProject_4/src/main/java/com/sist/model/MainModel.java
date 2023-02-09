@@ -90,7 +90,7 @@ public class MainModel {
                if(cookies2[i].getName().startsWith("guest_food"))
                {
                   String fno=cookies2[i].getValue();
-                  FoodVO vo=fdao.foodDetail(Integer.parseInt(fno));
+                  FoodVO vo=fdao.foodFindDetail(Integer.parseInt(fno));
                   fcList.add(vo);
                }
             }
@@ -102,7 +102,7 @@ public class MainModel {
                if(cookies2[i].getName().startsWith(id+"_food"))
                {
                   String fno=cookies2[i].getValue();
-                  FoodVO vo=fdao.foodDetail(Integer.parseInt(fno));
+                  FoodVO vo=fdao.foodFindDetail(Integer.parseInt(fno));
                   fcList.add(vo);
                }
             }

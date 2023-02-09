@@ -174,14 +174,14 @@ span.whitegray_btn,a.whitegray_btn{
 
                 <%-- 좋아요 --%>
                 <c:if test="${myLike_count==0 }">
-                  <a href="../like/foodlike_Find_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up" style="color:gray"><span style="font-size:16px">(${like_total })</span></i></a>
+                  <a href="../like/foodlike_insert.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up" style="color:gray"><span style="font-size:16px">(${like_total })</span></i></a>
                 </c:if>
                 <c:if test="${myLike_count>0 }">
-                  <a href="../like/foodlike_Find_delete.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up" style="color:#f46555"><span style="font-size:16px">(${like_total })</span></i></a>
+                  <a href="../like/foodlike_delete.do?fno=${vo.fno }" class="circle_btn"><i class="fa-regular fa-thumbs-up" style="color:#f46555"><span style="font-size:16px">(${like_total })</span></i></a>
                 </c:if>
 
             </c:if>
-              <a href="javascript:history.back()" class="circle_btn" style="color:white"><i class="fa fa-home" style="font-size:17px"></i>목록</a>
+              <a href="javascript:history.back()" class="circle_btn" style="color:white"><i class="fa fa-home" style="font-size:17px"></i></a>
             </td>
        </tr>
       </table>
@@ -274,7 +274,7 @@ span.whitegray_btn,a.whitegray_btn{
                        <form method="post" action="../all_reply/all_reply_insert.do">   
                          <c:if test="${sessionScope.id!=null }">
                             <input type=hidden name="no" value="${vo.fno }">
-                            <input type=hidden name="cate_no" value="3">
+                            <input type=hidden name="cate_no" value="2">
                             <textarea class="commentBox"  name="msg"></textarea>&nbsp;
                             <input type=submit value="리뷰등록" class="post_btn">
                          </c:if>
@@ -314,7 +314,7 @@ span.whitegray_btn,a.whitegray_btn{
                            <c:if test="${sessionScope.id!=null }">
                              <c:if test="${sessionScope.id==rvo.id }">
                                <span class="whitegray_btn ups" data-no="${rvo.arno }">수정</span>
-                               <a href="../all_reply/all_reply_delete.do?arno=${rvo.arno }&no=${vo.fno}&cate_no=3" class="whitegray_btn">삭제</a>
+                               <a href="../all_reply/all_reply_delete.do?arno=${rvo.arno }&no=${vo.fno}&cate_no=2" class="whitegray_btn">삭제</a>
                              </c:if>
                            </c:if>
                          </td>
@@ -332,7 +332,7 @@ span.whitegray_btn,a.whitegray_btn{
                             <form method="post" action="../all_reply/all_reply_update.do">
 	                            <input type=hidden name="no" value="${vo.fno }">
 	                            <input type=hidden name="arno" value="${rvo.arno }">
-	                            <input type=hidden name="cate_no" value="3">
+	                            <input type=hidden name="cate_no" value="2">
 	                            <textarea class="commentBox" name="msg">${rvo.msg}</textarea>&nbsp;
 	                            <input type=submit value="수정" class="post_btn">
                             </form>
