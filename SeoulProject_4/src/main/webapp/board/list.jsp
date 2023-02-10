@@ -67,7 +67,7 @@ margin:60px 0;
     	 		
     	 		<a href="../board/detail.do?bno=${vo.bno }"style="color: black">${vo.title }</a> &nbsp;
     	 		<c:if test="${vo.dbday==today }">
-    	 			<sup><img src="../img/new.gif"></sup>
+    	 			<img src="../img/new.gif">
     	 		</c:if>
     	 		</td>
     	 		<td width="10%" class="text-center">${vo.id }</td>

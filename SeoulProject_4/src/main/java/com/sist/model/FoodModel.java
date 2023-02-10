@@ -32,8 +32,8 @@ public class FoodModel {
 				request.setCharacterEncoding("UTF-8");
 			}catch(Exception ex) {}
 			String ss=request.getParameter("ss");
-			if(ss==null)
-				ss="성수";
+//			if(ss==null)
+//				ss="성수";
 			
 			String page=request.getParameter("page");
 			if(page==null)

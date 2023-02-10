@@ -25,7 +25,7 @@ margin:60px 0;
   <main class="container clear">
     <h2 class="sectiontitle">공지사항</h2>
     <div style="height: 5px"></div>
-    <div style="height: 550px; margin-bottom: 160px"">
+    <div style="height: 550px; margin-bottom: 160px">
     	<table class="table" style="padding:10px;">
     	 <tr>
     	 	<th width=15% class="text-center">구분</th>
