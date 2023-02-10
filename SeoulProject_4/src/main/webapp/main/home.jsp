@@ -309,7 +309,7 @@ $(function(){
        최근방문
     </div>
     <div id="recent_list" style="display:none; padding:15px;height:150px;background:white;float:right;position:fixed;top:50%;right:40px;transform:translateY(-50%);z-index:45;box-shadow:0 0 10px 5px rgb(0,0,0,0.2);">
-       <c:if test="${tcList.size()==0 && fcList.size()==0}">
+       <c:if test="${tcList.size()==0 && flcList.size()==0}">
           <h4 style="margin:0 0 10px 0;padding-left:5px;">최근 여행지 & 맛집 방문기록이 없습니다.</h4>
        </c:if>
        <c:if test="${tcList.size()>0 }">
