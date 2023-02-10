@@ -39,7 +39,7 @@ margin:60px 0;
     	<tr>
     		<th width=20% class="text-center">내용</th>
     		<td width=80% align=left>
-    			<textarea rows="10" cols="60" name="content"></textarea required>
+    			<textarea rows="10" cols="60" name="content" required></textarea>
     		</td>
     	</tr>
     	<tr>
