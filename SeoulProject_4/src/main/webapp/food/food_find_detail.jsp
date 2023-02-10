@@ -26,6 +26,46 @@ i.fa-heart,i.fa-thumbs-up,i.fa-home{
     text-align: center;
     cursor:pointer;
 }
+.titleAndBtn h2{
+   margin: 0 30px 30px 0;
+   display: inline-block;
+}
+.titleAndBtn a{
+   width:120px;
+   line-height:40px;
+   display:inline-block;
+   background: #e0e0e0;
+   text-align:center;
+   vertical-align:super;
+   border-radius:4px;
+}
+.recent_review{
+   margin: 0 0 70px 0;
+   width:100%;
+   height:150px;
+}
+.recent_review > div{
+   height:100%;
+   display:flex;
+   justify-content:space-between;
+}
+.recent_reviewBox{
+   padding:30px;
+   width:48%;
+   height:100%;
+   overflow:hidden;
+   white-space: nowrap;
+   text-overflow:ellipsis;   
+   box-shadow : 0 3px 13px 0 rgb(0,0,0,0.2);
+   /* background: lightgray; */
+}
+.recent_reviewBox .msg{
+   margin:30px 0 0 0;
+   display:block;
+   overflow:hidden;
+   white-space: nowrap;
+   text-overflow:ellipsis;
+}
 .foodReview_section{
    width:100%;
 }
@@ -264,7 +304,7 @@ $(function(){
 	         <a href="#foodReview_section">전체 보러가기</a>
 	      
 	      </div>
-	      <div class="recent_review">
+	      <div class="f_review">
 	         <div>
 	            <c:forEach var="rcvo" items="${rcList }">
 	            
@@ -292,8 +332,8 @@ $(function(){
              
 
               <table class="table">
-                  
-                   <table class="table">
+                  <table class="table">
+                   
                     <tr>
                       <td>
                       
@@ -313,8 +353,8 @@ $(function(){
                        
                       </td>
                     </tr>
-                   </table>
-                 
+                   
+                 </table>
              </table>
               
               <!-- 댓글이 없을 때 -->         
@@ -378,12 +418,12 @@ $(function(){
                 </table>
               </c:if>
              
-             
+               
 
          </div>
 
    </div>
    </div>
-   
+   </div>
 </body>
 </html>

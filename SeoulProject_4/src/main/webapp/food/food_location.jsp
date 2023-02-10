@@ -179,7 +179,7 @@ div.item_info{
 
 .pagination{
 
-	margin: 0 35px 0 0;
+	margin: -550px 35px 0 0;
 	display:block;
 	text-align: center;
 	
@@ -303,7 +303,7 @@ div.item_info{
 		
 			   </div>
 			     <div class="map_wrap">
-    <div id="map" style="width:450px;height:300px;position:relative;overflow:hidden;"></div>
+    <div id="map" style="width:250px;height:300px;position:relative;overflow:hidden;"></div>
 
     <div id="menu_wrap" class="bg_white">
         <ul id="placesList"></ul>
