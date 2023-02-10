@@ -77,8 +77,12 @@ public class MainModel {
       
       
       //cookie 전송 - 맛집 카테고리
+      session=request.getSession();
+      id=(String)session.getAttribute("id");
+
+ 
       Cookie[] cookies2=request.getCookies();
-      List<FoodVO> fcList=new ArrayList<FoodVO>();
+      List<FoodVO> flcList=new ArrayList<FoodVO>();
       session=request.getSession();
       id=(String)session.getAttribute("id");
       if(cookies2!=null)
@@ -87,11 +91,11 @@ public class MainModel {
          {
             for(int i=cookies2.length-1;i>=0;i--)
             {
-               if(cookies2[i].getName().startsWith("guest_food"))
+               if(cookies2[i].getName().startsWith("guest_food_loc"))
                {
                   String fno=cookies2[i].getValue();
                   FoodVO vo=fdao.foodFindDetail(Integer.parseInt(fno));
-                  fcList.add(vo);
+                  flcList.add(vo);
                }
             }
          }
@@ -99,55 +103,16 @@ public class MainModel {
          {
             for(int i=cookies2.length-1;i>=0;i--)
             {
-               if(cookies2[i].getName().startsWith(id+"_food"))
+               if(cookies2[i].getName().startsWith(id+"_food_loc"))
                {
                   String fno=cookies2[i].getValue();
                   FoodVO vo=fdao.foodFindDetail(Integer.parseInt(fno));
-                  fcList.add(vo);
-               }
-            }
-         }
-      }
-      
-      //cookie 전송 - 맛집 검색용
-      Cookie[] cookies3=request.getCookies();
-      List<FoodVO> flcList=new ArrayList<FoodVO>();
-      session=request.getSession();
-      id=(String)session.getAttribute("id");
-      if(cookies3!=null)
-      {
-         if(id==null)
-         {
-            for(int i=cookies3.length-1;i>=0;i--)
-            {
-               if(cookies3[i].getName().startsWith("guest_food_loc"))
-               {
-                  String fno=cookies3[i].getValue();
-                  FoodVO vo=fdao.foodFindDetail(Integer.parseInt(fno));
-                  flcList.add(vo);
-               }
-            }
-         }
-         else
-         {
-            for(int i=cookies3.length-1;i>=0;i--)
-            {
-               if(cookies3[i].getName().startsWith(id+"_food_loc"))
-               {
-                  String fno=cookies3[i].getValue();
-                  FoodVO vo=fdao.foodFindDetail(Integer.parseInt(fno));
                   flcList.add(vo);
                }
             }
          }
       }
-      for(FoodVO vo:flcList)
-      {
-    	  System.out.println(vo.getPoster());
-    	  fcList.add(vo);
-      }
-      request.setAttribute("fcList", fcList);
-      
+      request.setAttribute("flcList", flcList);
       
       return "../main/main.jsp";
 

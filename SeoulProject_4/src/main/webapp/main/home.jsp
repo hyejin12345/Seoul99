@@ -323,19 +323,20 @@ $(function(){
                </c:forEach>
             </div>
          </div>
-      </c:if>         
-      <c:if test="${fcList.size()>0 }">
+      </c:if>
+      <c:if test="${flcList.size()>0 }">
          <div style="float:right;">
              <h4 style="margin:0 0 10px 0;padding-left:5px;">맛집 기록</h4>
             <div>
-               <c:forEach var="fcvo" items="${fcList }" varStatus="s2">
+               <c:forEach var="fcvo" items="${flcList }" varStatus="s2">
                   <c:if test="${s2.index<5 }">
-                     <a href="../food/food_before_detail.do?fno=${fcvo.fno }"><img src="${fcvo.poster }" style="margin:0 5px;width: 90px;height: 90px;" title=${fcvo.name }></a>
+                     <a href="../food/food_find_before_detail.do?fno=${fcvo.fno }"><img src="${fcvo.poster }" style="margin:0 5px;width: 90px;height: 90px;" title=${fcvo.name }></a>
                   </c:if>
                </c:forEach>
             </div>
          </div>
-      </c:if>
+      </c:if>         
+
       
 
    </div>
