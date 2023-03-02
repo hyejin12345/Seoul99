@@ -32,4 +32,4 @@
 ### 팀원  
 <img src="https://avatars.githubusercontent.com/u/121096234?s=200&v=4" width=80 height=80>|<img src="https://avatars.githubusercontent.com/u/89583609?s=64&v=4" width=80 height=80>|<img src="https://avatars.githubusercontent.com/u/113769307?v=4" width=80 height=80>|<img src="https://avatars.githubusercontent.com/u/116634427?v=4" width=80 height=80>|<img src="https://avatars.githubusercontent.com/u/68989001?s=96&v=4" width=80 height=80>
 :---:|:---:|:---:|:---:|:---:
-[신혜진](https://github.com/hyejin12345)|[김민우](https://github.com/kimminwoo0306)|[박지민](https://github.com/pajama13)|[박서연](https://github.com/mechuuri)|[조성민](https://github.com/Sungm1n-Jo)
+[신혜진](https://github.com/hyejin12345)|[김민우](https://github.com/kimminwoo0306)|[박지민](https://github.com/pajama13)|[박서연](https://github.com/mechuuri)|[조성민](https://github.com/aengdu)
